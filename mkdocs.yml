@@ -1,3 +1,20 @@
-site_name: My Docs
+# Project information
+site_name: Bowling's TechStack
+site_url: http://note.bowling233.top
+repo_url: https://github.com/Tiandians/TechStack
+repo_name: TechStack
+edit_uri: blob/master/docs/
+site_description: 这是 Bowling 的笔记本
+site_author: Bowling
+copyright: Bowling
+
+#Documentation layout
+
+# Build directories
 theme:
-        name: material
+  name: material
+
+# Plugins
+plugins:
+  - tags:
+      tags_file: tags.md
