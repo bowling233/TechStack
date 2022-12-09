@@ -24,35 +24,25 @@
 
 ### Configuration in `mkdocs.yml`
 
-* 至少应当包含 `site_name`
+参考官方文档
 
-* `nav` 定义进入全站导航栏的文件
+## Deployment
 
+参考官方文档
 
+### Custom Domain
 
-
-
-
-
-
+需要在 `docs` 文件夹中创建 `CNAME` 文件，否则每次自动部署后会出现 `404 - Not found`，必须重新在 GitHub 上配置。
 
 
 
-
-
-
-
-
-
-
+## Writing
 
 * MkDocs 决定文档标题的顺序：
   * `nav` 中的定义
   * `title` 元数据
   * 一级标题
   * 文件名
-
-## Writing
 
 ### YAML 元数据
 
