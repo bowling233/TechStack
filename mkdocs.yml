@@ -105,7 +105,7 @@ nav:
     - 'basic/Markdown.md'
     - 🐧Linux: # basic/linux/
       - 'basic/linux/LinuxBasic.md'
-      - 'basic/linux/LinuxUtility.md'
+      - 'basic/linux/LinuxUtility.md' # tool.md at /basic/linux/tools
       - 'basic/linux/LinuxUsers.md'
       - 'basic/linux/LinuxFileSystem.md'
       - 'basic/linux/LinuxKernel.md'
