@@ -2,8 +2,6 @@
 
 > Contents are from [Tutorial: Intro to React](https://reactjs.org/tutorial/tutorial.html#setup-option-2-local-development-environment)
 
-[TOC]
-
 ## Setup
 
 * Install `Node.js`
@@ -22,9 +20,9 @@
 
 * We use **components** to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
 
-  * A component takes in parameters, called `props` (short for “properties”), and returns a hierarchy of views to display via the `render` method.
+    * A component takes in parameters, called `props` (short for “properties”), and returns a hierarchy of views to display via the `render` method.
 
-  * The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called “JSX” which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`
+    * The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called “JSX” which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`
 
     * You can put *any* JavaScript expressions within braces inside JSX.
 
@@ -87,9 +85,8 @@ class Square extends React.Component {
 
 * Also you can pass functions with `props={()=> function()}` to pass `function` as the `props` prop.
 
-  > **NOTICE**
-  >
-  > Do not write `props={function()}`. [Here](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) is the reason.
+    > **NOTICE**
+    > Do not write `props={function()}`. [Here](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) is the reason.
 
 ### Use state
 

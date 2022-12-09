@@ -1,12 +1,10 @@
 # GitHub Pages
 
-#done
-
 * [GitHub Pages](https://pages.github.com/)
 
 ## Overview
 
-GitHub Pages 分为两种：**用户或企业网站**和**项目网站**。一个 GitHub 账户可以有一个**用户或企业网站**和无限个**项目网站**。
+GitHub Pages 分为两种：**用户或企业网站** 和 **项目网站**。一个 GitHub 账户可以有一个 **用户或企业网站** 和无限个 **项目网站**。
 
 ### 用户或企业网站
 
@@ -26,15 +24,14 @@ GitHub Pages 分为两种：**用户或企业网站**和**项目网站**。一�
 
 * 当你为**用户或企业网站**配置了自定义域名后，你的所有项目域名前缀也会被更换。比如，自定义域名为 `www.example.com`，则子项目域名变为 `www.example.com/sub`
 
-> 与域名有关的问题，参见 [[域名]]
->
-> * 子域名是通过 DNS 服务器的 `CNAME` 记录配置的。
-> * 顶级域名是通过 DNS 服务器的 `A` 记录（ALIAS）配置的。
-> * DNS 改变可能花费 24 小时才生效。
+!!! note "与域名有关的问题"
+        * 子域名是通过 DNS 服务器的 `CNAME` 记录配置的。
+        * 顶级域名是通过 DNS 服务器的 `A` 记录（ALIAS）配置的。
+        * DNS 改变可能花费 24 小时才生效。
 
 ### Configuration
 
-* 确保你在**配置DNS服务之前**向 GitHub Pages 添加自定义域名。
+* 确保你在 **配置DNS服务之前** 向 GitHub Pages 添加自定义域名。
 
 ### Verification
 

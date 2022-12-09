@@ -5,5 +5,3 @@
 `<head>` 中的 `<script>` 元素可以放置一些 JavaScript
 
 ## XHTML
-
-#暂不学习

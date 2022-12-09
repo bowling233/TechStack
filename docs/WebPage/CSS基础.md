@@ -1,10 +1,8 @@
 # CSS 基础
 
 > 大部分内容来自《Head First HTML》
->
-> CSS [验证器](https://jigsaw.w3.org/css-validator)
 
-[TOC]
+* [CSS 验证器](https://jigsaw.w3.org/css-validator)
 
 ## 概念性知识
 
@@ -12,10 +10,10 @@
 
 * 在 HTML 内插入 CSS：将 CSS 放置在 HTML `<head>` 的 `<style>` 标签中。
 * 在 HTML 中链入 CSS 文件：`<link rel="stylesheet" href="xx.css">`，`type="text/css"` 在新的 HTML 标准中不再必要。
-  * `media="screen and (max-device-width: 480px)"` media 属性允许指定应用该样式表的设备类型。
+    * `media="screen and (max-device-width: 480px)"` media 属性允许指定应用该样式表的设备类型。
     * 设备可以是：`print`, `min-device-width`, `orientation(landscape, portrait)`, `max-width`
 
-  * 为了**避免 CSS 文件过于庞大**，建议使用 `<link>` 指定不同的设备样式表。
+    * 为了 **避免 CSS 文件过于庞大**，建议使用 `<link>` 指定不同的设备样式表。
 
 ### 内置规则
 
@@ -63,12 +61,12 @@ a:link {}
 * `.` 表示 class
 * `#` 表示 id
 * ` ` 表示子孙选择器。父元素可以是元素/id
-  * 这将选择所有指定的子孙元素，不管嵌套得多深
-  * `>` 选择直接孩子
-  * 更复杂的条件 `#elixirs blockquote h2`
+    * 这将选择所有指定的子孙元素，不管嵌套得多深
+    * `>` 选择直接孩子
+    * 更复杂的条件 `#elixirs blockquote h2`
 * `:` 表示伪类（元素状态）（请保证冒号前后没有空格）
-  * `<a>` : `link` `hover` `visited` `focus` `active`
-  * 通用伪类（Pseudo-class）：`first-child` `last-child`
+    * `<a>` : `link` `hover` `visited` `focus` `active`
+    * 通用伪类（Pseudo-class）：`first-child` `last-child`
 
 ### 继承
 
@@ -78,8 +76,8 @@ a:link {}
 
 ### 总结：如何知道你的元素应用了什么规则？
 
-1. 有没有某个选择器**直接选择**了这个元素？
-2. 查看**父元素**，向上追溯整个继承体系
+1. 有没有某个选择器 **直接选择** 了这个元素？
+2. 查看 **父元素** ，向上追溯整个继承体系
 3. 默认值
 
 在多个选择器中，更特定的胜出：元素 < 类 < 元素+类
@@ -116,7 +114,7 @@ a:link {}
 
 [[#样式速查#字体]]
 
-* **无衬线**字体在在计算机上更容易阅读：`sans-serif`
+* **无衬线** 字体在在计算机上更容易阅读：`sans-serif`
 
 字体格式：
 
@@ -136,13 +134,13 @@ a:link {}
 
 ### 颜色
 
-Web 颜色由**红、蓝、绿**构成。
+Web 颜色由 **红、蓝、绿** 构成。
 
 * 浏览器一定具有下面列出的 16 种颜色名。
 * 百分比： `rgb(80%, 40%, 0%)`
 * 数值： `rgb(205, 102, 0)` 从0~255
 * 十六进制分量：`#CC6600`
-  * 每组分量两位数字相同可以简写，如 `#cb0` = `#ccbb00`
+    * 每组分量两位数字相同可以简写，如 `#cb0` = `#ccbb00`
 * HTML [颜色表](http://en.wikipedia.org/wiki/Web_colors)
 
 ### 大小
@@ -154,50 +152,45 @@ Web 颜色由**红、蓝、绿**构成。
 * `em` 比例因子，如 `1.2em`
 * `pt` 磅数
 * 关键字：通常逐级乘 $120\%$ 的比例增长
-  * `xx-small`, `x-small`, `small` （一般为 12px）, `medium`, `large`, `x-large`, `xx-large`
-  * 建议：`body` 使用 `small`
+    * `xx-small`, `x-small`, `small` （一般为 12px）, `medium`, `large`, `x-large`, `xx-large`
+    * 建议：`body` 使用 `small`
 
 ## 元素定位
 
 零碎的：
 
 * 内联元素
-  * 你只会看到左边和右边增加空间。上下边距不会影响其他内联元素的边距，所以会与其他内联元素重叠，看不出效果。
-  * **图像**的宽度、内边距、外边距都表现得像是块元素。
+    * 你只会看到左边和右边增加空间。上下边距不会影响其他内联元素的边距，所以会与其他内联元素重叠，看不出效果。
+    * **图像** 的宽度、内边距、外边距都表现得像是块元素。
 
 ### 流与元素定位
 
 * 流是浏览器摆放 HTML 的方法：沿着元素流逐个显示所遇到的各个元素。
+* **块** 元素添加换行：**这个换行很重要**，表明两个块元素不会并排出现。
 
-* **块**元素添加换行：**这个换行很重要**，表明两个块元素不会并排出现。
-
-  * **上下**摆放的块元素，外边距合并，保留最大的那个。
-
-  * 只要**两个垂直外边距**碰到一起就会折叠。
-
+    * **上下** 摆放的块元素，外边距合并，保留最大的那个。
+    * 只要 **两个垂直外边距** 碰到一起就会折叠。
     > 这会引起很奇怪的情况：在嵌套元素中，如果外元素没有边框，那么两个元素的外边距会发生碰撞，进而折叠。这很可能让你莫名其妙。
-
-* **内联**元素水平摆放
-
-  * **并排**放置的内联元素，外边距叠加。
+* **内联** 元素水平摆放
+    * **并排** 放置的内联元素，外边距叠加。
 
 `float` 属性如何工作？
 
 * `float` 的元素从流中消失，所以可以和其他块元素并排了。
-  * 但其他块内的内联元素会围绕着浮动的元素。
+    * 但其他块内的内联元素会围绕着浮动的元素。
 * `clear` 属性，使得这个元素流入页面时，某方向不允许有浮动内容。
-  * `right`, `left`, 
+    * `right`, `left`, 
 
 冻结布局
 
 * 可以避免一些因为窗口扩展带来的问题。
-* 冻结布局就是为页面主题**固定宽度**，并通过 `auto` 的左右边距使主体居中。
+* 冻结布局就是为页面主题 **固定宽度**，并通过 `auto` 的左右边距使主体居中。
 
 绝对定位
 
 * `positon: absolute`， 默认是 `static`。
-  * `fixed` 将相对**浏览器窗口**而不是页面。
-  * `relative` **正常流入页面**，但进行偏移。
+    * `fixed` 将相对 **浏览器窗口** 而不是页面。
+    * `relative` **正常流入页面**，但进行偏移。
 * `top`, `right`, `bottom`, `left` 这些属性表明相对页面某个边距的位置。
 * `z-index` 值越大，浮动元素越在顶部。
 * 元素将放置在指定的位置
@@ -210,13 +203,12 @@ CSS 表格
 * `display: table-row` 为表格内指定行或列
 * `display: table-cell` 指定表格内的元素
 * 表格元素的 `border-spacing` 被每个单元格继承
-  * 这一边距与 `margin` 不同，**不会被折叠**
+    * 这一边距与 `margin` 不同，**不会被折叠**
 * `vertical-align: top;` 确保单元格中内容相对单元格顶部对齐 。还可以是 `middle` `bottom`
 
 固定定位
 
 * `position: fixed`
-* 
 
 **小结**
 
@@ -230,28 +222,28 @@ CSS 表格
 * `top`
 * `left`
 * `text-align`
-  * 对所有**内联内容**对齐，只能在块元素上设置（直接在内联元素上不起作用）
-  * 嵌套的元素也对齐了，这是因为**ji'cheng**
-  * `center`, 
+    * 对所有 **内联内容** 对齐，只能在块元素上设置（直接在内联元素上不起作用）
+    * 嵌套的元素也对齐了，这是因为 **继承**
+    * `center`
 
 ### 字体
 
 * `font-weight`
-  * `lighter`, `normal`, `bold`, `bolder` （比较级的两个是相对值）
+    * `lighter`, `normal`, `bold`, `bolder` （比较级的两个是相对值）
 * `font-family`
-  * 每个 `font-family` 包含5个字体系列：
+    * 每个 `font-family` 包含5个字体系列：
     * 无衬线 sans-serif: Verdana, Arial Black, Trebuchet MS, Arial, Geneva
     * 衬线 serif: Times, Times New Roman, Georgia
     * 定宽 monospace: Courier, Courier New, Andale Mono
     * 手写 cursive: Comic Sans, Apple Chancery
     * 装饰 fantasy: LAST NINJA, Impact
-  * 工作方式：候选字体列表 + 字体系列名。注意：字体名区分大小写，带空格的需要加引号。
+    * 工作方式：候选字体列表 + 字体系列名。注意：字体名区分大小写，带空格的需要加引号。
 * `font-size` 
 * `font-style` 
-  * `italic` 和 `oblique` 都是斜体，有时看起来不同。
+    * `italic` 和 `oblique` 都是斜体，有时看起来不同。
 * `font-variant`
 * `line-height` 可以按字体高度的比例指定
-  * 特别的点：可以直接指定一个数，表示是**自己字体大小的几倍**。比如在 `<div>` 设为 1 ，那么里面的元素行高是各自的 1 倍，而不是 `<div>` 的行高的 1 倍。
+    * 特别的点：可以直接指定一个数，表示是 **自己字体大小的几倍**。比如在 `<div>` 设为 1 ，那么里面的元素行高是各自的 1 倍，而不是 `<div>` 的行高的 1 倍。
 
 > 它们可以简写为 `font`
 >
@@ -263,62 +255,53 @@ CSS 表格
 
 * `color`
 
-  * `Aqua`, `Black`, `Blue`, `Fuchsia`, `Gray`, `Green`, `Lime`, `Maroon`, `Navy`, `Olive`, `Purple`, `Red`, `Silver`, `Teal`, `White`, `Yellow`
-  * 实际上控制着一个元素的**前景色**，所以会控制文本和边框颜色
+    * `Aqua`, `Black`, `Blue`, `Fuchsia`, `Gray`, `Green`, `Lime`, `Maroon`, `Navy`, `Olive`, `Purple`, `Red`, `Silver`, `Teal`, `White`, `Yellow`
+    * 实际上控制着一个元素的 **前景色**，所以会控制文本和边框颜色
 
 * `text-decoration` 
+    * `underline`, `overline`, `line-through`, `none`
 
-  * `underline`, `overline`, `line-through`, `none`
+    > 规则的合并：
+    >
+    > * 如果你分别指定 `text-decoration=underline;` 和 `text-decoration=overline;`，那么不会得到上下线
+    > * 应当指定： `text-decoration=underline overline;`
 
-  > 规则的合并：
-  >
-  > * 如果你分别指定 `text-decoration=underline;` 和 `text-decoration=overline;`，那么不会得到上下线
-  > * 应当指定： `text-decoration=underline overline;`
-
-  > 标记删除文本：HTML 具有这样的标签
-  >
-  > * `<del>` 标记需要删除的内容
-  > * `<ins>` 标记插入的内容
-  >
-  > 注意，使用 HTML 能让内容的含义更加清晰
-
+    > 标记删除文本：HTML 具有这样的标签
+    >
+    > * `<del>` 标记需要删除的内容
+    > * `<ins>` 标记插入的内容
+    >
+    > 注意，使用 HTML 能让内容的含义更加清晰
 * `letter-spacing` 字符间距
 
 ### 列表
 
 * `list-style-none`
-  * `none` 删除项目符号
+    * `none` 删除项目符号
 * （列表元素）`display`
-  * `block`, `inline`
+    * `block`, `inline`
 
 ### 盒模型
 
-
-<details>
-    <summary>盒模型由哪几个部分构成？</summary>
-    <ul>
-        <li>MARGIN</li>
-        <li>BORDER</li>
-        <li>PADDING</li>
-        <li>CONTENT</li>
-    </ul>
-</details>
-
+??? note "盒模型由哪几个部分构成？"
+    * MARGIN
+    * BORDER
+    * PADDING
+    * CONTENT
 
 与边框有关的属性：
 
 * `border-color`
 * `border-width`
-  * `thin`, `medium`, `thick`
-
+    * `thin`, `medium`, `thick`
 * `border-style`
-  * `solid`, `double`, `groove`, `outset`, `dotted`, `dashed`, `inset`, `ridge`
+    * `solid`, `double`, `groove`, `outset`, `dotted`, `dashed`, `inset`, `ridge`
 * `border-radius`
 * 指定某一边框
-  * `border-top-color`
-  * `border-right-style`
-  * `border-bottom-width`
-  * `border-top-left-radius`
+    * `border-top-color`
+    * `border-right-style`
+    * `border-bottom-width`
+    * `border-top-left-radius`
 
 
 内衬：
@@ -342,27 +325,27 @@ CSS 表格
 背景：
 
 * `background-image`
-  * `url`
+    * `url`
 * `background-repeat`
-  * 默认平铺
-  * `no-repeat`, `repeat-x`, `repeat-y`, `inherit`
+    * 默认平铺
+    * `no-repeat`, `repeat-x`, `repeat-y`, `inherit`
 * `background-position`
-  * `top`, `left`
+    * `top`, `left`
 
 盒模型的宽度
 
 * `width` 内容区宽度
-  * `auto` 延伸占满可以用的空间。
-  * 百分比：所在容器为标准。
+    * `auto` 延伸占满可以用的空间。
+    * 百分比：所在容器为标准。
 * `height`
-  * 高度可能导致内容区溢出，一般不指定。
+    * 高度可能导致内容区溢出，一般不指定。
 
 ### 表格
 
 `<table>`
 
 * `caption-side`
-  * `bottom`
+    * `bottom`
 * 表格元素没有外边距，取而代之的是针对整个表格定义的 `border-spacing` 属性。首先指定垂直间距，再指定水平间距。
 * `border-collapse` 折叠/合并边框 `collapse`
 
@@ -384,17 +367,16 @@ CSS 表格
 `<li>`
 
 * `list-style-type`
-  * `disc`
-  * `circle`
-  * `square`
-  * `none`
-  * `decimal`
-  * `upper-alpha`
-  * `lower-alpha`
-  * `upper-roman`
-  * `lower-roman`
+    * `disc`
+    * `circle`
+    * `square`
+    * `none`
+    * `decimal`
+    * `upper-alpha`
+    * `lower-alpha`
+    * `upper-roman`
+    * `lower-roman`
 * `list-stype-image`
 * `list-style-position`
-  * `inside`
-  * `outside`
-  * 
+    * `inside`
+    * `outside`
