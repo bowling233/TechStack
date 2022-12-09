@@ -1,4 +1,4 @@
-# :bowling: Bowling's TechStack
+# 🎳Bowling's TechStack
 
 !!! success "私、アイドル宣言"
     <div align="center" style="font-size:32px;font-weight:bold">

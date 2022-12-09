@@ -67,6 +67,13 @@ tags:
 
 ## MkDocs
 
+!!! note "local server"
+    如果你想在服务器上利用 `mkdocs serve` 零时部署一个网站测试动态更改效果，你可以使用命令：
+    ```bash
+    mkdocs serve --livereload --dev-addr 0.0.0.0:8000
+    ```
+    这样就可以远程访问该零时部署的网站了。
+
 * 设置页脚
 ```yaml
 extra:
