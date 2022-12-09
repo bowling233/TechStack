@@ -1,3 +1,8 @@
+---
+tags:
+  - Done
+---
+
 # tmux: terminal multiplexer
 
 窗口层级：

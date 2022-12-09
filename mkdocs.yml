@@ -97,12 +97,13 @@ plugins:
 nav: 
   - 🏠Home: # /
     - 🏡Home: 'README.md'
-    - 🔗友链: 'Links.md'
     - 🔖标签: 'Tags.md'
+    - 🔗链接: 'Links.md'
     - ⚠️测试: 'Test.md'
     - ☣️杂项: 'Misc.md'
   - 🔨基础技能: # basic/
     - 'basic/Markdown.md'
+    - ▶️科普视频: 'basic/Videos.md'
     - 🐧Linux: # basic/linux/
       - 'basic/linux/LinuxBasic.md'
       - 'basic/linux/LinuxUtility.md' # tool.md at /basic/linux/tools

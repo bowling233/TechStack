@@ -68,12 +68,12 @@ tags:
 ## MkDocs
 
 * 设置页脚
-  ```yaml mkdocs
-  extra:
-    social:
-      - icon: fontawesome/brands/twitter 
-        link: https://twitter.com/squidfunk
-  ```
+```yaml
+extra:
+  social:
+    - icon: fontawesome/brands/twitter 
+      link: https://twitter.com/squidfunk
+```
 * 代码块
     * MkDocs 中的代码块可以有标题 `title="xxx.py"`、脚注 `//(1)` （需要开启扩展）等
     * 请不要在嵌套的代码块中使用脚注，这会导致下面的子列表消失
@@ -85,13 +85,14 @@ tags:
         - navigation.instant
         - navigation.tracking
         - navigation.tabs
+    ```
 
 
 ### Python Markdown
 
 * 配置推荐的 [Markdown 扩展](https://squidfunk.github.io/mkdocs-material/setup/extensions/#recommended-configuration)
 * 缩写 Abbreviations
-    * 可以创建一个大的术语表 `includes/abbreviations.md`
+    * 可以创建一个全局的术语表 `includes/abbreviations.md`
     ```yaml
     markdown_extensions:
       - pymdownx.snippets:
@@ -113,7 +114,7 @@ tags:
     * 支持这些 type
         * `note` `abstract` `info` `tip` `success` `warning` `failure` `danger` `bug` `example` `quote`
 * 清单 List
-    * 待办列表：语法符合 Markdown 通用标准，但需要启用该扩展
+    * 待办列表：语法符合 Markdown 通用标准，但需要启用扩展
 * 目录 Table of Contents
     * 需要配置的：目录深度默认为 6
     ```yaml
@@ -126,10 +127,10 @@ tags:
 * Arithmatex 数学公式块 `$$` 语法支持
 * Keys 按键标识
     * 例：++ctrl+alt+del++
-    * 用 `+` 将按键组合包裹起来即可
+    * 用 `++` 将按键组合包裹起来即可
 * SuperFences 超级栅栏
     * 开启该扩展允许各类东西嵌套
-      !!! note
+    !!! note
         Marmaid 也需要在这里开启
 * Tabbed 卡片
     * 可以把内容组织成卡片，并且可以把卡片嵌套在警告中：

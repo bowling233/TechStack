@@ -1,23 +1,16 @@
 # :bowling: Bowling's TechStack
 
-!!! note "私、アイドル宣言"
+!!! success "私、アイドル宣言"
     <div align="center" style="font-size:32px;font-weight:bold">
         写代码是热爱，写到世界充满爱！
     </div>
 
-这是 Bowling 的笔记本📓。我想把自己学过的技术都记录下来，搭建起自己的技术栈。
+这是 Bowling 的笔记本📓。我想把自己学过的技术都记录下来，搭建起自己的技术栈。你可能在导航栏中看到一些 `None` 页面，这些页面尚未建立，是等待学习的知识。
 
-## Current Working On
+!!! info
+    为了便于维护，笔记本有一些命名规范：文件夹全部小写，文档采用首字母大写的驼峰命名法（除了 `/basic/linux/tools/` 内的文档，它们直接按软件包名命名）
 
-图例：
-
-```mermaid
-flowchart LR
-	学习线路[学习线路] --- 熟练掌握{{熟练掌握}} --- 入门([入门]) --- 正在学习((正在学习))
-	
-```
-
-路线：
+## 正在学习
 
 ```mermaid
 flowchart LR
@@ -28,12 +21,17 @@ flowchart LR
 	技能 --> git((git)) --> Linux基本命令 --> Linux管理 --> Shell脚本
 ```
 
-## TechStack
+## 技术栈
 
 > 参考：
 >
 > * [Developer Roadmaps](https://roadmap.sh/)
 > * [Wikipedia](https://en.wikipedia.org/wiki/Computer_science)
+
+计算机学科博大精深，完整的技术栈可以从沙子造起，但没有人能成为这样的“全栈工程师”。能掌握其间的一个部分就已经非常厉害。以下只是一个技术栈框架，将自己浅薄的知识分类堆放而已，并不是目标。
+
+!!! tip
+    吾生也有涯，而知也無涯。以有涯隨無涯，殆已！已而為知者，殆而已矣！
 
 ### 基础
 

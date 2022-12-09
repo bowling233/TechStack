@@ -8,12 +8,13 @@
 
 ## 系统管理
 
-* [[sudo]]
-* [[ssh]]
 
-用户管理工具见[[Linux用户]]
 
-## 网络
+## 常用工具
+
+* [tmux](tools/tmux.md)
+
+## Deprecated
 
 * `ifupdown` 网络管理器： Debian 的默认管理器
 
