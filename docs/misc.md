@@ -1,4 +1,4 @@
-# 杂项
+# :simple-smartthings: 杂项
 
 * Syncthing 和 git 共用问题
 
