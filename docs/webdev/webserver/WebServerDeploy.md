@@ -1,4 +1,9 @@
-# Service Deployment
+---
+tags:
+  - Deprecated
+---
+
+#  Service Deployment
 
 ## Overview
 

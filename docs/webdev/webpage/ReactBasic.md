@@ -1,3 +1,8 @@
+---
+tags:
+  - Ongoing
+---
+
 # React Basic
 
 > Contents are from [Tutorial: Intro to React](https://reactjs.org/tutorial/tutorial.html#setup-option-2-local-development-environment)

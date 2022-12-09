@@ -1,6 +1,11 @@
-# TechStack
+# :bowling: Bowling's TechStack
 
-这是 Bowling 的笔记本。我想把自己学过的技术都记录下来，搭建起自己的技术栈。
+!!! note "私、アイドル宣言"
+    <div align="center" style="font-size:32px;font-weight:bold">
+        写代码是热爱，写到世界充满爱！
+    </div>
+
+这是 Bowling 的笔记本📓。我想把自己学过的技术都记录下来，搭建起自己的技术栈。
 
 ## Current Working On
 
@@ -32,9 +37,9 @@ flowchart LR
 
 ### 基础
 
-* [ ] [Markdown](Basic/Markdown.md) 及其扩展
-    * [ ] [MkDocs](Basic/Markdown.md#MkDocs)
-    * [ ] [Mermaid](Basic/Markdown.md#Mermaid)
+* [ ] [Markdown](basic/Markdown.md) 及其扩展
+    * [ ] [MkDocs](basic/Markdown.md#MkDocs)
+    * [ ] [Mermaid](basic/Markdown.md#Mermaid)
 * [ ] Linux
     * [ ] ==《Linux 就该这样学》==
 * [ ] Git
