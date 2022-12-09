@@ -244,3 +244,95 @@ function Square(props) {
 >
 > * also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
 
+## 基本概念
+
+> 来自 [[]]
+
+* 那些“假的 HTML 标签”称为**组件**
+* React Apps 就是组件套着组件，它们组成一个树状结构
+* 你可以把你的网站分割为可以复用的组件
+
+> 比如，一个评论组件应该有什么？
+>
+> * 描述评论如何被渲染在屏幕上
+> * 是所有评论的框架
+
+* **Props**：从父组件到子组件的输入
+  * props 是不能改变的
+* **State**：一个组件维护的私有信息
+
+## 写代码
+
+* 把你的应用分割成一个个组件，每个组件是一个文件
+
+* 组件是一个 JS 函数，接受 props 作为输入，期望返回类 HMTL 的代码，描述这个组件的外观
+
+> 写一个评论组件：
+>
+> 1. 设置初始状态：like
+> 2. 返回一个 div，并赋予合适的 id 和 className
+>    1. 注意：==使用 className 访问 CSS 类==
+>    2. 使用 props 访问需要的内容 `{props.content}`，让它可复用
+
+* HTML 与 JavaScript 的转化
+  * `()` 在 JS 中写 HTML
+  * `{}` 在 HTML 中回到 JS
+* Props 的传递：
+  * 语法：`<Component propName={propValue} />`
+  * 父组件：`<Post propName={"Akshaj" text="Welcome"} />`，这些属性就是 props。在 JS 中体现为： `props={name:"Akshaj", text:"Welcome"}`
+    * 更复杂的信息：`<Photos links={["fisrt.jpg", "second.jpg"]} />`
+  * 子组件：将具体信息替换为 `{props.content}`
+* State 的维护：
+  * 需要 `import {useState} from "react"`
+  * 在子组件函数中，用 `const [something, setSomething] = useState(initialValue)` 声明状态变量
+  * 在 return 的 HTML 中设置交互等 `<button onClick={() => {setNumLikes(numLikes + 1);}}`
+  * 替换需要显示的地方为状态 `{numLikes}`
+
+### 更进一步
+
+* State 存储的地方：涉及到更新的地方，注意只能向下传递
+* 初始化 state
+* 修改 state：`setXxx(xxx)`
+* 与数组一起用 `setXXX([...pets, "dog"]);`
+* 设置状态是**异步**的
+* `useEffect` [钩子](https://reactjs.org/docs/hooks-reference.html)
+  * 语法：`useEffect(function, optional dependency array)`
+  * 三种更新方式
+
+生命周期：初始化-返回网页-更改值-返回网页
+
+* `get()`, `post()`
+
+### JSX
+
+* 用 JSX 写一个加载指示
+
+* 条件渲染：
+
+  ```jsx
+  return (
+  	<div>
+      <title>a</title>
+          <p>
+           {loading
+             ? "xxx"
+             : "xxx"}
+          </p>
+      </div>
+  )
+  ```
+
+* 回顾 `map()` 如何提取数据？将回调函数应用到每一个元素上
+
+  ```jsx
+  return data.map( (item) =>{
+  	return <div key={item.id}></div>;
+  });
+  ```
+
+### JS 库
+
+* Math
+* Date
+* Sets
+* JSON

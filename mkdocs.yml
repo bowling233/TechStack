@@ -102,7 +102,8 @@ nav:
     - ⚠️测试: 'Test.md'
     - ☣️杂项: 'Misc.md'
   - 🔨基础技能: # basic/
-    - 'basic/Markdown.md'
+    - ✒Markdown: 'basic/Markdown.md'
+    - ✒Latex: 'basic/Latex.md'
     - ▶️科普视频: 'basic/Videos.md'
     - 🐧Linux: # basic/linux/
       - 'basic/linux/LinuxBasic.md'
@@ -141,6 +142,7 @@ nav:
     - 🏹C: # program/c/
       - 'program/c/CBasic.md'
       - 'program/c/CSTL.md'
+      - 'program/c/CTricks.md'
     - 🧰C++: # program/cpp/
       - 'program/cpp/CppBasic.md'
       - 'program/cpp/CppAdvanced.md'
