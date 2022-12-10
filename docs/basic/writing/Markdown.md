@@ -135,9 +135,10 @@ extra:
 * Keys 按键标识
     * 例：++ctrl+alt+del++
     * 用 `++` 将按键组合包裹起来即可
+    * 对于逗号等按键，请使用别名，如 `comma` 才能被正确解析。详细列表见 [文档](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#punctuation-keys)
 * SuperFences 超级栅栏
     * 开启该扩展允许各类东西嵌套
-    !!! note
+      !!! note
         Marmaid 也需要在这里开启
 * Tabbed 卡片
     * 可以把内容组织成卡片，并且可以把卡片嵌套在警告中：
@@ -158,6 +159,8 @@ extra:
         2. Donec vitae suscipit est
         3. Nulla tempor lobortis orci
         ```
+
+
 
 ### Plugins
 

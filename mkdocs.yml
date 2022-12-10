@@ -58,7 +58,8 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
+extra_css:
+  - stylesheets/extra.css
 
 #Documentation layout
 
@@ -104,8 +105,12 @@ nav:
     - ⚠️测试: 'Test.md'
     - ☣️杂项: 'Misc.md'
   - 🔨基础技能: # basic/
-    - ✒Markdown: 'basic/Markdown.md'
-    - ✒Latex: 'basic/Latex.md'
+    - ✒写作: # writing/
+      - 'basic/writing/Copywriting.md'
+      - 'basic/writing/VSCode.md'
+      - 'basic/writing/Vim.md'
+      - 'basic/writing/Markdown.md'
+      - 'basic/writing/Latex.md'
     - ▶️科普视频: 'basic/Videos.md'
     - 🐧Linux: # basic/linux/
       - 'basic/linux/LinuxBasic.md'
