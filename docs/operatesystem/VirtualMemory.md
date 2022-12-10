@@ -1,7 +1,5 @@
 # 虚拟内存
 
-#doing
-
 概念
 
 * 虚拟内存（Virtual Memory）是什么？

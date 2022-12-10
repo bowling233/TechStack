@@ -1,7 +1,5 @@
 # C 预处理器与宏
 
-#doing
-
 知识概要：
 
 * 预处理指令：`#define`，`#include`，`#ifdef`，`#else`，`#endif`，`#ifndef`，`#if`，`#elif`，`#line`，`#error`，`#pragma`

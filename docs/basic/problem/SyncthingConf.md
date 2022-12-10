@@ -1,4 +1,4 @@
-# 1. Syncthing 同步服务器搭建记录
+# Syncthing 同步服务器搭建记录
 
 * 安装：[APT Syncthing](https://apt.syncthing.net/)
 
@@ -21,8 +21,6 @@
 
 * 更改连接后，需要运行 `systemctl daemon-reload` 应用更改
 * 接下来启动 `systemctl start syncthing@syncthing.service`
-
-## SSH 端口转发
 
 ## Syncthing 相关配置
 

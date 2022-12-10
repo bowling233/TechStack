@@ -1,6 +1,6 @@
-# Something to make your program more friendly
+# C 编程技巧
 
-## 一、I/O
+## I/O
 
 ### Discard unwanted input
 
@@ -27,7 +27,7 @@ If `scanf()` doesn't read the value it requires, the input data will be left unu
 
 
 
-## 2. Program Control
+## Program Control
 
 ### Loop Condition
 

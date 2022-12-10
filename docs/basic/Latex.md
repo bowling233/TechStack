@@ -1,5 +1,11 @@
+---
+tags:
+  - Doing
+---
+
 # Latex学习笔记
-参考书籍：[[doing-lshort-zh-cn.pdf]]
+
+参考书籍：`doing-lshort-zh-cn.pdf`
 
 ## Ch1. Latex基本概念
 

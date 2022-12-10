@@ -1,7 +1,5 @@
 # 存储技术
 
-#doing
-
 > 关于本模块知识，有一些非常好的可视化视频，值得反复观看：
 >
 > * DDR5的工作机制：[Youtube](https://www.youtube.com/watch?v=7J7X7aZvMXQ)/[Bilibili](https://www.bilibili.com/video/BV1vP411c7pt)

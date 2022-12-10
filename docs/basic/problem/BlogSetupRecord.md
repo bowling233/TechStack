@@ -81,5 +81,3 @@ ChallengeResponseAuthentication no
 chown -R git:git /path/to/repo
 chmod -R 755 /path/to/repo
 ```
-
-## Nginx 配置

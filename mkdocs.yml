@@ -153,5 +153,24 @@ nav:
       - 'program/python/PythonBasic.md'
     - 🧨Java: # program/java
       - 'program/java/JavaBasic.md'
+  - 🧮操作系统: # operatesystem/
+    - 'operatesystem/MemoryHierarchy.md'
+    - 'operatesystem/VirtualMemory.md'
+  - 💽硬件: # hardware/
+    - 'hardware/LogicCircuit.md'
+    - 'hardware/MOSFET.md'
+    - 'hardware/Storage.md'
   - 🤔思考: # think/
     - 'think/MobileOffice.md'
+  - 📚图书馆: # books/
+    - 'books/计算机科学导论.md'
+    - 'books/计算机组成与设计_硬件软件接口.md'
+    - 'books/量子计算入门.md'
+    - 'books/深入理解计算机系统.md'
+  - 🏫课程笔记: # course/
+    - 'course/Course.md'
+    - 🧪普通化学（H）:
+      - 'course/普通化学/普通化学H.md'
+      - 'course/普通化学/化学热力学.md'
+      - 'course/普通化学/化学动力学基础.md'
+      - 'course/普通化学/电化学基础.md'
