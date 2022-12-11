@@ -144,6 +144,12 @@ Prepend `no` to switch an option off
 * ++period++: repeat last operation
     * NOTICE: movements are not repeated
 
+### 多文件多窗口
+
+* 缓冲区：我们并不是在编辑文件，而是编辑文件在内存中的映像
+
+
+
 ### Other Operators
 
 

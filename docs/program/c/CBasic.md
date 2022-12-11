@@ -125,8 +125,6 @@ Which `int` type to choose?
 > * **Passing Arguments:** When the computer puts these values on the **stack**, it is guided by the **types of the variables**, not by the conversion specifiers
 > * But printf() **reads them from the stack** according to the conversion specifiers: the conversion specifiers indicates how many bytes `printf()` should read
 > * usually reads **the first n bytes** in the stack
-* ![image-20221022125713855](C Primer Plus复习.assets/image-20221022125713855.png)
-* 
 
 * return value of `printf()`: the number of characters it printed; negative value if output error
 
@@ -232,7 +230,6 @@ int zippo[4][2];
 * `zippo = &zippo[0]`: actually `zippo` is an address of an address
 * `*zippo = zippo[0] = &zippo[0][0]`
 * So: `*(*(zippo + 1) + 2) = zippo[1][2]`
-* ![image-20220921204106912](C Primer Plus复习.assets/image-20220921204106912.png)
 * **Pointers to Multidimensional Arrays**
   * `[]` has a higher precedence than `*`
   * `int (* pz)[2]`: points to **an array of 2 ints**

@@ -129,8 +129,6 @@ typedef struct queue {
 
 ### 17.7 Binary Search Trees
 
-![image-20221110112746646](C Primer Plus复习.assets/image-20221110112746646.png)
-
 * Ordering: the item in a left node precedes the item in the parent node, and the item in the right node follows the item in the parent node.
 * Relationship: all items that can trace their ancestry back to a left node of a parent contain items that precede the parent item in order, and every item descended from the right node contains items that follow the parent item in order.
 * **Hierarchical** organization: the data is organized in **ranks**, or levels, with each rank, in general, having ranks above and below it

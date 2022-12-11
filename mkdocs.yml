@@ -98,8 +98,9 @@ plugins:
 
 # Navigation
 nav: 
-  - 🏠Home: # /
-    - 🏡Home: 'README.md'
+  - 🏠首页: # /
+    - 🏡首页: 'README.md'
+    - 📝项目: 'Project.md'
     - 🔖标签: 'Tags.md'
     - 🔗链接: 'Links.md'
     - ⚠️测试: 'Test.md'
@@ -122,7 +123,8 @@ nav:
       - 'basic/git/GitBasic.md'
       - 'basic/git/GitPro.md'
     - ⚙️杂项: # basic/miscellaneous/
-      - 'basic/miscellaneous/Vim.md'
+      - 'basic/miscellaneous/Security.md'
+      - 'basic/miscellaneous/RegularExpression.md'
     - 🔧问题和解决: # basic/problem/
       - 'basic/problem/2022.md'
   - 🌐WebDev: # webdev/
@@ -136,6 +138,8 @@ nav:
       - 'webdev/webpage/ReactBasic.md'
       - 'webdev/webpage/ReactAdvanced.md'
     - 🖥Web服务器: # webdev/webserver/
+      - 'webdev/webserver/Protocol.md'
+      - 'webdev/webserver/HTTP.md'
       - 'webdev/webserver/LinuxServer.md'
       - 环境及其配置:
         - 'webdev/webserver/Docker.md'
