@@ -67,79 +67,59 @@ tags:
 
 ## MkDocs
 
+配置和用法请参考官方文档，这里仅列出我使用的一些功能、文档里没有写明的技巧和注意事项。
+
+!!! quote "官方文档"
+    [MkDocs](https://www.mkdocs.org/)
+
+    [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+
 !!! note "local server"
     如果你想在服务器上利用 `mkdocs serve` 零时部署一个网站测试动态更改效果，你可以使用命令：
     ```bash
-    mkdocs serve --livereload --dev-addr 0.0.0.0:8000
+    mkdocs serve --dev-addr 0.0.0.0:8000
     ```
     这样就可以远程访问该零时部署的网站了。
+    关于 `mkdocs serve` 的更多使用方法，请自行使用 `mkdocs serve -h` 查看。
 
-* 设置页脚
-```yaml
-extra:
-  social:
-    - icon: fontawesome/brands/twitter 
-      link: https://twitter.com/squidfunk
-```
+* Microsoft Edge Tools for VS Code
+    * 我使用该插件来实现所见即所得的 MkDocs 编辑。这需要开启 `navigation.tracking` 来保证浏览器刷新后保持位置固定。
+    * 当文件越来越多时，建议添加 `--dirtyreload` 选项，这样只会重新构建发生了更改的文件，让浏览器的刷新过程更快一些。
+    * 效果：![image-20221212104749090](assets/image-20221212104749090.png)
+* 设置页脚，可以添加很多个 icon。
 * 代码块
-    * MkDocs 中的代码块可以有标题 `title="xxx.py"`、脚注 `//(1)` （需要开启扩展）等
-    * 请不要在嵌套的代码块中使用脚注，这会导致下面的子列表消失
+    * MkDocs 中的代码块可以有标题 `title="xxx.py"`、脚注 `//(1)` （需要开启扩展）等。
+    * 请不要在嵌套的代码块中使用脚注，这会导致下面的子列表消失。
 * 导航栏
-    * 建议开启这些功能：
-    ```yaml
-    theme:
-      features:
-        - navigation.instant
-        - navigation.tracking
-        - navigation.tabs
-    ```
-
-
-### Python Markdown
-
 * 配置推荐的 [Markdown 扩展](https://squidfunk.github.io/mkdocs-material/setup/extensions/#recommended-configuration)
 * 缩写 Abbreviations
-    * 可以创建一个全局的术语表 `includes/abbreviations.md`
-    ```yaml
-    markdown_extensions:
-      - pymdownx.snippets:
-          auto_append:
-            - includes/abbreviations.md
-    ```
-    ```markdown
-    *[abbr]: details
-    ```
-    * 所有文档中的缩写都会得到应用
+    * 可以创建一个全局的术语表，所有文档中的缩写都会得到应用。
 * 警告 Admonition
-    * 警告体用四个空格缩进
-    ```markdown
-    !!! note "optional title"
-     details
-    ??? note "expandable block"
-     details
-    ```
     * 支持这些 type
         * `note` `abstract` `info` `tip` `success` `warning` `failure` `danger` `bug` `example` `quote`
 * 清单 List
-    * 待办列表：语法符合 Markdown 通用标准，但需要启用扩展
+    * 待办列表：语法符合 Markdown 通用标准，但需要启用扩展。
 * 目录 Table of Contents
-    * 需要配置的：目录深度默认为 6
+    * 需要配置，目录深度默认为 6 太深了。
     ```yaml
     - toc:
      toc_depth: 3
     ```
-
-### Python Markdown Extensions
-
 * Arithmatex 数学公式块 `$$` 语法支持
 * Keys 按键标识
-    * 例：++ctrl+alt+del++
-    * 用 `++` 将按键组合包裹起来即可
-    * 对于逗号等按键，请使用别名，如 `comma` 才能被正确解析。详细列表见 [文档](https://facelessuser.github.io/pymdown-extensions/extensions/keys/#punctuation-keys)
+    * 例：++ctrl+alt+del++。
+    * 用 `++` 将按键组合包裹起来即可。
+    * 对于逗号等按键，请使用别名，如 `comma` 才能被正确解析。
+
+!!! quote "Keys插件的官方文档"
+    [文档](https://facelessuser.github.io/pymdown-extensions/extensions/keys/)
+
 * SuperFences 超级栅栏
-    * 开启该扩展允许各类东西嵌套
-      !!! note
-        Marmaid 也需要在这里开启
+    * 开启该扩展允许各类东西嵌套。
+
+!!! note
+    Marmaid 也需要在这里开启。
+
 * Tabbed 卡片
     * 可以把内容组织成卡片，并且可以把卡片嵌套在警告中：
     !!! example
@@ -160,12 +140,8 @@ extra:
         3. Nulla tempor lobortis orci
         ```
 
-
-
-### Plugins
-
 * 搜索插件 `search`
-    * 不包括文件
+    * 不包括文件，可以在文件头输入：
     ```yaml
     search:
       exclude: true
@@ -175,29 +151,21 @@ extra:
     ## section {data-search-exclude}
     ```
 * 标签插件 `tags`
-    * 配置 tag 页面
-    ```yaml
-    - tags:
-        tags_file: tags.md
-    ```
-    ```markdown
-    # Tags
-    Following is a list of relevant tags:
-    [TAGS]
-    ```
-    * 为文章设置 tag
-    ```yaml
-    tags:
-      - HTML5
-    ```
-
-### MathJax
-
-需要在 `docs/javascripts` 中添加脚本，即可渲染内嵌 Latex。请参考官方文档。
+* MathJax：需要在 `docs/javascripts` 中添加脚本，即可渲染内嵌 Latex。请参考官方文档。
 
 ## 编辑器
 
 ### Typora 快捷键
+
+都是很常用的快捷键，给我记住！
+
+* 选择操作：++ctrl++ 加上以下按键
+
+| 组合  | 用途      |
+| ----- | --------- |
+| ++d++ | 词        |
+| ++l++ | 行/**句** |
+| ++e++ | 当前格式  |
 
 * 编辑操作
 
@@ -211,27 +179,22 @@ extra:
 | Ctrl + Shift + `Q`      | 引用                                                     |
 | Ctrl + Shift + `- +`    | 界面缩放                                                 |
 | Ctrl + `T, Enter`       | 表格（**不如自己写表头方便**）、新增行                   |
-| Ctrl + `Del`            | 删除表格下空行                                           |
-| Ctrl + Shift + `Del`    | 删除表格行                                               |
+|  ++ctrl+shift+backspace++   | 删除表格行                |
 | Alt + `↑↓←→`            | 移动行列                                                 |
 |                         | 表格侧边出现双向箭头支持上下拖动行、列调整顺序           |
 | Ctrl + `\`              | 清除样式                                                 |
-| Ctrl + Shift + `M`      | 公式块                                                   |
+| ++ctrl+shift+m++        | 公式块                                                   |
 
 * 文件和窗口操作
 
-| 组合             | 用途                 |
-| ---------------- | -------------------- |
-| Ctrl + `P`       | 快速打开最近关闭文件 |
-| Ctrl + Shift + C | 复制 Markdown 源码   |
-| Ctrl + Shift + V | 粘贴纯文本           |
-| Ctrl + W         | 关闭                 |
+!!! note
+    Typora 没有选项卡概念，因此它其实是多窗口操作。打开文件一定会新建窗口而不是替换当前打开的文件，++ctrl+tab++ 也是在窗口之间切换。
 
-* 选择操作
+| 组合             | 用途                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| ++ctrl+w++       | 关闭                                                         |
+| ++ctrl+p++       | 快速打开文件（注意：有最近打开/匹配的，最近打开的文件可能被移动而打不开） |
+| ++ctrl+tab++     | 在已打开的文件中快速切换                                     |
+| ++ctrl+shift+c++ | 复制 Markdown 源码                                           |
+| ++ctrl+shift+v++ | 粘贴纯文本                                                   |
 
-| 组合 | 用途      |
-| ---- | --------- |
-| D    | 词        |
-| L    | 行/**句** |
-| E    | 当前格式  |
-| A    | 全选      |

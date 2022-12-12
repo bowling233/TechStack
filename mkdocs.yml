@@ -106,9 +106,9 @@ nav:
     - ⚠️测试: 'Test.md'
     - ☣️杂项: 'Misc.md'
   - 🔨基础技能: # basic/
+    - 'basic/writing/VSCode.md'
     - ✒写作: # writing/
       - 'basic/writing/Copywriting.md'
-      - 'basic/writing/VSCode.md'
       - 'basic/writing/Vim.md'
       - 'basic/writing/Markdown.md'
       - 'basic/writing/Latex.md'
@@ -116,6 +116,9 @@ nav:
     - 🐧Linux: # basic/linux/
       - 'basic/linux/LinuxBasic.md'
       - 'basic/linux/LinuxUtility.md' # tool.md at /basic/linux/tools
+      - Tools:
+        - 'basic/linux/tools/gcc.md'
+        - 'basic/linux/tools/ssh.md'
       - 'basic/linux/LinuxUsers.md'
       - 'basic/linux/LinuxFileSystem.md'
       - 'basic/linux/LinuxKernel.md'
@@ -152,6 +155,7 @@ nav:
   - ⚔️编程语言: # program/
     - 🏹C: # program/c/
       - 'program/c/CBasic.md'
+      - 'program/c/CPuzzle.md'
       - 'program/c/CSTL.md'
       - 'program/c/CTricks.md'
     - 🧰C++: # program/cpp/
