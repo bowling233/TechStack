@@ -1,6 +1,6 @@
 # Syncthing 同步服务器搭建记录
 
-* 安装：[APT Syncthing](https://apt.syncthing.net/)
+-   安装：[APT Syncthing](https://apt.syncthing.net/)
 
 ## 服务用户新建
 
@@ -14,25 +14,26 @@
 
 ### 自动启动配置
 
-* syncthing 设置了需要的 systemd service 文件：`/lib/systemd/system/syncthing@.service`
-* 设置你自己的服务：`systemctl enable syncthing@username.service`
-* 启动前，记得检查 `syncthing@.service` 文件的内容。Execution 行的内容应该被配置为： ` ExecStart=/usr/bin/syncthing  -no-browser -gui-address="0.0.0.0:8384" -no-restart -logflags=0`
-  * 暂时没有查明，为什么不能启用 `serve` 参数。这会导致远程访问被拒绝连接。
+-   syncthing 设置了需要的 systemd service 文件：`/lib/systemd/system/syncthing@.service`
+-   设置你自己的服务：`systemctl enable syncthing@username.service`
+-   启动前，记得检查 `syncthing@.service` 文件的内容。Execution 行的内容应该被配置为： ` ExecStart=/usr/bin/syncthing  -no-browser -gui-address="0.0.0.0:8384" -no-restart -logflags=0`
 
-* 更改连接后，需要运行 `systemctl daemon-reload` 应用更改
-* 接下来启动 `systemctl start syncthing@syncthing.service`
+    -   暂时没有查明，为什么不能启用 `serve` 参数。这会导致远程访问被拒绝连接。
+
+-   更改连接后，需要运行 `systemctl daemon-reload` 应用更改
+-   接下来启动 `systemctl start syncthing@syncthing.service`
 
 ## Syncthing 相关配置
 
 > 参考文档：[syncthing-faq](https://www.mankier.com/7/syncthing-faq)
 >
-> [syncthing域名配置](https://www.wenjinyu.me/syncthing-accesses-domain-names-through-nginx-anti-proxy/)
+> [syncthing 域名配置](https://www.wenjinyu.me/syncthing-accesses-domain-names-through-nginx-anti-proxy/)
 
 ### 忘记 GUI 密码
 
-* 停止 syncthing 服务
-* `syncthing generate --gui-password=myNewPassword --gui-user=newUserName`
-* 重新启动 syncthing
+-   停止 syncthing 服务
+-   `syncthing generate --gui-password=myNewPassword --gui-user=newUserName`
+-   重新启动 syncthing
 
 或者你可以在 syncthing 的配置文件 `config.xml` 中进行更改：
 
@@ -45,4 +46,3 @@
    <theme>default</theme>
 </gui>
 ```
-

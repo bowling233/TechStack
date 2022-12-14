@@ -90,37 +90,37 @@ VSCode 利用扩展来支持调试。
 
 * MS-CEINTL.vscode-language-pack-zh-hans
 * formulahendry.code-runner
-  * 请在 `settings.json` 配置：`"code-runner.runInTerminal": true, // 设置成false会在“输出”中输出，无法输入`
+    * 请在 `settings.json` 配置：`"code-runner.runInTerminal": true, // 设置成false会在“输出”中输出，无法输入`
 
 语言依赖：
 
 * C/C++/C#
-  * `ms-vscode.cpptools`
+    * `ms-vscode.cpptools`
 * Java
 * Markdown/Latex
-  * `yzhang.markdown-all-in-one`
+    * `yzhang.markdown-all-in-one`
 * YAML
-  * `redhat.vscode-yaml` 
+    * `redhat.vscode-yaml` 
 * 汇编
-  * `13xforever.language-x86-64-assembly` 为 x86 系列汇编语言提供支持。
+    * `13xforever.language-x86-64-assembly` 为 x86 系列汇编语言提供支持。
 
 Web 开发一条龙：
 
 * HTML/CSS
-  * `esbenp.prettier-vscode` 所有 Web 开发人员都应当使用这个代码格式化插件！
+    * `esbenp.prettier-vscode` 所有 Web 开发人员都应当使用这个代码格式化插件！
 * JavaScript
-  * `mgmcdermott.vscode-language-babel` 为现代 JavaScript 提供更好的高亮，适用于 React.js 等。
+    * `mgmcdermott.vscode-language-babel` 为现代 JavaScript 提供更好的高亮，适用于 React.js 等。
 * Edge 支持
-  * 请参考 [知乎：用于 VS Code 的 Edge 开发工具扩展太棒了](https://zhuanlan.zhihu.com/p/567519551)
-  * `ms-edgedevtools.vscode-edge-devtools`
-  * `ritwickdey.LiveServer`
+    * 请参考 [知乎：用于 VS Code 的 Edge 开发工具扩展太棒了](https://zhuanlan.zhihu.com/p/567519551)
+    * `ms-edgedevtools.vscode-edge-devtools`
+    * `ritwickdey.LiveServer`
 
 以下是我喜欢的插件、主题等：
 
 * `adpyke.codesnap` 代码图片
-  * `pnp.polacode` 有点问题，兼容性不是很好
+    * `pnp.polacode` 有点问题，兼容性不是很好
 * `Equinusocio.vsc-community-material-theme` 非常好看的主题
-  * `equinusocio.vsc-material-theme-icons` 配套图标
+    * `equinusocio.vsc-material-theme-icons` 配套图标
 * `ms-vscode.hexeditor` 二进制编辑器
 
 
@@ -149,6 +149,7 @@ Web 开发一条龙：
 | ++ctrl+shift+n++       | 新的实例/窗口（这和简悦的快捷键冲突，请关闭简悦快捷键） |
 | ++ctrl+shift+w++       | 关闭实例/窗口                                           |
 | ++ctrl+tab++           | 切换tab（在同一组中）                                   |
+| ++ctrl+f4++ | 关闭 tab |
 | ++ctrl+1++             | 切换组（Vim 分割窗口将新建组）                          |
 | ++ctrl+k++, ++ctrl+w++ | 关闭组                                                  |
 | 文档操作               |                                                         |

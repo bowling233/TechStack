@@ -1,15 +1,14 @@
 ---
 tags:
-  - Ongoing
+    - Ongoing
 ---
 
 # Nginx 基础
 
+-   Nginx ("engine x") 是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器。
 
-* Nginx ("engine x") 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。
-
-* 其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。
-* Nginx代码完全用C语言从头写成
+-   其特点是占有内存少，并发能力强，事实上 nginx 的并发能力确实在同类型的网页服务器中表现较好，中国大陆使用 nginx 网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。
+-   Nginx 代码完全用 C 语言从头写成
 
 > 帮助文档：
 >
@@ -21,36 +20,35 @@ tags:
 
 ## 安装和使用
 
-* 大部分 Linux 发行版和 BSD 衍生版的源里都有 Nginx，使用通常安装其他软件的方式即可安装
-  * 这些包通常不是最新版本。如果你想使用最新功能和 Bug 修复，建议从源码编译安装
+-   大部分 Linux 发行版和 BSD 衍生版的源里都有 Nginx，使用通常安装其他软件的方式即可安装
+    -   这些包通常不是最新版本。如果你想使用最新功能和 Bug 修复，建议从源码编译安装
 
 ### 命令行参数
 
 Nginx 仅有几个命令行参数，完全通过配置文件来配置。
 
-* -c </path/to/config> 为 Nginx 指定一个配置文件，来代替缺省的。
-* -t 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。
-* -v 显示 nginx 的版本。
-* -V 显示 nginx 的版本，编译器版本和配置参数。
+-   -c </path/to/config> 为 Nginx 指定一个配置文件，来代替缺省的。
+-   -t 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。
+-   -v 显示 nginx 的版本。
+-   -V 显示 nginx 的版本，编译器版本和配置参数。
 
 Nginx 在 0.8 版本之后，引入了一系列命令行参数，来方便我们管理。比如，`./nginx -s reload`，就是来重启 Nginx，`./nginx -s stop`，就是来停止 Nginx 的运行。
 
 > 如何做到的呢？我们还是拿 reload 来说，我们看到，执行命令时，我们是启动一个新的 Nginx 进程，而新的 Nginx 进程在解析到 reload 参数后，就知道我们的目的是控制 Nginx 来重新加载配置文件了，它会向 master 进程发送信号，然后接下来的动作，就和我们直接向 master 进程发送信号一样了。
 
-
-
 > ### 和主进程通信
 >
-> * 启动：`sudo /usr/local/nginx/nginx`
-> * 从容重启：`kill -HUP pid`
->   * 首先 master 进程在接到信号后，会先重新加载配置文件，然后再启动新的 worker 进程，并向所有老的 worker 进程发送信号，告诉他们可以光荣退休了。新的 worker 在启动后，就开始接收新的请求，而老的 worker 在收到来自 master 的信号后，就不再接收新的请求，并且在当前进程中的所有未处理完的请求处理完成后，再退出。
+> -   启动：`sudo /usr/local/nginx/nginx`
+> -   从容重启：`kill -HUP pid`
 >
-> * 从容停止：等待请求结束后关闭服务：
->   * `ps -ef |grep nginx`
->   * `kill -QUIT  nginx 主进程号`
-> * 快速停止：立刻关闭
->   * `ps -ef |grep nginx`
->   * `kill -TERM nginx 主进程号 `
+>     -   首先 master 进程在接到信号后，会先重新加载配置文件，然后再启动新的 worker 进程，并向所有老的 worker 进程发送信号，告诉他们可以光荣退休了。新的 worker 在启动后，就开始接收新的请求，而老的 worker 在收到来自 master 的信号后，就不再接收新的请求，并且在当前进程中的所有未处理完的请求处理完成后，再退出。
+>
+> -   从容停止：等待请求结束后关闭服务：
+>     -   `ps -ef |grep nginx`
+>     -   `kill -QUIT  nginx 主进程号`
+> -   快速停止：立刻关闭
+>     -   `ps -ef |grep nginx`
+>     -   `kill -TERM nginx 主进程号 `
 >
 > 这些是 Nginx 主进程可以处理的信号：
 >
@@ -63,31 +61,31 @@ Nginx 在 0.8 版本之后，引入了一系列命令行参数，来方便我们
 > | WINCH     | 从容关闭工作进程                                         |
 >
 > 涉及到平滑更新配置文件和二进制程序的操作， #暂不学习 。
->
 
 ## Nginx 架构
 
-* Nginx 在启动后，在 unix 系统中会以 daemon （守护进程）的方式在后台运行，后台进程包含一个 master 进程和多个 worker 进程。
-  * **master 进程**主要用来管理 worker 进程，包含：接收来自外界的信号，向各 worker 进程发送信号，监控 worker 进程的运行状态，当 worker 进程退出后(异常情况下)，会自动重新启动新的 worker 进程。
-  * 基本的网络事件，则是放在 **worker 进程**中来处理了。多个 worker 进程之间是**对等的**，他们同等竞争来自客户端的请求，各进程互相之间是独立的。一个**请求**，只可能在一个 worker 进程中处理，一个 worker 进程，不可能处理其它进程的请求。worker 进程的个数是可以设置的，一般我们会设置与机器cpu核数一致，这里面的原因与 Nginx 的进程模型以及事件处理模型是分不开的。
+-   Nginx 在启动后，在 unix 系统中会以 daemon （守护进程）的方式在后台运行，后台进程包含一个 master 进程和多个 worker 进程。
 
-* worker 进程又是如何处理请求的呢？
+    -   **master 进程**主要用来管理 worker 进程，包含：接收来自外界的信号，向各 worker 进程发送信号，监控 worker 进程的运行状态，当 worker 进程退出后(异常情况下)，会自动重新启动新的 worker 进程。
+    -   基本的网络事件，则是放在 **worker 进程**中来处理了。多个 worker 进程之间是**对等的**，他们同等竞争来自客户端的请求，各进程互相之间是独立的。一个**请求**，只可能在一个 worker 进程中处理，一个 worker 进程，不可能处理其它进程的请求。worker 进程的个数是可以设置的，一般我们会设置与机器 cpu 核数一致，这里面的原因与 Nginx 的进程模型以及事件处理模型是分不开的。
 
-  * 每个 worker 进程都是从 master 进程 fork 过来，在 master 进程里面，先建立好需要 listen 的 socket（listenfd）之后，然后再 fork 出多个 worker 进程。
-  * 所有 worker 进程的 listenfd 会在新连接到来时变得可读，为保证只有一个进程处理该连接，所有 worker 进程在注册 listenfd 读事件前抢 accept_mutex，抢到互斥锁的那个进程注册 listenfd 读事件，在读事件里调用 accept 接受该连接。
-  * 当一个 worker 进程在 accept 这个连接之后，就开始读取请求，解析请求，处理请求，产生数据后，再返回给客户端，最后才断开连接，这样一个完整的请求就是这样的了。
+-   worker 进程又是如何处理请求的呢？
 
-* Nginx 采用这种进程模型有什么好处呢？
+    -   每个 worker 进程都是从 master 进程 fork 过来，在 master 进程里面，先建立好需要 listen 的 socket（listenfd）之后，然后再 fork 出多个 worker 进程。
+    -   所有 worker 进程的 listenfd 会在新连接到来时变得可读，为保证只有一个进程处理该连接，所有 worker 进程在注册 listenfd 读事件前抢 accept_mutex，抢到互斥锁的那个进程注册 listenfd 读事件，在读事件里调用 accept 接受该连接。
+    -   当一个 worker 进程在 accept 这个连接之后，就开始读取请求，解析请求，处理请求，产生数据后，再返回给客户端，最后才断开连接，这样一个完整的请求就是这样的了。
 
-  * 对于每个 worker 进程来说，独立的进程，不需要加锁，所以省掉了锁带来的开销，同时在编程以及问题查找时，也会方便很多
-  * 采用独立的进程，可以让互相之间不会影响，一个进程退出后，其它进程还在工作，服务不会中断，master 进程则很快启动新的 worker 进程
-  * worker 进程的异常退出，肯定是程序有 bug 了，异常退出，会导致当前 worker 上的所有请求失败，不过不会影响到所有请求，所以降低了风险
+-   Nginx 采用这种进程模型有什么好处呢？
 
-* Nginx 如何做到高并发？
+    -   对于每个 worker 进程来说，独立的进程，不需要加锁，所以省掉了锁带来的开销，同时在编程以及问题查找时，也会方便很多
+    -   采用独立的进程，可以让互相之间不会影响，一个进程退出后，其它进程还在工作，服务不会中断，master 进程则很快启动新的 worker 进程
+    -   worker 进程的异常退出，肯定是程序有 bug 了，异常退出，会导致当前 worker 上的所有请求失败，不过不会影响到所有请求，所以降低了风险
 
-  * Nginx 采用了**异步非阻塞**的方式来处理请求，也就是说，Nginx 是可以同时处理成千上万个请求的
+-   Nginx 如何做到高并发？
 
-  * > 想想 apache 的常用工作方式（apache 也有异步非阻塞版本，但因其与自带某些模块冲突，所以不常用），每个请求会独占一个工作线程，当并发数上到几千时，就同时有几千的线程在处理请求了。这对操作系统来说，是个不小的挑战，线程带来的内存占用非常大，线程的上下文切换带来的 cpu 开销很大，自然性能就上不去了，而这些开销完全是没有意义的。
+    -   Nginx 采用了**异步非阻塞**的方式来处理请求，也就是说，Nginx 是可以同时处理成千上万个请求的
+
+    -   > 想想 apache 的常用工作方式（apache 也有异步非阻塞版本，但因其与自带某些模块冲突，所以不常用），每个请求会独占一个工作线程，当并发数上到几千时，就同时有几千的线程在处理请求了。这对操作系统来说，是个不小的挑战，线程带来的内存占用非常大，线程的上下文切换带来的 cpu 开销很大，自然性能就上不去了，而这些开销完全是没有意义的。
 
 接下来的内容涉及系统级进程管理， #暂不学习
 
@@ -95,14 +93,14 @@ Nginx 在 0.8 版本之后，引入了一系列命令行参数，来方便我们
 
 配置文件在 `/etc/nginx/nginx.conf`
 
-Nginx 的配置系统由一个**主配置文件**和其他一些辅助的配置文件构成。这些配置文件均是纯文本文件，全部位于Nginx 安装目录下的 conf 目录下。由于除主配置文件 nginx.conf 以外的文件都是在某些情况下才使用的，而只有主配置文件是在任何情况下都被使用的。所以在这里我们就以主配置文件为例，来解释 Nginx 的配置系统。
+Nginx 的配置系统由一个**主配置文件**和其他一些辅助的配置文件构成。这些配置文件均是纯文本文件，全部位于 Nginx 安装目录下的 conf 目录下。由于除主配置文件 nginx.conf 以外的文件都是在某些情况下才使用的，而只有主配置文件是在任何情况下都被使用的。所以在这里我们就以主配置文件为例，来解释 Nginx 的配置系统。
 
 在 nginx.conf 中，包含若干**配置项**。每个配置项由配置指令和指令参数 2 个部分构成。指令参数也就是配置指令对应的配置值。
 
-* **配置指令**是一个字符串，可以用单引号或者双引号括起来，也可以不括。但是如果配置指令包含空格，一定要引起来。
-* **指令的参数**使用一个或者多个空格或者 TAB 字符与指令分开。指令的参数有一个或者多个 TOKEN 串组成。TOKEN 串之间由空格或者 TAB 键分隔。
-  * **TOKEN 串**分为简单字符串或者是复合配置块。复合配置块即是由大括号括起来的一堆内容。一个复合配置块中可能包含若干其他的配置指令。
-* 对于简单配置，配置项的结尾使用**分号结束**。对于复杂配置项，包含多个 TOKEN 串的，一般都是简单 TOKEN 串放在前面，复合配置块一般位于最后，而且其结尾，并**不需要再添加分号**。
+-   **配置指令**是一个字符串，可以用单引号或者双引号括起来，也可以不括。但是如果配置指令包含空格，一定要引起来。
+-   **指令的参数**使用一个或者多个空格或者 TAB 字符与指令分开。指令的参数有一个或者多个 TOKEN 串组成。TOKEN 串之间由空格或者 TAB 键分隔。
+    -   **TOKEN 串**分为简单字符串或者是复合配置块。复合配置块即是由大括号括起来的一堆内容。一个复合配置块中可能包含若干其他的配置指令。
+-   对于简单配置，配置项的结尾使用**分号结束**。对于复杂配置项，包含多个 TOKEN 串的，一般都是简单 TOKEN 串放在前面，复合配置块一般位于最后，而且其结尾，并**不需要再添加分号**。
 
 ### 上下文
 
@@ -110,11 +108,11 @@ nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了
 
 当前 Nginx 支持的几个指令上下文：
 
-* main: Nginx 在运行时与具体业务功能（比如http服务或者email服务代理）无关的一些参数，比如工作进程数，运行的身份等。
-* http: 与提供 http 服务相关的一些配置参数。例如：是否使用 keepalive 啊，是否使用gzip进行压缩等。
-* server: http 服务上支持若干虚拟主机。每个虚拟主机一个对应的 server 配置项，配置项里面包含该虚拟主机相关的配置。在提供 mail 服务的代理时，也可以建立若干 server，每个 server 通过监听的地址来区分。
-* location: http 服务中，某些特定的URL对应的一系列配置项。
-* mail: 实现 email 相关的 SMTP/IMAP/POP3 代理时，共享的一些配置项（因为可能实现多个代理，工作在多个监听地址上）。
+-   main: Nginx 在运行时与具体业务功能（比如 http 服务或者 email 服务代理）无关的一些参数，比如工作进程数，运行的身份等。
+-   http: 与提供 http 服务相关的一些配置参数。例如：是否使用 keepalive 啊，是否使用 gzip 进行压缩等。
+-   server: http 服务上支持若干虚拟主机。每个虚拟主机一个对应的 server 配置项，配置项里面包含该虚拟主机相关的配置。在提供 mail 服务的代理时，也可以建立若干 server，每个 server 通过监听的地址来区分。
+-   location: http 服务中，某些特定的 URL 对应的一系列配置项。
+-   mail: 实现 email 相关的 SMTP/IMAP/POP3 代理时，共享的一些配置项（因为可能实现多个代理，工作在多个监听地址上）。
 
 指令上下文，可能有**包含**的情况出现。例如：通常 http 上下文和 mail 上下文一定是出现在 main 上下文里的。在一个上下文里，可能包含另外一种类型的上下文多次。例如：如果 http 服务，支持了多个虚拟主机，那么在 http 上下文里，就会出现多个 server 上下文。
 
@@ -127,26 +125,26 @@ nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了
         worker_connections  1024;
     }
 
-    http {  
-        server {  
-            listen          80;  
-            server_name     www.linuxidc.com;  
-            access_log      logs/linuxidc.access.log main;  
-            location / {  
-                index index.html;  
-                root  /var/www/linuxidc.com/htdocs;  
-            }  
-        }  
+    http {
+        server {
+            listen          80;
+            server_name     www.linuxidc.com;
+            access_log      logs/linuxidc.access.log main;
+            location / {
+                index index.html;
+                root  /var/www/linuxidc.com/htdocs;
+            }
+        }
 
-        server {  
-            listen          80;  
-            server_name     www.Androidj.com;  
-            access_log      logs/androidj.access.log main;  
-            location / {  
-                index index.html;  
-                root  /var/www/androidj.com/htdocs;  
-            }  
-        }  
+        server {
+            listen          80;
+            server_name     www.Androidj.com;
+            access_log      logs/androidj.access.log main;
+            location / {
+                index index.html;
+                root  /var/www/androidj.com/htdocs;
+            }
+        }
     }
 
     mail {
@@ -173,39 +171,39 @@ nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了
 
 存在于 main 上下文中的配置指令如下:
 
-* user
-* worker_processes
-* error_log
-* events
-* http
-* mail
+-   user
+-   worker_processes
+-   error_log
+-   events
+-   http
+-   mail
 
 存在于 http 上下文中的指令如下:
 
-* server
+-   server
 
 存在于 mail 上下文中的指令如下：
 
-* server
-* auth_http
-* pop3_capabilities
-* imap_capabilities
+-   server
+-   auth_http
+-   pop3_capabilities
+-   imap_capabilities
 
 存在于 server 上下文中的配置指令如下：
 
-* listen
-* server_name
-* access_log
-* location
-* protocol
-* proxy
-* smtp_auth
-* xclient
+-   listen
+-   server_name
+-   access_log
+-   location
+-   protocol
+-   proxy
+-   smtp_auth
+-   xclient
 
 存在于 location 上下文中的指令如下：
 
-* index
-* root
+-   index
+-   root
 
 ```ngin
 ######Nginx配置文件nginx.conf中文详解#####
@@ -215,7 +213,7 @@ user www www;
 
 #nginx进程数，建议设置为等于CPU总核心数。
 worker_processes 8;
- 
+
 #全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]
 error_log /usr/local/nginx/logs/error.log info;
 
@@ -269,13 +267,13 @@ events
     #open_file_cache指令中的inactive参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的，如上例，如果有一个文件在inactive时间内一次没被使用，它将被移除。
     #语法:open_file_cache_min_uses number 默认值:open_file_cache_min_uses 1 使用字段:http, server, location  这个指令指定了在open_file_cache指令无效的参数中一定的时间范围内可以使用的最小文件数,如果使用更大的值,文件描述符在cache中总是打开状态.
     open_file_cache_min_uses 1;
-    
+
     #语法:open_file_cache_errors on | off 默认值:open_file_cache_errors off 使用字段:http, server, location 这个指令指定是否在搜索一个文件时记录cache错误.
     open_file_cache_errors on;
 }
- 
- 
- 
+
+
+
 #设定http服务器，利用它的反向代理功能提供负载均衡支持
 http
 {
@@ -310,7 +308,7 @@ http
 
     #此选项允许或禁止使用socke的TCP_CORK的选项，此选项仅在使用sendfile的时候使用
     tcp_nopush on;
-     
+
     tcp_nodelay on;
 
     #长连接超时时间，单位是秒
@@ -341,7 +339,7 @@ http
 
     #负载均衡配置
     upstream jh.w3cschool.cn {
-     
+
         #upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。
         server 192.168.80.121:80 weight=3;
         server 192.168.80.122:80 weight=2;
@@ -404,9 +402,9 @@ http
         #client_body_temp_path设置记录文件的目录 可以设置最多3层目录
         #location对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡
     }
-     
-     
-     
+
+
+
     #虚拟主机的配置
     server
     {
@@ -425,19 +423,19 @@ http
             fastcgi_index index.php;
             include fastcgi.conf;
         }
-         
+
         #图片缓存时间设置
         location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$
         {
             expires 10d;
         }
-         
+
         #JS和CSS缓存时间设置
         location ~ .*.(js|css)?$
         {
             expires 1h;
         }
-         
+
         #日志格式设定
         #$remote_addr与$http_x_forwarded_for用以记录客户端的ip地址；
         #$remote_user：用来记录客户端用户名称；
@@ -451,20 +449,20 @@ http
         log_format access '$remote_addr - $remote_user [$time_local] "$request" '
         '$status $body_bytes_sent "$http_referer" '
         '"$http_user_agent" $http_x_forwarded_for';
-         
+
         #定义本虚拟主机的访问日志
         access_log  /usr/local/nginx/logs/host.access.log  main;
         access_log  /usr/local/nginx/logs/host.access.404.log  log404;
-         
+
         #对 "/" 启用反向代理
         location / {
             proxy_pass http://127.0.0.1:88;
             proxy_redirect off;
             proxy_set_header X-Real-IP $remote_addr;
-             
+
             #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-             
+
             #以下是一些反向代理的配置，可选。
             proxy_set_header Host $host;
 
@@ -506,8 +504,8 @@ http
             #设定缓存文件夹大小，大于这个值，将从upstream服务器传
             proxy_temp_file_write_size 64k;
         }
-         
-         
+
+
         #设定查看Nginx状态的地址
         location /NginxStatus {
             stub_status on;
@@ -516,7 +514,7 @@ http
             auth_basic_user_file confpasswd;
             #htpasswd文件的内容可以用apache提供的htpasswd工具来产生。
         }
-         
+
         #本地动静分离反向代理配置
         #所有jsp的页面均交由tomcat或resin处理
         location ~ .(jsp|jspx|do)?$ {
@@ -525,14 +523,14 @@ http
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_pass http://127.0.0.1:8080;
         }
-         
+
         #所有静态文件由nginx直接读取不经过tomcat或resin
         location ~ .*.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|
         pdf|xls|mp3|wma)$
         {
-            expires 15d; 
+            expires 15d;
         }
-         
+
         location ~ .*.(js|css)?$
         {
             expires 1h;

@@ -4,27 +4,25 @@
 
 ### 内部链接
 
-
-
 ## 标签
 
 ## 块引用
 
-* 块是什么？
+-   块是什么？
 
 前后有空行包围的东西就是块
 
-* 如何链接块？
+-   如何链接块？
 
 首先，输入 `[[文件名` 来唤起弹窗，在选择相应的文件后，通过输入 `^` 进入块选择界面。
 
 随后，继续输入关键词来选择你所需要链接的块。
 
-* 想不起块在哪怎么办？
+-   想不起块在哪怎么办？
 
 输入 `[[^^` 在库的所有笔记文件中查找该块。
 
-* 如何创建块ID？
+-   如何创建块 ID？
 
 如果你想手动创建可读性强的块 ID，你可以在块的末尾手动加上 `^你的-id` 这样的语法。
 
@@ -32,11 +30,9 @@
 
 需要注意的是，手动创建的块 ID 仅支持字母、数字、破折号。
 
-* 如何引用块？
+-   如何引用块？
 
 可以通过在块链接前加上 `!` 来进行块引用。
-
-
 
 ## 快捷键
 
@@ -64,8 +60,6 @@
 
 附：Typora 的快捷键
 
-
-
 ### Autocomplete
 
 On macOS, you can press `Esc` key to open inline preview for inline math, auto-complete for emoji, etc.
@@ -76,7 +70,7 @@ On macOS, you can press `Esc` key to open inline preview for inline math, auto-c
 | :------------------ | :--------------------- | ------------------- |
 | New                 | Ctrl + N               | Command + N         |
 | New Window          | Ctrl + Shift + N       | Command +Shift + N  |
-| New Tab             | *(Not Supported)*      | Command + T         |
+| New Tab             | _(Not Supported)_      | Command + T         |
 | Open                | Ctrl + O               | Command + O         |
 | Open Quickly        | Ctrl + P               | Command + Shift + O |
 | Reopen Closed File  | Ctrl + Shift + T       | Command + Shift + T |
@@ -152,8 +146,8 @@ On macOS, you can press `Esc` key to open inline preview for inline math, auto-c
 | Focus Mode                      | F8                     | F8                    |
 | Typewriter Mode                 | F9                     | F9                    |
 | Toggle Fullscreen               | F11                    | Command + Option + F  |
-| Actual Size                     | Ctrl + Shift + 0       | *(Not Supported)*     |
-| Zoom In                         | Ctrl + Shift + =       | *(Not Supported)*     |
-| Zoom Out                        | Ctrl + Shift + -       | *(Not Supported)*     |
+| Actual Size                     | Ctrl + Shift + 0       | _(Not Supported)_     |
+| Zoom In                         | Ctrl + Shift + =       | _(Not Supported)_     |
+| Zoom Out                        | Ctrl + Shift + -       | _(Not Supported)_     |
 | Switch Between Opened Documents | Ctrl + Tab             | Command + `           |
 | Toggle DevTools                 | Ctrl + Shift + I       | -                     |
