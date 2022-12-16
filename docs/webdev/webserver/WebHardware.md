@@ -8,4 +8,3 @@
 | 路由器 Router/ 3 Layer 交换机 | 网络层转发分组数据的设备 |
 | 4~7 Layers 交换机             |                          |
 | 网关 Gateway                  | 转换协议                 |
-

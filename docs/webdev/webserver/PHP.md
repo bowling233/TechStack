@@ -1,12 +1,11 @@
 ---
 tags:
-  - Todo
+    - Todo
 ---
 
 # PHP
 
-> From: [Configure PHP on a Debian or Ubuntu instance – DreamHost Knowledge Base](https://help.dreamhost.com/hc/en-us/articles/215231198-Configure-PHP-on-a-Debian-or-Ubuntu-instance)
-> [Site Unreachable](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Nginx-PHP-FPM-config-example)
+> From: [Configure PHP on a Debian or Ubuntu instance – DreamHost Knowledge Base](https://help.dreamhost.com/hc/en-us/articles/215231198-Configure-PHP-on-a-Debian-or-Ubuntu-instance) > [Site Unreachable](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Nginx-PHP-FPM-config-example)
 
 ## 在 Debian 11 上
 
@@ -25,4 +24,3 @@ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt
 apt update && apt install -y php8.1
 php -v # Outputs "PHP 8.1.3 ..."
 ```
-

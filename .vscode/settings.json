@@ -1,8 +1,0 @@
-{
-    "markdown.extension.list.indentationSize": "inherit",
-    "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-f>": false,
-        "<C-k>": false
-    }
-}
