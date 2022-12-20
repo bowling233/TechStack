@@ -6,7 +6,7 @@ repo_name: TechStack
 edit_uri: blob/master/docs/
 site_description: 这是 Bowling 的笔记本
 site_author: Bowling
-copyright: Bowling
+copyright: <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
 
 # Material
 markdown_extensions:

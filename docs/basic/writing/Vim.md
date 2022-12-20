@@ -139,10 +139,10 @@ Prepend `no` to switch an option off
     3. 
      
 
-### Repetition
+### 重复操作
 
-* ++period++: repeat last operation
-    * NOTICE: movements are not repeated
+* ++period++: 重复上次的操作。
+    * NOTICE: 移动并不会被重复。
 
 ### 多文件多窗口
 
@@ -150,14 +150,20 @@ Prepend `no` to switch an option off
 
 
 
-### Other Operators
+### 其他操作符
 
+#### 正常模式
 
-* `>` indent
+* `>` indent 缩进
     * `>G` indent to the end
 * `f` jump to character
     * `F` jump left
     * `;` repeat latest `f`, `t`
+* `t` 跳至右侧第 n 个指定字符前
+
+#### 选择模式
+
+* ++ctrl+v++ 进入列选择模式
 
 ## Configuration
 

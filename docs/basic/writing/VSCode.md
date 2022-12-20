@@ -48,7 +48,7 @@ VSCode 是一款强大的编辑器，好好掌握它能极大提高生产力。
 
 ## 快捷键
 
-我在 VSCode 中使用 Vim 插件映射快捷键，详见 [Vim](Vim.md)。
+我在 VSCode 中使用 Vim 插件映射快捷键，详见 [Vim](Vim.md)。VSCode 所支持的编辑操作，在 Vim 中全都有，应当多了解 Vim 如何实现这些编辑。
 
 <!-- prettier-ignore-start -->
 !!! danger
