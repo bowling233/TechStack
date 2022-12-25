@@ -126,7 +126,9 @@ nav:
         - "basic/miscellaneous/Security.md"
         - "basic/miscellaneous/RegularExpression.md"
       - 🔧问题和解决: # basic/problem/
-        - "basic/problem/2022.md"
+        - "basic/problem/QA2022.md"
+        - "basic/problem/BlogSetupRecord.md"
+        - "basic/problem/UbuntuSetupRecord.md"
   - 🌐WebDev: # webdev/
       - 📄网页开发: # webdev/webpage/
         - "webdev/webpage/HTMLBasic.md"

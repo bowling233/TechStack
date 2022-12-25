@@ -7,6 +7,10 @@ tags:
 
 参考书籍：`doing-lshort-zh-cn.pdf`
 
+## Ch0. 偷懒
+
+啊 LaTeX 确实挺麻烦。从 HobbitQ
+
 ## Ch1. Latex 基本概念
 
 -   代码编译

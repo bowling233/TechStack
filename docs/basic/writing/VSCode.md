@@ -52,6 +52,18 @@ VSCode 是一款强大的编辑器，好好掌握它能极大提高生产力。
 
 在写程序代码时，代码建议能极大地提高效率，但在撰写文档过程中常常相反。比如在 Markdown 中开启代码建议，则常常会跳出前面出现过的句子等，按下 ++enter++ 键就直接键入了，非常智障。但关闭代码建议后，自定义的用户代码片段也不会自动跳出。最好的解决方法是：指定 ++tab++ 键为接受代码建议的按键。更多代码建议的信息，请参考 [StackOverflow](https://stackoverflow.com/questions/38832753/how-to-disable-intellisense-in-vs-code-for-markdown)。
 
+*   标题栏
+
+在 Linux 系统上安装 VSCode 可能会出现很厚的标题栏。在 `settings.json` 中设置
+
+```json
+"window.titleBarStyle": "custom"
+```
+
+即可。你还可以进一步隐藏菜单栏，设置 `"window.menuBarVisibility"` 即可，参考 [CSDN](https://blog.csdn.net/qq_28120673/article/details/81544136)。
+
+
+
 ## 快捷键
 
 我在 VSCode 中使用 Vim 插件映射快捷键，详见 [Vim](Vim.md)。VSCode 所支持的编辑操作，在 Vim 中全都有，应当多了解 Vim 如何实现这些编辑。
