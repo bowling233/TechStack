@@ -127,16 +127,132 @@ Prepend `no` to switch an option off
     * ++tab++ to complete (can complete command and path)
     * 
 
-## Advanced
+## 进阶操作
 
 要想深入掌握 Vim 的使用，还要学习并练习很久。目前掌握基础章节的内容即可，有时间再继续阅读。
 
-> From: Practical Vim 2th (Avalible on JD read)
+<!-- prettier-ignore-start -->
+!!! info "参考文献"
+    
+    大部分内容来自《Vim 实用指南》（Vim Practical）
+<!-- prettier-ignore-end -->
+
+- 映射快捷键
+
+为一些快捷键提供映射能大大提高效率，比如把 `jj` 映射为 ++esc++ 能让输入更高效。
 
 !!! tip
     1. use repeat operator ++period++
     2. reduce unnecessary movement
-    3. 
+
+### 模式
+
+Vim 中，不同模式下各种按键产生不同的动作。接下来学习每种模式的工作方式。
+
+#### Normal 普通模式
+
+Vim 的语法是**操作符+动作=操作**。额外的规则是：当操作符重复执行时，它将作用于当前行。这时有一些简化，比如 `gUgU` 简化为 `gUU`。
+
+<!-- prettier-ignore-start -->
+??? note "操作符"
+    
+    `:h operator` 可以查阅完整的操作符列表。这里也记录一些常用的操作符：
+
+    | Operator | Usage |
+    | - | - |
+    | c | change |
+    | d | delete |
+    | y | copy to register |
+    | g~ | reverse case |
+    | gu | to lower |
+    | gU | to upper |
+    | > | increase indent |
+    | < | decrease indent |
+    | = | automatic indent |
+    | ! | 不知道怎么用，使用外部程序过滤{motion}跨越的行 | 
+
+    ??? info "自定义操作符"
+        
+        [commentary.vim](github.com/tpope/vim-commentary) 插件为 Vim 支持的编程语言增加了注释命令。用 `gc{motion}` 触发。`gcap` 切换当前段落注释状态，`gcG` 注释当前行到文件尾，`gcc` 注释当前行。
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+??? note "动作命令"
+    
+    `:h motion` 可以查阅完整的动作列表。这里记录一些常用的动作：
+
+    | Motion | Usage |
+    | - | - |
+    | l | letter |
+    | w | next word |
+    | e | end of next word |
+    | b | begin of next word |
+    | aw | a word |
+    | ap | a paragraph |
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+!!! tip "普通模式的哲学"
+    
+    普通模式是 Vim 的默认模式，你可能会觉得这很奇怪。Vim 这样做的原因是：程序员应该**只花一小部分时间编写代码，绝大多数时间用来思考、阅读**，以及在代码中穿梭浏览。
+<!-- prettier-ignore-end -->
+
+- 控制撤销的粒度
+
+`u` 撤销最新的修改。**一次修改**可以是改变文档内文本的任意操作，从进入插入模式开始，直到返回普通模式为止，在此期间的所有操作作为**一次修改**。因此，控制对 ++esc++ 键的使用是很关键的。让每个**可撤销块**对应一次思考过程，你可以在每次停顿输入时按下 ++esc++，把每次换行替换成 ++esc++ + `o`。
+
+但是，如果在插入模式期间使用**光标键**移动光标位置，将产生新的撤销块，这很符合逻辑。这同样对 ++period++ 操作产生影响。
+
+- 构造可重复的修改
+
+如果需要在多个地方执行操作，需要仔细考虑一下。
+
+<!-- prettier-ignore-start -->
+!!! note "考考你"
+    
+    你的光标在行尾，你如何删除最后一个词？
+<!-- prettier-ignore-end -->
+
+有三种方式：`db,x`, `b,dw`, `daw`。想一想，这三种操作按下 ++period++ 后会发生什么？应该选择谁？
+
+- 对数字作简单运算
+
+`<C-a>` `<C-x>` 分别对数字执行加减。如果**不带数字**那么它们会递增递减，如果**提供数字前缀**则可以加减任意整数。
+
+如果光标在数字上，这个数字会被加减。比如在 5 上执行 `10<C-a>` 会变成 15。
+
+如果不在数字上，会在当前行正向查找一个数字，跳到那里，对数字进行运算。
+
+<!-- prettier-ignore-start -->
+!!! info "数字的格式"
+    
+    如 `007` 这样的数字会被解释为八进制，对其加减也会按对应的进制进行。你可以在 `vimrc` 中设置 `set nrformats=` 将所有数字都作为特定进制处理。
+<!-- prettier-ignore-end -->
+
+- 次数和重复
+
+删除两个连续单词有 3 种方法：`d2w`, `2dw`, `dw.`。你可以说出它们的区别吗？
+
+<!-- prettier-ignore-start -->
+!!! tip "用重复代替次数计算"
+    
+    计算次数真是一件挺麻烦的事，对吧？你真的确信自己能每次都算对次数吗？或许，我们宁肯用多几次 ++period++ 来代替错误计算次数带来的撤销麻烦。这也能让你有更好的**细粒度**控制。
+<!-- prettier-ignore-end -->
+
+在必要的时候使用次数。比如，你要替换 3 个单词为另外 2 个单词。此时，你可以使用 `c3w` 删除并进入插入模式。此后按一次 `u` 就可以撤销整个更改。这又是一种对细粒度的把控。
+
+
+
+* `>` indent 缩进
+    * `>G` indent to the end
+* `f` jump to character
+    * `F` jump left
+    * `;` repeat latest `f`, `t`
+* `t` 跳至右侧第 n 个指定字符前
+
+#### 块选择模式
+
+* ++ctrl+v++ 进入列选择模式
      
 
 ### 重复操作
@@ -150,20 +266,7 @@ Prepend `no` to switch an option off
 
 
 
-### 其他操作符
 
-#### 正常模式
-
-* `>` indent 缩进
-    * `>G` indent to the end
-* `f` jump to character
-    * `F` jump left
-    * `;` repeat latest `f`, `t`
-* `t` 跳至右侧第 n 个指定字符前
-
-#### 选择模式
-
-* ++ctrl+v++ 进入列选择模式
 
 ## Configuration
 

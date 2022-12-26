@@ -21,8 +21,9 @@
 <!-- prettier-ignore-start -->
 ??? info "CC98上的参考贴"
 
-    * [PowerShell 自动脚本](https://www.cc98.org/topic/5076398)，实测可用。
+    * [win10校园网自建VPN & 自动重连脚本（PowerShell）](https://www.cc98.org/topic/5076398)，实测可用。
     * [有线网进阶操作全攻略——自动重连、多拨、远程桌面、IPv6 隧道、DDNS、自建内网穿透……](https://www.cc98.org/topic/5055830)，包含了很多内容，尚未详细研究。
+    * [在家如何搞学术：远程桌面、ssh、跳板机攻略（针对Win10）](https://www.cc98.org/topic/5483684)
     * [使用 Clash+ZJU Rule 提升你的 ZJU 科学上网体验！](https://www.cc98.org/topic/5257184)，Clash 用户值得一试。
     * [校外使用rvpn连接内网Windows 10电脑](https://www.cc98.org/topic/5482686)，主要涉及更改默认端口。
 <!-- prettier-ignore-end -->

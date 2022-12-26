@@ -7,9 +7,12 @@ tags:
 
 ## Clash 和 proxychains
 
-> 参考文章：[Clash on Linux](https://einverne.github.io/post/2021/03/linux-use-clash.html) 
-> [proxychains](https://einverne.github.io/post/2017/02/terminal-sock5-proxy.html) 
-> [GitHub: Clash for Linux](https://github.com/wanhebin/clash-for-linux)
+> 参考文章：
+> 
+> * [Clash on Linux](https://einverne.github.io/post/2021/03/linux-use-clash.html) 
+> * [proxychains](https://einverne.github.io/post/2017/02/terminal-sock5-proxy.html) 
+> * [GitHub: Clash for Linux](https://github.com/wanhebin/clash-for-linux)
+> * [Linux修改系统代理](https://www.joxrays.com/linux-system-proxy/)
 
 由于某些原因，GitHub 在国内无法直接连接，服务器端也是这样。为了流畅使用 git ，需要为 Linux 系统配置代理。以 Clash for linux 为例：
 

@@ -165,3 +165,11 @@ chapter, section, subsection, subsubsection, paragraph, subparagraph
 
 \end{document}
 ```
+
+## Ch.4 参考文献
+
+### 获取
+
+很神奇的是，百度学术提供了 BibTex 格式的文献引用，可以直接去上面获取。
+
+GitHub 上也有知网导出 BibTex 的工具：[CNKI_2_BibTeX](https://github.com/Vopaaz/CNKI_2_BibTeX)

@@ -2,7 +2,7 @@
 
 ## 零散项目
 
--   [ ] 学习 VSCode 的配置
+-   [ ] 重新整理 C 语言笔记
 
 ## MIT Web Development Crash Course
 

@@ -151,20 +151,20 @@ nav:
         - "webdev/webserver/Domain_and_DNS.md"
         - "webdev/webserver/Proxy.md"
         - "webdev/webserver/GitHubPages.md"
-  - ⚔️编程语言: # program/
-      - 🏹C: # program/c/
-        - "program/c/CBasic.md"
-        - "program/c/CPuzzle.md"
-        - "program/c/CSTL.md"
-        - "program/c/CTricks.md"
-      - 🧰C++: # program/cpp/
-        - "program/cpp/CppBasic.md"
-        - "program/cpp/CppAdvanced.md"
-        - "program/cpp/CppSTL.md"
-      - 🔫Python: # program/python/
-        - "program/python/PythonBasic.md"
-      - 🧨Java: # program/java
-        - "program/java/JavaBasic.md"
+  - ⚔️语言: # language/
+      - 🏹C: # language/c/
+        - "language/c/CBasic.md"
+        - "language/c/CPuzzle.md"
+        - "language/c/CSTL.md"
+        - "language/c/CTricks.md"
+      - 🧰C++: # language/cpp/
+        - "language/cpp/CppBasic.md"
+        - "language/cpp/CppAdvanced.md"
+        - "language/cpp/CppSTL.md"
+      - 🔫Python: # language/python/
+        - "language/python/PythonBasic.md"
+      - 🧨Java: # language/java
+        - "language/java/JavaBasic.md"
   - 🧮操作系统: # operatesystem/
       - "operatesystem/MemoryHierarchy.md"
       - "operatesystem/VirtualMemory.md"

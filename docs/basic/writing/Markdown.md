@@ -140,17 +140,6 @@
         ```
 <!-- prettier-ignore-end -->
 
--   搜索插件 `search`
-    -   不包括文件，可以在文件头输入：
-    ```yaml
-    search:
-        exclude: true
-    ```
-    -   不包括部分或文段
-    ```markdown
-    ## section {data-search-exclude}
-    ```
--   标签插件 `tags`
 -   MathJax：需要在 `docs/javascripts` 中添加脚本，即可渲染内嵌 Latex。请参考官方文档。
 
 ## 编辑器
