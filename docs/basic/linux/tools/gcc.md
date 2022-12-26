@@ -5,8 +5,10 @@ tags:
 
 # gcc
 
+<!-- prettier-ignore-start -->
 !!! quote
-[GCC and Make from NTU](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html)
+    [GCC and Make from NTU](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html)
+<!-- prettier-ignore-end -->
 
 GCC, formerly for "GNU C Compiler", has grown over times to support many languages such as C (gcc), C++ (g++), Objective-C, Objective-C++, Java (gcj), Fortran (gfortran), Ada (gnat), Go (gccgo), OpenMP, Cilk Plus, and OpenAcc. It is now referred to as "GNU Compiler Collection".
 
@@ -25,39 +27,48 @@ GCC is portable and run in many operating platforms. GCC (and GNU Toolchain) is 
 
 首先你需要了解一些 Windows 上 GNU 编译器相关的知识。不想了解的话，无脑选择已编译好的下载即可。下载地址在 [SourceForge](https://sourceforge.net/projects/mingw-w64/files/)，选择 `x86_64-posix-seh` 版本即可。
 
+<!-- prettier-ignore-start -->
 ??? info "关于 mingw-w64 版本的疑惑"
-可以参看操作系统方面的笔记。
+
+    可以参看操作系统方面的笔记。
 
     `posix` 和 `win32`：不用疑惑了，那些东西只影响是否能使用 `<thread>` 头文件。当你配置环境的时候，离学这东西还有很远。
 
     `sjlj` 和 `seh`：与错误处理系统（exception handling systems）有关。在现代系统上，选择 `seh` 即可。
+<!-- prettier-ignore-end -->
 
 ## 基本知识
 
+<!-- prettier-ignore-start -->
 ??? info "编译工具流"
-![Preprocessor, Compiler, Assembler and Linker](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/images/GCC_CompilationProcess.png)
-接下来分步使用这些工具链：
 
+    ![Preprocessor, Compiler, Assembler and Linker](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/images/GCC_CompilationProcess.png)
+    接下来分步使用这些工具链：
+    
     1. 预处理（Pre-processing）：`cpp hello.c > hello.i`
     2. 编译（compilation）：`gcc -S hello.i`
     3. 汇编（Assembly）：`as -o hello.o hello.s`
     4. 链接（Linker）：`ld -o hello.exe hello.o ...libraries...`
+<!-- prettier-ignore-end -->
 
 ### `gcc` 命令
 
 命令格式：`gcc [options] file...`，注意文件放在最后面。文件可以是源代码、目标代码……
 
-| 选项      | 作用                                                 |
-| --------- | ---------------------------------------------------- |
-| `-o`      | 输出文件名                                           |
-| `-Wall`   | all Warning                                          |
-| `-g`      | 生成附加的调试信息，供 `gdb` 使用                    |
-| `-c`      | 仅 compile，操作 `.c` 源代码文件，生成 `.o` 目标文件 |
-| `-shared` | 编译为动态链接库（`.dll` 或 `.so`（Unix）等）        |
-| `-v`      | verbose 冗长的输出信息                               |
+| Option    | Usuage                                            |
+| --------- | ------------------------------------------------- |
+| `-o`      | output file name                                  |
+| `-Wall`   | all Warning                                       |
+| `-g`      | additional debug information provided for `gdb`   |
+| `-c`      | only compile, act on `.c` and generate `.o`       |
+| `-shared` | compile to dynamic link library (`.dll` or `.so`) |
+| `-v`      | verbose output                                    |
 
+<!-- prettier-ignore-start -->
 !!! info
-`gcc` 使用 `ld` 来执行链接。关于连接库的更多信息请看参考资料。
+
+    `gcc` 使用 `ld` 来执行链接。关于连接库的更多信息请看参考资料。
+<!-- prettier-ignore-end -->
 
 多文件编程只需要把文件依次放在后面就好了。但通常，我们单独编译，最后再一起链接（模块化编程）
 

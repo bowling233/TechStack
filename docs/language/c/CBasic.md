@@ -151,9 +151,7 @@ Which `int` type to choose?
         -   `double _Imaginary`
 <!-- prettier-ignore-end -->
 
-
-
-### 字符
+#### 字符
 
 字符常量是以数值形式存储的，编译器会将字符常量转换为数值，并且视为 `int` 类型。
 
@@ -176,16 +174,16 @@ Which `int` type to choose?
 
 | Sequence | Meaning     |
 | -------- | ----------- |
-| \\a       |             |
-| \\b       |             |
+| \\a      |             |
+| \\b      |             |
 | \\r      |             |
-| \\t       |             |
-| \\\\       | backslash |
+| \\t      |             |
+| \\\\     | backslash   |
 | \\\'     |             |
 | \\"      |             |
 | \\?      |             |
-| \\0ooo     | octal       |
-| \\xhh     | hexadecimal |
+| \\0ooo   | octal       |
+| \\xhh    | hexadecimal |
 
 <!-- prettier-ignore-start -->
 !!! note "八进制的表示容易引起困惑"
@@ -193,7 +191,64 @@ Which `int` type to choose?
     遇到一些字符串考题，如 `"abc\087"` 打印的结果是 `abc`。八进制转义序列以 `\0` 开头容易与空字符混肴，要牢记这一点。八进制 ASCII 最大到达了 0177（127，0x7F）。
 <!-- prettier-ignore-end -->
 
-## Format Strings and Formatted IO
+<!-- prettier-ignore-start -->
+!!! note "char 是有符号还是无符号？"
+    
+    根据编译器实现而定，或者查阅 `limits.h`。C 标准允许为 char 使用 signed 和 unsigned 修饰。
+<!-- prettier-ignore-end -->
+
+#### 浮点数
+
+关于浮点数的实现细节，请参阅：[计算机科学导论](../../books/计算机科学导论.md)。
+
+浮点数一般采用 e 计数法表示，如 `5.6e-5`。C 标准为浮点数规定了表示范围：
+
+- float：6 有效数字，取值范围 $10^{-37}~10^{37}$。
+- double：13 有效数字。
+
+编译器默认浮点常量为 double 类型。可以用 `f` 后缀修饰为 float 类型，`L` 修饰为 long double。
+
+C99 增加了十六进制的浮点数表示法（p 计数法），它大概长这样 `0xa.1fp10`，使用 `%a` 转换说明。
+
+<!-- prettier-ignore-start -->
+!!! danger "浮点数的上下溢"
+    
+    浮点数值过大导致上溢，C 规定为其赋一个表示**无穷大**的值，`printf` 显示为 `inf` 等表示无穷大的内容。
+
+    浮点数过于趋近于 0，指数已经到达最小值，这时只好将更改尾数。这会导致有效位末尾的数值损失，称为下溢。
+<!-- prettier-ignore-end -->
+
+#### 虚数
+
+包含 `complex.h` 头文件后可以使用 `complex` 代替 `_Complex`，`imaginary` 代替 `_Imaginary`，`I` 代替 $i$。
+
+复数的实部和虚部都基于浮点类型构成，如：
+
+```C
+#include <complex.h>
+float complex fc;
+long double imaginary ldi;
+```
+
+#### 基本数据类型的使用
+
+`sizeof` 是运算符，以**字节**为单位给出运算对象的大小，返回值为 `size_t` 类型，使用 `%zd` 转换说明。
+
+在一些关键地方，可以为变量名携带类型信息，如 `i_smart`，`us_versmart` 等。
+
+### 数组
+
+### 指针
+
+### 结构和联合
+
+## Format Strings and Formatted IO 字符串和格式化输入输出
+
+<!-- prettier-ignore-start -->
+!!! info "推荐阅读"
+    
+    [CSTL](CSTL.md) 阅读 C 标准库中关于标准输入输出设施的描述。这能极大地帮助你理解 C 程序和系统底层的输入输出工作机制。
+<!-- prettier-ignore-end -->
 
 -   `strlen()`
 -   `const`
