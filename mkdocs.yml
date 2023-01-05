@@ -111,6 +111,7 @@ nav:
         - "basic/writing/Latex.md"
       - ▶️科普视频: "basic/Videos.md"
       - 🐧Linux: # basic/linux/
+        - "basic/linux/Ubuntu.md"
         - "basic/linux/LinuxBasic.md"
         - "basic/linux/LinuxUtility.md"
         - Tools: # basic/linux/tools

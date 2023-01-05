@@ -20,7 +20,7 @@
 
     -   暂时没有查明，为什么不能启用 `serve` 参数。这会导致远程访问被拒绝连接。
 
--   更改连接后，需要运行 `systemctl daemon-reload` 应用更改
+-   更改服务文件后，需要运行 `systemctl daemon-reload` 应用更改
 -   接下来启动 `systemctl start syncthing@syncthing.service`
 
 ## Syncthing 相关配置
