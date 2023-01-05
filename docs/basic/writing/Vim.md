@@ -20,6 +20,11 @@ tags:
 
 ## Basic
 
+<!-- prettier-ignore-start -->
+!!! quote
+    From `vimtutor`
+<!-- prettier-ignore-end -->
+
 ### Move Around
 
 * Move the cursor
@@ -34,14 +39,6 @@ tags:
     ++ctrl+w++x2 don't take effect in VSCode
 
 ### Edit
-
-!!! note "Command Pattern"
-    operator [number] motion
-    all motion:
-
-    * `w` word
-    * `$` end of line
-    * `c` character
 
 * `x` delete character
 * append
@@ -126,6 +123,33 @@ Prepend `no` to switch an option off
     * ++ctrl+d++ to show possible commands
     * ++tab++ to complete (can complete command and path)
     * 
+
+## Make Your Vim More Efficient
+
+### `.vimrc`
+
+I advice add the following lines.
+
+```conf
+set number
+set relativenumber
+```
+
+### vim-plug
+
+> GitHub Wiki: [vim-plug](https://github.com/junegunn/vim-plug/wiki/tutorial)
+
+`vim-plug` is a Vim plugin manager.
+
+### onedark
+
+> GitHub Page: [onedark.vim](https://github.com/joshdick/onedark.vim)
+
+`onedark` is a Vim color scheme.
+
+### vim-airline
+
+> GitHub Page: [vim-airline](https://github.com/vim-airline/vim-airline)
 
 ## 进阶操作
 
@@ -241,19 +265,93 @@ Vim 的语法是**操作符+动作=操作**。额外的规则是：当操作符�
 
 在必要的时候使用次数。比如，你要替换 3 个单词为另外 2 个单词。此时，你可以使用 `c3w` 删除并进入插入模式。此后按一次 `u` 就可以撤销整个更改。这又是一种对细粒度的把控。
 
+#### 插入模式
+
+- 更正错误
+
+`<C-w>` 删除前一个单词
+
+`<C-u>` 删除至行首
+
+- 插入-普通模式
+
+能够执行一次普通模式命令，执行完后马上返回插入模式。通过在插入模式下按 `<C-o>` 进入。
+
+用例：`<C-o>zz`。当你处于窗口顶部或底部时，为了看到更多的上下文可以这么做。用 `zz` 命令重绘屏幕，将当前行显示在窗口正中。
+
+- 粘贴
+
+`<C-r>{register}`
+
+<!-- prettier-ignore-start -->
+!!! tip "插入寄存器"
+    
+    Vim 插入寄存器的方式是：如同这些文本从键盘上输入。因此，如果激活了自动缩进等选项，插入寄存器文本时也会受到影响。用 `<C-r><C-p>{register}` 可以按原义插入寄存器文本。当然，在普通模式下有更好的办法。
+<!-- prettier-ignore-end -->
+
+`<C-r>=` 使用表达式寄存器，`=` 代表表达式寄存器，它可以做一些简单的运算，并把结果插入光标处。
+
+- 字符编码
+
+`<C-v>065` 插入 ASCII 码为 65 的字符。如果插入 Unicode 字符，写成 `u00bf` 等 4 位十六进制码（基本多文种平面 Unicode Basic Multilingual Plane 的大小）。
+
+`ga` 显示光标处字符的编码。
+
+<!-- prettier-ignore-start -->
+??? info "很少用到的东西"
+    
+    - 二合字母（digraph）
+
+    `<C-k>{char1}{char2}` 输入二合字符。
+
+    `:h digraph-table` 查看二合字符表。
+<!-- prettier-ignore-end -->
+
+#### 替换模式
+
+`R` 从普通模式下进入替换模式。
+
+++ins++ 键可以在插入模式和替换模式间切换。
+
+尽量使用虚拟替换模式，它能按屏幕上实际显示的宽度来替换字符，避免制表符的显示问题。使用 `gR` 命令进入。
+
+`r` 是只替换一个字符，然后回到普通模式。
+
+#### 可视模式
 
 
-* `>` indent 缩进
-    * `>G` indent to the end
-* `f` jump to character
-    * `F` jump left
-    * `;` repeat latest `f`, `t`
-* `t` 跳至右侧第 n 个指定字符前
+
+
+test block 
+
+here are some text
+
+here are some text
+ text
+hre are some text
+here are some text
+here are some text
+ text
+
+here are some text
+here are some text
+here are some text
+here are some text
+
+
+
 
 #### 块选择模式
 
 * ++ctrl+v++ 进入列选择模式
-     
+
+#### 操作符待决模式（operator-pending mode）
+
+调用操作符后进入该状态，提供动作命令完成整个操作。
+
+用 ++esc++ 中止操作返回普通模式。
+
+大多数情况下，头一个按键只是第二个按键的前缀，不会激活操作符待决模式（比如 `g` 不是一个操作符，`gU` 才是）。
 
 ### 重复操作
 
@@ -263,6 +361,14 @@ Vim 的语法是**操作符+动作=操作**。额外的规则是：当操作符�
 ### 多文件多窗口
 
 * 缓冲区：我们并不是在编辑文件，而是编辑文件在内存中的映像
+
+
+* `>` indent 缩进
+    * `>G` indent to the end
+* `f` jump to character
+    * `F` jump left
+    * `;` repeat latest `f`, `t`
+* `t` 跳至右侧第 n 个指定字符前
 
 
 

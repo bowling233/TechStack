@@ -43,6 +43,7 @@ GCC is portable and run in many operating platforms. GCC (and GNU Toolchain) is 
 ??? info "编译工具流"
 
     ![Preprocessor, Compiler, Assembler and Linker](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/images/GCC_CompilationProcess.png)
+    
     接下来分步使用这些工具链：
     
     1. 预处理（Pre-processing）：`cpp hello.c > hello.i`

@@ -9,14 +9,12 @@ tags:
 
 ## 总体结构
 
-结合 C Primer Plus 和自己的见解，对 C 语言的基础知识作如下分类：
+结合 C Primer Plus 和自己的见解，对 C 语言的基础知识作如下梳理：
 
--   基本概念：C 语言是什么？编程机制等。
--   基础知识
-    -   数据
-    -   运算符和表达式
-    -   字符串及其操作
-    -   关键字
+-   基本概念：C 语言标准、编程机制、关键字等。
+-   数据
+-   运算符和表达式
+-   字符串及其操作
 -   控制语句
 -   函数
 -   指针
@@ -71,7 +69,7 @@ tags:
 
 以下是 C 语言中的数据类型关键字：
 
-| Keyword  | Keyword     |
+| Keyword  | |
 | -------- | ----------- |
 | int      | double      |
 | long     | signed      |
@@ -83,6 +81,7 @@ tags:
 <!-- prettier-ignore-start -->
 !!! note "考考你"
     
+
     * 什么是位、字节和字？
     * 你知道这些数据类型的位模式是什么吗？常见的语言教材都不作具体介绍，[计算机科学导论](../../books/计算机科学导论.md) 和 [深入理解计算机系统](../../books/深入理解计算机系统.md) 做出了详细的解释。
 <!-- prettier-ignore-end -->
@@ -92,16 +91,18 @@ tags:
 -   `_Bool`: C99
 
 <!-- prettier-ignore-start -->
-!!! tip "true 和 false"
+!!! info "true 和 false"
     
+
     在 C23 中，它们终于成为了关键字。
 <!-- prettier-ignore-end -->
 
 #### 整型
 
 <!-- prettier-ignore-start -->
-??? tip "关于七七八八的整数类型"
+??? info "关于七七八八的整数类型"
     
+
     在三个修饰符 `short`、`long` 和 `unsigned` 的加持下，C 能表示各种各样的整数。
     
     * `short` 是有符号类型，占用空间**可能**比 `int` 少。
@@ -118,6 +119,16 @@ tags:
 -   short: 16 bits $\in [-32 768, 32767]$
 -   int 32 bits or 16 bits (depend on size of word)
 
+<!-- prettier-ignore-start -->
+!!! info "limits.h"
+    
+    这些数据类型的大小在 `limits.h` 中定义，如：
+    
+    - `CHAR_BIT`：`char` 类型的位数。
+    - `SHRT_MAX`：`short` 类型的最大值。
+    - `ULLONG_MIN`：`unsigned long long` 类型的最大值
+<!-- prettier-ignore-end -->
+
 Which `int` type to choose?
 
 -   First consider `unsigned` types for **counting**: reach higher positive numbers
@@ -131,14 +142,16 @@ Which `int` type to choose?
 -   `U` unsigned 常量
 
 <!-- prettier-ignore-start -->
-!!! bug "整数溢出"
+!!! danger "整数溢出"
     
+
     在 C 语言中，整数溢出是未定义的行为。
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 ??? info "可移植的整数类型"
     
+
     蛮复杂的，不想关心这块内容，随手记一下。
     
     -   Portable types: `stdint.h`, `inttypes.h`
@@ -146,9 +159,6 @@ Which `int` type to choose?
         -   minimum width types: `int_least8_t`
         -   fastest minimum width types: `int_fast8_t`
         -   `intmax_t`
-    -   Complex and imaginary Floating Point:
-        -   `float _Complex`
-        -   `double _Imaginary`
 <!-- prettier-ignore-end -->
 
 #### 字符
@@ -203,7 +213,7 @@ Which `int` type to choose?
 
 浮点数一般采用 e 计数法表示，如 `5.6e-5`。C 标准为浮点数规定了表示范围：
 
-- float：6 有效数字，取值范围 $10^{-37}~10^{37}$。
+- float：6 有效数字，取值范围 $10^{-37}\sim 10^{37}$。
 - double：13 有效数字。
 
 编译器默认浮点常量为 double 类型。可以用 `f` 后缀修饰为 float 类型，`L` 修饰为 long double。
@@ -214,8 +224,18 @@ C99 增加了十六进制的浮点数表示法（p 计数法），它大概长�
 !!! danger "浮点数的上下溢"
     
     浮点数值过大导致上溢，C 规定为其赋一个表示**无穷大**的值，`printf` 显示为 `inf` 等表示无穷大的内容。
-
+    
     浮点数过于趋近于 0，指数已经到达最小值，这时只好将更改尾数。这会导致有效位末尾的数值损失，称为下溢。
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+!!! info "float.h"
+    
+    浮点数的大小在 `float.h` 中定义，如：
+    
+    - `FLT_MANT_DIG`：`float` 类型的尾数位数。
+    - `FLT_DIG`：`float` 类型的最少有效数字尾数。
+    - `FLT_MIN`：保留全部精度的最小 `float` 类型正数。
 <!-- prettier-ignore-end -->
 
 #### 虚数
@@ -242,97 +262,85 @@ long double imaginary ldi;
 
 ### 结构和联合
 
-## Format Strings and Formatted IO 字符串和格式化输入输出
+### 数据类型的修饰
+
+-   `const`：限定一个变量为只读
+-   解读一个声明最好的方式是从内往外读。
+    -   比如：`const int * ptr`，从变量名向左读，你能依次知道：这是一个指针变量，指向一个 `int` 类型的值，该值是只读的。
+
+## 字符串
 
 <!-- prettier-ignore-start -->
 !!! info "推荐阅读"
     
+
     [CSTL](CSTL.md) 阅读 C 标准库中关于标准输入输出设施的描述。这能极大地帮助你理解 C 程序和系统底层的输入输出工作机制。
 <!-- prettier-ignore-end -->
 
--   `strlen()`
--   `const`
--   symbolic constants
+### 字符串函数
 
-### 4.1 Introductory Program
-
-### 4.2 Character Strings: An Introduction
-
--   `scanf()` stops reading at the first _whitespace(blank, tab, or newline)_
 -   `strlen()` gives the length of a string in characters, **NOT includes the `'\0'` (but `sizeof()` includes)**
--   two methods to **handle long `printf()` statements**: **spreads over two lines** or printf one line twice
 -   `%zd` for return value of `sizeof` and `strlen()`
 
-### 4.3 Constants and the C Processor
 
--   symbolic constants:
-    -   name tells you more than number
-    -   easily change the value in several places
--   `#define`: compile-time substitution, done by **preprocessor** (before compiler)
--   manifest constants (字面量)
--   capitalize constants is a good behaviour, or use prefix `c_` or `k_`
--   round (四舍五入)
--   `const` : allows you to declare a type
-    > see Chapter 12 Storage Classes, Linkage, and Memory Management
-    > `enum` in Chapter 14 is also constants
--   `limits.h`
-    -   `INT_MAX`
-    -   `INT_MIN`
-    -   `CHAR_BIT`
-    -   `SHRT_MAX`
-    -   `UINT_MAX`
-    -   `ULLONG_MAX`
-    -   ...
--   `float.h`
-    -   `FLT_DIG` : minimum number of significant decimal digits for a float
-    -   `DBL_DIG`
-    -   `FLT_MIN` : minimum value for a positive float retaining full precision
-    -   `FLT_EPSILON` : difference between 1.00 and the least float value greater than 1.00
 
-### 4.4 Exploring and Exploiting printf() and scanf()
+## 输入输出
 
-#### `printf()`
+### 格式化输入输出
+
+#### 转换说明
 
 -   **conversion specifications:** specify how the data is to be converted into displayable form
     -   `%%`
-    -   `%g`
+    -   常用的：`c`, `d`, `e`, `f`, `s`, `u`
+    -   **无符号**的八进制和十六进制：`o`, `x`
     -   `%i` = `%d`
--   control-string
 -   **conversion specification modifiers**
     -   `digit`: minimum filed width
-    -   `.digit`: precision (specially for `%g`, the maximum number of significant digits; `%s`, the maximum number of characters to be printed; `integer`, minimum number to appear)
+    -   `.digit`: precision (`%s`, the maximum number of characters to be printed; `integer`, minimum number to appear)
     -   `h` and `hh`: short, char
-    -   `j`: `intmax_t` type...
     -   `l` and `ll`: for long, long long integer
     -   `L`: for long double
     -   `t`: for `ptrdiff_t` value `%td`
     -   `z`: for `size_t` value `%zd` (`sizeof, strlen`)
-        -   reason for `z` and `t` is portability: the underlying type for `size_t` vary between machines
+
+<!-- prettier-ignore-start -->
+!!! tip "reason for `z` and `t` "
+    
+    Portability: the underlying type for `size_t` vary between machines, defined in `stddef.h`.
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+!!! info "为什么没有 float 类型的转换说明？"
+    
+    `printf()` 函数中所有 `float` 类型的参数自动转换成 `double` 类型。
+<!-- prettier-ignore-end -->
+
 -   flags
     -   `-`: left-justified
     -   `+`: signed values displayed with sign
-    -   `space` : signed values are displayed with a leading space, negative with a minus
+    -   `space` : signed values are displayed with a leading space, negative with a minus. 用于对齐正负数。
     -   `#`:
         -   for `o` and `x`: print `0x`
         -   for `float` : guarantees a decimal-point is printed
-    -   `0` : pad the field width with **leading zero** (ignored with - or precision\[int\])
+    -   `0` : pad the field width with **leading zero**
+
+#### 输出函数
+
+-   `scanf()` stops reading at the first _whitespace(blank, tab, or newline)_
 
 > How does printf() handle mismatched conversion specifiers?
 >
-> -   **Passing Arguments:** When the computer puts these values on the **stack**, it is guided by the **types of the variables**, not by the conversion specifiers
+> -   **Passing Arguments:** When the computer puts these values on the **stack**, it is guided by the **types of the variables**, not by the conversion specifiers.
+>     -   注意，`float` 自动转换为 `double`。
 > -   But printf() **reads them from the stack** according to the conversion specifiers: the conversion specifiers indicates how many bytes `printf()` should read
 > -   usually reads **the first n bytes** in the stack
 
 -   return value of `printf()`: the number of characters it printed; negative value if output error
 
-#### `scanf()`
 
-Simple rules for arguments:
 
--   basic variable types: precede with `&`, (**include array item `&a[n]`**)
--   string: don't use `&`
-
-About blank skipping:
+*   `scanf()` 函数中的普通字符：除空格外普通字符必须与输入字符串严格匹配。
 
 -   Consecutive conversion specifications: `%d%f%s`, skip over the whitespace **in between, except for `%c`**
 

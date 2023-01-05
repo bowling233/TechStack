@@ -13,6 +13,7 @@
 <!-- prettier-ignore-start -->
 !!! note "IPv6"
     
+
     使用 IPv6 的特定端口时，应当把地址用方括号括起来，否则会和端口号混在一起导致错误。正确的表示如：`[2402:f000:1:801::8:28]:8080`。
 <!-- prettier-ignore-end -->
 
@@ -66,7 +67,7 @@ Ubuntu 的音频由 [`pluseaudio`](https://wiki.archlinux.org/title/PulseAudio) 
 
 拆机修理过程中，我弄断了笔记本无线网卡的天线，不得不被迫体验一把 Ubuntu 连有线网络。目前个人尝试下来，GUI 界面最好使用 GNOME 自带的 VPN，CLI 最好使用求是潮的 [zjunet](https://github.com/QSCTech/zjunet)。如果会使用 CLI，那么 `zjunet` 不需要我过多介绍，你能自己了解它的使用方法（阅读 README 和使用 `-h`）。以下介绍 GNOME 的配置。
 
-首先，Linux 发行版基本都不会附带 L2TP 协议支持，所以必须先用有线联网，或在其他电脑上下载好相关软件包。在 Ubuntu 中使用图形界面的 `network-manager` 时，需要：
+首先，Linux 发行版基本都不会附带 L2TP 协议支持，所以必须先用无线联网，或在其他电脑上下载好相关软件包。在 Ubuntu 中使用图形界面的 `network-manager` 时，需要：
 
 ```bash
 sudo apt install network-manager-l2tp network-manager-l2tp-gnome

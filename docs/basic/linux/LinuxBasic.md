@@ -5,111 +5,157 @@ tags:
 
 # Linux 基础
 
+这里包含了以下知识：系统内核、终端、解释器等概念简介、与运维有关的基础命令、管道重定向和环境变量等基本功能。
+
 ## 基础概念
 
--   用户-程序或服务-系统调用接口-内核-硬件
+-   内核与系统
 
-### 终端
+Linux **内核**是由 Linux Torvalds 维护，提供硬件抽象层、硬盘和文件系统控制及多任务功能的系统核心程序。
 
--   Terminal：终端模拟器
-    -   Windows Terminal, Fluent Terminal, Hyper ...
--   Shell：命令解释器
-    -   bash, zsh, fish ...
-    -
--
+Linux **发行套件系统**是我们常说的 Linux 操作系统，是 Linux 内核与各种常用软件的集合产品。
 
-## 基础命令
+我们一般不会直接编辑内核，而是通过基于系统调用接口开发出的程序或服务管理计算机。
+
+-   各种 Linux 发行版
+
+这里列出一些简洁的各发行版的第三方中文指南，它们往往比官方文档容易入门。
+
+[Debian 系 Linux 快速入门与参考](https://blog.ddupan.top/Chinaskills-Debian/)
+
+[ArchLinux 指南](https://arch.icekylin.online/)
+
+RedHat/CentOS/Fedora：《Linux 就该这么学》
+
+-   软件
+
+在**包管理器**（如 `dpkg`）诞生之前，软件采用源码包的方式安装，很多服务程序仅提供源代码，需要自行编译并解决超多**依赖关系**。包管理器建立了统一的数据库文件，记录软件的详细信息并自动分析依赖关系，但问题还是需要运维人员自行解决。
+
+**软件仓库**（如 `apt`）根据用户需求分析软件包及依赖关系，自动从服务器下载软件包。
+
+| 项目         | `Debian` | `Red Hat`                                   |
+| :----------- | :------- | :------------------------------------------ |
+| 二进制软件包 | `deb`    | `rpm`                                       |
+| 包管理程序   | `dpkg`   | `rpm`                                       |
+| 软件仓库     | `apt`    | `yum` ( RHEL 7 之前 ) `dnf` ( RHEL 8 之后 ) |
+
+-   初始化进程
+
+一台电脑开机需要经过：BIOS - Boot Loader - 加载系统内核 - 内核初始化 - 启动**初始化进程** 这样一系列操作。
+
+初始化进程是 Linux 系统第一个进程，为用户提供合适的工作环境。初始化工作包括：挂载文件系统和交换分区、启动各类服务进程等。这些被称作单元（Unit）。
+
+当前主流的初始化进程服务是 `systemd`，广泛应用于 `Debian`、`RedHat` 和 `Arch`。使用 `systemctl` 管理服务。
+
+## 基础使用
 
 ### Shell
 
-以下列出了 Shell 中常用的控制字符。
+Shell 称为**终端**。终端命令的一般格式是：`命令名称 [命令参数] [命令对象]`，注意对象一般在最后。命令参数有长格式和短格式两种，分别以 `--` 和 `-` 作为前缀。
 
-作业：
+<!-- prettier-ignore-start -->
+!!! note "Shell 中常用的控制字符"
+    
+    作业：
 
--   ++ctrl+c++：终结一个前台作业
--   ++ctrl+z++：暂停前台作业
--   ++ctrl+d++：从一个 Shell 中登出
--   ++ctrl+r++：搜索历史命令
+    -   ++ctrl+c++：**终结**前台作业
+    -   ++ctrl+z++：**暂停**前台作业
+    -   ++ctrl+d++：从一个 Shell 中**登出**
+    -   ++ctrl+r++：搜索历史命令
 
-编辑：
+    编辑：
 
--   ++ctrl+l++：清除屏幕
--   ++ctrl+u++：删除整行输入
--   ++ctrl+w++：删除光标左侧的所有字符
--   ++ctrl+a++：移动至行首
--   ++ctrl+e++：移动至行末
--   ++ctrl+v++：允许插入控制字符
--   ++ctrl+y++：粘贴之前使用 ++ctrl+u++ 或 ++ctrl+w++ 删除的文字
-
--   [command] + `&`：后台执行命令
+    -   ++ctrl+l++：清除屏幕
+    -   ++ctrl+u++：删除整行输入
+    -   ++ctrl+w++：删除光标左侧的所有字符
+    -   ++ctrl+a++：移动至行首
+    -   ++ctrl+e++：移动至行末
+    -   ++ctrl+v++：允许插入控制字符
+    -   ++ctrl+y++：粘贴之前使用 ++ctrl+u++ 或 ++ctrl+w++ 删除的文字
+<!-- prettier-ignore-end -->
 
 ### man
 
-基本操作：
+其实 `man` 使用的是 `less`。此处介绍的即为 `less` 的操作。`less` 的操作和 `vim` 十分相似。
+
+- `q` 退出
+- `j` `k` 移动行
+- `f` `b` 移动页
+- `d` `u` 移动半页
+- `g` `G` 跳至文件头尾（可指定行数）
 
 -   `/`：从上至下搜索关键词
 -   `?`：从下至上搜索关键词
 -   `n`：定位到下一个关键词
 -   `N`：定位到上一个关键词
 
-帮助信息结构：
+`man` 的帮助信息也没有很固定的结构，`DESCRIPTION` 部分能让你快速知道这个程序能干什么，一般先读一下这边的内容。
 
--   NAME
--   SYNOPSIS
--   DESCRIPTION
--   **EXAMPLES**
--   OVERVIEW
--   DEFAULTS
--   **OPTIONS**
--   ENVIRONMENT
--   FILES
--   SEE ALSO
--   HISTORY
+<!-- prettier-ignore-start -->
+!!! tip "No manual entry for <package>?"
+    
+    没有帮助手册可能是因为没有安装。比如 GCC 8 的帮助手册 `gcc-doc` 没有被 Debian 10 包括。参见 [What packages the man pages for GCC on Debian 10 Buster / Testing?](https://unix.stackexchange.com/questions/523079/what-packages-the-man-pages-for-gcc-on-debian-10-buster-testing) 
+<!-- prettier-ignore-end -->
 
 ### 系统工作
 
 -   `echo`
     -   如何提取变量？
 -   `date`
-    -   `-s`：设置系统时间
+    -   这个命令在你为文件名打时间戳等时候很好用。
+    -   `-s`
     -   如何写时间格式字符串？`+%...`
-    -   格式参数：`%t, %H, %I, %M, %S, %j, %m, %d`
     -   什么是：Unix time？
--   `reboot`
--   `poweroff`
+-   `reboot` 和 `poweroff`：只能用 `root` 用户运行这两个命令
 -   `wget [option] URL`
-    -   `-b` background
+    -   `-b` background 后台下载
     -   `-P` 指定目录
-    -   `-c` continue
-    -   `-p` page
+    -   `-c` continue 断点续传
+    -   `-p` page 页面内所有资源
     -   `-r` recursive
 -   `ps [option]`
-    -   `-a`
-    -   `-u`
-    -   `-x`
-    -   [[Linux进程]]
-    -   几个信息：`TTY, STAT`
--   `top`
--   `pidof [option] [name]`
--   `kill [option] [PID]`
--   `killall [option] [name]`
+    -   `-a` all 所有进程
+    -   `-u` user 用户和其他信息
+    -   `-x` 没有控制终端的进程
+    -   用例：`ps aux | grep {{string}}`
+<!-- prettier-ignore-start -->
+!!! info "进程状态"
+    
+    -   R: running 运行或运行队列等待。
+    -   S: sleep 休眠，等待条件或信号脱离状态。
+    -   D: 不响应系统异步信号 不能被 `kill` 中断。
+    -   Z: zombie 已终止，但进程描述符存在，需要父进程调用系统函数释放。
+    -   T: ternimated 收到停止信号后停止。
+<!-- prettier-ignore-end -->
+-   `top` 动态监视进程活动和系统负载，相当于 Windows 的任务管理器
+-   `pidof [option] [name]` 查询指定服务进程的 PID 值
+-   `kill [option] [PID]` 终止指定服务进程
+-   `killall [option] [name]` 终止名称对应全部进程
+
+<!-- prettier-ignore-start -->
+!!! tip "多进程程序"
+    
+    复杂软件的服务程序由多个进程协同为用户提供服务，此时使用 `killall` 最为方便。
+<!-- prettier-ignore-end -->
 
 ### 系统状态
 
--   `ifconfig [webdevice] [option]`: configure a network interface
+-   `ifconfig [网络设备] [option]`: network **i**nter**f**ace **config**urator
     -   该命令从属于 `net-tools` 包，一般不会默认安装
     -   你知道这些信息在哪吗？网卡名称、IP 地址、MAC 地址
 -   `uname [-a]`: print system information
--   `uptime`: tell how long the system has been running
-    -   平均负载值是什么？它的数值最好控制在什么范围？
+-   `uptime` 查看系统负载信息
+    -   平均负载值最好控制在什么范围？
 -   `free [-h]`: display amount of free and used memory in the system
--   `who`: show who is logged on
--   `last [option]`: show a listing of last logged in users
+-   `who`
+-   `last [option]`
     -   注意，这些信息可能被修改，不应当轻信
--   `history [clear]`
+-   `history`
+    -   `-c`
     -   如何用 `!` 重复执行某一次命令？
 -   `sos report`
     -   `sosreport` 命令现在以及替换为 `sos` 命令
+    -   在需要输入的地方敲击回车即可。
 
 ### 工作目录命令
 
@@ -122,93 +168,69 @@ tags:
 -   `cat [option] [file]`
     -   `-n`
 -   `more [option] [file]`
-    -   如何向下翻页？
+    -   适用于长文本，底部百分比提示阅读进度。使用回车键或空格键向下翻页。
 -   `head [option] [file]`
     -   `-n [num]`
 -   `tail [option] [file]`
-    -   `-f`
--   `tr [origin] [suppliment]`: translate or delete
-
+    -   `-f` 打印最新的行，持续读文件。
+-   `tr [origin] [suppliment]` 替换字符
     -   `tr [a-z] [A-Z]`
-    -
-
--   `wc [option] [text]`: word count
-
+-   `wc [option] [text]`
     -   `-l, -w, -c`
-
 -   `stat [file]`
 -   `cut [option] [text]`
-
     -   `-d <sign>`
     -   `-f <num>`
-    -   `cut` 提取文本的方式是怎样的？解释 `cut -d: -f1 file`
-
+    -   解释 `cut -d: -f1 file`
 -   `diff [option] [file]`
-    -   `-q, --brief`
+    -   `-q` = `--brief`
     -   `-c`
 
 ### 文件目录命令
 
 -   `touch [option] [file]`
     -   `-a, -m, -d`
-    -   atime, mtime, ctime 是什么？
+    -   atime, mtime, ctime 是什么？access, modify, create
 -   `mkdir [option] [directory]`
     -   `-p`
--   `cp [option] [origin] [dest]`
-    -   `-p, -r, -i, -a`
--   `mv [option] [origin] [dest]`
--   `rm [option] [file]`
+-   `cp`
+    -   `-p, -r, -i`
+    -   `-a` = `-pdr`
+-   `mv`
+-   `rm`
     -   `-f, -r`
 -   `dd [option]`
-
     -   `if`
     -   `of`
     -   `bs`
     -   `count`
     -   例子：`dd if=/dev/zero of=560_file count=1 bs=560M`
-    -   dd 的功能非常强大，比如它甚至可以压制光盘镜像：`dd if=/dev/cdrom of=xxx.iso`
-
+    -   dd 的功能非常强大，甚至可以压制光盘镜像：`dd if=/dev/cdrom of=xxx.iso`
 -   `file [file]`
+
+<!-- prettier-ignore-start -->
+!!! tip "一切皆文件"
+    
+    在 Linux 系统中，文本、目录、设备等一切都称为文件，因此不能但凭后缀知道具体文件类型，可以使用 `file` 来了解。
+
+    `.d` 结尾的常常是附属的配置文件夹。
+<!-- prettier-ignore-end -->
 
 ### 打包压缩与搜索
 
 -   `tar [option] [file]`
     -   `.tar`, `.tar.gz`, `.tar.bz2`
-    -   `-c, -x, -t, -z, -j, -v, -f, -p, -P, -C`
+    -   `-c, -x`
+    -   `-t`
+    -   `-z, -j`
+    -   `-v`
+    -   `-f`
+    -   `-C`
     -   `-czvf, -xzvf`
 -   `grep [option] [file]`
-    -   `-b, -c, -i, -n, -v`
--   `find [path] condition operation`
+    -   `-n, -v`
+    -   `-b, -i`
+-   `find [start-point...] [expression]`
+    -   `find` 的 `[expression]` 部分功能强大，可以执行条件运算（即最常用的按条件搜索文件）和执行动作等。
     -   例：`find /etc -name "host*" -print`
     -   `-exec {command} \;`
-
-## 不同的 Linux 发行版
-
-### Debian
-
-> 参考教程：
->
-> [](https://blog.ddupan.top/Chinaskills-Debian/)
->
-> [Debian 管理员手册](https://www.debian.org/doc/manuals/debian-handbook/)
-
--   软件包管理
-    -   二进制软件包 `deb`
-    -   包管理程序 `dpkg`
-    -   软件仓库 `apt`
--   系统信息
-    -   `/etc/debian_version`
-    -   SELinux：支持但不默认安装
-
-#### `deb` 软件包
-
--   `deb` 是什么？
-    -   一个简单的打包，可以被 `tar` 等处理
-    -   `deb` 有什么？
--   如何查看软件包的**元信息**？
--   `dpkg` 是什么？
-    -   一个包管理工具，面向管理员
-    -   如何使用 `dpkg` 安装、卸载软件包？
-    -   如何用 `dpkg` 查询 `deb` 信息？本机信息？
--   `apt` 是什么？
-    -   `sources.list` 的语法格式是？

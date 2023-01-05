@@ -5,6 +5,11 @@ tags:
 
 # tmux: terminal multiplexer
 
+!!! info "Reference"
+
+    - [GitHub Wiki](https://github.com/tmux/tmux/wiki/Getting-Started)
+
+
 窗口层级：
 
 -   session
