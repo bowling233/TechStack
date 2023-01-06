@@ -14,6 +14,8 @@
 -   [TonyCrane](https://note.tonycrane.cc/)
 -   [Isshiki 修](https://note.isshikih.top/)
 -   [金鱼马](https://www.yuque.com/jinyuma-igdk2)
+-   [yhwu-is](https://yhwu-is.github.io/Notes/)
+-   [HobbitQia](https://note.hobbitqia.cc/)
 
 XDFZ 的同学们：
 
