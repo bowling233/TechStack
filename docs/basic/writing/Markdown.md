@@ -130,9 +130,9 @@
             * Donec vitae suscipit est
             * Nulla tempor lobortis orci
         ```
-
+    
     === "Ordered List"
-
+    
         ``` markdown
         1. Sed sagittis eleifend rutrum
         2. Donec vitae suscipit est
@@ -141,49 +141,3 @@
 <!-- prettier-ignore-end -->
 
 -   MathJax：需要在 `docs/javascripts` 中添加脚本，即可渲染内嵌 Latex。请参考官方文档。
-
-## 编辑器
-
-### Typora 快捷键
-
-都是很常用的快捷键，给我记住！
-
--   选择操作：++ctrl++ 加上以下按键
-
-| keys  | select range  |
-| ----- | ------------- |
-| ++d++ | word          |
-| ++l++ | line/sentence |
-| ++e++ | format        |
-
--   编辑操作
-
-| keys                     | function                               |
-| ------------------------ | -------------------------------------- |
-| Ctrl + `B, I, K, U`      | 粗体、斜体、超链接、下划线             |
-| Alt + Shift + `5, I`     | 删除线、图片                           |
-| Ctrl + `<num>, =, -, 0`  | 设置标题、提升、降低、普通文本         |
-| `[, ], X`                | 有序、无序、任务列表                   |
-| Ctrl + `], [`            | 增加、减少缩进                         |
-| Ctrl + Shift + `Q`       | 引用                                   |
-| Ctrl + Shift + `- +`     | 界面缩放                               |
-| Ctrl + `T, Enter`        | 表格（**不如自己写表头方便**）、新增行 |
-| ++ctrl+shift+backspace++ | 删除表格行                             |
-| Alt + `↑↓←→`             | 移动行列                               |
-| Ctrl + `\`               | 清除样式                               |
-| ++ctrl+shift+m++         | 公式块                                 |
-
--   文件和窗口操作
-
-<!-- prettier-ignore-start -->
-!!! note
-    Typora 没有选项卡概念，因此它其实是多窗口操作。打开文件一定会新建窗口而不是替换当前打开的文件，++ctrl+tab++ 也是在窗口之间切换。
-<!-- prettier-ignore-end -->
-
-| 组合             | 用途                     |
-| ---------------- | ------------------------ |
-| ++ctrl+w++       | 关闭                     |
-| ++ctrl+p++       | 快速打开文件             |
-| ++ctrl+tab++     | 在已打开的文件中快速切换 |
-| ++ctrl+shift+c++ | 复制 Markdown 源码       |
-| ++ctrl+shift+v++ | 粘贴纯文本               |

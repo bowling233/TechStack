@@ -5,7 +5,7 @@ tags:
 
 # Linux 基础
 
-这里包含了以下知识：系统内核、终端、解释器等概念简介、与运维有关的基础命令、管道重定向和环境变量等基本功能。
+这里包含了以下知识：系统内核、终端、解释器等概念简介，Shell 的简单使用，一些基础命令。
 
 ## 基础概念
 
@@ -19,7 +19,7 @@ Linux **发行套件系统**是我们常说的 Linux 操作系统，是 Linux �
 
 -   各种 Linux 发行版
 
-这里列出一些简洁的各发行版的第三方中文指南，它们往往比官方文档容易入门。
+这里列出一些发行版的第三方中文指南，它们往往比官方文档容易入门。
 
 [Debian 系 Linux 快速入门与参考](https://blog.ddupan.top/Chinaskills-Debian/)
 
@@ -61,13 +61,13 @@ Shell 称为**终端**。终端命令的一般格式是：`命令名称 [命令�
     -   ++ctrl+c++：**终结**前台作业
     -   ++ctrl+z++：**暂停**前台作业
     -   ++ctrl+d++：从一个 Shell 中**登出**
-    -   ++ctrl+r++：搜索历史命令
+    -   ++ctrl+r++：搜索历史命令（fish 中无效）
     
     编辑：
     
     -   ++ctrl+l++：清除屏幕
     -   ++ctrl+u++：删除整行输入
-    -   ++ctrl+w++：删除光标左侧的所有字符
+    -   ++ctrl+w++：删除一个词
     -   ++ctrl+a++：移动至行首
     -   ++ctrl+e++：移动至行末
     -   ++ctrl+v++：允许插入控制字符
@@ -134,10 +134,10 @@ Shell 执行一条命令分为以下几个步骤：
     -   Z: zombie 已终止，但进程描述符存在，需要父进程调用系统函数释放。
     -   T: ternimated 收到停止信号后停止。
     <!-- prettier-ignore-end -->
--   `top` 动态监视进程活动和系统负载，相当于 Windows 的任务管理器
--   `pidof [option] [name]` 查询指定服务进程的 PID 值
--   `kill [option] [PID]` 终止指定服务进程
--   `killall [option] [name]` 终止名称对应全部进程
+-   `top`
+-   `pidof [option] [name]`
+-   `kill [option] [PID]`
+-   `killall [option] [name]`
 
 <!-- prettier-ignore-start -->
 !!! tip "多进程程序"
@@ -148,7 +148,7 @@ Shell 执行一条命令分为以下几个步骤：
 ### 系统状态
 
 -   `ifconfig [网络设备] [option]`: network **i**nter**f**ace **config**urator
-    -   该命令从属于 `net-tools` 包，一般不会默认安装
+    -   该命令属于 `net-tools` 包，一般不会默认安装
     -   你知道这些信息在哪吗？网卡名称、IP 地址、MAC 地址
 -   `uname [-a]`: print system information
 -   `uptime` 查看系统负载信息
@@ -161,7 +161,7 @@ Shell 执行一条命令分为以下几个步骤：
     -   `-c`
     -   如何用 `!` 重复执行某一次命令？
 -   `sos report`
-    -   `sosreport` 命令现在以及替换为 `sos` 命令
+    -   `sosreport` 命令现在已经替换为 `sos` 命令
     -   在需要输入的地方敲击回车即可。
 
 ### 工作目录命令

@@ -14,14 +14,14 @@ tags:
 
 ### Clash
 
-不要 `apt isntall clash`，你会安装上一个好像是 Haskell 制作程序的东西。
+不要 `apt install clash`，你会安装上一个好像是 Haskell 制作程序的东西。
 
 我们将使用 Clash for Windows，这是一个基于 Clash 和 Electron 的 Windows、Linux 和 macOS 通用的 clash 客户端。
 
 <!-- prettier-ignore-start -->
 !!! info "参考资料"
 
-    - [GitHub 主页：Clash for Windows](https://docs.cfw.lbyczf.com/)
+    - [Docs for clash for Windows](https://docs.cfw.lbyczf.com/)
 <!-- prettier-ignore-end -->
 
 按照 [在 Linux 上使用 Clash 作代理](https://einverne.github.io/post/2021/03/linux-use-clash.html) 的安装步骤，将 CFW 客户端放进 `/usr/local/bin`，这样就能在命令行中使用 `clash` 来运行 CFW 了。
@@ -41,45 +41,45 @@ INFO[0000] RESTful API listening at: [::]:9090
 ??? note "为 CFW 设置开机启动、配置 UI 界面"
 
     首先将配置文件移动到 `/etc` 下：
-
+    
     ```bash
     sudo mv ~/.config/clash /etc
     ```
-
+    
     下载 [yacd: Yet Another Clash Dashboard](https://github.com/haishanh/yacd) 的压缩包并解压到 `/etc/clash/ui`。
-
+    
     在 `config.yaml` 中修改并添加添加：
-
-    ``yaml
+    
+    ```yaml
     external-control: 127.0.0.1:9090
     external-ui: ui
     ```
-
+    
     访问 `127.0.0.1:9090/ui` 就可以看到 Clash 的图形界面啦。
-
+    
     使用 `vim` 增加 systemd 配置：`sudo vim /etc/systemd/system/clash.service`，内容如下：
-
+    
     ```text
     [Unit]
     Description=Clash Daemon
-
+    
     [Service]
     ExecStart=/usr/local/bin/clash -d /etc/clash/
     Restart=on-failure
-
+    
     [Install]
     WantedBy=multi-user.target
     ```
-
+    
     启用服务：
-
+    
     ```bash
     sudo systemctl enable clash.service
     sudo systemctl start clash.service
     ```
-
+    
     查看日志：
-
+    
     ```bash
     journalctl -e -u clash.service
     ```    
@@ -122,9 +122,18 @@ sudo systemctl start syncthing@username.service
 !!! note "更多软件"
 
     这些软件也不错，但并不推荐。它们的功能较少或不太完善、界面不够美观或很久没有更新。
-
+    
     - [Amberol](https://flathub.org/apps/details/io.bassi.Amberol)。音乐播放器，极致简洁，比 Lollypop 好看一些，但只支持播放列表，播放体验并不好。
 <!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+!!! bug "Linux 上的安卓子系统
+
+    不要试图在 Linux 上运行安卓子系统，会变得不幸。
+    
+    如果你对安卓应用有重度需求，可以尝试 [Waydroid](https://waydro.id/) 项目。它使用 LineageOS 的安卓镜像，比 Anbox 新，对当前的安卓应用有较好的兼容性。
+<!-- prettier-ignore-end -->
+
 
 ### 使用 Appimage 格式的软件
 
@@ -145,8 +154,8 @@ sudo systemctl start syncthing@username.service
 <!-- prettier-ignore-start -->
 ??? info "什么是 `.desktop` 文件？"
 
-    - [](https://specifications.freedesktop.org/desktop-entry-spec/latest/index.html#introduction)
-
+    - [Desktop Entry Specification](https://specifications.freedesktop.org/desktop-entry-spec/latest/index.html#introduction)
+    
     Both the KDE and GNOME desktop environments have adopted a similar format for "desktop entries", or configuration files describing how a particular program is to be launched, how it appears in menus, etc. It is to the larger community's benefit that a unified standard be agreed upon by all parties such that interoperation between the two environments, and indeed any additional environments that implement the specification, becomes simpler.
 <!-- prettier-ignore-end -->
 
@@ -155,8 +164,8 @@ sudo systemctl start syncthing@username.service
 <!-- prettier-ignore-start -->
 !!! info "参考资料"
 
-    [Ask Ubuntu: Extract icon from appimage](https://askubuntu.com/questions/1115321/extract-icon-from-appimage)。
-    [Ask Ubuntu: How can I add new autostart programs in Lubuntu?](https://askubuntu.com/questions/81383/how-can-i-add-new-autostart-programs-in-lubuntu)
+    - [Ask Ubuntu: Extract icon from appimage](https://askubuntu.com/questions/1115321/extract-icon-from-appimage)。
+    - [Ask Ubuntu: How can I add new autostart programs in Lubuntu?](https://askubuntu.com/questions/81383/how-can-i-add-new-autostart-programs-in-lubuntu)
 <!-- prettier-ignore-end -->
 
 ## 使用技巧
@@ -164,3 +173,25 @@ sudo systemctl start syncthing@username.service
 -   窗口飘到屏幕外去了
 
 按 ++alt+space++ 跳出窗口选项菜单。参见 [StackOverflow: Window appears off screen on ubuntu](https://stackoverflow.com/questions/12477435/window-appears-off-screen-on-ubuntu)。
+
+-   桌面管理
+
+[知乎：平铺式窗口管理器真的好用吗？](https://www.zhihu.com/question/447039478)
+
+Ubuntu 自带的 Gnome 也有不少快捷键方便使用：
+
+| Shortcut | Function |
+| - | - |
+| ++meta+leftarrow+ | quick |
+
+详见：[Useful keyboard shortcuts](https://help.gnome.org/users/gnome-help/stable/shell-keyboard-shortcuts.html.en)
+
+### 终端重度使用者
+
+- [Lynx]() 使用终端浏览网页。
+
+测试下来，大部分国外网站对终端纯文本界面有较好的兼容性。国内网站使用终端浏览就是依托答辩。
+
+与 Lynx 同类的还有 links、
+
+`brwosh` 是一个更现代化的文本浏览器，能够渲染页面上的 JavaScript 等元素。依赖 Firefox，需要下载二进制文件使用。
