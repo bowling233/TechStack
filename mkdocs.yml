@@ -116,6 +116,7 @@ nav:
         - "basic/linux/LinuxUtility.md"
         - Tools: # basic/linux/tools
             - "basic/linux/tools/gcc.md"
+            - "basic/linux/tools/tmux.md"
             - "basic/linux/tools/ssh.md"
         - "basic/linux/LinuxUsers.md"
         - "basic/linux/LinuxFileSystem.md"
