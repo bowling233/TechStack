@@ -141,3 +141,20 @@
 <!-- prettier-ignore-end -->
 
 -   MathJax：需要在 `docs/javascripts` 中添加脚本，即可渲染内嵌 Latex。请参考官方文档。
+
+## mdBook
+
+- [mdBook Documentation](https://rust-lang.github.io/mdBook/)
+
+mdBook 适合用 Markdown 写书。它使用 Rust 构建，具有方便使用的导航栏。
+
+以下是 mdBook 的几个关键文件
+
+- `book.toml` 存放 mdBook 的配置
+- `src/SUMMARY.md` 存放 mdBook 的目录
+- `src/` 存放所有文章
+
+常用命令：
+
+- `mdbook init my-first-book`
+- `mdbook serve --open`

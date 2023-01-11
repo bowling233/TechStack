@@ -6,9 +6,45 @@ tags:
 
 # Linux Shell
 
-Linux 拥有许多命令解释器，如 `bash`、`zsh` 和 `fish`。它们有许多共同的特性，因此就合并在一个文档中介绍。先讲讲通用的东西，再讲讲它们的不同。
+Linux 拥有许多命令解释器，如 `bash`、`zsh` 和 `fish`。它们有许多共同的特性，因此就合并在一个文档中介绍。
 
-## 命令和基本语法
+## Shell
+
+本节介绍关于 Shell 的通用知识。
+
+### Shell 是命令解释器和编程语言
+
+- 作为命令解释器（command interpreter），Shell 对用户输入的命令进行解释，调用相应的程序。Shell 建立了用户和操作系统之间的接口。
+- 作为编程语言，Shell 命令可以安排在一个文件中供以后执行，称为 Shell 脚本。
+
+### Shell 特性
+
+- 通配符：这是一些对 Shell 具有特殊意义的字符，用于构造模式。
+- 设备无关I/O：输入输出可以被重定向，并且可以重定向到任何合适的设备。
+- 函数：可以编写函数，Shell 将它们放在内存中。Shell 还用内部方式存储函数，这样不必耗费大量时间解释命令。
+- 作业控制：允许用户同时运行多个作业，进行前后台切换。
+
+### 术语表
+
+| English | Chinese |
+| - | - |
+| terminal | 终端 |
+| terminal emulator | 终端模拟器 |
+| textual virtual console | 文本界面虚拟控制台 |
+| CLI (Command Line Interface) | 命令行界面 |
+| pseudograhpical interface | 伪图形界面 |
+
+### 错误纠正
+
+使用 `stty` 可以查看当前终端的键位设置。
+
+- 擦除字符：++backspace++，++delete++，++ctrl+h++。
+- 删除单词：++ctrl+w++
+- 删除一行：++ctrl+u++，++ctrl+x++
+- 终止执行：
+  - 发送中断信号（terminal interrupt signal）：++ctrl+c++，++delete++ 
+  - 挂起程序：ctrl+z++
+  -
 
 ```bash
 command [arg1] [arg2] [arg3] ...
