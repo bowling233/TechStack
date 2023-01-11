@@ -113,6 +113,7 @@ nav:
       - 🐧Linux: # basic/linux/
         - "basic/linux/Ubuntu.md"
         - "basic/linux/LinuxBasic.md"
+        - "basic/linux/LinuxShell.md"
         - "basic/linux/LinuxUtility.md"
         - Tools: # basic/linux/tools
             - "basic/linux/tools/gcc.md"
