@@ -6,7 +6,7 @@ tags:
 
 # Linux Shell
 
-Linux 拥有许多命令解释器，如 `bash`、`zsh` 和 `fish`。它们有许多共同的特性，因此就合并在一个文档中介绍。
+Linux 拥有许多命令解释器，如 `bash`、`zsh` 和 `fish`。它们有许多共同的特性，因此就合并在一个文档中介绍。这里同样介绍终端、控制台等与文本界面有关的内容。
 
 ## Shell
 
@@ -24,15 +24,56 @@ Linux 拥有许多命令解释器，如 `bash`、`zsh` 和 `fish`。它们有许
 - 函数：可以编写函数，Shell 将它们放在内存中。Shell 还用内部方式存储函数，这样不必耗费大量时间解释命令。
 - 作业控制：允许用户同时运行多个作业，进行前后台切换。
 
+## 文本界面
+
+
+### 历史
+
+参考资料：
+
+- [控制台、终端和 Shell 的关系](https://www.eet-china.com/mp/a46011.html)。
+- [Unix 终端系统（TTY）是如何工作的？](https://waynerv.com/posts/how-tty-system-works/)
+- [TTY: under the hood](https://www.yabage.me/2016/07/08/tty-under-the-hood/)
+
+1970 年以前，K&R 开发 UNIX 系统，他们打算让该系统支持多用户，于是使用了电传打字机（teletype，简称 tty）做终端设备。
+
+终端是通过线缆连接在主机上的，主机上还有一个直接集成的特殊终端，称为**控制台**。控制台只能被管理员使用，可以做一些普通终端不能做的事情。比如，打印系统启动失败的信息。
+
+上面这些都是历史了。在现在的 Linux 中已经淡化了控制台和终端的区别，我们都是通过虚拟控制台与计算机交互。
+
 ### 术语表
 
-| English | Chinese |
-| - | - |
-| terminal | 终端 |
-| terminal emulator | 终端模拟器 |
-| textual virtual console | 文本界面虚拟控制台 |
-| CLI (Command Line Interface) | 命令行界面 |
-| pseudograhpical interface | 伪图形界面 |
+| English | Chinese | Explanation |
+| - | - | - |
+| terminal | 终端 | 处理计算机输入输出的一套设备 |
+| console | 控制台 | 显示系统消息的终端就是控制台，Linux 默认所有虚拟终端都是控制台 |
+| terminal emulator | 终端模拟器 | 图形界面中用于呈现命令行界面的窗口，打开它就能和 Shell 交互 |
+| textual virtual console | 文本界面虚拟控制台 | |
+| CLI (Command Line Interface) | 命令行界面 | |
+| pseudograhpical interface | 伪图形界面 | |
+| prompt | 提示符 | | 
+
+### 终端
+
+- 本地终端：显示器+键盘就是本地终端。
+- 串口终端：通过串口将主机连接到另外一个具有显示器和键盘的主机，通过终端模拟程序将这台主机的显示器和键盘借给串口对端的主机，这就是串口终端。
+- 远程终端：由 TCP/IP 承载，如 telnet 和 ssh。这是伪终端，因为它们没有关联任何物理设备。
+
+### 登录
+
+使用文本设备登录前，系统显示一条 issue 消息（存放在 `/etc/issue`），说明系统版本。
+
+随后是登录提示符，登录成功后显示 shell 提示符。shell 提示符前可能有一条简短的“当日消息（the message of the day）”，存放在 `/etc/motd`。
+
+### 虚拟控制台
+
+旧的系统包含多个物理控制台设备，现在一个主机模拟了多个控制台，称为虚拟控制台。Linux 系统默认情况下有 6 个虚拟控制台处于活动状态，它们是 `/dev/tty1-6`，而 `/dev/tty0` 是当前虚拟控制台的别名。在 X 窗口系统下，使用 ++ctrl+alt+f1++ 可以切换到对应的控制台，`tty1` 和 `tty2` 都是 X 窗口系统，其余是虚拟字符终端。
+
+### 系统控制台
+
+`/dev/console`，用于接收系统消息。系统消息不会发送到 `tty`，而是发送给 `console`。
+
+## 终端操作
 
 ### 错误纠正
 
