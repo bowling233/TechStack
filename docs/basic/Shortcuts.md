@@ -19,7 +19,7 @@ tags:
 | [Super](https://help.gnome.org/users/gnome-help/stable/keyboard-key-super.html.en) key | Activities overview                                          |
 | Alt+F2                                                       | command window                                               |
 | Super+Tab                                                    | [Quickly switch between windows](https://help.gnome.org/users/gnome-help/stable/shell-windows-switching.html.en). Hold down Shift for reverse order. |
-| Super+`                                                      | Switch between windows from the **same application**, or from the selected application after Super+Tab. |
+| Super+\`                                                      | Switch between windows from the **same application**, or from the selected application after Super+Tab. |
 | Alt+Esc                                                      | Switch between windows in the current workspace. Hold down Shift for reverse order. |
 | Super+Page Up<br />Super+Page Down<br />Ctrl + Alt + Left Direction (or Right) | [Switch between workspaces](https://help.gnome.org/users/gnome-help/stable/shell-workspaces-switch.html.en). |
 | Shift+Super+Page Up<br />Shift+Super+Page Down               | [Move the current window to a different workspace](https://help.gnome.org/users/gnome-help/stable/shell-workspaces-movewindow.html.en). |
@@ -40,7 +40,7 @@ tags:
 
 ## Typora
 
-详见 [Typora](https://support.typoraio.cn/Shortcut-Keys/)
+[Typora 官方快捷键表](https://support.typoraio.cn/Shortcut-Keys/)
 
 -   File
 
@@ -99,11 +99,11 @@ tags:
 | Strong           | Ctrl + B               |
 | Emphasis         | Ctrl + I               |
 | Underline        | Ctrl + U               |
-| Code             | Ctrl + Shift + `       |
+| Code             | Ctrl + Shift + \`       |
 | Strike           | Alt + Shift + 5        |
 | Hyperlink        | Ctrl + K               |
 | Image            | Ctrl + Shift + I       |
-| **Clear Format** | **Ctrl + \ **           |
+| **Clear Format** | **Ctrl + \\**           |
 
 - View
 

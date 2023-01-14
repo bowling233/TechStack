@@ -28,16 +28,23 @@
 - 用**布尔表达式**表示
 - **规范表示**：其实就是《离散数学及其应用》中的**和之积**与**积之和**表示法。这种表示法告诉我们：任何一个布尔函数都能使用和、或、非三种布尔算子表示。
 
-!!! note "考考你"
+<!-- prettier-ignore-start -->
+!!! question "考考你"
 
     - n 个输入变量的布尔函数的真值表有几行？
     - n 个输入变量的布尔函数有几个？
+		- 你能简单地讲解以下布尔表达式为什么实现了它的功能吗？
+			- Equivalence: $x\cdot y + \overline{x}\cdot\overline{y}$
+		- 构造 If x then y
+<!-- prettier-ignore-end -->
 
 与非门和或非门具有重要的性质：与、或、非算子都能用与非门和或非门来建构。
 
-!!! note "考考你"
+<!-- prettier-ignore-start -->
+!!! question "考考你"
 
     试试用与非门和或非门建构与、或、非算子。
+<!-- prettier-ignore-end -->
 
 ### 门
 
@@ -45,11 +52,13 @@
 
 任何具有转换（switching）和传导（conductiong）能力的技术都能用来构造门，比如磁、光等。今天，大多数门采用晶体管实现，这些晶体管在硅上蚀刻并封装为芯片。
 
-!!! note "考考你"
+<!-- prettier-ignore-start -->
+!!! question "考考你"
 
     - 画出与、或、非门的电路符号表示。
 		- 画一个三通道与门的实现。
 		- 画一个异或门的实现。
+<!-- prettier-ignore-end -->
 
 逻辑电路设计就是**连接门电路的艺术**，设计的基本原则是使用尽可能少的门。
 
@@ -59,7 +68,8 @@
 
 一个芯片的 HDL 定义包括 header 和 parts。Header 描述芯片的接口（名称、输入输出管脚的名称），parts 描述底层电路的名称和拓扑结构，每个部分用一个语句描述该部分名称和与其他部分的连接方式。
 
-!!! note "尝试读懂 HDL"
+<!-- prettier-ignore-start -->
+!!! question "尝试读懂 HDL"
 
     这是内部模块的接口文档。
     
@@ -92,6 +102,7 @@
 		set a 0, set b 0,
 		eval, output;
 		```
+<!-- prettier-ignore-end -->
 
 ### 实验：设计门电路
 
@@ -143,11 +154,13 @@
 	- Output: out[16]
 	- Function: If sel=00 then out=a else if sel = 01 then out=b else if ...
 
-!!! note "考考你"
+<!-- prettier-ignore-start -->
+!!! question "考考你"
 
     - n 通道选择器需要多少个控制位？
     - 描述 Mux8Way16
     - 描述 DMux4Way
+<!-- prettier-ignore-end -->
 
 ## 第二章 布尔运算
 

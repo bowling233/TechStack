@@ -32,6 +32,7 @@ Linux 拥有许多命令解释器，如 `bash`、`zsh` 和 `fish`。它们有许
 
 参考资料：
 
+- [命令行界面 (CLI)、终端 (Terminal)、Shell、TTY，傻傻分不清楚？](https://prinsss.github.io/the-difference-between-cli-terminal-shell-tty/)
 - [控制台、终端和 Shell 的关系](https://www.eet-china.com/mp/a46011.html)。
 - [Unix 终端系统（TTY）是如何工作的？](https://waynerv.com/posts/how-tty-system-works/)
 - [TTY: under the hood](https://www.yabage.me/2016/07/08/tty-under-the-hood/)
@@ -70,6 +71,14 @@ Linux 拥有许多命令解释器，如 `bash`、`zsh` 和 `fish`。它们有许
 
 旧的系统包含多个物理控制台设备，现在一个主机模拟了多个控制台，称为虚拟控制台。Linux 系统默认情况下有 6 个虚拟控制台处于活动状态，它们是 `/dev/tty1-6`，而 `/dev/tty0` 是当前虚拟控制台的别名。在 X 窗口系统下，使用 ++ctrl+alt+f1++ 可以切换到对应的控制台，`tty1` 和 `tty2` 都是 X 窗口系统，其余是虚拟字符终端。
 
+什么时候会用到虚拟控制台呢？如果你的 X 窗口系统卡死了，系统仍在工作，此时你仍可以切换到其他文本界面虚拟控制台，通过命令行修复 X 窗口系统的错误、重新启动窗口系统。
+
+<!-- prettier-ignore-start -->
+!!! warning "文本界面虚拟控制台无法使用中文"
+    
+    由于虚拟控制台的设计，不可能在虚拟控制台上使用中文。虚拟控制台的字体显示也非常朴素。所以，除非你遇到紧急情况，不要使用字符界面的虚拟控制台。
+<!-- prettier-ignore-end -->
+
 ### 系统控制台
 
 `/dev/console`，用于接收系统消息。系统消息不会发送到 `tty`，而是发送给 `console`。
@@ -82,8 +91,8 @@ command [arg1] [arg2] [arg3] ...
 
 - `[]` 表示参数是可选的。
 - `-`(hyphen) 开头的参数被称为 options 或 flags。这些选项也可以有自己的参数，并且不是可选的。
-  - 选项通常使用空格与其参数分开，比如 `gcc -o prog prog.c`。
-  - 也有使用等号的，比如 `diff --width=60 filea fileb`。
+    - 选项通常使用空格与其参数分开，比如 `gcc -o prog prog.c`。
+    - 也有使用等号的，比如 `diff --width=60 filea fileb`。
 
 参数的具体使用方法受程序影响，使用 `--help` 一般能获得程序参数的使用介绍。
 
@@ -97,7 +106,6 @@ command [arg1] [arg2] [arg3] ...
 
 ### 错误纠正
 
-使用 `stty` 可以查看当前终端的键位设置。
 
 - 擦除字符：++backspace++，++delete++，++ctrl+h++。
 - 删除单词：++ctrl+w++

@@ -103,6 +103,7 @@ nav:
       - ☣️杂项: "Misc.md"
   - 🔨基础技能: # basic/
       - 🧱基础: "basic/Basic.md"
+      - 🎹快捷键: "basic/Shortcuts.md"
       - ✏️写作: # basic/writing/
         - "basic/writing/Copywriting.md"
         - "basic/writing/VSCode.md"
@@ -132,6 +133,7 @@ nav:
         - "basic/problem/QA2022.md"
         - "basic/problem/BlogSetupRecord.md"
         - "basic/problem/UbuntuSetupRecord.md"
+        - "basic/problem/PhoneSetupRecord.md"
   - 🌐WebDev: # webdev/
       - 📄网页开发: # webdev/webpage/
         - "webdev/webpage/HTMLBasic.md"

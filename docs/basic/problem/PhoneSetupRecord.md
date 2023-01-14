@@ -10,12 +10,12 @@
 
 小米和红米手机一直都支持解锁 BootLoader。请按照官网教程解锁：
 
-- [Official: MIUI unlock](http://www.miui.com/unlock/index.html)
+-   [Official: MIUI unlock](http://www.miui.com/unlock/index.html)
 
 按开机键+音量下键或使用 ADB 命令将手机重启到 BootLoader 模式。
 
 <!-- prettier-ignore-start -->
-??? info "安装 ADB"
+??? note "安装 ADB"
     
     - Ubuntu: `sudo apt install android-tools-adb`
     - Windows: [Android SDK Platform Tools ZIP file for Windows](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
@@ -24,7 +24,7 @@
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
-??? info "ADB 基本使用"
+??? note "ADB 基本使用"
     
     - `adb devices` 列出连接的设备
     - `adb shell` 连接手机 shell
@@ -35,11 +35,11 @@
 
 ### 下载 ROM 并刷入
 
-- [MIUI ROM Latest Downloads](https://xiaomifirmwareupdater.com/miui/)
+-   [MIUI ROM Latest Downloads](https://xiaomifirmwareupdater.com/miui/)
 
 在该网站下载合适的 ROM 包，类型选择 Fastboot，文件扩展名为 `.tgz`。下载后逐层解压。
 
-- [Official: Xiaomi Flash Tool](https://www.xiaomiflash.com/)
+-   [Official: Xiaomi Flash Tool](https://www.xiaomiflash.com/)
 
 下载小米官方线刷工具。该工具只能在 Windows PC 上运行。
 
@@ -54,9 +54,11 @@
 
 如果在手机初始设置过程中连接网络，则谷歌服务请求更新的环节无法通过（除非你的路由器有代理）。因此，推荐长按电源键开启飞行模式，在无网络环境下完成初始设置，进入系统，安装好代理软件后再登录账号。
 
+## 手机管理
+
 ### 用 ADB 命令行删除 ROM 厂商内置软件
 
-- [XDA: How to uninstall carrier/OEM bloatware without root access](https://www.xda-developers.com/uninstall-carrier-oem-bloatware-without-root-access/)
+-   [XDA: How to uninstall carrier/OEM bloatware without root access](https://www.xda-developers.com/uninstall-carrier-oem-bloatware-without-root-access/)
 
 ```
 adb shell # 连接手机终端
@@ -65,6 +67,55 @@ pm uninstall -k --user 0 NameOfPackage # 卸载应用包
 ```
 
 你也可以在谷歌商店下载 App Inspector 在手机上查阅每个应用的信息，知道包名是对应哪个应用。
+
+<!-- prettier-ignore-start -->
+!!! danger "删除系统应用时务必查询应用信息"
+    
+    Android 系统组件一定不能卸载，MIUI 系统核心组件替换时必须小心。
+
+    如：`com.android.provider.` 开头的，大部分是 Android 系统 API 接口提供者，应当保留。`com.android.` 开头的部分软件被 UI 产商替换，可以尝试更改为自己需要的。但一定要注意备份。
+    
+    当你准备抛弃 MIUI 并使用 Google 套件替换系统功能时，请先退出小米账号，解除手机和小米账号的绑定，再卸载和小米云服务有关的组件。否则将面临手机被锁定且因为缺少服务组件无法解锁的窘境。
+
+    !!! info "参考资料"
+        
+        - [MIUI 13 System Apps 清单](https://gist.github.com/mcxiaoke/0a4c639d04e94c45eb6c787c0f98940a)
+        - [Android 开发者文档：日历提供程序概览](https://developer.android.com/guide/topics/providers/calendar-provider)
+        - [备份你的应用：How do I get an apk file from an Android device?](https://stackoverflow.com/questions/4032960/how-do-i-get-an-apk-file-from-an-android-device)
+        - [备份你的数据：Backup android app, data included, no root needed, with adb](https://gist.github.com/AnatomicJC/e773dd55ae60ab0b2d6dd2351eb977c1)
+
+??? success "误删系统组件导致系统崩溃、被锁或无法开机"
+
+    只要你的手机 Bootloader 仍然保持解锁状态，就有无损修复的机会。
+
+    我删除了小米云服务、小米账号以及相关 SDK 后重启手机，手机即显示“Device Locked”，需要输入绑定的小米账号的密码才能解锁。可是，SDK 都被删除了，输入密码也无法登录，显示 `RPC Error`。而且，手机进入锁定状态会自动关闭 ADB 等功能，手机系统处于无法动弹的状态。
+
+    以下是我的修复步骤：
+
+    1. 电脑登录 [小米云服务](https://i.mi.com/)，解除对应设备的找回设备功能。
+    2. 使用物理按键将手机重启至 Fastboot 模式，使用 MIUI 官方线刷工具，以保留数据的方式刷入系统镜像，以补上 MIUI 关键组件。
+    3. 重启手机，此时仍处于锁定状态。连接网络，稍等一下，手机就自动解锁了（小米服务器向手机发送解绑指令）。
+<!-- prettier-ignore-end -->
+
+
+<!-- prettier-ignore-start -->
+!!! note "Harmony OS"
+
+    上面的命令行在 Harmony OS 3 亲测可用。大卸特卸了一番。很难想象，华为在一个“华为视频”中就集成了 `com.huawei.himove.partner1`、`com.huawei.himovie.partner2`、`com.tencent.qqlivehuawei`、`com.sohu.sohuvideo.emplayer`、`com.huawei.himovie` 五个恶心东西。
+<!-- prettier-ignore-end -->
+
+### 应用商店
+
+-   Google Play Store：纯净，易用，但需要全套谷歌服务。
+-   Apkpure：非常全面，但下载的软件广告捆绑较多。
+-   F-Droid：提供 FOSS（Free and Open Source Software）软件，有一些工具值得挖掘。
+-   酷安：国内软件较全面。
+
+### 有趣的工具
+
+-   Iriun Webcam：将手机作为电脑摄像头。需要电脑安装对应软件。
+-   JuiceSSH：手机远程终端，功能全面，对 Unicode 有很好的支持。
+-   IP Lite 和 IP Tools：网络工具，后一个功能更多但有广告。两者都有付费版。
 
 ## 使用手机作为安全工具
 
@@ -76,8 +127,8 @@ pm uninstall -k --user 0 NameOfPackage # 卸载应用包
 
 ### 无密码账户
 
-- [Apple: Apple、谷歌与微软承诺拓展对 FIDO 标准的支持，以加速普及免密码登录](https://www.apple.com.cn/newsroom/2022/05/apple-google-and-microsoft-commit-to-expanded-support-for-fido-standard/)
-- [Google: One step closer to a passwordless future](https://blog.google/technology/safety-security/one-step-closer-to-a-passwordless-future/)
+-   [Apple: Apple、谷歌与微软承诺拓展对 FIDO 标准的支持，以加速普及免密码登录](https://www.apple.com.cn/newsroom/2022/05/apple-google-and-microsoft-commit-to-expanded-support-for-fido-standard/)
+-   [Google: One step closer to a passwordless future](https://blog.google/technology/safety-security/one-step-closer-to-a-passwordless-future/)
 
 <!-- prettier-ignore-start -->
 !!! note "What is passwordless authentication?"
@@ -89,7 +140,7 @@ pm uninstall -k --user 0 NameOfPackage # 卸载应用包
 
 ### 两步验证
 
-- [Bilibili: 两步验证的原理是什么？](https://www.bilibili.com/video/BV1Rp411f78Q/)
+-   [Bilibili: 两步验证的原理是什么？](https://www.bilibili.com/video/BV1Rp411f78Q/)
 
 Google Authenticator 是目前最为通用的两步验证器，几乎所有支持两步验证的站点都对其提供了支持。
 

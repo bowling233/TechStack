@@ -6,7 +6,7 @@ tags:
 
 # Ubuntu 日常使用指南
 
-目前我在笔记本上使用 Ubuntu 作为主力系统。Ubuntu 一定是最容易上手和使用的 Linux 系统。深入使用了一段时间后，发现 Windows 上常用的软件都能在 Ubunut 上找到替代品。以下记录一下我做了哪些配置来提升 Ubuntu 的使用体验。
+目前我在笔记本上使用 Ubuntu 作为主力系统。Ubuntu 一定是最容易上手和使用的 Linux 系统。深入使用了一段时间后，发现 Windows 上常用的软件都能在 Ubuntu 上找到替代品。以下记录一下我做了哪些配置来提升 Ubuntu 的使用体验。
 
 ## 代理
 
@@ -127,7 +127,7 @@ sudo systemctl start syncthing@username.service
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
-!!! bug "Linux 上的安卓子系统
+??? danger "Linux 上的安卓子系统"
 
     不要试图在 Linux 上运行安卓子系统，会变得不幸。
     
@@ -152,7 +152,7 @@ sudo systemctl start syncthing@username.service
 使用 [`appimaged`](https://github.com/probonopd/go-appimage) 能够自动扫描 AppImage 文件并创建 `.desktop` 文件。
 
 <!-- prettier-ignore-start -->
-??? info "什么是 `.desktop` 文件？"
+??? note "什么是 `.desktop` 文件？"
 
     - [Desktop Entry Specification](https://specifications.freedesktop.org/desktop-entry-spec/latest/index.html#introduction)
     
@@ -178,20 +178,28 @@ sudo systemctl start syncthing@username.service
 
 [知乎：平铺式窗口管理器真的好用吗？](https://www.zhihu.com/question/447039478)
 
-Ubuntu 自带的 Gnome 也有不少快捷键方便使用：
+Ubuntu 自带的 Gnome 也有不少方便使用的快捷键，详见：[Useful keyboard shortcuts](https://help.gnome.org/users/gnome-help/stable/shell-keyboard-shortcuts.html.en)
 
-| Shortcut | Function |
-| - | - |
-| ++meta+leftarrow+ | quick |
+- 高分屏缩放
 
-详见：[Useful keyboard shortcuts](https://help.gnome.org/users/gnome-help/stable/shell-keyboard-shortcuts.html.en)
+GNOME 显示配置只能 100% 或 200%，使用 Fractional Scaling 效果很差。实测设置字体缩放效果最：`gsettings set org.gnome.desktop.interface text-scaling-factor 1.1`，对于我的 15.6 英寸笔记本来说 1.1 是最舒适的比例。然而这只是对 GNOME 相关软件进行了缩放，有些软件还需要手动设置。
+
+> 参考：[https://prinsss.github.io/setting-up-manjaro-linux/](https://prinsss.github.io/setting-up-manjaro-linux/)
+
+
 
 ### 终端重度使用者
 
-- [Lynx]() 使用终端浏览网页。
+- [Lynx](https://lynx.invisible-island.net/) 使用终端浏览网页。
 
 测试下来，大部分国外网站对终端纯文本界面有较好的兼容性。国内网站使用终端浏览就是依托答辩。
 
-与 Lynx 同类的还有 links、
+与 Lynx 同类的还有 links 等。
 
 `brwosh` 是一个更现代化的文本浏览器，能够渲染页面上的 JavaScript 等元素。依赖 Firefox，需要下载二进制文件使用。
+
+## 参考资料
+
+什么？你说不够你看！这里还有一些大佬调教他们的 Linux 系统的记录，可以看一看：
+
+- [Manjaro Linux 踩坑调教记录](https://prinsss.github.io/setting-up-manjaro-linux/)

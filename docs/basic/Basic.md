@@ -16,11 +16,34 @@
 -   学会协作
     -   这要求你掌握一系列的协作工具，比如：GitHub 等。
 
+## 使用 Linux 系统
+
+- [Youtube: Why Linux Is Better For Programming](https://youtu.be/otDOHt_Jges)
+
+总结一下：
+
+1. 安全：因为 Linux 是开源的，所以它是安全的。你能解释其中的逻辑吗？
+2. 优化工作流：包管理器
+3. 无需重启：很多 Linux 服务器不间断运行了几年，其间没有重启也没有遇到失败。
+4. 强大的实用工具：grep、wget、cron 等。
+5. 自动化
+6. 性能
+7. 有用的错误信息：而不是 Oops! Something went wrong.
+8. 自定义
+
+<!-- prettier-ignore-start -->
+!!! tip "开始使用 Linux"
+
+    在你开始使用 Linux 前，最好使用虚拟机、云服务器或 WSL 体验一段时间。当你发现自己在 Linux 上花费的时间越来越多时，你就可以尝试真正安装 Linux 系统了。
+<!-- prettier-ignore-end -->
+
 ## 基础技能
 
+<!-- prettier-ignore-start -->
 !!! info
 
     - [MIT: The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
+<!-- prettier-ignore-end -->
 
 MIT 开设的课程介绍了 CS 人需要熟练掌握的一些技能。这里简单记录一下我学到了些什么。
 
