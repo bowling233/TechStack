@@ -1,22 +1,51 @@
 # Markdown 生态
 
-我喜欢使用 Markdown 做笔记，原因很简单，它非常通用。我接触过的笔记软件和 Blog 也都基于 Markdown，它们共同构建起了一个比较好的生态。
+我喜欢使用 Markdown 做笔记，原因很简单，它非常通用。我使用的笔记软件和博客系统也都基于 Markdown，它们共同构建起了一个比较好的生态。
 
 在本文档中，我将记录自己跨软件、跨平台使用 Markdown 遇到过的问题和解决方案。
 
 ## 我的笔记结构
 
--   我使用 **Obsidian** 管理所有 Markdown 笔记。这个笔记库在一个更大的同步库中，由 Syncthing 和 Onedrive 分别将该同步库同步至我的各个设备和云端备份。
-    -   我会将 Obsidian 的双向链接配置为 Markdown 格式的 **相对链接**，附件存储于当前文件夹下的 `assest` 文件夹。这将为 MkDocs 和 Typora 提供便利
+-   我使用 **Obsidian** 管理所有 Markdown 笔记。这个笔记库在一个更大的同步库中，由 Syncthing 和 Onedrive 分别将该同步库同步至我的各个设备、备份到云端。
+    -   我会将 Obsidian 的双向链接配置为 Markdown 格式的 **相对链接**，附件存储于当前文件夹下的 `assest` 文件夹。这将为 MkDocs 和 Typora 提供适配。
 -   我使用 **Typora** 作为主力编辑器。它可以胜任基于 GFM 的基础语法的 Markdown 编辑工作。
     -   列表缩进设定为 4。
 -   我使用 **MkDocs** 发布自己的笔记。
     -   需要发布的笔记存放在 Obsidian 库的子文件夹中，是独立的 git 仓库。因为 Syncthing 的同步，我不需要在各个设备间重复 pull/push 操作，只需要在其中一台设备上完成，git 状态即可同步至其他设备。
 -   我会使用 VSCode 扩展 `Prettier` 来自动格式化文档。对于 MkDocs 中的 Admonition 等扩展语法，应当使用 `<!-- prettier-ignore -->` 将语法块包裹起来避免遭到破坏。
 
+## 基础语法
+
+<!-- prettier-ignore-start -->
+!!! tip "保持文档语法风格一致"
+
+    在与其他人合作时，这一点尤为重要。一个团队或一个项目应该有一个统一的语法风格，然而达成这一共识很难。最好的解决办法是在项目中配置好 Prettier 等格式化插件。
+
+    !!! note "使用 Prettier"
+        
+        - Prettier 的目标是**终结所有关于格式的争论**。因此它提供的选项很少，**不能随你所想**地格式化代码。否则，关于格式的争论会转移到关于选项的争论。
+        - Prettier 为以下语言提供支持：JavaScript、CSS、HTML、JSON、Markdown、YAML 等。因此，推荐 **Web 开发人员**统一使用 Prettier。
+        - Prettier 
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+!!! quote "基础语法教程"
+    
+    - [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+<!-- prettier-ignore-end -->
+
+基础语法的内容有：标题、字体样式（粗体、斜体、删除线 strikethrough、粗斜体）、引用、代码块、链接（定位链接、相对链接）、图像、列表（有序列表、无序列表、嵌套列表、任务列表）、注释。
+
 ## 扩展语法
 
--   现行 Markdown 标注中以 [GFM](https://github.github.com/gfm) 最为通用。
+-   现行 Markdown 标准中 [GFM](https://github.github.com/gfm) 最为通用。
+
+<!-- prettier-ignore-start -->
+!!! info "关于各种编辑器使用的 Markdown 语法"
+    
+    - Typora 开启严格模式后遵守**GFM**，对列表缩进对齐的要求更严格。
+    - 
+<!-- prettier-ignore-end -->
 
 > From:
 > 《了不起的 Markdown》
@@ -33,6 +62,7 @@
 
 <!-- prettier-ignore-start -->
 ???+ note "For Compatible with MkDocs"
+
     * MkDocs**只能识别** 4 个空格或 1 个制表符的列表缩进。
     * MkDocs 的代码块必须使用支持的语言标签才能正常工作。这些标签涵盖了几乎所有语言，因此只要设置正常，无需担心无法工作。
         ```markdown title="example"

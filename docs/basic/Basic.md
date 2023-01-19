@@ -2,10 +2,11 @@
 
 <!-- prettier-ignore-start -->
 !!! info 
-    [如何让自己看上去、闻上去都像一个 CS 人](https://blog.hobbitqia.cc/p/5948019b.html)
+    [HobbitQia：如何让自己看上去、闻上去都像一个 CS 人](https://blog.hobbitqia.cc/p/5948019b.html)
 <!-- prettier-ignore-end -->
 
 -   学会阅读英文
+-   学会使用英文
 -   学会搜索
     -   做一个优秀的 Google 程序员，做一个优秀的 Stack Overflow 程序员。
 -   学会提问
@@ -14,7 +15,56 @@
 -   学会学习
     -   要懂得主动阅读帮助文档和教程。
 -   学会协作
-    -   这要求你掌握一系列的协作工具，比如：GitHub 等。
+    -   掌握一些协作工具，比如：Git。
+
+## 学会协作
+
+在学习 CS 的过程中，最重要的事情或许是学会协作，然而课堂并不会教你如何与他人协作。与他人协作需要掌握两项基本技能：协作工具和代码美学。
+
+### 协作工具
+
+<!-- prettier-ignore-start -->
+!!! quote "不错的学习资料"
+    
+    - 1 分钟上手 git：[git - 简明指南](https://rogerdudler.github.io/git-guide/index.zh.html)
+    - 学习使用 GitHub：[GitHub Quickstart](https://docs.github.com/en/get-started/quickstart/hello-world) | [中文版：GitHub 快速入门](https://docs.github.com/zh/get-started/quickstart/hello-world)
+    - 深入理解 Git：[Pro Git](https://git-scm.com/book/en/v2) | [中文版](https://www.progit.cn/)
+<!-- prettier-ignore-end -->
+
+### 代码美学
+
+初学者在学习编程时，往往对代码格式不够重视。特别是国内众多初学者使用 Dev-C++ 学习编程，编辑器不支持自动格式化，向他人展示代码时看起来十分费劲。
+
+<!-- prettier-ignore-start -->
+!!! tip "更换编辑器"
+    
+    请抛弃 Dev-C++，**使用 VSCode** 作为代码编辑器。
+<!-- prettier-ignore-end -->
+
+VSCode 自带的代码格式化功能已经能够满足大部分情况下的需求。当你学习得更深入，需要跨编辑器、与他人合作时，就可以使用 EditorConfig 来统一代码风格了。
+
+<!-- prettier-ignore-start -->
+??? note "EditorConfig"
+    
+    - [EditorConfig](https://editorconfig.org/)
+    
+    > EditorConfig helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
+    
+    以下编辑器为 EditorConfig 提供支持：
+    
+    - 集成的支持：GitHub、GitLab、IntelliJ IDEA、Visual Studio
+    - 需要插件：Atom、CodeBlocks、Emacs、Notepad++、Vim、Visual Studio Code
+    
+    EditorConfig 主要有一下属性可以配置：
+    
+    - `indent_style`: set to `tab` or `space` to use hard tabs or soft tabs respectively.
+    - `indent_size`: a whole number defining the number of columns used for each indentation level and the width of soft tabs (when supported). When set to tab, the value of tab_width (if specified) will be used.
+    - `end_of_line`: set to `lf`, `cr`, or `crlf` to control how line breaks are represented.
+    - `charset`: set to `latin1`, `utf-8`, `utf-8-bom`, `utf-16be` or `utf-16le` to control the character set.
+    - `trim_trailing_whitespace`: set to `true` to remove any whitespace characters preceding newline characters and `false` to ensure it doesn't.
+    - `insert_final_newline`: set to `true` to ensure file ends with a newline when saving and `false` to ensure it doesn't.
+    - `root`: special property that should be specified at the top of the file outside of any sections. Set to `true` to stop .editorconfig files search on current file.
+<!-- prettier-ignore-end -->
 
 ## 使用 Linux 系统
 

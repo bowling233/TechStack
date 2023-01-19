@@ -110,13 +110,48 @@ sudo systemctl start syncthing@username.service
 
 ## 各种软件
 
+### 使用命令行安装 `.deb` 软件包
+
+```bash
+sudo apt install ./xxx.deb
+sudo dpkg -i ./xxx.deb
+```
+
+<!-- prettier-ignore-start -->
+!!! note "APT vs dpkg"
+    
+    - `apt` 会自动下载并安装依赖项，`dpkg` 不会。
+    - `apt` 使用 `dpkg` 进行软件安装。
+<!-- prettier-ignore-end -->
+
+### 社交
+
 -   [QQ](https://im.qq.com/linuxqq/index.shtml)。推荐直接在 Ubuntu 应用商店中下载。目前 Linux QQ 界面十分简洁，基本功能足够完善。
 -   [钉钉](https://page.dingtalk.com/wow/z/dingtalk/simple/ddhomedownlaod#/)。在官网下载 Linux 客户端，仅有 `deb` 安装包。使用体验与 Windows 版几乎一致。
+
+### 办公
+
+- [WPS Office](https://www.wps.com/office/linux/)。很实用，比 Libre Office 符合国人的使用习惯。
+
 -   [Typora](https://typora.io/#linux)。Typora 的 apt 源在国内无法解析（猜测是 `.io` 域名问题），安装过程的代理设置十分艰难。推荐直接下载 `deb` 安装包。没有 Windows 版的一体化界面。
 -   [搜狗输入法](http://shurufa.sogou.com/linux)。中文输入功能完善，比 Ubuntu 自带输入法智能太多。
 -   [emote](https://github.com/tom-james-watson/emote)。Linux 的 emoji 输入面板，挺方便的。
 -   [Tabby](https://tabby.sh/)。目前我见过最好看、方便配置的跨平台终端，甚至提供了 [Web app](https://app.tabby.sh/)。GNOME 自带的终端在使用 zsh 的 powerlevel10k 主题时可能出现问题，tabby 则对各种功能都提供了完善的支持，比如可以保管 ssh 秘钥、记录上次退出时的终端状态等，资源占用也不高。
+-   [Pomodoro](https://gnomepomodoro.org/)。GNOME 上的番茄计时器，简单实用，使用体验非常棒。
+
+### 娱乐
+
 -   [Lollypop](https://wildskyf.github.io/lollypop-web/)。音乐播放器，比自带的 RhythomBox 好看很多，对于专辑等也有不错的管理。
+-   `Spotify`。很好的在线音乐平台。
+-   `VLC media player`。视频播放器。
+
+### 美化
+
+- [Hidamari](https://github.com/jeffshee/hidamari)。视频桌面。
+
+### 其他
+
+- `Deluge`。轻量级 BT 客户端，比 qBittorrent 功能简洁，占用少很多。
 
 <!-- prettier-ignore-start -->
 !!! note "更多软件"
@@ -124,6 +159,7 @@ sudo systemctl start syncthing@username.service
     这些软件也不错，但并不推荐。它们的功能较少或不太完善、界面不够美观或很久没有更新。
     
     - [Amberol](https://flathub.org/apps/details/io.bassi.Amberol)。音乐播放器，极致简洁，比 Lollypop 好看一些，但只支持播放列表，播放体验并不好。
+    - qBittorrent。AppImage 格式的 qBittorrent 内存占用极高，卡顿明显，不推荐使用。
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
@@ -186,7 +222,21 @@ GNOME 显示配置只能 100% 或 200%，使用 Fractional Scaling 效果很差�
 
 > 参考：[https://prinsss.github.io/setting-up-manjaro-linux/](https://prinsss.github.io/setting-up-manjaro-linux/)
 
+- 查看电脑功耗
 
+```bash
+awk '{print $1*10^-6 " W"}' /sys/class/power_supply/BAT0/power_now
+```
+
+或者安装 `powertop` 查看详细的硬件、软件功耗情况。
+
+- 驱动更新
+
+Ubuntu 安装时不一定装上了最新的推荐驱动（独立显卡一般都没有装），使用该命令可以安装最新的推荐驱动，更好地管理硬件。
+
+```bash
+sudo ubuntu-drivers autoinstall
+```
 
 ### 终端重度使用者
 

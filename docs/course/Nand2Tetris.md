@@ -92,7 +92,7 @@
 						And(a=nota, b=b, out=w2);
 						Or(a=w1, b=w2, out=out);
     }
-		```
+	```
 
 		接下来是 HDL 测试脚本，猜猜它在干什么？
 
@@ -105,6 +105,13 @@
 <!-- prettier-ignore-end -->
 
 ### 实验：设计门电路
+
+<!-- prettier-ignore-start -->
+!!! tip "请先阅读"
+	
+	- Appendix A
+	- [HDL Survival Guide](://drive.google.com/file/d/1dPj4XNby9iuAs-47U9k3xtYy9hJ-ET0T/view)
+<!-- prettier-ignore-end -->
 
 #### 材料
 

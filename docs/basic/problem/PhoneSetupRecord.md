@@ -15,12 +15,14 @@
 按开机键+音量下键或使用 ADB 命令将手机重启到 BootLoader 模式。
 
 <!-- prettier-ignore-start -->
-??? note "安装 ADB"
+??? note "安装 ADB 和 fastboot"
     
     - Ubuntu: `sudo apt install android-tools-adb`
     - Windows: [Android SDK Platform Tools ZIP file for Windows](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
 
-    参考：[Xda: How to install ADB on Windows, macOS, and Linux](https://www.xda-developers.com/install-adb-windows-macos-linux/)
+    参考：
+    - [Xda: How to install ADB on Windows, macOS, and Linux](https://www.xda-developers.com/install-adb-windows-macos-linux/)
+    - [How to flash MIUI Fastboot ROM from Linux](https://gist.github.com/j-jith/0c4950e8020d9bed0c3104608b07a49d)
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
@@ -77,12 +79,18 @@ pm uninstall -k --user 0 NameOfPackage # 卸载应用包
     
     当你准备抛弃 MIUI 并使用 Google 套件替换系统功能时，请先退出小米账号，解除手机和小米账号的绑定，再卸载和小米云服务有关的组件。否则将面临手机被锁定且因为缺少服务组件无法解锁的窘境。
 
-    !!! info "参考资料"
+    ??? info "参考资料"
         
         - [MIUI 13 System Apps 清单](https://gist.github.com/mcxiaoke/0a4c639d04e94c45eb6c787c0f98940a)
         - [Android 开发者文档：日历提供程序概览](https://developer.android.com/guide/topics/providers/calendar-provider)
         - [备份你的应用：How do I get an apk file from an Android device?](https://stackoverflow.com/questions/4032960/how-do-i-get-an-apk-file-from-an-android-device)
         - [备份你的数据：Backup android app, data included, no root needed, with adb](https://gist.github.com/AnatomicJC/e773dd55ae60ab0b2d6dd2351eb977c1)
+
+!!! failure "再次提醒'
+
+    `com.android` 系列软件删除前必须查看上面参考资料中的系统应用清单！！！确定不在不可删除的列表中再决定是否要删除！！！
+
+    `com.android.phone` 删除后将导致 SIM 卡无法使用，且由于其为 `priv-app` 中的应用，无法通过 ADB、保留数据的线刷恢复。小心！！！
 
 ??? success "误删系统组件导致系统崩溃、被锁或无法开机"
 
@@ -95,6 +103,8 @@ pm uninstall -k --user 0 NameOfPackage # 卸载应用包
     1. 电脑登录 [小米云服务](https://i.mi.com/)，解除对应设备的找回设备功能。
     2. 使用物理按键将手机重启至 Fastboot 模式，使用 MIUI 官方线刷工具，以保留数据的方式刷入系统镜像，以补上 MIUI 关键组件。
     3. 重启手机，此时仍处于锁定状态。连接网络，稍等一下，手机就自动解锁了（小米服务器向手机发送解绑指令）。
+
+    修复完成后，小米云服务不再可用，保留数据的线刷并不会还原云服务核心组件。
 <!-- prettier-ignore-end -->
 
 

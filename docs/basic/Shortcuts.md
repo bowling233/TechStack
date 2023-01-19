@@ -36,7 +36,7 @@ tags:
 
 ## VSCode
 
-详见 [VSCode](VSCode.md)
+详见 [VSCode](writing/VSCode.md)
 
 ## Typora
 
@@ -122,7 +122,7 @@ tags:
 
 ## Vim
 
-详见 [Vim](Vim.md)
+详见 [Vim](writing/Vim.md)
 
 ## Web Browsing
 
@@ -144,4 +144,4 @@ tags:
 | Alt + F4<br />Ctrl + Shift + Q                      | Quit the browser                    |
 | Ctrl + W                                            | Close tab                           |
 
-如果你在纯终端界面下工作，请参阅 [Ubuntu日常使用指南](Ubuntu.md)。
+如果你在纯终端界面下工作，请参阅 [Ubuntu日常使用指南](linux/Ubuntu.md)。
