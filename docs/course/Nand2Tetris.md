@@ -33,9 +33,9 @@
 
     - n 个输入变量的布尔函数的真值表有几行？
     - n 个输入变量的布尔函数有几个？
-		- 你能简单地讲解以下布尔表达式为什么实现了它的功能吗？
-			- Equivalence: $x\cdot y + \overline{x}\cdot\overline{y}$
-		- 构造 If x then y
+    	- 你能简单地讲解以下布尔表达式为什么实现了它的功能吗？
+    		- Equivalence: $x\cdot y + \overline{x}\cdot\overline{y}$
+    	- 构造 If x then y
 <!-- prettier-ignore-end -->
 
 与非门和或非门具有重要的性质：与、或、非算子都能用与非门和或非门来建构。
@@ -56,8 +56,8 @@
 !!! question "考考你"
 
     - 画出与、或、非门的电路符号表示。
-		- 画一个三通道与门的实现。
-		- 画一个异或门的实现。
+    	- 画一个三通道与门的实现。
+    	- 画一个异或门的实现。
 <!-- prettier-ignore-end -->
 
 逻辑电路设计就是**连接门电路的艺术**，设计的基本原则是使用尽可能少的门。
@@ -83,25 +83,25 @@
     ```HDL
     CHIP Xor
     {
-		    IN a, b;
-				OUT out;
-				PARTS:
-				    Not(in=a, out=nota);
-						Not(in=b, out=notb);
-						And(a=a, b=notb, out=w1);
-						And(a=nota, b=b, out=w2);
-						Or(a=w1, b=w2, out=out);
+    	    IN a, b;
+    			OUT out;
+    			PARTS:
+    			    Not(in=a, out=nota);
+    					Not(in=b, out=notb);
+    					And(a=a, b=notb, out=w1);
+    					And(a=nota, b=b, out=w2);
+    					Or(a=w1, b=w2, out=out);
     }
-	```
-
-		接下来是 HDL 测试脚本，猜猜它在干什么？
-
-		```HDL
-		load Xor.hdl,
-		output-list a, b, out;
-		set a 0, set b 0,
-		eval, output;
-		```
+    ```
+    
+    	接下来是 HDL 测试脚本，猜猜它在干什么？
+    
+    	```HDL
+    	load Xor.hdl,
+    	output-list a, b, out;
+    	set a 0, set b 0,
+    	eval, output;
+    	```
 <!-- prettier-ignore-end -->
 
 ### 实验：设计门电路
@@ -170,5 +170,4 @@
 <!-- prettier-ignore-end -->
 
 ## 第二章 布尔运算
-
 

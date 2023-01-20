@@ -85,6 +85,17 @@ INFO[0000] RESTful API listening at: [::]:9090
     ```    
 <!-- prettier-ignore-end -->
 
+### 为 APT 设置代理
+
+<!-- prettier-ignore-start -->
+!!! quote "参考资料"
+    
+    - [How to Set the Proxy for APT on Ubuntu 18.04](https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-the-proxy-for-apt-for-ubuntu-18-04/)
+    - [Configure proxy for APT? - Ask Ubuntu](https://askubuntu.com/questions/257290/configure-proxy-for-apt)
+<!-- prettier-ignore-end -->
+
+
+
 ## 同步
 
 ### Syncthing
