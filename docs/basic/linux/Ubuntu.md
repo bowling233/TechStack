@@ -249,6 +249,10 @@ Ubuntu 安装时不一定装上了最新的推荐驱动（独立显卡一般都�
 sudo ubuntu-drivers autoinstall
 ```
 
+- 自动挂载其他文件系统
+
+更改 `/etc/fstab` 文件。该文件的配置可以参考 [fstab - Debian](https://wiki.debian.org/fstab)。
+
 ### 终端重度使用者
 
 - [Lynx](https://lynx.invisible-island.net/) 使用终端浏览网页。
