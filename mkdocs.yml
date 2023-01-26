@@ -19,7 +19,6 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
-
   # Python Markdown Extensions
   - pymdownx.arithmatex:
       generic: true
@@ -67,10 +66,11 @@ theme:
   favicon: assets/bowling.svg
   features:
     - search.highlight
-    - content.code.annotate
     - navigation.instant
     - navigation.tracking
     - navigation.tabs
+    - navigation.prune
+    - navigation.indexes
   palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
@@ -95,100 +95,104 @@ plugins:
 # Navigation
 nav:
   - 🏠首页: # /
-      - 🏡首页: "README.md"
-      - 📝项目: "Project.md"
-      - 🔖标签: "Tags.md"
-      - 🔗链接: "Links.md"
-      - ⚠️测试: "Test.md"
-      - ☣️杂项: "Misc.md"
+      - 🏡首页: README.md
+      - 📝项目: Project.md
+      - 🔖标签: Tags.md
+      - 🔗链接: Links.md
+      - ⚠️测试: Test.md
+      - ☣️杂项: Misc.md
   - 🔨基础技能: # basic/
-      - 🧱基础: "basic/Basic.md"
-      - 🎹快捷键: "basic/Shortcuts.md"
+      - 🧱基础: basic/Basic.md
+      - 🎹快捷键: basic/Shortcuts.md
       - ✏️写作: # basic/writing/
-        - "basic/writing/Copywriting.md"
-        - "basic/writing/VSCode.md"
-        - "basic/writing/Vim.md"
-        - "basic/writing/Markdown.md"
-        - "basic/writing/Latex.md"
-      - ▶️科普视频: "basic/Videos.md"
+        - basic/writing/Copywriting.md
+        - basic/writing/VSCode.md
+        - basic/writing/Vim.md
+        - basic/writing/Markdown.md
+        - basic/writing/Latex.md
+      - ▶️科普视频: basic/Videos.md
       - 🐧Linux: # basic/linux/
-        - "basic/linux/Ubuntu.md"
-        - "basic/linux/LinuxBasic.md"
-        - "basic/linux/LinuxShell.md"
-        - "basic/linux/LinuxUtility.md"
+        - basic/linux/Ubuntu.md
+        - basic/linux/LinuxBasic.md
+        - basic/linux/LinuxShell.md
+        - basic/linux/LinuxUtility.md
         - Tools: # basic/linux/tools
-            - "basic/linux/tools/gcc.md"
-            - "basic/linux/tools/tmux.md"
-            - "basic/linux/tools/ssh.md"
-        - "basic/linux/LinuxUsers.md"
-        - "basic/linux/LinuxFileSystem.md"
-        - "basic/linux/LinuxKernel.md"
+            - basic/linux/tools/gcc.md
+            - basic/linux/tools/tmux.md
+            - basic/linux/tools/ssh.md
+        - basic/linux/LinuxUsers.md
+        - basic/linux/LinuxFileSystem.md
+        - basic/linux/LinuxKernel.md
       - 😼Git: # basic/git/
-        - "basic/git/GitBasic.md"
-        - "basic/git/GitPro.md"
+        - basic/git/GitBasic.md
+        - basic/git/GitPro.md
       - ⚙️杂项: # basic/miscellaneous/
-        - "basic/miscellaneous/Security.md"
-        - "basic/miscellaneous/RegularExpression.md"
+        - basic/miscellaneous/Security.md
+        - basic/miscellaneous/RegularExpression.md
       - 🔧问题和解决: # basic/problem/
-        - "basic/problem/QA2022.md"
-        - "basic/problem/BlogSetupRecord.md"
-        - "basic/problem/UbuntuSetupRecord.md"
-        - "basic/problem/PhoneSetupRecord.md"
+        - basic/problem/QA2022.md
+        - basic/problem/BlogSetupRecord.md
+        - basic/problem/UbuntuSetupRecord.md
+        - basic/problem/PhoneSetupRecord.md
   - 🌐WebDev: # webdev/
       - 📄网页开发: # webdev/webpage/
-        - "webdev/webpage/HTMLBasic.md"
-        - "webdev/webpage/HTMLAdvanced.md"
-        - "webdev/webpage/CSSBasic.md"
-        - "webdev/webpage/CSSAdvanced.md"
-        - "webdev/webpage/JavaScriptBasic.md"
-        - "webdev/webpage/JavaScriptAdvanced.md"
-        - "webdev/webpage/ReactBasic.md"
-        - "webdev/webpage/ReactAdvanced.md"
+        - webdev/webpage/HTMLBasic.md
+        - webdev/webpage/HTMLAdvanced.md
+        - webdev/webpage/CSSBasic.md
+        - webdev/webpage/CSSAdvanced.md
+        - webdev/webpage/JavaScriptBasic.md
+        - webdev/webpage/JavaScriptAdvanced.md
+        - webdev/webpage/ReactBasic.md
+        - webdev/webpage/ReactAdvanced.md
       - 🖥Web服务器: # webdev/webserver/
-        - "webdev/webserver/Protocol.md"
-        - "webdev/webserver/HTTP.md"
-        - "webdev/webserver/LinuxServer.md"
+        - webdev/webserver/Protocol.md
+        - webdev/webserver/HTTP.md
+        - webdev/webserver/LinuxServer.md
         - 环境及其配置:
-            - "webdev/webserver/Docker.md"
-            - "webdev/webserver/PHP.md"
-        - "webdev/webserver/NginxBasic.md"
+            - webdev/webserver/Docker.md
+            - webdev/webserver/PHP.md
+        - webdev/webserver/NginxBasic.md
       - 💻Blog搭建:
-        - "webdev/webserver/Domain_and_DNS.md"
-        - "webdev/webserver/Proxy.md"
-        - "webdev/webserver/GitHubPages.md"
+        - webdev/webserver/Domain_and_DNS.md
+        - webdev/webserver/Proxy.md
+        - webdev/webserver/GitHubPages.md
   - ⚔️语言: # language/
       - 🏹C: # language/c/
-        - "language/c/CBasic.md"
-        - "language/c/CPuzzle.md"
-        - "language/c/CSTL.md"
-        - "language/c/CTricks.md"
+        - language/c/CBasic.md
+        - language/c/CPuzzle.md
+        - language/c/CSTL.md
+        - language/c/CTricks.md
       - 🧰C++: # language/cpp/
-        - "language/cpp/CppBasic.md"
-        - "language/cpp/CppAdvanced.md"
-        - "language/cpp/CppSTL.md"
+        - language/cpp/CppBasic.md
+        - language/cpp/CppAdvanced.md
+        - language/cpp/CppSTL.md
       - 🔫Python: # language/python/
-        - "language/python/PythonBasic.md"
+        - language/python/PythonBasic.md
       - 🧨Java: # language/java
-        - "language/java/JavaBasic.md"
+        - language/java/JavaBasic.md
   - 🧮操作系统: # operatesystem/
-      - "operatesystem/MemoryHierarchy.md"
-      - "operatesystem/VirtualMemory.md"
+      - operatesystem/MemoryHierarchy.md
+      - operatesystem/VirtualMemory.md
   - 💽硬件: # hardware/
-      - "hardware/LogicCircuit.md"
-      - "hardware/MOSFET.md"
-      - "hardware/Storage.md"
+      - hardware/LogicCircuit.md
+      - hardware/MOSFET.md
+      - hardware/Storage.md
   - 🤔思考: # think/
-      - "think/MobileOffice.md"
+      - think/MobileOffice.md
   - 📚图书馆: # books/
-      - "books/计算机科学导论.md"
-      - "books/计算机组成与设计_硬件软件接口.md"
-      - "books/量子计算入门.md"
-      - "books/深入理解计算机系统.md"
+      - books/计算机科学导论.md
+      - books/计算机组成与设计_硬件软件接口.md
+      - books/量子计算入门.md
+      - books/深入理解计算机系统.md
   - 🏫课程笔记: # course/
-      - "course/Course.md"
-      - "course/Nand2Tetris.md"
+      - course/Course.md
+      - course/Nand2Tetris.md
+      - 线性代数（H）I:
+        - course/LinearAlgebra1/index.md
+        - course/LinearAlgebra1/Chapter1.md
+        - course/LinearAlgebra1/Chapter2.md
       - 🧪普通化学（H）:
-        - "course/普通化学/普通化学H.md"
-        - "course/普通化学/化学热力学.md"
-        - "course/普通化学/化学动力学基础.md"
-        - "course/普通化学/电化学基础.md"
+        - course/普通化学/index.md
+        - course/普通化学/化学热力学.md
+        - course/普通化学/化学动力学基础.md
+        - course/普通化学/电化学基础.md

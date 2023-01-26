@@ -1,6 +1,6 @@
 ---
 tags:
-  Ongoing
+  - Ongoing
 
 ---
 

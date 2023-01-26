@@ -123,14 +123,7 @@
     -   可以创建一个全局的术语表，所有文档中的缩写都会得到应用。
 -   警告 Admonition
     -   支持这些 type：`note` `abstract` `info` `tip` `success` `warning` `failure` `danger` `bug` `example` `quote`
--   清单 List
-    -   待办列表：语法符合 Markdown 通用标准，但需要启用扩展。
 -   目录 Table of Contents
-    -   需要配置，目录深度默认为 6 太深了。
-    ```yaml
-    - toc:
-      toc_depth: 3
-    ```
 -   Arithmatex 数学公式块 `$$` 语法支持
 -   Keys 按键标识
     -   例：++ctrl+alt+del++。
@@ -142,7 +135,8 @@
             [文档](https://facelessuser.github.io/pymdown-extensions/extensions/keys/)
 <!-- prettier-ignore-end -->
 
--   SuperFences 超级栅栏 - 开启该扩展允许各类东西嵌套。
+-   SuperFences 超级栅栏 
+    - 开启该扩展允许各类东西嵌套。
 
 <!-- prettier-ignore-start -->
 !!! note
