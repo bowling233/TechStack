@@ -192,7 +192,9 @@ nav:
         - course/LinearAlgebra1/Chapter1.md
         - course/LinearAlgebra1/Chapter2.md
       - 🧪普通化学（H）:
-        - course/普通化学/index.md
-        - course/普通化学/化学热力学.md
-        - course/普通化学/化学动力学基础.md
-        - course/普通化学/电化学基础.md
+        - course/Chemistry/index.md
+        - course/Chemistry/Chapter1.md
+        - course/Chemistry/Chapter2.md
+        - course/Chemistry/Chapter3.md
+        - course/Chemistry/Chapter4.md
+
