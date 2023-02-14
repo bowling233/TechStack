@@ -253,6 +253,10 @@ sudo ubuntu-drivers autoinstall
 
 更改 `/etc/fstab` 文件。该文件的配置可以参考 [fstab - Debian](https://wiki.debian.org/fstab)。
 
+- 字体
+
+当你在 Ubuntu 上打开他人的 Office 文档时，常常遇到字体缺失的问题。Ubuntu 自带的字体比 Windows 少很多，中文更是寥寥无几。在 [W7DF.com](https://www.w7df.com/) 可以下载各个版本 Windows 的标准字体包，将其解压到 `~/.fonts` 即可。
+
 ### 终端重度使用者
 
 - [Lynx](https://lynx.invisible-island.net/) 使用终端浏览网页。
