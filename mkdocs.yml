@@ -134,6 +134,7 @@ nav:
         - basic/problem/BlogSetupRecord.md
         - basic/problem/UbuntuSetupRecord.md
         - basic/problem/PhoneSetupRecord.md
+        - basic/problem/RemoteDesk.md
   - 🌐WebDev: # webdev/
       - 📄网页开发: # webdev/webpage/
         - webdev/webpage/HTMLBasic.md

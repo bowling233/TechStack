@@ -12,7 +12,7 @@
 
 - 电脑端：放在宿舍，连上有线网络（建议）或者 `ZJUWLAN-Secure`。
 - 移动端
-    - 安装 `Microsoft Remote Desktop`![](https://play-lh.googleusercontent.com/swfNDX3jEjWj_jvAOyv-ifeggaySH1AViujt9XDQfWXxn1lFT8XRRCZ2bngYo_KmrA=w240-h480-rw)。这是微软开发的远程桌面客户端，使用体验最好。
+    - 安装 `Microsoft Remote Desktop`。这是微软开发的远程桌面客户端，使用体验最好。
     - 建议使用连接了蓝牙键鼠的平板，以获得笔记本的体验。触控笔也可。
 
 ## 电脑端设置
