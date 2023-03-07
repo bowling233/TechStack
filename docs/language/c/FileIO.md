@@ -1,6 +1,8 @@
 ## Chapter 13 File Input/Output
 
--   functions
+> 我们在《C Primer Plus》中学习了 C 标准 I/O 函数。如果继续深入探究，文件输入/输出将涉及与操作系统的交互，这就是 C 标准库所做的事情。
+
+-   Bacis functions
     -   fopen, getc, putc, exit, fclose
     -   fprintf, fscanf, fgets, fputs
     -   rewind, fseek, ftell, fflush

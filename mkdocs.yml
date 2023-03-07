@@ -188,10 +188,11 @@ nav:
   - 🏫课程笔记: # course/
       - course/Course.md
       - course/Nand2Tetris.md
-      - 线性代数（H）I:
-        - course/LinearAlgebra1/index.md
-        - course/LinearAlgebra1/Chapter1.md
-        - course/LinearAlgebra1/Chapter2.md
+      - course/Analysis2.md
+      - 高等代数:
+        - course/Algebra/index.md
+        - course/Algebra/Chapter1.md
+        - course/Algebra/Chapter2.md
       - 🧪普通化学（H）:
         - course/Chemistry/index.md
         - course/Chemistry/Chapter1.md

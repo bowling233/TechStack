@@ -1,6 +1,6 @@
 # 普通化学 H 知识回忆提纲
 
--   [气体、液体和固体](Chapter1.md)
+-   [气体、液体和固体](../LinearAlgebra1/Chapter1.md)
 
 -   [化学热力学](Chapter2.md)
 
