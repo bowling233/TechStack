@@ -162,7 +162,7 @@ nav:
         - language/c/CBasic.md
         - language/c/CPuzzle.md
         - language/c/CSTL.md
-        - language/c/CTricks.md
+        - language/c/IO.md
       - 🧰C++: # language/cpp/
         - language/cpp/CppBasic.md
         - language/cpp/CppAdvanced.md

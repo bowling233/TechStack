@@ -69,8 +69,21 @@ C 库提供的输入输出方式称为**标准 I/O**，它们是建立在操作�
 <!-- prettier-ignore-start -->
 !!! note "函数和它们的功能"
     
-    | 功能 | 函数 |
-    | `getchar()`, `putchar()` | 单字符 I/O |
+    | 功能 | 函数 | 失败返回值 |
+    | `int getchar(void)`<\br> `int getc(FILE *stream)` <\br> `int fgetc(FILE *stream)` | 单字符输入 | EOF |
+    | `char *fgets(char *s, int size, FILE *stream)` | 字符串输入 | NULL |
+    | `int ungetc(int c, FILE *stream)` | 放回缓冲输入 | EOF |
+
+    注意：以上函数都将字符从缓冲区中的 `unsigned char` 类型转换为 `int` 类型。
+
+    那么这是否会造成 EOF 不能被识别，而是被看作字符呢？
+<!-- prettier-ignore-end -->
+
+
+<!-- prettier-ignore-start -->
+!!! note "关于 `getchar()` 函数"
+    
+    它的返回值是 `int` 类型而非 `char` 类型，值得注意。
 <!-- prettier-ignore-end -->
 
 ### 换行符问题
@@ -105,6 +118,13 @@ C 库提供的输入输出方式称为**标准 I/O**，它们是建立在操作�
 
     在涉及行的输入时，一定要注意统一行结尾的形式。这对于换行符，特别是**文件结尾处薛定谔的换行符**，有很大作用。
 <!-- prettier-ignore-end -->
+
+### 检查输入
+
+可以用于检查输入的方式有以下几种：
+
+1. `scanf()` 的返回值。
+
 
 ## 文件输入输出
 

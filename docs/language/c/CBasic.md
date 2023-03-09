@@ -555,15 +555,3 @@ Ways to _define strings_:
 ### 11.8 Command-Line Arguments
 
 ### 11.9 String-to-Number Conversions
-
-## 高级主题
-
-这里提供了高级主题的笔记索引：
-
--   [运算符汇总](Operator.md)
--   [内存管理](StorageClasses.md)
--   [文件 IO](FileIO.md)
--   [结构和数据类型](Structures.md)
--   [位运算](BitFiddling.md)
--   [预处理器与宏](Macro.md)
--   [高级数据表示](ADT.md)
