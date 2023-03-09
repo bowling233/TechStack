@@ -61,3 +61,97 @@
 
 
 ### 9.4 任意项级数 
+
+<!-- prettier-ignore-start -->
+!!! abstract "任意项级数的敛散性判别"
+	
+	- 最基础的是柯西收敛原理，但比较难用。
+	1. 考虑是否绝对收敛，即加上绝对值后转化为正项级数的判别。
+	2. 如果加绝对值发散，那么考虑级数本身是否收敛（条件收敛）。【与反常积分判别法相似】
+	3. 有时考虑正/负部级数。
+<!-- prettier-ignore-end -->
+
+任意项级数研究其中每一项正负随意的无穷级数。最基本的还是 Cauchy 收敛定理：
+
+<!-- prettier-ignore-start -->
+??? note "级数的 Cauchy 收敛定理"
+	
+	无穷级数收敛的充分必要条件是：
+
+	$$
+	\forall \epsilon > 0, \exists N > 0, s.t. \forall m > n > N, |\sum^m_{k=n+1}x_k| < \epsilon
+	$$
+
+	另一种叙述是：
+
+	$$
+	\forall \epsilon > 0, \exists N > 0, s.t. \forall n > N, p > 0, |\sum^p_{k=1}x_{n+k}| < \epsilon
+	$$
+<!-- prettier-ignore-end -->
+
+- Leibniz 级数
+
+交错级数可以这样表述：$\sum^\infty_{n=1}x_n = \sum^\infty_{n=1}(-1)^{n+1}u_n$。
+
+当 $\{u_n\}$ 单调减少收敛于 $0$ 时，该交错级数称为 Leibniz 级数，它一定收敛。
+
+<!-- prettier-ignore-start -->
+??? note "Leibniz 判别法的证明"
+	
+	可以使用柯西收敛定理，这里我们用定义证明，考虑部分和数列：
+
+	- 部分和数列的偶数项，容易证明单调递增，接下来需要证明有界。有界同样容易证明，小于数列第一项。
+	- 奇数项在偶数项的基础上证明，也容易。
+<!-- prettier-ignore-end -->
+
+接下来看一般级数。这里的判别方法和反常积分原理相似。
+
+<!-- prettier-ignore-start -->
+??? note "Dirichlet 判别法"
+	
+	$\sum^\infty_{n=1}a_n$ 的部分和数列有界，$\{b_n\}$ 单调趋于 $0$，则级数 $\sum^\infty_{n=1}a_nb_n$ 收敛。
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+??? note "Abel 判别法"
+	
+	$\sum^\infty_{n=1}a_n$ 收敛，$\{b_n\}$ 单调有界，则级数 $\sum^\infty_{n=1}a_nb_n$ 收敛。
+<!-- prettier-ignore-end -->
+
+事实上，Leibniz 判别法是 Dirichlet 判别法的特例，Dirichlet 判别法又是 Abel 判别法的特殊情况。你能分析一下它们之间的关系吗？
+
+
+
+<!-- prettier-ignore-start -->
+??? info "正/副部级数"
+	
+	正部级数：
+	
+	$$
+	a_n^+=\left\{\begin{matrix} 
+  	a_n, a_n > 0 \\  
+  	0, a_n \leq 0
+	\end{matrix}\right.
+	$$
+
+	负部级数：
+	
+	$$
+	a_n^+=\left\{\begin{matrix} 
+  	-a_n, a_n < 0 \\  
+  	0, a_n \geq 0
+	\end{matrix}\right.
+	$$
+
+	在第一节中我们知道，收敛的无穷级数可以进行加减法。我们可以尝试把 $\sum^\infty_{n=1}x_n$ 和 $\sum^\infty_{n=1}|x_n|$ 表达成正负部级数的和/差。当无穷级数绝对收敛时，正负部级数一定收敛。尝试用比较判别法说明。
+
+	??? note "定理 4.1"
+		
+		设级数 $\sum^\infty_{n=1}x_n$ 绝对收敛，则
+
+		- $\sum^\infty_{n=1}x_n^+, \sum^\infty_{n=1}x_n^-$ 收敛
+		- $|\sum^\infty_{n=1}x_n|\leq|\sum^\infty_{n=1}|x_n|$
+
+	如果级数条件收敛，你能讨论其正、副部级数的敛散性吗？
+<!-- prettier-ignore-end -->
+

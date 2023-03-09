@@ -1,3 +1,5 @@
+# 关于结构和高级数据类型的一切
+
 ## Chapter 14 Structures and Other Data Forms
 
 -   Keywords: struct, union, typedef
@@ -17,14 +19,26 @@ Three skill to learn
 
 ### 14.2 Setting Up the Structure Declaration
 
--   structure declaration is often referred to as **template**
+-   Structure declaration is often referred to as **template**.
 
-structure declaration:
+Structure declaration:
 
 -   keyword `struct`
 -   optional **tag**
 -   list of structure members `{}`
 -   semicolon after the closing brace `;`
+
+<!-- prettier-ignore-start -->
+!!! example
+    
+    ```c
+    struct book
+    {
+        char isbn[16];
+        double price;
+    } book1, *books [10]; //variable names followed
+    ```
+<!-- prettier-ignore-end -->
 
 Scope:
 
@@ -33,13 +47,30 @@ Scope:
 
 ### 14.3 Defining a Structure Variable
 
-Initializing a structure: similar to array
+<!-- prettier-ignore-start -->
+!!! example 
+    
+    ```c
+    struct book book1, *books[10];
+    ```
+<!-- prettier-ignore-end -->
+
+Initialization of a structure variable is similar to array:
+
+<!-- prettier-ignore-start -->
+!!! example
+
+    ```c
+    struct book book1 = { "1234556", 11.11 }; //list of initializers
+    struct book book2 = { .price = 11.11, .isbn = "123" }; //designated initializers (C99)
+    ```
+<!-- prettier-ignore-end -->
 
 > Storage Class Duration:
 >
-> if you initialize a variable with static storage duration (static external linkage, static internal linkage, or static with no linkage), you have to use **constant** value
+> if you initialize a variable with static storage duration (static external linkage, static internal linkage, or static with no linkage), you have to use **constant** value.
 
-Gaining access to structure members: `.` member operator. It has **higher precedence** than `&` and `*`
+Gaining access to structure members: `.` member operator. It has **higher precedence** than `&` and `*`.
 
 **Designated initializer:** `={.value = 25.99, ...};`, notice the use of dot operator
 
@@ -47,8 +78,8 @@ Gaining access to structure members: `.` member operator. It has **higher preced
 
 > Structure and Memory:
 >
-> -   arrya is an _automatic storage class object_, typically place on the **stack**
-> -   large array can cause runtime error
+> -   Array is an **automatic storage class object**, typically place on the **stack**.
+> -   Large array can cause runtime error.
 >
 > Solution:
 >
@@ -57,7 +88,7 @@ Gaining access to structure members: `.` member operator. It has **higher preced
 
 ### 14.5 Nested Structures
 
-_nest_ means contain
+
 
 > print out particular numbers of blanks: `printf("%40s", " ");`
 
