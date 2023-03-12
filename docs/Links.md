@@ -11,6 +11,7 @@
 
 浙里的前辈和朋辈们：
 
+-   [45gfg9](https://tree.45gfg9.net/)
 -   [TonyCrane](https://note.tonycrane.cc/)
 -   [Isshiki 修](https://note.isshikih.top/)
 -   [金鱼马](https://www.yuque.com/jinyuma-igdk2)
