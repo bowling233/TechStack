@@ -95,7 +95,7 @@ plugins:
 # Navigation
 nav:
   - 🏠首页: # /
-      - 🏡首页: README.md
+      - 🏡首页: index.md
       - 📝项目: Project.md
       - 🔖标签: Tags.md
       - 🔗链接: Links.md
