@@ -1,4 +1,4 @@
-# 第二章 信息的表示和处理
+# Ch2. 信息的表示和处理
 
 <!-- prettier-ignore-start -->
 !!! abstract

@@ -56,6 +56,7 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/flink.css
 
 #Documentation layout
 
@@ -181,10 +182,15 @@ nav:
   - 🤔思考: # think/
       - think/MobileOffice.md
   - 📚图书馆: # books/
-      - books/计算机科学导论.md
+      - books/Foundations_Of_Computer_Science.md
       - books/计算机组成与设计_硬件软件接口.md
       - books/量子计算入门.md
-      - books/深入理解计算机系统.md
+      - 深入理解计算机系统:
+        - books/CSAPP/index.md
+        - books/CSAPP/Chapter1.md
+        - books/CSAPP/Chapter2.md
+        - books/CSAPP/Chapter3.md
+        - books/CSAPP/Chapter4.md
   - 🏫课程笔记: # course/
       - course/Course.md
       - course/Nand2Tetris.md
@@ -193,10 +199,3 @@ nav:
         - course/Algebra/index.md
         - course/Algebra/Chapter1.md
         - course/Algebra/Chapter2.md
-      - 🧪普通化学（H）:
-        - course/Chemistry/index.md
-        - course/Chemistry/Chapter1.md
-        - course/Chemistry/Chapter2.md
-        - course/Chemistry/Chapter3.md
-        - course/Chemistry/Chapter4.md
-

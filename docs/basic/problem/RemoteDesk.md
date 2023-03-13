@@ -33,8 +33,8 @@
 
 - 更改远程桌面端口号：逐行输入并运行以下命令。可以将 `3390` 更改为你自己的数值（建议为 `65535` 以内的五位数）。
 
-   ```powershell
-   $portvalue = 3390
+    ```powershell
+    $portvalue = 3390
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "PortNumber" -Value $portvalue 
     New-NetFirewallRule -DisplayName 'RDPPORTLatest-TCP-In' -Profile 'Public' -Direction Inbound -Action Allow -Protocol TCP -LocalPort $portvalue 
     New-NetFirewallRule -DisplayName 'RDPPORTLatest-UDP-In' -Profile 'Public' -Direction Inbound -Action Allow -Protocol UDP -LocalPort $portvalue 
