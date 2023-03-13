@@ -172,9 +172,15 @@ nav:
         - language/python/PythonBasic.md
       - 🧨Java: # language/java
         - language/java/JavaBasic.md
-  - 🧮操作系统: # operatesystem/
-      - operatesystem/MemoryHierarchy.md
-      - operatesystem/VirtualMemory.md
+  - 🧮计算机系统: # operatesystem/
+      - CSAPP: 
+        - system/csapp/index.md
+        - system/csapp/Lecture/Lecture1.md
+        - system/csapp/Lab/L0.md
+        - 书本:
+          - system/csapp/Book/Chapter1.md
+          - system/csapp/Book/Chapter2.md
+          - system/csapp/Book/Chapter3.md
   - 💽硬件: # hardware/
       - hardware/LogicCircuit.md
       - hardware/MOSFET.md
@@ -185,12 +191,6 @@ nav:
       - books/Foundations_Of_Computer_Science.md
       - books/计算机组成与设计_硬件软件接口.md
       - books/量子计算入门.md
-      - 深入理解计算机系统:
-        - books/CSAPP/index.md
-        - books/CSAPP/Chapter1.md
-        - books/CSAPP/Chapter2.md
-        - books/CSAPP/Chapter3.md
-        - books/CSAPP/Chapter4.md
   - 🏫课程笔记: # course/
       - course/Course.md
       - course/Nand2Tetris.md
