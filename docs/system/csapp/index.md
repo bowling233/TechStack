@@ -25,9 +25,24 @@
 | 日期 | 内容 |
 | - | - |
 | 03.13 | Lecture 01: Course Overview |
-| 03.16 | L0: cprogramminglab |
+| 03.16 | Complete C language note for Structure |
+| 03.18 | Complete C language note for ADT(especially for linked lists) |
+| 03.20 | Lab 0 due |
+| 03.21 | Lecture 02: |
 
 
 ## 目录
 
+### 课程笔记
+
 - [Lecture 01: Course Overview](Lecture/1.md)
+
+### 书本摘要
+
+- [Chapter01. 计算机系统漫游](Book/Chapter1.md)
+- [Chapter02. 信息的表示和处理](Book/Chapter2.md)
+- [Chapter03. 程序的机器级表示](Book/Chapter3.md)
+
+### 实验记录
+
+- [C Programming Lab: Assessing Your C Programming Skills](Lab/L0.md)

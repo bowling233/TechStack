@@ -220,4 +220,37 @@ int cmp(const void *a, const void *b);
 
 -   with array: `	V_FP_CHARP arpf[4] = {ToUpper, ToLower}`
 
--
+
+
+## 数据结构
+
+### 链表
+
+>   内容来自 CMU [CS 15-122]
+
+<!-- prettier-ignore-start -->
+??? tip "与表有关的英文单词"
+    
+    - linked-list
+    - list
+    - table
+    - form
+
+    这些名词代表了不同的数据结构或应用。链表指的是 `linked-list`。
+<!-- prettier-ignore-end -->
+
+-   链表由节点构成，节点含有数据和指向下一个节点的指针。
+-   链表可以由数组或基于指针的结构实现。
+
+处理头、尾部节点有多种方式：
+
+![image-20230314134058659](assets/image-20230314134058659.png)
+
+在本课程中，采用第二种方式：设置尾部哑节点。
+
+-   列表的片段（Segment）
+    -   本课中，我们认为片段是左闭右开的。这符合尾部哑节点的处理处理方式。
+    -   **编写函数** `bool is_segment(list * start, list * end)`。
+-   如何检查链表中的循环？
+    -   **编写函数** `bool is_acyclic(list* start)`。
+    -   
