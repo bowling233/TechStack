@@ -33,8 +33,6 @@
 -   预计用时：未知
 -   课程主页：[MIT 6.NULL](https://missing.csail.mit.edu/)
 
--   [gcc](basic/linux/tools/gcc.md)
--   [ssh](basic/linux/tools/ssh.md)
 
 以下是课程设计者的 motivation，也是学习本课程的目标：
 

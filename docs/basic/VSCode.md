@@ -1,6 +1,12 @@
 # VSCode
 
-VSCode 是一款强大的编辑器，好好掌握它的使用能极大提高生产力。
+<!-- prettier-ignore-start -->
+!!! abstract
+
+    **放弃 Dev-C++，转向 😎VSCode**，你就已经迈入了计算机学科的大门🥳。
+
+    VSCode 是一款强大的**编辑器**，好好掌握它的使用能极大提高生产力。
+<!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 !!! info "资料来源"

@@ -19,6 +19,7 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
+      toc_depth: 3
   # Python Markdown Extensions
   - pymdownx.arithmatex:
       generic: true
@@ -104,8 +105,9 @@ nav:
       - ☣️杂项: Misc.md
   - 🔨基础技能: # basic/
       - 🧱基础: basic/Basic.md
-      - VSCode: basic/VSCode.md
       - 🐧Linux: basic/Linux.md
+      - 😎VSCode: basic/VSCode.md
+      - 🥳gcc: basic/gcc.md
       - 😼Git: basic/Git.md
       - 🎹快捷键汇总: basic/Shortcuts.md
       - ✏️写作: # basic/writing/
@@ -149,10 +151,6 @@ nav:
         - language/c/CSTL.md
       - 🧰C++: # language/cpp/
         - language/cpp/CppBasic.md
-      - 🔫Python: # language/python/
-        - language/python/PythonBasic.md
-      - 🧨Java: # language/java
-        - language/java/JavaBasic.md
   - 🧮计算机系统: # operatesystem/
       - CSAPP: 
         - system/csapp/index.md

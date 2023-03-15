@@ -47,14 +47,6 @@
 
 -   [x] [计算机科学导论（Fundations Of Computer Science）](books/Foundations_Of_Computer_Science.md)
     -   这是我认为所有计算机系学生应该上的第一门课，对自己将要学习的内容有一个整体的认知。
--   [x] 写作
-    -   [x] [中文文档写作规范](basic/writing/Copywriting.md)
-    -   [x] [Markdown](basic/writing/Markdown.md)
-    -   [x] [MkDocs](basic/writing/Markdown.md#MkDocs)
-    -   [x] [Mermaid](basic/writing/Markdown.md#Mermaid)
-    -   [x] [VSCode](basic/writing/VSCode.md)
-    -   [x] [Vim](basic/writing/Vim.md)
-    -   [ ] [Latex](basic/writing/Latex.md)
 -   [ ] Linux
     -   [ ] ==《Linux 就该这样学》==
 -   [ ] Git

@@ -3,7 +3,68 @@ tags:
     - Ongoing
 ---
 
-# gcc: GNU Compiler Collection
+# 学会使用 gcc 和 gdb
+
+<!-- prettier-ignore-start -->
+!!! note
+    
+    本教程面向小白，请 `clang` 神教远离。
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+!!! abstract "gcc 和 gdb 是什么？为什么要学习它？"
+    
+    
+<!-- prettier-ignore-end -->
+
+## 写在前面
+
+让我们先来了解一下编译步骤。
+
+## 使用 gdb 调试程序
+
+<!-- prettier-ignore-start -->
+!!! info "参考资料"
+
+    - [GDB Tutorial - A Walkthrough with Examples](https://www.cs.umd.edu/~srhuang/teaching/cmsc212/gdb-tutorial-handout.pdf)
+<!-- prettier-ignore-end -->
+
+- 在 gcc 中添加调试选项
+
+为了使用 gdb 进行调试，我们需要在 gcc 的编译参数中添加 `-g`。
+
+```bash
+gcc [flags] -g <sources files> -o <output>
+```
+
+- 启动gdb
+
+```bash
+gdb prog1.x
+```
+
+你会得到这样的提示符，说明你进入了调试器。
+
+```gdb
+(gdb)
+```
+
+这是 gdb 的交互式终端，和你在 Linux 系统中用的功能一致，比如可以查询历史命令、自动补全等。
+
+<!-- prettier-ignore-start -->
+!!! note "gdb 中的命令"
+    
+    | 命令 | 功能 |
+    | - | - |
+    | `help [command]` | 获取命令帮助 |
+    | `file [program]` | 加载指定文件进行调试 |
+    | `run` | 运行已经加载的程序 |
+<!-- prettier-ignore-end -->
+
+- 调试
+
+
+
 
 <!-- prettier-ignore-start -->
 !!! quote
