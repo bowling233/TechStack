@@ -48,6 +48,10 @@ tags:
     - [Microsoft Docs: Install Linux on Windows with WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 <!-- prettier-ignore-end -->
 
+#### 0. 关于选择 Linux 版本
+
+初学者无脑选择 Ubuntu 即可。初学时不要接触 Debian 和 ArchLinux，会变得不幸🤨。
+
 #### 1. **重要**：在 BIOS 中开启内核虚拟化。一般电脑都是默认开启的。
 
 请根据你正在使用的主板厂商自行检索如何进入 BIOS，进入 BIOS 后 AMD CPU 找 AMD Secure Virtual Machine (AMD SVM)选项开启，Intel CPU 找 Intel Virtualization Technology (Intel VT-x)选项开启。

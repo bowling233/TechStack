@@ -20,8 +20,20 @@ tags:
 
 ## 安装和使用
 
+Nginx 是模块化设计的，社区丰富的第三方模块为 core Nginx 增添了功能。
+
+### 使用包管理器安装 Nginx
+
 -   大部分 Linux 发行版和 BSD 衍生版的源里都有 Nginx，使用通常安装其他软件的方式即可安装
     -   这些包通常不是最新版本。如果你想使用最新功能和 Bug 修复，建议从源码编译安装
+
+### 配置 Web 或 mail 服务器
+
+在使用源码编译安装时，你可以通过选项指定 Nginx 的特定功能，从而将所需要的服务集成到一个二进制文件中，这里不进行叙述。
+
+### 安装第三方模块
+
+在源码编译时，通过 `/configure -add-module=path` 配置该模块。
 
 ### 命令行参数
 
@@ -61,6 +73,32 @@ Nginx 在 0.8 版本之后，引入了一系列命令行参数，来方便我们
 > | WINCH     | 从容关闭工作进程                                         |
 >
 > 涉及到平滑更新配置文件和二进制程序的操作， #暂不学习 。
+
+## Nginx 配置文件
+
+基本格式
+
+```nginx
+<section>{
+    <directive> <parameters>;
+}
+```
+
+### 全局配置
+
+```nginx
+user www;
+worker_processes 12;
+error_log /var/log/nginx/error.log;
+events{
+    use /dev/poll;
+    worker_connections 2048;
+}
+```
+
+
+
+
 
 ## Nginx 架构
 
