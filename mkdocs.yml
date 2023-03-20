@@ -102,7 +102,6 @@ nav:
       - 🔖标签: Tags.md
       - 🔗链接: Links.md
       - ⚠️测试: Test.md
-      - ☣️杂项: Misc.md
   - 🔨基础技能: # basic/
       - 🧱基础: basic/Basic.md
       - 🐧Linux: basic/Linux.md
@@ -116,14 +115,31 @@ nav:
         - basic/writing/Markdown.md
         - basic/writing/Latex.md
       - ▶️科普视频: basic/Videos.md
-      - ⚙️杂项: # basic/miscellaneous/
-        - basic/miscellaneous/RegularExpression.md
-      - 🔧问题和解决: # basic/problem/
-        - basic/problem/QA.md
-        - basic/problem/BlogSetupRecord.md
-        - basic/problem/UbuntuSetupRecord.md
-        - basic/problem/PhoneSetupRecord.md
-        - basic/problem/RemoteDesk.md
+  - 🎁教程和问题解决: # misc/
+    - misc/QA.md
+    - misc/UbuntuSetupRecord.md
+    - misc/RemoteDesk.md
+    - misc/PhoneSetupRecord.md
+    - misc/SyncthingConf.md
+  - ⚔️语言: # language/
+      - 🏹C: # language/c/
+        - language/c/CBasic.md
+        - language/c/IO.md
+        - language/c/Memory.md
+        - language/c/CPuzzle.md
+        - language/c/CSTL.md
+      - 🧰C++: # language/cpp/
+        - language/cpp/CppBasic.md
+  - 🧮计算机系统: # operatesystem/
+      - system/discrete.md
+      - CSAPP: 
+        - system/csapp/index.md
+        - system/csapp/Lecture/Lecture1.md
+        - system/csapp/Lab/L0.md
+        - 书本:
+          - system/csapp/Book/Chapter1.md
+          - system/csapp/Book/Chapter2.md
+          - system/csapp/Book/Chapter3.md
   - 🌐WebDev: # webdev/
       - 📄网页开发: # webdev/webpage/
         - webdev/webpage/HTMLBasic.md
@@ -142,24 +158,6 @@ nav:
       - 💻Blog搭建:
         - webdev/webserver/Domain_and_DNS.md
         - webdev/webserver/Proxy.md
-  - ⚔️语言: # language/
-      - 🏹C: # language/c/
-        - language/c/CBasic.md
-        - language/c/IO.md
-        - language/c/Memory.md
-        - language/c/CPuzzle.md
-        - language/c/CSTL.md
-      - 🧰C++: # language/cpp/
-        - language/cpp/CppBasic.md
-  - 🧮计算机系统: # operatesystem/
-      - CSAPP: 
-        - system/csapp/index.md
-        - system/csapp/Lecture/Lecture1.md
-        - system/csapp/Lab/L0.md
-        - 书本:
-          - system/csapp/Book/Chapter1.md
-          - system/csapp/Book/Chapter2.md
-          - system/csapp/Book/Chapter3.md
   - 🤔思考: # think/
       - think/MobileOffice.md
   - 📚图书馆: # books/
