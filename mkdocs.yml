@@ -115,7 +115,10 @@ nav:
         - basic/writing/Markdown.md
         - basic/writing/Latex.md
       - ▶️科普视频: basic/Videos.md
-  - 🎁教程和问题解决: # misc/
+  - 🎁教程和记录: # misc/
+    - 🐧Linux:
+      - linux/LinuxProblemSolver.md
+      - misc/Ubuntu.md
     - misc/QA.md
     - misc/UbuntuSetupRecord.md
     - misc/RemoteDesk.md
@@ -136,6 +139,7 @@ nav:
         - system/csapp/index.md
         - system/csapp/Lecture/Lecture1.md
         - system/csapp/Lab/L0.md
+        - system/csapp/Lab/BC1.md
         - 书本:
           - system/csapp/Book/Chapter1.md
           - system/csapp/Book/Chapter2.md
@@ -166,6 +170,7 @@ nav:
       - books/量子计算入门.md
   - 🏫课程笔记: # course/
       - course/Course.md
+      - course/GeneralPhysics.md
       - course/Nand2Tetris.md
       - course/Analysis2.md
       - 高等代数:
