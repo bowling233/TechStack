@@ -152,7 +152,7 @@ Content-Type: text/html
 | 304 Not Modified          | 资源已找到，但未符合条件请求。                                                           |
 | 307 Temporary Redirect    | 与 302 功能相同，不会从 POST 变成 GET。                                                  |
 | 4XX                       | Client Error 客户端错误状态码：服务器无法处理请求                                        |
-| 400 Bad Request           | 请求报文种存在语法错误。浏览器当作 200 OK 对待。                                         |
+| 400 Bad Request           | 请求报文中存在语法错误。浏览器当作 200 OK 对待。                                         |
 | 401 Unauthorized          |                                                                                          |
 | 403 Forbidden             | 服务器没有必要给出拒绝理由。                                                             |
 | 404 Not Found             | 可在拒绝请求且不想说明理由时使用。                                                       |
@@ -164,7 +164,7 @@ Content-Type: text/html
 
 ### Web 服务器
 
-> 回忆一下你对 Nginx、Apacha 等服务器的认识。
+> 回忆一下你对 Nginx、Apache 等服务器的认识。
 
 -   一台虚拟主机实现多个域名
     -   经过 DNS 解析后，请求发送到服务器时，已经是 IP 地址的形式了。如果一台服务器内托管多个域名，就需要弄清楚请求要访问哪个域名。
