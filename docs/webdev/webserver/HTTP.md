@@ -57,6 +57,7 @@ Host: hackr.jp
 Connection: keep-alive
 Content-Type: application/x-www-form-unlencoded
 Content-Length: 16
+
 name=ueno&age=37
 ```
 
@@ -75,6 +76,7 @@ HTTP/1.1 200 OK
 Date: Tue, 10 Jul 2012 06:50:15 GMT
 Content-Length: 362
 Content-Type: text/html
+
 <html>
 ...
 ```
