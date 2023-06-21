@@ -1,0 +1,150 @@
+# Project information
+site_name: Bowling's TechStack
+site_url: https://note.bowling233.top
+repo_url: https://github.com/Tiandians/TechStack
+repo_name: TechStack
+edit_uri: blob/master/docs/
+site_description: 这是 Bowling 的笔记本
+site_author: Bowling
+copyright: <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
+
+# Material
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 2
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+
+extra:
+  social:
+    - icon: material/home-circle
+      link: http://bowling233.com
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/flink.css
+
+#Documentation layout
+
+# Build directories
+theme:
+  name: material
+  logo: http://cdn.bowling233.top/note/avatar/bowling.svg
+  favicon: http://cdn.bowling233.top/note/avatar/bowling.svg
+  features:
+    - search.highlight
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.prune
+    - navigation.indexes
+    - header.autohide
+    - content.code.copy
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# Plugins
+plugins:
+  - tags:
+      tags_file: tags.md
+  - search
+  - glightbox
+
+
+# Navigation
+nav:
+  - 🏠首页: # /
+    - 🏡首页: index.md
+    - 🔗友链: links.md
+    - 📝项目: projects.md
+    - 🍰技术栈: stack.md
+    - 🔖标签: tags.md
+  - 校内 CS 课程:
+    - courses-zjucs/index.md
+    - C 程序设计系列课程:
+      - courses-zjucs/c-programming/index.md
+      - courses-zjucs/c-programming/data-type-and-memory-management.md
+      - courses-zjucs/c-programming/data-structure-and-algorithm.md
+      - courses-zjucs/c-programming/exam.md
+    - 数据结构基础:
+      - courses-zjucs/data-structures/index.md
+    - HPC101:
+      - courses-zjucs/hpc101/index.md
+      - Labs:
+        - courses-zjucs/hpc101/lab1.md
+      - Lectures:
+        - courses-zjucs/hpc101/lec1.md
+  - 校内其他课程:
+    - courses-zju/index.md
+    - courses-zju/control-theory.md
+
+  - 校外课程:
+    - courses-outside/index.md
+  - 杂项: # misc/
+    - misc/index.md
+    - misc/workflow.md
+  - 📚图书馆: # books/
+    - books/index.md
+    - 已完成:
+      - books/SOP4.md
+    - 进行中:
+      - books/LinuxServer.md
+      - books/CTP.md
+      - books/PCC.md
+      - books/ProGit.md
+      - books/CNATDA2.md
+      - books/DSAAC.md
+      - books/SFJSRMJD.md
+      - 计算机科学导论:
+        - books/FOCS/index.md
+        - books/FOCS/Chapter1-4.md
+        - books/FOCS/Chapter9.md
+        - books/FOCS/AppE.md
+      
