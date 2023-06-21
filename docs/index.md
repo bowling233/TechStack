@@ -44,7 +44,7 @@
 -  [校外课程](courses-outside/index.md)：主要为国外著名大学的 CS 课程
     -  [CMU 15-213 深入理解计算机系统](courses-outside/CMU-15-213/index.md)
 -  [其他课程](courses-zju/index.md)：浙江大学其他课程的笔记。
-    -  [控制论基础](courses-zju/control-theory/index.md)
+    -  [控制论基础](courses-zju/control-theory.md)
     -  [离散数学](courses-zju/discrete-math/index.md)
     -  [概率论与数理统计](courses-zju/probability-and-statistics/index.md)
 -  [图书馆](books/index.md)：读过的书的笔记。
