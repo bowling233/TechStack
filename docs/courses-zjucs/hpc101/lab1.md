@@ -4,14 +4,14 @@
 !!! tip "Keep in mind"
     
     **Always redirect the output of your commands to a file.** It helps to store informations in files. You may need them later to get information or debug.
-
+    
     ```bash
     # Redirect stdout and stderr to files
     command > stdout.log 2> stderr.log
     ```
     
     If you want to see the information in your terminal, you can use `tee` to print the output to both stdout and files.
-
+    
     ```bash
     # Redirect stdout and stderr to files and print them to terminal
     command 2>&1 | tee stdout.log stderr.log
@@ -42,11 +42,11 @@ You may need `sudo` privilege to execute `make all install` because it needs to 
 !!! note "Remember directory paths"
     
     You'll need to configure paths to OpenMPI when compiling and running MPI programs. In my case, the paths are:
-
+    
     - binary: `/usr/local/bin/`
     - header files: `/usr/local/include`
     - hostfile: `/usr/local/etc/openmpi-default-hostfile`
-
+    
     After I've done the lab, I understood that I should have used an independent path to save the OpenMPI files and other components, so that they can be found more easily. For example, I can use `/usr/local/openmpi-4.1.1` to save the files.
 <!-- prettier-ignore-end -->
 
@@ -54,15 +54,15 @@ You may need `sudo` privilege to execute `make all install` because it needs to 
 ??? note "Test your OpenMPI installation"
     
     You can test your OpenMPI installation by executing `mpirun`:
-
+    
     ```bash
     mpirun --version
     ```
-
-    If you see the version information, then you've installed OpenMPI successfully.
-
-    If you want to test the compilation and execution of MPI programs, you can try to compile and run the `hello.c`. Follow the instructions on [Using MPI with C](https://curc.readthedocs.io/en/latest/programming/MPI-C.html)
     
+    If you see the version information, then you've installed OpenMPI successfully.
+    
+    If you want to test the compilation and execution of MPI programs, you can try to compile and run the `hello.c`. Follow the instructions on [Using MPI with C](https://curc.readthedocs.io/en/latest/programming/MPI-C.html)
+
 <!-- prettier-ignore-end -->
 
 ## 2. Build and install BLAS and CBLAS
@@ -99,7 +99,7 @@ cp blas_LINUX.a /usr/local/lib/libblas.a
 
 Run the test program for BLAS and passed:
 
-![BLAS Test](https://cdn.bowling233.top/note/hpc/l1/blas.png)
+![BLAS Test](https://cdn.bowling233.top/images/2023/06/202306220048488.png)
 
 ### Install CBLAS
 
@@ -130,18 +130,18 @@ cp cblas_LINUX.a /usr/local/lib/libcblas.a
     ```
     Error: rank mismatch in argument 'strue1' at (1) (rank-1 and scalar)
     ```
-
-    ![CBLAS Error](https://cdn.bowling233.top/note/hpc/l1/cblas_error.png)
-
+    
+    ![CBLAS Error](https://cdn.bowling233.top/images/2023/06/202306220048489.png)
+    
     The reason is that there are some old-fashioned code deprecated by recent version of gcc-10. You can try to modify the `Makefile` in test folder, adding `-std=legacy` or `-fallow-argument-mismatch` to the flags.
-
+    
     Here are more information:
-
+    
     - [GitHub: Compilation error using gfortran-10?](https://github.com/xianyi/OpenBLAS/issues/2625)
     - [GitHub: Compilation error with GCC 10](https://github.com/xianyi/OpenBLAS/issues/2262)
-
+    
     After edit, run `make` again and you'll see the test passed.
-
+    
     ![CBLAS Test](https://cdn.bowling233.top/note/hpc/l1/cblas_test.png)
 
 <!-- prettier-ignore-end -->
@@ -192,17 +192,17 @@ Edit some lines in `Make.test`:
 ??? failure "Error in linking"
     
     You may encounter the error message like this:
-
-    ![HPC_error](https://cdn.bowling233.top/note/hpc/l1/hpl_error.png)
-
+    
+    ![HPC_error](https://cdn.bowling233.top/images/2023/06/202306220048496.png)
+    
     Search the web and you'll find the libs containing missing symbols. They are:
-
+    
     -   `/usr/lib/gcc/x86_64-linux-gun/10/libgfortran.a`
     -   `/usr/lib/gcc/x86_64-linux-gun/10/libquadmath.a`
     -   `/usr/lib/gcc/x86_64-linux-gun/10/libm.a`
-
+    
     Searching for the missing library was hard, because it happens everywhere. Solutions to others may not take effect on you.
-
+    
     I'm still wondering why these libraries were not linked automatically, they are in the default `PATH`.
 
 <!-- prettier-ignore-end -->
@@ -213,7 +213,7 @@ After make, you'll get the binary file `xhpl` in the folder `bin/test`.
 
 To construct a cluster, we need to use NAT network to connect them together. The host cannot connect to virtual machine inside NAT network directly, but we can use port forwarding:
 
-![Port Forwarding](https://cdn.bowling233.top/note/hpc/l1/port_forwarding.png)
+![Port Forwarding](https://cdn.bowling233.top/images/2023/06/202306220048497.png)
 
 Now we can ssh into the `master` machine:
 
@@ -221,7 +221,7 @@ Now we can ssh into the `master` machine:
 ssh -p 3022 bowling@localhost
 ```
 
-![SSH](https://cdn.bowling233.top/note/hpc/l1/ssh.png)
+![](https://cdn.bowling233.top/images/2023/06/202306220048487.png)
 
 ## 5. Experiment
 
@@ -229,17 +229,17 @@ ssh -p 3022 bowling@localhost
 ??? failure "Error: cannot open file HPL.dat"
     
     You may encounter error like this:
-
-    ![HPL.dat](https://cdn.bowling233.top/note/hpc/l1/hpl_dat.png)
-
+    
+    ![HPL.dat](https://cdn.bowling233.top/images/2023/06/202306220048495.png)
+    
     Refer to this issue:
-
+    
     - [HPL Segmentation Fault](https://github.com/spack/spack/issues/6340)
 <!-- prettier-ignore-end -->
 
 Final result:
 
-![Result](https://cdn.bowling233.top/note/hpc/l1/result.png)
+![Result](https://cdn.bowling233.top/images/2023/06/202306220048498.png)
 
 ## Bonus: Docker
 
@@ -251,17 +251,17 @@ I use the docker from [ashael/hpl - Docker Image | Docker Hub](https://hub.docke
 
 Here I've opened 4 containers from the same image:
 
-![docker image](https://cdn.bowling233.top/note/hpc/l1/docker_image.png)
+![docker image](https://cdn.bowling233.top/images/2023/06/202306220048491.png)
 
 ### Setting up connection
 
 Dockers are connected within a bridge by default.
 
-![docker network](https://www.freecodecamp.org/news/content/images/2020/06/docker-network.png)
+![docker network](https://cdn.bowling233.top/images/2023/06/202306220052179.png)
 
 Attach to each of them and get their ip address:
 
-![docker ip](https://cdn.bowling233.top/note/hpc/l1/docker_ip.png)
+![docker ip](https://cdn.bowling233.top/images/2023/06/202306220048492.png)
 
 Select the host of `172.17.0.5` as master, `172.17.0.4`-`172.17.0.2` as slaves.
 
@@ -291,13 +291,13 @@ uncomment them and save.
 
 Then add master's public key to `authorized_keys` and start `sshd`.
 
-![docker ssh](https://cdn.bowling233.top/note/hpc/l1/docker_ssh.png)
+![docker ssh](https://cdn.bowling233.top/images/2023/06/202306220048494.png)
 
 Succeeded.
 
 ### Execute experiment
 
-![docker result](https://cdn.bowling233.top/note/hpc/l1/docker_result.png)
+![docker result](https://cdn.bowling233.top/images/2023/06/202306220048493.png)
 
 I found the computing speed in dockers is much faster then clusters. **DOCKERS ARE EXTREMELY AWESOME.**
 
