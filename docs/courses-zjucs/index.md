@@ -13,3 +13,4 @@
 ### ✏️正在编辑
 
 - [C 程序设计系列课程](c-programming/index.md)
+- [HPC-101](hpc101/index.md)

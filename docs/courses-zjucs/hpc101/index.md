@@ -3,23 +3,37 @@
 <!-- prettier-ignore-start -->
 !!! abstract "Course information"
     
+    - Course Time: 2023 Summer
     - [Website](https://zjusct.pages.zjusct.io/summer-course-2023/HPC101-Labs-2023/)
+
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 !!! note "Prereading"
-    
-    Before you start doing the labs, I advise you to get to know these things:
 
-    - Basic usage of Linux system
-    - What is HPC and why we need it?
-    - What is MPI and how it works?
+    These notes are written completely in English.
 
-    Basic ideas can be found in the following materials:
-    
-    - [Introduction to High Performance Computing for Scientists and Engineers](https://www.crcpress.com/Introduction-to-High-Performance-Computing-for-Scientists-and-Engineers/Chapman/p/book/9781439811924) 
-    - [An Introduction to Parallel Programming](http://www.e-tahtam.com/~turgaybilgin/2013-2014-guz/ParalelProgramlama/ParallelProg.pdf).
+    Contents for this course are:
+
+    - Overview of High Performance Computing
+    - Architecture of High Performance Computuers
+    - Operation and maintainance of High Performance Computers
+    - Design and implementation of High Performance Computing Applications
+    - Basics of Vectorized Programming
+    - CUDA C Heterogeneous Programming Fundamentals
+    - Compilation optimization techniques
+    - Machine Learning System Optimization
+
+    I recommend you to read the following materials before the course:
+
+    - Introductino to High Performance Computing for Scientists and Engineers
+    - [An Introduction to Parallel Programming](../../books/AIPP.md)
 <!-- prettier-ignore-end -->
+
+
+## Lecture Note
+
+
 
 ## Labs Archive
 

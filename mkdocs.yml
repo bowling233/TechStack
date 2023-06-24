@@ -75,6 +75,7 @@ theme:
     - navigation.indexes
     - header.autohide
     - content.code.copy
+    - content.code.annotate
   palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
@@ -106,6 +107,7 @@ nav:
     - 📝项目: projects.md
     - 🍰技术栈: stack.md
     - 🔖标签: tags.md
+
   - 校内 CS 课程:
     - courses-zjucs/index.md
     - C 程序设计系列课程:
@@ -121,20 +123,24 @@ nav:
         - courses-zjucs/hpc101/lab1.md
       - Lectures:
         - courses-zjucs/hpc101/lec1.md
+
   - 校内其他课程:
     - courses-zju/index.md
     - courses-zju/control-theory.md
 
   - 校外课程:
     - courses-outside/index.md
+
   - 杂项: # misc/
     - misc/index.md
     - misc/workflow.md
+
   - 📚图书馆: # books/
     - books/index.md
     - 已完成:
       - books/SOP4.md
     - 进行中:
+      - books/AIPP.md
       - books/LinuxServer.md
       - books/CTP.md
       - books/PCC.md
