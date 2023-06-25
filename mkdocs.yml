@@ -50,7 +50,7 @@ markdown_extensions:
 extra:
   social:
     - icon: material/home-circle
-      link: http://bowling233.com
+      link: https://bowling233.com
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
@@ -64,8 +64,8 @@ extra_css:
 # Build directories
 theme:
   name: material
-  logo: http://cdn.bowling233.top/note/avatar/bowling.svg
-  favicon: http://cdn.bowling233.top/note/avatar/bowling.svg
+  logo: https://cdn.bowling233.top/note/avatar/bowling.svg
+  favicon: https://cdn.bowling233.top/note/avatar/bowling.svg
   features:
     - search.highlight
     - navigation.instant
