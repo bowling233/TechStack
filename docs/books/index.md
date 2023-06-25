@@ -3,7 +3,7 @@
 <!-- prettier-ignore-start -->
 !!! tip "电子图书馆"
     
-    欢迎参观我的电子图书馆：[lib.bowling233.top](http://lib.bowling233.top)。其中主要存放计算机学科书籍。
+    欢迎参观我的电子图书馆：[lib.bowling233.top](https://lib.bowling233.top)。其中主要存放计算机学科书籍。
 <!-- prettier-ignore-end -->
 
 本分区存放了一些读书笔记。
