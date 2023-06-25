@@ -118,7 +118,7 @@ second_ptr(20);                      // 我们想这样
 ```c
 int func_two(int a, int f(int arg))
 {
-    return 3 * f();
+    return 3 * f(a);
 }
 ```
 

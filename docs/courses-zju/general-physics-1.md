@@ -98,7 +98,7 @@
                 \Delta L = \gamma(\Delta L_0 - u\Delta t)\\
                 \Delta t' = 0 = \gamma(\Delta t - u\Delta L_0/c^2)
                 $$
-                消去 $\Delta t$ 得到结果 $\Delta L = \frac{\Delta L_0}{\gamma}
+                消去 $\Delta t$ 得到结果 $\Delta L = \frac{\Delta L_0}{\gamma}$
 
                 
 
@@ -112,7 +112,30 @@
 
     -   若相对靠近，则用 $-u$ 代替。
 
--   
+-   狭义相对论动力学
+
+    -   动量
+        $$
+        \mathbf{p}=\frac{m_0}{\sqrt{1-(v/c)^2}}\mathbf{v}
+        $$
+
+    -   质量
+        $$
+        m=\frac{m_0}{\sqrt{1-(v/c)^2}}
+        $$
+
+        -   光子的质量是
+            $$
+            m_\phi=\frac{hv}{c^2}
+            $$
+
+    -   相对论动量和能量关关系式
+        $$
+        E^2=c^2p^2+E_0^2=c^2p^2+m_0^2c^4
+        $$
+
+    -   
+
 
 ### 分子动理论和理想气体
 
