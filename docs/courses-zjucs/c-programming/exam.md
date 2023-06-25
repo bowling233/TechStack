@@ -134,7 +134,7 @@ int b = func_two(a, function);
 
 相信聪明的你已经猜到了，`b` 的值就是 6。桥豆麻袋，好像有哪里不太对劲。`func_two` 的两个参数类型分别是 `int` 和 `int (int)`，但是调用时却传入了一个函数指针（还记得隐式转换吗？），这却没有产生任何问题。这又是什么操作？
 
-又是隐式转换？Bingo！不过需要注意发生隐式转换的位置。`func_two` 的第二个形参实际上是 `#!c int (*)(int)` ，而非字面上的 `int (int)`。这就和 `void f(int a[])` 实际上就是 `void f(int *a)` 一样，同样是出于节约资源的考虑。也就是说，编译器眼中的 `func_two` 是 `int func_two(int a, int (*f)(int)`。搞清楚这一点，其余部分也就顺理成章了。
+又是隐式转换？Bingo！不过需要注意发生隐式转换的位置。`func_two` 的第二个形参实际上是 `int (*)(int)` ，而非字面上的 `int (int)`。这就和 `void f(int a[])` 实际上就是 `void f(int *a)` 一样，同样是出于节约资源的考虑。也就是说，编译器眼中的 `func_two` 是 `int func_two(int a, int (*f)(int)`。搞清楚这一点，其余部分也就顺理成章了。
 
 经过练习，你应该已经可以看出，从**函数到指针的隐式转换**规定出发，理解上述情景并非难事。对函数指针的畏惧，往往是因为不熟悉转换规则，或受复杂的声明语法干扰。因此，提高识别类型的熟练度，足以让你自信运用函数指针。
 
@@ -480,13 +480,13 @@ void Main(void)
 >
 >   >   The type of a function is determined using the following rules. [...] After determining the type of each parameter, **any parameter** of type “array of T” or **of function type T is adjusted to be “pointer to T”**. [...]
 
-> -   函数指针：指向函数的指针中储存着函数代码的起始处地址。要指明函数的类型，要指明函数的返回类型和形参类型。把函数名替换成 `#!c (*pf)` 的形式是最简单的方法，如 `#!c void ToUpper(char *)` 改为函数指针 `#!c void (*pf)(char *)`。
-> -   声明函数指针后，可以将函数的地址赋给它，**这种语境下函数名可以表示函数的地址**。因此我们可以写：`#!c pf = ToUpper`，注意不是 `#!c pf = ToUpper()`。
+> -   函数指针：指向函数的指针中储存着函数代码的起始处地址。要指明函数的类型，要指明函数的返回类型和形参类型。把函数名替换成 `(*pf)` 的形式是最简单的方法，如 `void ToUpper(char *)` 改为函数指针 `void (*pf)(char *)`。
+> -   声明函数指针后，可以将函数的地址赋给它，**这种语境下函数名可以表示函数的地址**。因此我们可以写：`pf = ToUpper`，注意不是 `pf = ToUpper()`。
 >
-> -   使用函数指针访问函数有两种方法：`#!c (*pf)(mis)` 和 `#!c pf(mis)`。事实上，K&R C 不允许第二种形式，我也推荐大家始终将函数调用理解为第一种形式，理解 `#!c (*pf)` 与 `pf` 的等价之处（分别从声明和赋值角度）。
-> -   还有一个点：`f` 与 `#!c &f` 的值也一样，都是函数的地址。
+> -   使用函数指针访问函数有两种方法：`(*pf)(mis)` 和 `pf(mis)`。事实上，K&R C 不允许第二种形式，我也推荐大家始终将函数调用理解为第一种形式，理解 `(*pf)` 与 `pf` 的等价之处（分别从声明和赋值角度）。
+> -   还有一个点：`f` 与 `&f` 的值也一样，都是函数的地址。
 
-> -   C 项 或许通过上面的讲解，你能理解 `#!c (*cmd)` 与 `cmd` 的等价之处。下面是 StackOverflow 中的讨论：[c++ - What does `#!c void f(void())` mean? - Stack Overflow](https://stackoverflow.com/questions/39440970/what-does-void-fvoid-mean)。
+> -   C 项 或许通过上面的讲解，你能理解 `(*cmd)` 与 `cmd` 的等价之处。下面是 StackOverflow 中的讨论：[c++ - What does `void f(void())` mean? - Stack Overflow](https://stackoverflow.com/questions/39440970/what-does-void-fvoid-mean)。
 >
 > > As mentioned in [_dcl.fct_](http://eel.is/c++draft/dcl.fct#5) of the working draft (emphasis mine):
 > >
