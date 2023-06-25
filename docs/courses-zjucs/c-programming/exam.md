@@ -451,6 +451,10 @@ void Main(void)
 -   选择题 2 时间复杂度分析
 -   选择题 6 函数指针
 
+>   一句话总结：作为函数作为形参，会自动退化成函数指针，就像数组名作为形参自动退化成指针那样。这句话在下面的英文部分提到了。
+>
+>   >   The type of a function is determined using the following rules. [...] After determining the type of each parameter, **any parameter** of type “array of T” or **of function type T is adjusted to be “pointer to T”**. [...]
+
 > -   函数指针：指向函数的指针中储存着函数代码的起始处地址。要指明函数的类型，要指明函数的返回类型和形参类型。把函数名替换成 `#!c (*pf)` 的形式是最简单的方法，如 `#!c void ToUpper(char *)` 改为函数指针 `#!c void (*pf)(char *)`。
 > -   声明函数指针后，可以将函数的地址赋给它，**这种语境下函数名可以表示函数的地址**。因此我们可以写：`#!c pf = ToUpper`，注意不是 `#!c pf = ToUpper()`。
 >
@@ -572,12 +576,12 @@ void Main(void)
 >     #include <stdlib.h>
 >     #include "graphics.h"
 >     #define MIN_LEN .1
->
+>    
 >     double toRadius(double deg)
 >     {
 >         return deg * 3.1415926 / 180;
 >     }
->
+>    
 >     void DrawBranch(double len, double deg)
 >     {
 >         DrawLine(len * cos(toRadius(deg)), len * sin(toRadius(deg)));
@@ -591,7 +595,7 @@ void Main(void)
 >         MovePen(GetCurrentX() - len * 0.75 * cos(toRadius(deg + 15)),
 >                 GetCurrentY() - len * 0.75 * sin(toRadius(deg + 15)));
 >     }
->
+>    
 >     int main(void)
 >     {
 >     	double length;
