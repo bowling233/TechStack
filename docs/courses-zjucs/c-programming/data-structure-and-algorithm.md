@@ -374,7 +374,10 @@ void insertion_sort(int *arr, int len) {
 }
 ```
 
-## 归并排序
+### 归并排序
+
+
+
 
 ```c
 void merge(int *arr, int *tmp, int left, int mid, int right) {

@@ -139,7 +139,7 @@ nav:
   - 📚图书馆: # books/
     - books/index.md
     - 已完成:
-      - books/SOP4.md
+      - books/Archive/SOP4.md
     - 进行中:
       - books/AIPP.md
       - books/LinuxServer.md

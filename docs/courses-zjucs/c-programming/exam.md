@@ -188,6 +188,8 @@ void SetEraseMode(bool mode);
 bool GetEraseMode(void);
 ```
 
+> 还是附个翻译吧：SetEraseMode 函数设置内部擦除标志的值。设置这个值的效果就像把颜色设置为“白色”，但不会影响当前的颜色设置。当擦除模式设置为FALSE时，恢复到正常的绘画状态，使用当前的颜色。
+
 控制台交互：这些源代码在 `simpio.h` 中
 
 -   `void InitConsole(void)`：打开一个新的控制台，要使用 `stdio.h` 中的标准输入输出函数前记得写上这个。
@@ -480,11 +482,15 @@ void Main(void)
 >
 >   >   The type of a function is determined using the following rules. [...] After determining the type of each parameter, **any parameter** of type “array of T” or **of function type T is adjusted to be “pointer to T”**. [...]
 
-> -   函数指针：指向函数的指针中储存着函数代码的起始处地址。要指明函数的类型，要指明函数的返回类型和形参类型。把函数名替换成 `(*pf)` 的形式是最简单的方法，如 `void ToUpper(char *)` 改为函数指针 `void (*pf)(char *)`。
+
+> -   函数指针：指向函数的指针中储存着函数代码的起始处地址，要指明函数的类型，要指明函数的返回类型和形参类型。把函数名替换成 `(*pf)` 的形式是最简单的方法，如 `void ToUpper(char *)` 改为函数指针 `void (*pf)(char *)`。
 > -   声明函数指针后，可以将函数的地址赋给它，**这种语境下函数名可以表示函数的地址**。因此我们可以写：`pf = ToUpper`，注意不是 `pf = ToUpper()`。
 >
-> -   使用函数指针访问函数有两种方法：`(*pf)(mis)` 和 `pf(mis)`。事实上，K&R C 不允许第二种形式，我也推荐大家始终将函数调用理解为第一种形式，理解 `(*pf)` 与 `pf` 的等价之处（分别从声明和赋值角度）。
-> -   还有一个点：`f` 与 `&f` 的值也一样，都是函数的地址。
+> -   使用函数指针调用函数有两种方法：`(*pf)(mis)` 和 `pf(mis)`，它们看起来矛盾。事实上，K&R C 不允许第二种形式，我也推荐大家始终将函数调用理解为第一种形式。
+>     -   第一种形式，先解引用函数指针再调用该函数，这个思路很直接。
+>     -   第二种形式，来源是上面的赋值语句，在上面的赋值语境下，指针和函数名可以互换使用。
+> -   取函数的地址也有两种方法：`f` 和 `&f`。
+
 
 > -   C 项 或许通过上面的讲解，你能理解 `(*cmd)` 与 `cmd` 的等价之处。下面是 StackOverflow 中的讨论：[c++ - What does `void f(void())` mean? - Stack Overflow](https://stackoverflow.com/questions/39440970/what-does-void-fvoid-mean)。
 >
@@ -601,12 +607,12 @@ void Main(void)
 >     #include <stdlib.h>
 >     #include "graphics.h"
 >     #define MIN_LEN .1
->    
+>            
 >     double toRadius(double deg)
 >     {
 >         return deg * 3.1415926 / 180;
 >     }
->    
+>            
 >     void DrawBranch(double len, double deg)
 >     {
 >         DrawLine(len * cos(toRadius(deg)), len * sin(toRadius(deg)));
@@ -620,7 +626,7 @@ void Main(void)
 >         MovePen(GetCurrentX() - len * 0.75 * cos(toRadius(deg + 15)),
 >                 GetCurrentY() - len * 0.75 * sin(toRadius(deg + 15)));
 >     }
->    
+>            
 >     int main(void)
 >     {
 >     	double length;

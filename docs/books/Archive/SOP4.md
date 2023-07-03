@@ -43,7 +43,7 @@ Start Out with Python (Forth Edition)
 格式化输出的一些技术：
 
 -   `print('one', end='')` 默认情况下打印会以换行符结尾，`end` 参数可以指定末尾。
--   `sep=` 指定输出各项之间俺的分隔符，默认情况下是空格。
+-   `sep=` 指定输出各项之间的分隔符，==默认情况下是空格==。
 
 嵌套使用 `format()` 函数可以实现更多的格式化，传递给它的参数称为格式限定符。
 
@@ -62,13 +62,13 @@ Start Out with Python (Forth Edition)
 
 -   “引用”概念
 -   变量命名规则
--   **下划线分隔**的命名法在 Python 中比较常见
+-   ==**下划线分隔**==的命名法在 Python 中比较常见
 -   Python 关键字
 
 ### 类型
 
 -   `int` 和 `float` 类型
--   使用函数 `type()` 判断变量的类型
+-   ==使用函数 `type()` 判断变量的类型==
 -   `str` 类型
 -   Python 中的变量**可以引用任何类型的数据**，也就是说，可以用其他类型的数据项重新赋值
 
@@ -107,7 +107,7 @@ Start Out with Python (Forth Edition)
 ### 其他
 
 -   `#` 注释
--   `\` 行连接符
+-   ==`\` 行连接符==
 -   圆括号内的语句片段，无需行连接符
 
 ### 有名常量
@@ -916,7 +916,7 @@ while not end_of_file:
 ```
 
 <!-- prettier-ignore-start -->
-!!! note ""
+!!! note
     
     Python 序列化后的数据，并不如 C 那样纯净。比如，在 C 中使用 `fwrite()` 向文件中写入一个字符数组，那么文件中只有字符数组。若将 Python 的字符串对象写入文件，你可以看到解码出的字符串，但其则前后还有一些额外的字节。这可能是用于标记对象的类型。
 <!-- prettier-ignore-end -->
@@ -945,7 +945,7 @@ class Coin:
         if random.randint(0, 1) == 0
             self.sideup = 'heads'
         else:
-            slef.sideup = 'tails'
+            self.sideup = 'tails'
 ```
 
 -   每个类的方法都需要 `self` 参数，它是操作的对象的引用。它不一定要命名为 `self` 但这是惯例。
@@ -975,7 +975,7 @@ def main():
 
 ### 方法
 
--   ``__str__()` 把对象传递给 `print()` 函数时自动调用。
+-   `__str__()` 把对象传递给 `print()` 函数时自动调用。
 
 方法有如下分类：
 
@@ -1009,7 +1009,7 @@ def main():
 
 ```python
 class Car(Automobile):
-    def __init(self, ...):
+    def __init__(self, ...):
         Automobile.__init__(self, ...)
         self.__xxx = xxx
 ```
