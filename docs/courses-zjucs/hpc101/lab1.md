@@ -301,6 +301,58 @@ Succeeded.
 
 I found the computing speed in dockers is much faster then clusters. **DOCKERS ARE EXTREMELY AWESOME.**
 
+## Extended
+
+Later in the course, instructors mentioned we can try to modify `HPL.dat` to get better performance and configure NFS to share files between nodes. I also tried to do these things. 
+
+### Tuning HPL.dat
+
+Refer to [HPL Tuning](https://www.netlib.org/benchmark/hpl/tuning.html).
+
+### Configuring NFS File System
+
+NFS uses RPC protocol to share files between server and client.
+
+#### Setup NFS Server and Client
+
+Please refer to this passage: [How to Set Up an NFS Mount on Debian 11 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-debian-11).
+
+More details about NFS can be seen in:
+
+- [NFS - ArchWiki](https://wiki.archlinux.org/title/NFS)
+
+#### Have a test
+
+First install `nfs-common` and create mount point on clients:
+
+```bash
+sudo apt install nfs-common
+sudo mkdir /hpc
+```
+
+<!-- prettier-ignore-start -->
+!!! warning "mount error"
+
+    If you encounter the following error:
+    
+    ```bash
+    mount: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.
+    ```
+    
+    You need to install `nfs-common` on clients.
+<!-- prettier-ignore-end -->
+
+Add the following line to clients:
+
+```title="/etc/fstab"
+10.0.2.15:/hpc /hpc nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+```
+
+Then run the program and get the result:
+
+![](https://cdn.bowling233.top/images/2023/07/202307052302166.png)
+
+
 ## Related links
 
 - [45gfg9's Note](https://heap.45gfg9.net/t/2023-ZJU-HPC101-Lab1/)

@@ -28,7 +28,16 @@ Contents are:
 - Processor Architecture
 - Memory Hierarchy
 - Concurrency Basics
+- x86 Microarchitecture
+- Single Instruction Multiple Data
+- Multicore and Multi-socket Memory
 
 Mainly discussed in [CSAPP](../../books/CSAPP/index.md).
 
-## Lec 3
+这节课的内容其实非常丰富，包括三大课程：计算机体系结构、操作系统、编译原理。本节课只是介绍性质，具体知识需要自己慢慢补充。
+
+## Lec 3 HPC Methodology
+
+Date: 2023/07/05
+
+
