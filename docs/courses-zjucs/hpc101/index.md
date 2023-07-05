@@ -1,10 +1,12 @@
-# HPC101-2023 Lab Archive
+# HPC101-2023
 
 <!-- prettier-ignore-start -->
 !!! abstract "Course information"
     
     - Course Time: 2023 Summer
     - [Website](https://zjusct.pages.zjusct.io/summer-course-2023/HPC101-Labs-2023/)
+    - Related Book Notes:
+        - [An Introduction to parallel programming](../../books/AIPP.md)
 
 <!-- prettier-ignore-end -->
 

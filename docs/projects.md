@@ -6,14 +6,6 @@
     想要真正地掌握知识，其学习方式必须是持久的。坚持以“日拱一卒”的方式前进。
 <!-- prettier-ignore-end -->
 
-## 并行程序设计导论
-
-适配 HPC-101 课程学习。[笔记链接](books/AIPP.md)
-
-| Date | Done |
-| ---- | ---- |
-| 5.9  | 1-2  |
-
 ## MIT Web Development Crash Course
 
 MIT 开设的 Web 开发速成课，总计时长两个月。
@@ -47,8 +39,3 @@ MIT 开设的 Web 开发速成课，总计时长两个月。
 | Date | Done  |
 | ---- | ----- |
 | 4.30 | 0-3.6 |
-
-## CSAPP
-
--   [书本笔记链接](books/CSAPP/index.md)
--   [课程笔记链接](courses-outside/CMU-15-213/index.md)
