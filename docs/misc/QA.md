@@ -142,6 +142,10 @@
 > ssh -vT -p 443 git@ssh.github.com
 > ```
 
+-   [.gitignore 无效](https://stackoverflow.com/questions/25436312/gitignore-not-working)
+
+> 
+
 ### Syncthing
 
 -   [Is putting a Git workspace in a synced folder really a good idea?](https://forum.syncthing.net/t/is-putting-a-git-workspace-in-a-synced-folder-really-a-good-idea/1774)

@@ -134,6 +134,7 @@ nav:
 
   - 杂项: # misc/
     - misc/index.md
+    - misc/remote.md
     - misc/workflow.md
 
   - 📚图书馆: # books/

@@ -40,4 +40,12 @@ Mainly discussed in [CSAPP](../../books/CSAPP/index.md).
 
 Date: 2023/07/05
 
+## Lec 4 Operations on clusters
 
+Date: 2023/07/06
+
+
+### Performance
+
+CPU: GFlops = (CPU freq, GHz) * (FP ops) * (core number) * (CPU numbers)
+GPU: GFlops = (boost clock) * (core number)

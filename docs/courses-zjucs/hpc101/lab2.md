@@ -6,6 +6,21 @@
 
 Actually this may be our first time to manage Python project. So a package management system is needed. Let's learn [Conda](https://docs.conda.io/en/latest/) first.
 
+Most used conda commands:
+
+- `conda create -n myenv`: create a new environment
+- `conda activate myenv`: activate an environment
+- `conda deactivate`: deactivate current environment
+- `conda install numpy`: install a package
+- `conda list`: list all packages installed in current environment
+- `conda remove numpy`: remove a package
+- `conda update numpy`: update a package
+- `conda search numpy`: search a package
+- `conda env export > environment.yml`: export an environment
+- `conda env create -f environment.yml`: create an environment from a file
+- `conda env remove -n myenv`: remove an environment
+- `conda env list`: list all environments
+
 ### Idea
 
 **Vectorization** and **broadcasting** are two important concepts in NumPy. They are the key to make NumPy faster than pure Python.
@@ -38,7 +53,7 @@ Some terminology in NumPy:
 Attributes of array:
 
 - `dtype`: data type
-- `rank`: number of dimensions
+- `ndim`: number of dimensions
 - `shape`: a tuple of integers, indicating the size of the array in each dimension
 
 Create an array:
@@ -54,6 +69,20 @@ Use `dtype` keyword argument to specify the data type of the array. For example,
 
 ### Manipulate
 
+Operating on arrays with different types will **upcast** to the more precise one.
+
+Arithmetic operations: usually **element-wise**.
+
+- `+`, `-`, `*`, `/`, `**`, `%`, `//`
+- inplace operations: `+=`, `-=`, `*=`, `/=`, `**=`, `%=`, `//=`
+
+Matrix product:
+
+- `@` operator: `a @ b`
+- `dot` function: `A.dot(B)`
+
+
+
 Sorting:
 
 - `np.sort(arr)`: sort an array, return a sorted copy
@@ -65,7 +94,8 @@ Sorting:
 Concatenate:
 
 - Vectors: `np.concatenate((a1, a2, ...))`: concatenate arrays
-- Multidimensional arrays: `np.concatenate((a1, a2, ...), axis=)`: concatenate arrays along a specific axis
+- Multidimensional arrays: `np.concatenate((a1, a2, ...), axis=)`: concatenate arrays along a specific axis.
+    - Note: You can only concatenate arrays on existing axes.
 
 Info:
 
