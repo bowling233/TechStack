@@ -21,12 +21,27 @@ Most used conda commands:
 - `conda env remove -n myenv`: remove an environment
 - `conda env list`: list all environments
 
+### Timing
+
+```python
+from tools import timing
+timeit()
+```
+
 ### Idea
 
 **Vectorization** and **broadcasting** are two important concepts in NumPy. They are the key to make NumPy faster than pure Python.
 
 - Vectorization describes the absence of any explicit looping, indexing, etc., in the code.
 - Broadcasting is the term used to describe the implicit element-by-element behavior of operations.
+
+### Learn NumPy
+
+I recommend you to learn following tutorials:
+
+- [A Visual Intro to NumPy and Data Representation – Jay Alammar – Visualizing machine learning one concept at a time.](http://jalammar.github.io/visual-numpy/)
+- [NumPy Illustrated: The Visual Guide to NumPy | by Lev Maximov | Better Programming](https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d)
+- 
 
 ### Check it
 
@@ -40,6 +55,8 @@ You should learn:
 - Copies and views
 - Structured arrays
 - Universal functions (ufuncs) basics
+
+You can make use of this cheetsheet for review: [Python_Cheat_Sheets.pdf (itu.edu.tr)](https://web.itu.edu.tr/iguzel/files/Python_Cheat_Sheets.pdf)
 
 ### Array
 

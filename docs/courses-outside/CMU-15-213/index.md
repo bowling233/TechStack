@@ -35,8 +35,8 @@
 
 ### 课程笔记
 
-- [Lecture 01: Course Overview](Lecture/Lecture1.md)
-- [Lecture 02: Bits, Bytes, and Ints; Floating Point](Lecture/Lecture2.md)
+- [Lecture 01: Course Overview](lec1.md)
+- [Lecture 02: Bits, Bytes, and Ints; Floating Point](lec2.md)
 
 ### 书本摘要
 
@@ -47,5 +47,5 @@
 
 ### 实验记录
 
-- [C Programming Lab: Assessing Your C Programming Skills](Lab/L0.md)
-- [Bootcamp 1: Linux, Command Line, Git](Lab/BC1.md)
+- [C Programming Lab: Assessing Your C Programming Skills](lab0.md)
+- [Bootcamp 1: Linux, Command Line, Git](bc1.md)

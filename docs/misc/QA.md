@@ -1,4 +1,4 @@
-# 零碎问题收集
+# 问题记录
 
 
 ## 写代码
@@ -168,3 +168,12 @@
 ```HTML
 <details><summary>提示</summary>答案</details>
 ```
+
+## Web
+
+### 服务器
+
+- blocked CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource
+
+> 我托管在 GitHub Pages 的笔记本希望向我用 Nginx 自建的 CDN 服务器请求资源，但 CDN 服务器的返回没有 CORS 头。**源站请求目标站，目标站必须允许源站请求它，不然浏览器就会拦截。**
+> 参考 [https://enable-cors.org/server_nginx.html](https://enable-cors.org/server_nginx.html) 进行配置即可。

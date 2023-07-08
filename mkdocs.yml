@@ -137,9 +137,18 @@ nav:
 
   - 校外课程:
     - courses-outside/index.md
+    - CMU 15-213:
+      - Lectures:
+        - courses-outside/CMU-15-213/lec1.md
+        - courses-outside/CMU-15-213/lec2.md
+      - Labs:
+        - courses-outside/CMU-15-213/BC1.md
+        - courses-outside/CMU-15-213/lab0.md
+
 
   - 杂项: # misc/
     - misc/index.md
+    - misc/QA.md
     - misc/remote.md
     - misc/workflow.md
 

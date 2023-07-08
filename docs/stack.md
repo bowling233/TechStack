@@ -26,7 +26,7 @@
     
     教程并不归在技术栈，但我懒得建博客，而且觉得教程也会频繁更新，就放在笔记本惹。
 
-    - [Windows 远程桌面教程](misc/RemoteDesktop.md)
+    - [Windows 远程桌面教程](misc/remote.md)
     - [云服务器综合教程]()
     - [Linux 从小白到菜鸡]() 正在独立的 GitHub 仓库编写中
     - [Linux 从菜鸡到专家]() 整理中
