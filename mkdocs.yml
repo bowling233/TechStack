@@ -46,6 +46,8 @@ markdown_extensions:
   - pymdownx.snippets:
       auto_append:
         - includes/abbreviations.md
+  # Not Standard
+  - neoteroi.cards
 
 extra:
   social:
@@ -58,6 +60,7 @@ extra_javascript:
 extra_css:
   - stylesheets/extra.css
   - stylesheets/flink.css
+  - stylesheets/neoteroi-mkdocs.css
 
 #Documentation layout
 
