@@ -98,6 +98,22 @@
 > 
 > 在 `OPTION` 列添加 `uid=1000` 即可将磁盘挂载到自己用户下。
 
+#### 远程桌面
+
+- 使用 Gnome 取代 xfce4 进行远程桌面：
+
+> - 安装 `gnome-session`
+>
+> - 向 `~/.xsession` 写入 `gnome-session`
+>
+> 更多相关资料参见：
+>
+> - [Connected to GNOME desktop environment instead of ubuntu-gnome custom version · Issue #1723 · neutrinolabs/xrdp](https://github.com/neutrinolabs/xrdp/issues/1723)
+> - [Setting gnome as desktop environment in .xsession - Ask Ubuntu](https://askubuntu.com/questions/584681/setting-gnome-as-desktop-environment-in-xsession)
+> - [Ubuntu Xrdp 远程登录需要输入很多次密码授权来"创建/移除"色彩管理设备 - 9yu.cc](https://9yu.cc/index.php/archives/27/)
+> - [seahorse - How can I stop being prompted to unlock the 'default' keyring on boot? - Ask Ubuntu](https://askubuntu.com/questions/867/how-can-i-stop-being-prompted-to-unlock-the-default-keyring-on-boot)
+
+
 ### Windows
 
 #### 系统美化

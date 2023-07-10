@@ -127,8 +127,13 @@ nav:
       - courses-zjucs/hpc101/index.md
       - Labs:
         - courses-zjucs/hpc101/lab1.md
+        - courses-zjucs/hpc101/lab2.md
+        - courses-zjucs/hpc101/lab3.md
       - Lectures:
         - courses-zjucs/hpc101/lec1.md
+        - courses-zjucs/hpc101/lec5.md
+        - courses-zjucs/hpc101/lec6.md
+        - courses-zjucs/hpc101/lec7.md
 
   - 校内其他课程:
     - courses-zju/index.md

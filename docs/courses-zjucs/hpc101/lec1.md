@@ -49,3 +49,4 @@ Date: 2023/07/06
 
 CPU: GFlops = (CPU freq, GHz) * (FP ops) * (core number) * (CPU numbers)
 GPU: GFlops = (boost clock) * (core number)
+

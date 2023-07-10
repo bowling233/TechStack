@@ -2,32 +2,6 @@
 
 ## Basic usage of NumPy
 
-### Conda
-
-Actually this may be our first time to manage Python project. So a package management system is needed. Let's learn [Conda](https://docs.conda.io/en/latest/) first.
-
-Most used conda commands:
-
-- `conda create -n myenv`: create a new environment
-- `conda activate myenv`: activate an environment
-- `conda deactivate`: deactivate current environment
-- `conda install numpy`: install a package
-- `conda list`: list all packages installed in current environment
-- `conda remove numpy`: remove a package
-- `conda update numpy`: update a package
-- `conda search numpy`: search a package
-- `conda env export > environment.yml`: export an environment
-- `conda env create -f environment.yml`: create an environment from a file
-- `conda env remove -n myenv`: remove an environment
-- `conda env list`: list all environments
-
-### Timing
-
-```python
-from tools import timing
-timeit()
-```
-
 ### Idea
 
 **Vectorization** and **broadcasting** are two important concepts in NumPy. They are the key to make NumPy faster than pure Python.
@@ -40,8 +14,28 @@ timeit()
 I recommend you to learn following tutorials:
 
 - [A Visual Intro to NumPy and Data Representation – Jay Alammar – Visualizing machine learning one concept at a time.](http://jalammar.github.io/visual-numpy/)
+    - Creating Arrays:`np.array([1, 2, 3])`, `np.ones()`, `np.zeros()`, `np.random.random()`
+    - Array Arithmetic: `+`, `-`, `*`, `/` all position-wise
+    - Indexing: `data[0:2]`, `data[1:]`
+    - Aggregation: `min()`, `max()`, `sum()`
+    - Creating Matrices
+    - Matrix Arithmetic
+        - position-wise
+        - broadcast
+    - Dot Product `data.dot(otherMatrix)`
+    - Matrix Indexing
+        - `data[0:2, 0]`
+        - `data[1:3]`
+    - Transposing and Reshaping: `data.T`, `data.reshape()`
+    - More dimension: the last axis is looped over the fastest, while the first is the slowest.
+    - Practical usage:
+        - `error = (1/n) * np.sum(np.square(y - y_predicted))`
 - [NumPy Illustrated: The Visual Guide to NumPy | by Lev Maximov | Better Programming](https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d)
-- 
+    - NumPy Array vs. Python List
+    - 1D Arrays
+        - `dtype`, `shape`
+        - `np.zeros_like(a)`, `np.zeros(n, int)`
+        - 
 
 ### Check it
 
