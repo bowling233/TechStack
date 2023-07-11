@@ -48,5 +48,4 @@
     -  [离散数学](courses-zju/discrete-math/index.md)
     -  [概率论与数理统计](courses-zju/probability-and-statistics/index.md)
 -  [图书馆](books/index.md)：读过的书的笔记。
--  [杂项](misc/index.md)：不知道放在哪里的笔记。
-   - [远程桌面指南](misc/remote.md)
+-  [杂项](misc/index.md)：收集各种各样的东西。

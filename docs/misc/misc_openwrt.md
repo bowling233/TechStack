@@ -1,6 +1,6 @@
-# 使用 Hyper-V 在 Windows 上搭建 OpenWRT 软路由系统
+# OpenWRT 使用杂记
 
-## 前言
+使用 Hyper-V 在 Windows 上搭建 OpenWRT 软路由系统
 
 ## 准备 OpenWRT 镜像
 

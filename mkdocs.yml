@@ -114,7 +114,7 @@ nav:
     - 🍰技术栈: stack.md
     - 🔖标签: tags.md
 
-  - 校内 CS 课程:
+  - 💻校内 CS 课程:
     - courses-zjucs/index.md
     - C 程序设计系列课程:
       - courses-zjucs/c-programming/index.md
@@ -135,23 +135,23 @@ nav:
         - courses-zjucs/hpc101/lec6.md
         - courses-zjucs/hpc101/lec7.md
 
-  - 校内其他课程:
+  - 🏫校内其他课程:
     - courses-zju/index.md
     - courses-zju/control-theory.md
     - courses-zju/general-physics-1.md
 
-  - 校外课程:
+  - ⛪校外课程:
     - courses-outside/index.md
     - CMU 15-213:
       - Lectures:
         - courses-outside/CMU-15-213/lec1.md
         - courses-outside/CMU-15-213/lec2.md
       - Labs:
-        - courses-outside/CMU-15-213/BC1.md
+        - courses-outside/CMU-15-213/bc1.md
         - courses-outside/CMU-15-213/lab0.md
 
 
-  - 杂项: # misc/
+  - 🎈杂项: # misc/
     - misc/index.md
     - misc/QA.md
     - 教程:
@@ -159,7 +159,7 @@ nav:
     - 一些折腾:
       - misc/misc_linux.md
       - misc/misc_macos.md
-      - misc/misc_blog.md
+      - misc/misc_server.md
       - misc/misc_openwrt.md
       - misc/misc_phone.md
       - misc/misc_win.md
