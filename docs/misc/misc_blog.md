@@ -1,5 +1,6 @@
-# Blog 搭建记录
+# 服务器使用杂记
 
+## 初始化配置
 
 ### 控制台
 
@@ -80,3 +81,5 @@ ChallengeResponseAuthentication no
 chown -R git:git /path/to/repo
 chmod -R 755 /path/to/repo
 ```
+
+- [CSDN：服务器搭建图床 + PicGo 配置 + Typora 总结](https://blog.csdn.net/ACE_U_005A/article/details/129548032)

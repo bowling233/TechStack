@@ -1,16 +1,14 @@
----
-tags:
-  - Ongoing
+# Linux 使用杂记
 
----
+<!-- prettier-ignore-start -->
+!!! abstract "简介"
 
-# Ubuntu 日常使用指南
-
-目前我在笔记本上使用 Ubuntu 作为主力系统。Ubuntu 一定是最容易上手和使用的 Linux 系统。深入使用了一段时间后，发现 Windows 上常用的软件都能在 Ubuntu 上找到替代品。以下记录一下我做了哪些配置来提升 Ubuntu 的使用体验。
+    Ubuntu 一定是最容易上手和使用的 Linux 系统。深入使用了一段时间后，发现 Windows 上常用的软件都能在 Ubuntu 上找到替代品。以下是我在使用 Ubuntu 作为主力系统期间的一些记录。
+<!-- prettier-ignore-end -->
 
 ## 代理
 
-我们首先要保证网络畅通，才能进行各种各样的配置。一些简单的命令可以通过设置 `clash` 代理来完成。
+保证网络畅通才能进行各种各样的配置，一些简单的命令可以通过设置 `clash` 代理来完成。
 
 ### Clash
 
@@ -94,8 +92,6 @@ INFO[0000] RESTful API listening at: [::]:9090
     - [Configure proxy for APT? - Ask Ubuntu](https://askubuntu.com/questions/257290/configure-proxy-for-apt)
 <!-- prettier-ignore-end -->
 
-
-
 ## 同步
 
 ### Syncthing
@@ -163,6 +159,7 @@ sudo dpkg -i ./xxx.deb
 ### 其他
 
 - `Deluge`。轻量级 BT 客户端，比 qBittorrent 功能简洁，占用少很多。
+- [`tabby` 终端](https://tabby.sh/)，目前我见过最好看，同时方便配置的跨平台终端，甚至提供了 [Web app](https://app.tabby.sh/)。GNOME 自带的终端在使用 zsh 的 powerlevel10k 主题时可能出现问题，tabby 则对各种功能都提供了完善的支持。在我的 Ubuntu 上运行时，资源占用也不高。
 
 <!-- prettier-ignore-start -->
 !!! note "更多软件"
@@ -265,6 +262,12 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 
 Windows 将硬件时间看做系统时间，而 Linux 将硬件时间看做 UTC 时间，在此基础上加上时区成为系统时间。
 
+- 合盖不休眠
+
+Ubuntu 默认合盖休眠，虽然开盖恢复时间挺快，但恢复蓝牙需要一段时间。如果正在播放音频，就会社死。设置系统处理电源行为可以参考 [简书：Ubuntu 笔记本设置合盖不休眠](https://www.jianshu.com/p/3fe469fc60c9)。
+
+
+
 ### 终端重度使用者
 
 - [Lynx](https://lynx.invisible-island.net/) 使用终端浏览网页。
@@ -275,8 +278,89 @@ Windows 将硬件时间看做系统时间，而 Linux 将硬件时间看做 UTC 
 
 `brwosh` 是一个更现代化的文本浏览器，能够渲染页面上的 JavaScript 等元素。依赖 Firefox，需要下载二进制文件使用。
 
+### 校内网络和远程桌面
+
+<!-- prettier-ignore-start -->
+!!! note "IPv6"
+    
+
+    使用 IPv6 的特定端口时，应当把地址用方括号括起来，否则会和端口号混在一起导致错误。正确的表示如：`[2402:f000:1:801::8:28]:8080`。
+<!-- prettier-ignore-end -->
+
+在 CC98 上可以找到前辈们的各种分享，真是帮大忙了。然而，还是有很多东西要自己试过才知道能不能起效。以下是我设置时参考的一些帖子：
+
+<!-- prettier-ignore-start -->
+??? info "CC98上的参考贴"
+
+    * [win10校园网自建VPN & 自动重连脚本（PowerShell）](https://www.cc98.org/topic/5076398)，实测可用。
+    * [有线网进阶操作全攻略——自动重连、多拨、远程桌面、IPv6 隧道、DDNS、自建内网穿透……](https://www.cc98.org/topic/5055830)，包含了很多内容，尚未详细研究。
+    * [在家如何搞学术：远程桌面、ssh、跳板机攻略（针对Win10）](https://www.cc98.org/topic/5483684)
+    * [使用 Clash+ZJU Rule 提升你的 ZJU 科学上网体验！](https://www.cc98.org/topic/5257184)，Clash 用户值得一试。
+    * [校外使用rvpn连接内网Windows 10电脑](https://www.cc98.org/topic/5482686)，主要涉及更改默认端口。
+<!-- prettier-ignore-end -->
+
+- 更改端口：在内网（特别是相同子网）访问时，不需要更改端口。如果出现找不到设备，很可能是因为 RDP 协议的 `3389` 端口被校网出于安全原因禁用了。
+
+未解决的问题是：
+
+-   通过 rvpn 在校外连接电脑的远程桌面。初步判断为手机端网卡 IPv6 功能不完善（查询是有 IPv6 网址的，但是联不通）。
+-   被控端，连接 l2tp 后无法被远程桌面连接，断开后可以。
+
+拆机修理过程中，我弄断了笔记本无线网卡的天线，不得不被迫体验一把 Ubuntu 连有线网络。目前个人尝试下来，GUI 界面最好使用 GNOME 自带的 VPN，CLI 最好使用求是潮的 [zjunet](https://github.com/QSCTech/zjunet)。如果会使用 CLI，那么 `zjunet` 不需要我过多介绍，你能自己了解它的使用方法（阅读 README 和使用 `-h`）。以下介绍 GNOME 的配置。
+
+首先，Linux 发行版基本都不会附带 L2TP 协议支持，所以必须先用无线联网，或在其他电脑上下载好相关软件包。在 Ubuntu 中使用图形界面的 `network-manager` 时，需要：
+
+```bash
+sudo apt install network-manager-l2tp network-manager-l2tp-gnome
+```
+
+安装完成后，重启。在 VPN 界面可以创建 L2TP VPN，网关填写 `10.5.1.9`。在 PPP 选项中，“身份验证”全选，安全性及压缩仅勾选 BSD 和 Deflate。配置就完成啦！
+
+<!-- prettier-ignore-start -->
+??? note "网关选哪个？"
+
+    在 L2TP VPN 的网关配置中，应当填写 `10.5.1.9` 或 `10.5.1.10` （玉湖测试通过）。注意，网关和 Windows 中的 VPN 服务器不一样。`lns.zju.edu.cn` 、 `10.0.2.72` 和 `10.0.2.73` （VPN 服务器的 IP）都是不行的。
+
+??? info "CC98上的参考贴"
+
+    * [CC98：2019年ubuntu图形界面连接vpn，不再需要命令行](https://www.cc98.org/topic/4848071)
+    * [CC98：记录一下Linux下有线接校网](https://www.cc98.org/topic/5394591) 王重阳老师的这个配置我试了不行，不知道是什么原因，或许是教师允许使用的协议不同？
+<!-- prettier-ignore-end -->
+
+### 蓝牙连接
+
+<!-- prettier-ignore-start -->
+??? info "blueman"
+    
+    一个管理蓝牙设备的软件 `blueman`，在 GitHub 有 [项目主页](https://github.com/blueman-project/blueman)，可以通过它监测各个蓝牙设备的连接状况。
+<!-- prettier-ignore-end -->
+
+首先，需要在 `/etc/bluetooth/main.conf` 中找到并修改如下值，才能连接蓝牙耳机：
+
+```conf
+ControllerMode = dual
+```
+
+连接成功后，试听了歌曲感觉音质很差，怀疑是蓝牙编码的问题。Ubuntu 自带 `SBC` 编码，而现在的蓝牙耳机至少都是 `AAC` 起步。于是查找资料，了解了一些 Linux 音频系统的知识。
+
+Ubuntu 的音频由 [`pluseaudio`](https://wiki.archlinux.org/title/PulseAudio) 管理。插件 [`pulseaudio-modules-bt`](https://github.com/EHfive/pulseaudio-modules-bt) 为 `pluseaduio` 提供了 AAC、LDAC 等蓝牙编解码器。但该插件仓库作者已经不再维护，PPA 源也仅支持到 Ubuntu 20.04。查看 Issue 得知作者已经转移到 [`PipeWire`](https://wiki.archlinux.org/title/PipeWire)，经过一番查找，我也找到了使用 PipeWire 支持高质量音频编码的博客：[在 Ubuntu 21.10 上启用蓝牙 LDAC/AAC/AptX 高质量音频编码支持](https://kenvix.com/post/setup-ubuntu-21-10-ldac/)。
+
+按照博客安装完成后，我的蓝牙设置选项中并无 AAC 编码可选。阅读 [Gist：Enable PipeWire on Ubuntu 22.04](https://gist.github.com/the-spyke/2de98b22ff4f978ebf0650c90e82027e) 发现 AAC 支持需要使用 [PPA：pipewire-extra-bt-codecs](https://launchpad.net/~aglasgall/+archive/ubuntu/pipewire-extra-bt-codecs)，按说明完成安装后，就可以选用 AAC 编码了。虽然监控显示蓝牙传输仍只有 30 KB/S，但音质已经好很多了。
+
+<!-- prettier-ignore-start -->
+??? info "参考"
+    
+    * [知乎：如何让Ubuntu系统支持LDAC，APTX，AAC编码（提升蓝牙音质）](https://zhuanlan.zhihu.com/p/132409283)
+    * [Bilibili：耳机性能基础自测](https://www.bilibili.com/video/BV16t411N7tS/)，可以测试你的蓝牙连接性能有多好。
+<!-- prettier-ignore-end -->
+
+### 
+
+
+
 ## 参考资料
 
 什么？你说不够你看！这里还有一些大佬调教他们的 Linux 系统的记录，可以看一看：
 
 - [Manjaro Linux 踩坑调教记录](https://prinsss.github.io/setting-up-manjaro-linux/)
+

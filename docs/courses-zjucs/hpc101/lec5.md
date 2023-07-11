@@ -274,3 +274,78 @@ NumPy 提供一些快速内置函数对数组进行聚合操作：
 广播是一组规则，用于描述**不同大小和形状**的数组之间的**二进制通用函数**的行为。
 
 - 二进制通用函数：如加、减、乘、除等
+
+<!-- prettier-ignore-start -->
+!!! note "广播的三条规则"
+
+    1. 如果两个数组的维度数不相同，则小维度数组的形状将会在**最左边**补 1。
+    2. 如果两个数组的形状在任何一个维度上都不匹配，那么数组的形状会沿着**维度为 1 的维度扩展**以匹配另外一个数组的形状。
+    3. 如果两个数组的形状在任何一个维度上都不匹配，并且没有任何一个维度等于 1，则会引发异常。
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+??? question "考考你"
+
+    请应用上面的规则，思考下面的一系列广播操作是否合法？结果是什么？
+
+    ```python
+    M = np.ones((2, 3))
+    a = np.arange(3)
+    M + a
+    ```
+
+    ```python
+    a = np.arange(3).reshape((3, 1))
+    b = np.arange(3)
+    a + b
+    ```
+
+    ```python
+    M = np.ones((3, 2))
+    a = np.arange(3)
+    M + a
+    M + a[:, np.newaxis]
+    np.logaddexp(M, a[:, np.newaxis])
+    ```
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+??? info "广播的应用"
+
+    1. 数组的**缩放**：将数据标准化到均值为 0、方差为 1
+    2. 数组的**中心化**：将数据标准化到均值为 0
+    3. 数组的**归一化**：将数据标准化到 0 到 1 之间
+<!-- prettier-ignore-end -->
+
+### 比较、掩码和布尔逻辑
+
+### Fancy Indexing
+
+与索引不同，fancy indexing 传递的是索引数组，**结果的形状与索引数组的形状一致**。
+
+思考下面的代码：
+
+```python
+x = rand.randint(100, size=10)
+[x[3], x[7], x[2]]
+ind = [3, 7, 4]
+x[ind]
+ind = np.array([[3, 7], [4, 5]])
+x[ind]
+```
+
+对于多维数组，第一个索引指的是行，第二个索引指的是列，以此类推：
+
+```python
+X = np.arange(12).reshape((3, 4))
+row = np.array([0, 1, 2])
+col = np.array([2, 1, 3])
+X[row, col]
+```
+
+将一个行向量与一个列向量组合在索引中，利用广播规则，我们可以得到二维结果：
+
+```python
+X[row[:, np.newaxis], col]
+```
+

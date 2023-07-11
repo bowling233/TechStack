@@ -154,7 +154,15 @@ nav:
   - 杂项: # misc/
     - misc/index.md
     - misc/QA.md
-    - misc/remote.md
+    - 教程:
+      - misc/tu_remote.md
+    - 一些折腾:
+      - misc/misc_linux.md
+      - misc/misc_macos.md
+      - misc/misc_blog.md
+      - misc/misc_openwrt.md
+      - misc/misc_phone.md
+      - misc/misc_win.md
     - misc/workflow.md
 
   - 📚图书馆: # books/
