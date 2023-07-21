@@ -154,6 +154,7 @@ nav:
   - 🎈杂项: # misc/
     - misc/index.md
     - misc/QA.md
+    - misc/scripts.md
     - 教程:
       - misc/tu_remote.md
     - 一些折腾:

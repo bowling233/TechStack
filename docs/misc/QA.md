@@ -127,6 +127,10 @@
 
 > Windows11 限制了 Feature ID 编号为 26008830 的功能，对应的就是任务栏的状态。修复方法参考[知乎](https://www.zhihu.com/question/522335111/answer/2938550118)
 
+- 隐藏的网络设备占用了静态 IP 地址：
+
+> 见 [Error message when you try to set an IP address on a network adapter](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/error-message-when-you-set-ip-address)，解决方法为使系统显示隐藏的网络设备并将其卸载。或者选择 No 并继续配置静态 IP 地址。
+
 ## 软件
 
 ### Git

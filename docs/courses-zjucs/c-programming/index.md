@@ -16,9 +16,9 @@
 
 ## 笔记内容
 
-我计划以专题方式对课程内容进行归纳。
+该课程的笔记内容就是我的辅学讲义。我以专题形式进行编写：
 
--   [程序结构与编译过程](program-structure-and-compilation.md)
+-   [程序与编译过程](program-structure-and-compilation.md)
 -   [类型系统与内存管理](data-type-and-memory-management.md)
 -   [输入输出与文件](io-and-file.md)
 -   [数据结构与算法](data-structure-and-algorithm.md)

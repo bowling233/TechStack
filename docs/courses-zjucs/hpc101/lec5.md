@@ -126,6 +126,9 @@ type(contents)
 
 ## NumPy
 
+- `np.info()` 获取帮助。
+- `np.show_config()` 查看配置信息（如 CPU 支持的 SIMD 指令集）。
+
 ### Python 中的数据类型
 
 学习 NumPy 前，如果能重新审视 Python 的数据类型，将会对 NumPy 所做的优化有更好的理解。
@@ -198,6 +201,7 @@ type(contents)
                 多维：使用逗号分隔<br>
                 `x2[:2, :3]`<br>
                 `x2[::-1, ::-1]` 子数组维度逆序<br>
+                `x3[..., 1] == x3[:, :, 1]` 更简易的写法<br>
                 获取行和列：单个冒号表示空切片，可以省略
                 `x2[0] == x[0, :]`<br>
                 创建副本：使用 `copy()` 方法<br>
@@ -239,6 +243,10 @@ type(contents)
 ::/cards::
 <!-- prettier-ignore-end -->
 
+还有一些常用的函数：
+
+`np.pad()` ``
+
 ### 通用函数
 
 NumPy 的很多类型操作提供了非常方便的、静态的、可编程的接口，称为**向量操作**，它们**将循环推送到编译层**。向量操作是通过**通用函数（ufunc）**实现的，目的是对数组中的值执行快速的重复操作。
@@ -266,6 +274,7 @@ NumPy 提供一些快速内置函数对数组进行聚合操作：
 - 对数组对象调用方法：`x.sum()`
 - 指定轴：`np.sum(x, axis=0)`
     - `axis` 关键字指定将要被折叠的维度，即沿着该维度进行聚合操作。
+    - 思考：`arr1.sum(-1)` 会执行什么操作呢？
 - 大多数聚合函数同样有**对 `NaN` 安全**的版本，计算时忽略缺失值。添加前缀 `nan` 即可
     - `np.nanmean(x)`
 
@@ -319,6 +328,20 @@ NumPy 提供一些快速内置函数对数组进行聚合操作：
 
 ### 比较、掩码和布尔逻辑
 
+比较和布尔运算符同样使用通用函数进行了重载，在这里就不一一列出了~
+
+这些运算同样有广播机制。比如一个数与数组进行比较，将得到一个布尔数组，包含逐元素比较的结果。
+
+复合表达式也是同样：`(2 * x) == (x ** 2)`，其中 `x` 是一个数组。
+
+重载后的 `<` 运算符不能连续使用，比如不能写 `np.sum(0.5 < x < 1)` 而应写为 `np.sum((0.5 < x) & (x < 1))`。
+
+一些常用的函数：
+
+`np.count_nonzero()`、`np.any()`、`np.all()`，它们用于操纵布尔数组。
+
+`np.nonzero()`：返回数组中非零元素的索引。索引作为数组的元组返回，每个维度一个数组。
+
 ### Fancy Indexing
 
 与索引不同，fancy indexing 传递的是索引数组，**结果的形状与索引数组的形状一致**。
@@ -348,4 +371,121 @@ X[row, col]
 ```python
 X[row[:, np.newaxis], col]
 ```
+
+Fancy indexing 有时令人难以理解，可以查阅官方文档 [Indexing on ndarrays — NumPy v1.25 Manual](https://numpy.org/doc/stable/user/basics.indexing.html)，这里做一些摘录：
+
+### Fancy Index 的各种使用方式
+
+首先，在 Python 中 `[(exp1, ...)]` 的索引方式等价于 `[exp1, ...]`。**后者只是前者的语法糖**。
+
+#### 关于普通索引和切片的提醒
+
+- 在性能上，`x[0][2]` 比 `x[0, 2]` 低，因为前者需要创建一个中间数组。
+- `a[i]` 与 `a[i:i+1]` 的区别是：前者比后者少一个维度。
+
+#### Advanced Indexing 的条件
+
+当索引对象是 `ndarray` 或非元组的序列对象时时触发。例如：`x[(1, 2, 3), ]` 可以触发，而 `x[1, 2, 3]` 不能。
+
+基于整数的 Advanced Indexing 会返回一个与索引数组形状相同的数组，而基于布尔的 Advanced Indexing 则会返回一个一维数组。
+
+#### 基于整数的 Advanced Indexing
+
+首先，每个索引数组的形状必须相同或符合广播规则。如果索引有重复，那么使用广播规则是最为方便的。
+
+比如，要取出 `(4, 3)` 数组的边角元素，我们可以这样做：
+
+```python
+row = np.array([[0, 0], [3, 3]])
+col = np.array([[0, 2], [0, 2]])
+x[row, col]
+```
+
+利用广播可以写作：
+
+```python
+row = np.array([0, 3])
+col = np.array([0, 2])
+x[row[:, np.newaxis], col]
+```
+
+#### 与布尔运算结合
+
+布尔数组常常被当作“掩码”使用，从数组中抽取符合条件的元素。用布尔数组进行 Fancy Indexing 得到的结果都是一维的。以下举几例：
+
+- `a[a.nonzero()]` 取出 `a` 中的非零元素（一维）
+  - 还记得 `np.nonzero()` 返回的是索引吗？
+- `a[a != 0]` 同样是取出 `a` 中的非零元素
+  - 但是这里的 `a != 0` 是一个布尔数组，而不是索引数组。
+
+通过上面的两个例子，我们可以将布尔数组的 Fancy Indexing 解释为 `a[np.nonzero(condition)]`。比如：`a[a > 7]` 等价于 `a[np.nonzero(a > 7)]`。
+
+常见的用法有：`x[~np.isnan(x)]`
+
+
+
+### 线性代数
+
+NumPy 的 `linalg` 子模块提供了线性代数的标准功能。此处主要介绍乘法运算。
+
+<!-- prettier-ignore-start -->
+::cards:: cols=2 
+
+[
+  {
+    "title": "`np.dot(a, b[, out])`",
+    "content": "计算两个数组的点积。<br>
+                两个均为标量，等价于 `numpy.multiply(a, b)` 或 `a*b`。<br>
+                两个数组都为一维，则执行普通的内积运算。<br>
+                两个数组都为二维，则执行矩阵乘法，等价于 `a@b`。<br>
+                $N$ 维乘 $1$ 维，相当于用 $N$ 维数组的最后一个维度与 $1$ 维数组进行内积。例如：`(4,3,2)` 与 `(2,)` 相乘的结果是 `(4, 3)`，每个元素是二维向量的内积。<br>
+                $N$ 维乘 $M$ 维，相当于用 $N$ 维数组的最后一个维度与 $M$ 维数组的倒数第二个维度进行内积。例如 `(3, 4, 5, 6)` 与 `(5, 4, 6, 3)` 相乘的结果是 `(3, 4, 5, 5, 4, 3)`。这个结果可能有些难以理解，我的解释是：对 $A$ 最后一个维度的每个矩阵 `(, 6)`，将其与 $B$ 最后两维度的每个 `(6, 3)` 矩阵相乘得到的矩阵塞回 $B$ 中 `(6, 3)` 对应的位置，将 $B$ 形状变为 `(5, 4, 3)` 再塞回 $A$ 中 `(, 6)` 的位置，从而将 `(3, 4, 5, 6)` 的最后一维替换成了 `(5, 4, 3)` 形状，得到 `(3, 4, 5, 5, 4, 3)` 的形状。<br>
+                表达式为：`dot(a, b)[i,j,k,m] = sum(a[i,j,:] * b[k,:,m])`
+                ",
+    "image": "https://cdn.bowling233.top/images/2023/07/202307121147578.png",
+  },
+  {
+    "title": "`np.matmul(x1, x2, /[, out, casting, order, …])`",
+    "content": "
+                简单来说，`matmul` 将高维数组视为最后两个维度的矩阵的堆叠。此时，`matmul` 要求高维数组除最后两个维度的其他维度相同（或为 1 维以应用广播规则），然后对每一对矩阵进行乘法。`(9, 5, 7, 4)` 与 `(9, 5, 4, 3)` 相乘就变为 `(9, 5, 7, 3)`。<br>
+                If both arguments are 2-D they are multiplied like conventional matrices.<br>
+                If either argument is N-D, N > 2, it is treated as a **stack** of matrices residing in the last two indexes and broadcast accordingly.<br>
+                If the first argument is 1-D, it is promoted to a matrix by prepending a 1 to its dimensions. After matrix multiplication the prepended 1 is removed.<br>
+                If the second argument is 1-D, it is promoted to a matrix by appending a 1 to its dimensions. After matrix multiplication the appended 1 is removed.
+                ",
+    "image": "https://cdn.bowling233.top/images/2023/07/202307121239096.png"
+  },
+  {
+    "title": "`np.inner(a, b, /)`",
+    "content": "
+                普通的内积。高维情况可以看作将 `np.dot` 改为两矩阵最后一维直接做点乘，表达式如下：<br>
+                `ndim(a) = r > 0` 且 `ndim(b) = s > 0`<br>
+                `np.inner(a, b) = np.tensordot(a, b, axes=(-1,-1))`<br>
+                `np.inner(a, b)[i0,...,ir-2,j0,...,js-2]= sum(a[i0,...,ir-2,:]*b[j0,...,js-2,:])`<br>
+                ",
+    "image": "https://cdn.bowling233.top/images/2023/07/202307121206515.png"
+  },
+  {
+    "title": "`np.outer(a, b, out=None)`",
+    "content": "
+                外积，仅用于向量。<br>",
+    "image": "https://cdn.bowling233.top/images/2023/07/202307121236806.png"
+  },
+  {
+    "title": "`linalg.multi_dot(arrays, *[, out])`",
+    "content": "计算两个或者更多的数组的乘积。",
+  },
+  {
+    "title": "`np.vdot(a, b, /)`",
+    "content": "
+                对于高维数组，`vdot` 会将其展平成一维数组，然后再计算点积。<br>
+                如果 `a` 是一个复数，那么取它的复共轭计算点积。
+                ",
+  },
+]
+
+::/cards::
+<!-- prettier-ignore-end -->
+
+
 
