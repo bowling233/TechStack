@@ -467,3 +467,13 @@ array_of_displacements[1] = b_addr - a_addr;
 MPI_Get_address(&n, &n_addr);
 array_of_displacements[2] = n_addr - a_addr;
 ```
+
+
+Other MPI Routines:
+
+```c
+MPI_Barrier(MPI_Comm comm);
+MPI_Isend();//non-blocking
+MPI_Irecv();//non-blocking
+MPI_Wait();//block until message is completed
+```

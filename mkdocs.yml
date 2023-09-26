@@ -118,6 +118,7 @@ nav:
     - courses-zjucs/index.md
     - C 程序设计系列课程:
       - courses-zjucs/c-programming/index.md
+      - courses-zjucs/c-programming/newbee.md
       - courses-zjucs/c-programming/data-type-and-memory-management.md
       - courses-zjucs/c-programming/data-structure-and-algorithm.md
       - courses-zjucs/c-programming/exam.md
@@ -171,6 +172,7 @@ nav:
     - 已完成:
       - books/Archive/SOP4.md
     - 进行中:
+      - books/MC.md
       - books/AIPP.md
       - books/LinuxServer.md
       - books/CTP.md

@@ -23,6 +23,16 @@ glightbox: False
 </div>
 
 <div class="flink-list-item">
+    <a href="https://shadowash0215.github.io/about/" title="shad0wash" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://shadowash0215.github.io/img/yukinoshita.jpg" alt="shad0wash">
+        </div>
+        <div class="flink-item-name">shad0wash</div>
+        <div class="flink-item-desc">这是我的老板 🫡</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
     <a href="https://www.cnblogs.com/yuanhongyi/" title="yuanhongyi" target="_blank">
         <div class="flink-item-icon">
             <img src="https://cdn.bowling233.top/note/avatar/yuanhongyi.png" alt="yuanhongyi">

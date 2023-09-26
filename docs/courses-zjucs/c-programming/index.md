@@ -16,11 +16,4 @@
 
 ## 笔记内容
 
-该课程的笔记内容就是我的辅学讲义。我以专题形式进行编写：
-
--   [程序与编译过程](program-structure-and-compilation.md)
--   [类型系统与内存管理](data-type-and-memory-management.md)
--   [输入输出与文件](io-and-file.md)
--   [数据结构与算法](data-structure-and-algorithm.md)
--   [C 标准库与图形库的使用](c-standard-library-and-graphic-library.md)
--   [历年卷整理](exam.md)
+请移步至[竺院辅学课程网站](https://ckc-agc.github.io/study-assist/)，我将笔记合并到了辅学讲义中

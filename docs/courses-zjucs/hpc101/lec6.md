@@ -2,34 +2,17 @@
 
 Date: 2023/07/09
 
-We learn CUDA on NVIDIA DLI platform. You can find the tutorial [here](https://courses.nvidia.com/courses/course-v1:DLI+C-AC-01+V1/about). Environment is Jupiter Notebook.
+这次课程我们使用 NVIDIA DLI 平台学习 CUDA。课程链接在[这里](https://courses.nvidia.com/courses/course-v1:DLI+C-AC-01+V1/about)，使用 Jupiter Notebook 环境。这也是我第一次使用 Jupiter 的教程，深刻地感受到它的方便之处。
 
-## Part 1 Accelerate program using CUDA C/C++
+## Part 1 使用 CUDA 加速 C/C++ 程序
 
-- `nvidia-smi`: NVIDIA Systems Management Interface program, used to monitor and manage NVIDIA GPU devices.
+一些基础知识：
 
-```
-$ nvidia-smi
-Sun Jul  9 04:22:35 2023       
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 440.33.01    Driver Version: 440.33.01    CUDA Version: 10.2     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|===============================+======================+======================|
-|   0  Tesla T4            On   | 00000000:00:1E.0 Off |                    0 |
-| N/A   32C    P8     9W /  70W |      0MiB / 15109MiB |      0%      Default |
-+-------------------------------+----------------------+----------------------+
-                                                                               
-+-----------------------------------------------------------------------------+
-| Processes:                                                       GPU Memory |
-|  GPU       PID   Type   Process name                             Usage      |
-|=============================================================================|
-|  No running processes found                                                 |
-+-----------------------------------------------------------------------------+
-```
+- `nvidia-smi`: 用于查询 NVIDIA GPU 设备的状态。SMI 是 Systems Management Interface（系统管理界面）的缩写。
+- `.cu`: CUDA 源文件扩展名
 
-- `.cu`: CUDA source file
+一个典型的 GPU 函数如下：
+
 - `__global__ void GPUFunction()`: GPU function, called by CPU
 - `GPUFunction<<<1,1>>>();`: Call GPU function
     - `<<< NUMBER_OF_BLOCKS, NUMBER_OF_THREADS_PER_BLOCK>>>`
@@ -198,3 +181,31 @@ cudaGetDeviceProperties(&props, deviceId); // `props` now has many useful proper
 
 
 ## Part 3 Asynchronous Streaming and Visual Analysis of Accelerated C/C++ Applications
+
+### Nsight Systems
+
+生成报告：
+
+```bash
+nsys profile --stats=true -o test-report ./my_report
+```
+
+### CUDA 流
+
+```c
+cudaStream_t stream;   // CUDA流的类型为 `cudaStream_t`
+cudaStreamCreate(&stream); // 注意，必须将一个指针传递给 `cudaCreateStream`
+
+someKernel<<<number_of_blocks, threads_per_block, 0, stream>>>();   // `stream` 作为第4个EC参数传递
+
+cudaStreamDestroy(stream); // 注意，将值（而不是指针）传递给 `cudaDestroyStream`
+```
+
+### 手动内存分配和复制
+
+回忆我们已经学过的 `cudaMallocManaged` 和 `cudaMemPrefetchAsync` 函数。
+
+
+
+```c
+
