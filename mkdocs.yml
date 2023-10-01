@@ -158,6 +158,7 @@ nav:
     - misc/scripts.md
     - 教程:
       - misc/tu_remote.md
+      - misc/tu_report.md
     - 一些折腾:
       - misc/misc_linux.md
       - misc/misc_macos.md
