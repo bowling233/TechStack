@@ -19,7 +19,7 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
-      toc_depth: 2
+      toc_depth: 3
   # Python Markdown Extensions
   - pymdownx.arithmatex:
       generic: true
@@ -159,6 +159,7 @@ nav:
     - 教程:
       - misc/tu_remote.md
       - misc/tu_report.md
+      - misc/tu_vscode.md
     - 一些折腾:
       - misc/misc_linux.md
       - misc/misc_macos.md
@@ -173,6 +174,7 @@ nav:
     - 已完成:
       - books/Archive/SOP4.md
     - 进行中:
+      - books/Algorithm.md
       - books/MC.md
       - books/AIPP.md
       - books/LinuxServer.md
