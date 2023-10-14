@@ -53,6 +53,16 @@ glightbox: False
 </div>
 
 <div class="flink-list-item">
+    <a href="https://minjoker.github.io/" title="MinJoker" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://avatars.githubusercontent.com/u/136879664?v=4" alt="MinJoker">
+        </div>
+        <div class="flink-item-name">MinJoker</div>
+        <div class="flink-item-desc">小明哥哥🥰</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
     <a href="https://www.luogu.com.cn/blog/chen031029/" title="thnk" target="_blank">
         <div class="flink-item-icon">
             <img src="https://cdn.bowling233.top/note/avatar/thnk.webp" alt="thnk">
