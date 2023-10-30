@@ -86,6 +86,10 @@ int units_sold(0);
 
 More generally, a declaration is a base type followed by a list of **declarators**. Each declarator names a variable and gives the variable a type that is related to the **base type**.
 
+<!-- prettier-ignore-start -->
+!!! tip "A reference or pointer is part of a particular declarator and not part of the base type for the declaration."
+<!-- prettier-ignore-end -->
+
 -   A reference defines an alternative name (alias) for an object.
 
     ```c
@@ -134,8 +138,8 @@ We cannot use a `void*` to operate on the object it addresses—we don’t know 
 !!! tip "A Reference to `const` May Refer to an Object That Is Not `const`."
 <!-- prettier-ignore-end -->
 
-- `Top-level` `const`: an object itself is a `const`.
-- `Low-level` `const`: the pointer points to a `const` object. appears in the base type of compound types such as pointers or references.
+-   `Top-level` `const`: an object itself is a `const`.
+-   `Low-level` `const`: the pointer points to a `const` object. appears in the base type of compound types such as pointers or references.
 
 When we copy an object, top-level `const`s are ignored. Low-level `const` is never ignored.
 
@@ -155,16 +159,49 @@ const int *p2 = &ci; // we can change p2; const is low-level
     ```c
     constexpr int mf = 20; // 20 is a constant expression
     ```
+
+    !!! note "The address of an object defined outside of any function is a constant expression (stored in fixed address), and so may be used to initialize a constexpr pointer."
+
+    `constexpr` imposes a **top-level** const on the objects it defines. A constexpr pointer may point to a const or a nonconst type.
 <!-- prettier-ignore-end -->
 
+#### Dealing with Types
 
+-   new way to define a type alias: `using SI = Sales_item`. (C++ 11)
+
+<!-- prettier-ignore-start -->
+!!! danger "Declarations that use type aliases that represent compound types and const can yield surprising results."
+<!-- prettier-ignore-end -->
+
+-   `auto` (C++ 11): the type of the variable that we are defining will be deduced from the initializer we provide.
+    -   `auto` ordinarily ignores **top-level** consts.
+    -   If you want so, use `const auto`.
+-   `decltype` (C++ 11): analyzes the expression to determine its type but **does not evaluate** the expression.
+    ```c
+    decltype(f()) sum = x; // sum has whatever type f returns
+    ```
+
+<!-- prettier-ignore-start -->
+!!! danger "`decltype` will include top-level `const`s and references in its deduced type."
+
+    `decltype` is the **only** context in which a variable defined as a reference is not treated as a synonym for the object to which it refers.
+
+!!! danger "`decltype` returns a reference type for expressions that yield objects that can stand on the left-hand side of the assignment"
+
+    If `p` is a pointer to `int`, then `decltype(*p)` is **`int&`**, not int.
+
+!!! danger "enclosing the name of a variable in parentheses affects the type
+returned by `decltype`"
+
+    - `decltype((variable))` (note, double parentheses) is always a reference type
+    - `decltype(variable)` is a reference type only if variable is a reference.
+<!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 ??? note "随手记点单词"
 
     - variable-langth
     - undefined behavior, implementation-defined behavior
-    - 
 <!-- prettier-ignore-end -->
 
 ### Chapter 3. Strings, Vectors, and Arrays
