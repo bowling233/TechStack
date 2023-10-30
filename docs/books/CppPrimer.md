@@ -78,6 +78,8 @@ int units_sold{0};
 int units_sold(0);
 ```
 
+List initialization prevents narrowing conversions.
+
 <!-- prettier-ignore-start -->
 !!! note "Variables must be defined exactly once but can be declared many times."
 <!-- prettier-ignore-end -->
@@ -205,6 +207,206 @@ returned by `decltype`"
 <!-- prettier-ignore-end -->
 
 ### Chapter 3. Strings, Vectors, and Arrays
+
+<!-- prettier-ignore-start -->
+!!! abstract "Key"
+
+    - `using`
+    - `string`
+    - `vector`
+    - Iterators
+<!-- prettier-ignore-end -->
+
+#### `using` Declaration
+
+-   A Separate using Declaration Is Required for Each Name
+    ```c
+    using std::cout; using std::endl;
+    ```
+-   Headers Should Not Contain `using` Declarations
+
+#### String
+
+Ways to Initialize a `string`:
+
+```cpp
+string s1; // default initialization; s1 is the empty string
+string s2(s1); // s2 is a copy of s1
+string s3("value"); // s3 is a copy of the string literal
+string s3 = "value"; // equivalent to s3("value")
+...
+```
+
+Some operation:
+
+```cpp
+is >> s; // Reads whitespace-separated string into s. Returns is.
+getline(is, s); // Reads a line of input from is into s. Return is.
+s.empty(); // Returns true if s is empty; otherwise returns false.
+...
+```
+
+<!-- prettier-ignore-start -->
+!!! tip "Stream is valid until it has hit end-of-file or an error."
+
+    Used as condition.
+
+!!! tip "`getline()` don't save the newline character."
+!!! tip "`string::size_type` Type"
+
+    It is an unsigned type.
+
+    For example, if `n` is an int that holds a negative value, then `s.size() < n` will almost surely evaluate as true. It yields true because the negative value in n will convert to a large unsigned value.
+<!-- prettier-ignore-end -->
+
+`string` library lets us convert both **character literals and character string literals** to `strings`.
+
+#### Range-Based `for`
+
+```cpp
+for (declaration : expression)
+    statement
+```
+
+-   `expression` is an object of a type that represents a sequence
+-   `declaration` defines the variable that we’ll use to access the underlying elements in the sequence.
+
+On each iteration, the variable in declaration is initialized from the value of the next element in expression.
+
+```cpp
+decltype(s.size()) punct_cnt = 0;
+// count the number of punctuation characters in s
+for (auto c : s) // for every char in s
+    if (ispunct(c)) // if the character is punctuation
+        ++punct_cnt; // increment the punctuation counter
+cout << punct_cnt
+     << " punctuation characters in " << s << endl;
+```
+
+<!-- prettier-ignore-start -->
+!!! tip "If we want to change the value of the characters in a string, wemust define the loop variable as a reference type"
+<!-- prettier-ignore-end -->
+
+#### `vector`-container and class template
+
+<!-- prettier-ignore-start -->
+!!! tip "`vector` is a template, not a type. Types generated from vector must
+include the element type."
+<!-- prettier-ignore-end -->
+
+Ways to Initialize a `vector`:
+
+```cpp
+vector<T> v1; // v1 is empty
+vector<T> v2(v1); // v2 is a copy of v1
+vector<T> v2 = v1; // equivalent to v2(v1)
+vector<T> v3(n, val); // v3 has n elements with value val
+vector<T> v4(n); // v4 has n copies of the value-initialized value of T
+vector<T> v5{a, b, c...}; // v5 has as many elements as there are initializers
+vector<T> v5 = {a, b, c...}; // equivalent to v5{a, b, c...}
+```
+
+<!-- prettier-ignore-start -->
+!!! tip "Parentheses construct the object, curly braces **list initialize** the object."
+<!-- prettier-ignore-end -->
+
+Some operation:
+
+```cpp
+v.push_back(t); // Adds a copy of t to the end of v. Returns void.
+```
+
+<!-- prettier-ignore-start -->
+!!! danger "The body of a range for must not change the size of the sequence over which it is iterating."
+!!! tip "`vector<int>::size_type` instead of `vector::size_type`"
+<!-- prettier-ignore-end -->
+
+#### Iterators
+
+All of the **library containers** have iterators, but only a few of them support the subscript operator.
+
+A **valid** iterator either denotes an element or denotes a position **one past the last element** in a container.
+
+Obtain an iterator:
+
+```cpp
+auto b = v.begin(); // denotes the first element
+auto b = v.cbegin(); // const iterator
+auto c = cv.begin(); // also const iterator (vector is const)
+auto e = v.end(); // denotes one past the last element
+```
+
+<!-- prettier-ignore-start -->
+!!! tip "**of-the-end** iterator"
+
+    If container is empty, begin and end iterator are equal.
+<!-- prettier-ignore-end -->
+
+Dereference an iterator to obtain the element denoted
+by an iterator.
+
+```cpp
+*iter;
+iter->mem;
+++iter;
+--iter;
+iter1 == iter2;
+```
+
+<!-- prettier-ignore-start -->
+!!! tip "C++ prefers `!=` to `>` and `<`. Use it."
+!!! info "Iterator Types: `vector<int>::iterator`, `vector<int>::const_iterator`"
+!!! danger "Changes the size of a `vector` potentially invalidates all iterators into that `vector`."
+<!-- prettier-ignore-end -->
+
+**Some** iterator support all relational operators (such as `vector` and `string`):
+
+```cpp
++ - += -= > >= < <=
+```
+
+<!-- prettier-ignore-start -->
+!!! note "Subtraction of two iterators result in `difference_type`, which is **signed**."
+
+!!! example "iterator arithmetic"
+
+    ```cpp
+    // text must be sorted
+    // beg and end will denote the range we’re searching
+    auto beg = text.begin(), end = text.end();
+    auto mid = text.begin() + (end - beg)/2; // original midpoint
+    // while there are still elements to look at and we haven’t yet found sought
+    while (mid != end && *mid != sought) {
+        if (sought < *mid) // is the element we want in the first half?
+            end = mid; // if so, adjust the range to ignore the second half
+        else // the element we want is in the second half
+            beg = mid + 1; // start looking with the element just after mid
+    mid = beg + (end - beg)/2; // new midpoint
+    }
+    ```
+
+!!! tip "Complicated Array Declarations"
+
+    No array of references. No vector of references.
+
+    Reference is not a type.
+
+    ```cpp
+    int *ptrs[10]; // ptrs is an array of ten pointers to int
+    int &refs[10] = /* ? */; // error: no arrays of references
+    int (*Parray)[10] = &arr; // Parray points to an array of ten ints
+    int (&arrRef)[10] = arr; // arrRef refers to an array of ten ints
+    int *(&arry)[10] = ptrs; // arry is a reference to an array of ten pointers
+    ```
+<!-- prettier-ignore-end -->
+
+
+
+<!-- prettier-ignore-start -->
+!!! note "随手记点单词"
+
+    - instantiation
+<!-- prettier-ignore-end -->
 
 ### Chapter 4. Expressions
 
