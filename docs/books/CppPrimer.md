@@ -192,8 +192,7 @@ const int *p2 = &ci; // we can change p2; const is low-level
 
     If `p` is a pointer to `int`, then `decltype(*p)` is **`int&`**, not int.
 
-!!! danger "enclosing the name of a variable in parentheses affects the type
-returned by `decltype`"
+!!! danger "enclosing the name of a variable in parentheses affects the type returned by `decltype`"
 
     - `decltype((variable))` (note, double parentheses) is always a reference type
     - `decltype(variable)` is a reference type only if variable is a reference.
@@ -290,8 +289,7 @@ cout << punct_cnt
 #### `vector`-container and class template
 
 <!-- prettier-ignore-start -->
-!!! tip "`vector` is a template, not a type. Types generated from vector must
-include the element type."
+!!! tip "`vector` is a template, not a type. Types generated from vector must include the element type."
 <!-- prettier-ignore-end -->
 
 Ways to Initialize a `vector`:
