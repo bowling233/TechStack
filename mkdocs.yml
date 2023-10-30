@@ -178,6 +178,7 @@ nav:
       - books/Archive/SOP4.md
     - 进行中:
       - books/Algorithm.md
+      - books/CppPrimer.md
       - books/MC.md
       - books/AIPP.md
       - books/LinuxServer.md

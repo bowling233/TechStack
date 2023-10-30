@@ -60,8 +60,6 @@ $\neg$ > $\wedge$ > $\vee$ > $\rightarrow$ > $\leftrightarrow$
 | $\neg (p \wedge q)$ | 德摩根定律 De Morgan's law | $\neg p \vee \neg q$ |
 | $\neg (p \vee q)$ | 德摩根定律 De Morgan's law | $\neg p \wedge \neg q$ |
 
-
-
 - $p \leftrightarrow q$ 永真，则称 $p$ 与 $q$ 等价，记 $p \equiv q$。注意：$\equiv$ 和 $\Leftrightarrow$ 不是逻辑联结词，而是代表这一语句。
 
 

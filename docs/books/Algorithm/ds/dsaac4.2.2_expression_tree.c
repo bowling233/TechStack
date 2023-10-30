@@ -65,7 +65,16 @@ Node* popStack(Stack *s)
 
 void printTree(Node *n)
 {
-    
+    if(n->left)
+    {
+        printf("[Node %c] left leaf: %c\n", n->key, n->left->key);
+        printTree(n->left);
+    }
+    if(n->right)
+    {
+        printf("[Node %c] right leaf: %c\n", n->key, n->right->key);
+        printTree(n->right);
+    }
 }
 
 int main(void)
@@ -78,8 +87,9 @@ int main(void)
     for(int i = 0; i < size; i++)
     {
         char temp;
-        scanf(" %c", &temp);
+        if(scanf(" %c", &temp) == EOF) break;
         Node *new = createNode(temp);
+        printf("input %c\n", temp);
         switch(temp)
         {
             case '+': case '-': case '*': case '/':
@@ -90,11 +100,17 @@ int main(void)
             default:
                 if(!isalpha(temp))
                 {
+                    printf("switch error: %c\n", temp);
                     exit(1);
                 }
                 pushStack(s, createNode(temp));
         }
     }
-
-
+    if(s->top != 1) 
+    {
+        printf("s->top %d\n", s->top);
+        exit(1);
+    }
+    printTree(s->stack[s->top]);
+    return 0;
 }
