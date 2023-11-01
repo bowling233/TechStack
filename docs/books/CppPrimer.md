@@ -1,5 +1,38 @@
 # C++ Primer
 
+<style>
+h1 {
+  counter-reset: h2;
+}
+h2 {
+  counter-reset: h3;
+}
+h3 {
+  counter-reset: h4;
+}
+h4 {
+  counter-reset: h5;
+}
+h5 {
+  counter-reset: h6;
+}
+h4:before {
+  counter-increment: h4;
+  content: counter(h4);
+  margin-right: 0.8rem;
+}
+h5:before {
+  counter-increment: h5;
+  content: counter(h5);
+  margin-right: 0.8rem;
+}
+h6:before {
+  counter-increment: h6;
+  content: counter(h6);
+  margin-right: 0.8rem;
+}
+</style>
+
 <!-- prettier-ignore-start -->
 !!! abstract
 
@@ -451,6 +484,9 @@ Skipped.
 !!! abstract "Key"
 
     - Overloaded Functions
+    - Reference Parameters
+    - `const` Parameters and Arguments
+    - Return Types
 <!-- prettier-ignore-end -->
 
 -   `void f1();` **implicit** `void` parameter list.
@@ -664,7 +700,7 @@ oid fooBar(int ival)
     -   defaults can be specified only if all parameters to the right already have defaults
 -   Default Argument Initializers
     -   a default argument can be any **expression** that has a type that is convertible to the type of the parameter
--   -   `inline` Functions Avoid Function Call Overhead
+-   `inline` Functions Avoid Function Call Overhead
     -   optimize small, straight-line functions that are called frequently
     -   putting the keyword `inline` before the function’s **return type**
     -   The compiler may choose to ignore this request.
@@ -693,8 +729,8 @@ oid fooBar(int ival)
 
 #### Function Matching
 
-- candidate functions: same name, can be seen.
-- viable functions: same number of parameters, each argument can be converted to the type of its corresponding parameter.
+-   candidate functions: same name, can be seen.
+-   viable functions: same number of parameters, each argument can be converted to the type of its corresponding parameter.
 
 <!-- prettier-ignore-start -->
 !!! tip "When a function has default arguments, a call may appear to have fewer arguments than it actually does."
@@ -702,8 +738,8 @@ oid fooBar(int ival)
 
 Select the best match:
 
-- The match for each argument is no worse than the match required by any other viable function.
-- There is at least one argument for which the match is better than the match provided by any other viable function.
+-   The match for each argument is no worse than the match required by any other viable function.
+-   There is at least one argument for which the match is better than the match provided by any other viable function.
 
 If after looking at each argument there is no single function that is preferable, then the call is in error. The compiler will complain that the call is **ambiguous**.
 
@@ -711,14 +747,14 @@ Casts should not be needed to call an overloaded function. The need for a cast s
 
 Conversion ranks:
 
-- exact match:
-    - identical type
-    - array to pointer
-    - top-level const
-- const conversion
-- promotion: integral promotion, floating-point promotion
-- arithmetic or pointer conversion
-- class-type conversion
+-   exact match:
+    -   identical type
+    -   array to pointer
+    -   top-level const
+-   const conversion
+-   promotion: integral promotion, floating-point promotion
+-   arithmetic or pointer conversion
+-   class-type conversion
 
 #### Pointers to Functions
 
@@ -734,9 +770,9 @@ auto f1(int) -> int (*)(int*, int);
 Using auto or decltype for Function Pointer Types:
 
 ```cpp
-string::size_type sumLength(const string&, const string&); 
-string::size_type largerLength(const string&, const string&); // depending on the value of its stringparameter, 
-// getFcn returns a pointer to sumLengthor to largerLength 
+string::size_type sumLength(const string&, const string&);
+string::size_type largerLength(const string&, const string&); // depending on the value of its stringparameter,
+// getFcn returns a pointer to sumLengthor to largerLength
 decltype(sumLength) *getFcn(const string &);
 ```
 
@@ -745,6 +781,313 @@ decltype(sumLength) *getFcn(const string &);
 <!-- prettier-ignore-end -->
 
 ### Chapter 7 Classes
+
+<!-- prettier-ignore-start -->
+!!! abstract "Key"
+
+    - `this`
+    - Constructors
+    - Static Class Members
+<!-- prettier-ignore-end -->
+
+#### `this`
+
+Member functions access the object on which they were called through an extra, implicit parameter named `this`. When we call a member function, this is **initialized with the address of the object** on which the function was invoked.
+
+<!-- prettier-ignore-start -->
+!!! warning "`this` is top-level `const` by default."
+<!-- prettier-ignore-end -->
+
+By default, the type of `this` is a `const` pointer to the non`const` version of the class type. Thus we cannot bind this to a `const` object. A `const` **following the parameter list** indicates that `this` is a pointer to `const`. Member functions that use `const` in this way are `const` member functions.
+
+You can think of :
+
+```cpp
+std::string isbn() const { return this->bookNo; }
+```
+
+as:
+
+```cpp
+std::string Sales_data::isbn(const Sales_data *const this)
+{ return this->isbn; }
+```
+
+But the latter is not legal because we may not explicitly define the `this` pointer ourselves.
+
+Return `this` object: use reference to `this`.
+
+```cpp
+Sales_data& Sales_data::combine(const Sales_data &rhs); // return reference
+return *this; // return the object on which the function was called
+```
+
+<!-- prettier-ignore-start -->
+!!! warning "Return reference!"
+<!-- prettier-ignore-end -->
+
+#### Members
+
+Class is itself a scope. The definitions of the member functions of a class are nested inside the scope of the class itself.
+
+When we define a member function outside the class body, the member’s definition must match its declaration. The name of a member defined outside the class must include the name of the class of which it is a member.
+
+<!-- prettier-ignore-start -->
+!!! tip "Use the scope operator `::`."
+
+    ```cpp
+    double Sales_data::avg_price() const { 
+        if (units_sold) 
+            return revenue/units_sold;
+        else 
+            return 0; 
+    }
+    ```
+<!-- prettier-ignore-end -->
+
+#### Constructors
+
+-   Constructors have the same name as the class.
+-   Constructors have no return type.
+-   A class can have multiple constructors.
+-   Constructors may not be declared as `const`.
+
+When we create a `const` object of a class type, the object does not assume its “`const`ness” until after the constructor completes the object’s initialization. Thus, constructors **can write to `const` objects during their construction**.
+
+Defining outside the class body:
+
+```cpp
+Sales_data::Sales_data(std::istream &is) {
+    read(is, *this); // read will read a transaction from is into this object
+}
+```
+
+##### Synthesized Default Constructor
+
+The default constructor is one that takes **no arguments**. The **compiler-generated** constructor is known as the synthesized default constructor.
+
+-   If there is an in-class initializer , use it to initialize the member.
+-   Otherwise, default-initialize the member.
+
+The compiler generates a default constructor automatically **only if a class declares no constructors**.
+
+<!-- prettier-ignore-start -->
+!!! danger "For some classes, the synthesized default constructor does the wrong thing."
+<!-- prettier-ignore-end -->
+
+1. Classes that have members of **built-in or compound type** should ordinarily either initialize those members inside the class or define their own version of the default constructor. Otherwise, users could create objects with members that have **undefined value**.
+2. A class has a member that has a class type, and that class doesn’t have a default constructor, then the compiler can’t initialize that member.
+
+<!-- prettier-ignore-start -->
+!!! tip "Often we are defining default constructor only becausewe want to provide other constructors as well as the default constructor.we "
+<!-- prettier-ignore-end -->
+
+```cpp
+Sales_data() = default; // we already provide initializers for the data members with built-in type.
+```
+
+A constructor that supplies **default arguments** for all its parameters also defines the default constructor.
+
+##### Constructor Initializer List
+
+It is usually best for a constructor to use an **in-class initializer** if one exists and gives the member the correct value.
+
+If your compiler **does not support in-class initializers**, your default constructor should use the constructor initializer list (described immediately following) to initialize every member of the class.
+
+```cpp
+Sales_data(const std::string &s, unsigned n, double p): bookNo(s), units_sold(n), revenue(p*n) { }
+```
+
+When a member is **omitted from the constructor initializer list**, it is implicitly initialized using the same process as is used by the **synthesized default constructor**.
+
+By the time the body of the constructor begins executing, initialization is complete. Our **only chance to initialize `const` or reference datamembers** is in the constructor initializer. A class type member that does not have a default constructor also must be initialized.
+
+<!-- prettier-ignore-start -->
+!!! warning "Members are initialized in the order in which they appear in the class definition."
+
+    It is a good idea to write constructor initializers in the same order as the members are declared. Moreover, when possible, avoid using members to initialize other members.
+<!-- prettier-ignore-end -->
+
+##### Delegating Constructors
+
+In a delegating constructor, the member initializer list has a **single** entry that is the name of the class itself.
+
+```cpp
+// remaining constructors all delegate to another constructor
+Sales_data(): Sales_data("", 0, 0) {}
+Sales_data(std::string s): Sales_data(s, 0,0) {}
+Sales_data(std::istream &is): Sales_data()
+    { read(is, *this); }
+```
+
+When a constructor delegates to another constructor, the constructor initializer list and function body of the delegated-to constructor are both executed.
+
+##### The Role of the Default Constructor
+
+Default initialization happens:
+
+-   nonstatic variables or Arrays at block scope without initializers.
+-   a class that itself has members of class type uses the synthesized default constructor
+-   members of class type are not explicitly initialized in a constructor initializer list
+
+Value initialization happens:
+
+-   array initialization when we provide fewer initializers than the size of the array
+-   local static object without an initializer
+-   request value initialization by writing an expressions of the form `T()` where `T` is the name of a type
+
+<!-- prettier-ignore-start -->
+!!! warning "It is a commonmistake among programmers new to C++ to try to declare an object initialized with the default constructor as follows:"
+
+    ```cpp
+    Sales_data obj(); // oops! declares a function, not an object 
+    Sales_data obj2; // ok: obj2is an object, not a function
+    ```
+<!-- prettier-ignore-end -->
+
+##### Implicit Class-Type Conversions
+
+Every constructor that can be called with a **single** argument defines an implicit conversion to a class type.
+
+<!-- prettier-ignore-start -->
+!!! warning "Only One Class-Type Conversion Is Allowed"
+
+    ```cpp
+    // error: requires two user-defined conversions: 
+    // (1) convert "9-999-99999-9"to string
+    // (2) convert that (temporary) stringto Sales_data 
+    item.combine("9-999-99999-9");
+    ```
+<!-- prettier-ignore-end -->
+
+We can **prevent the use of a constructor in a context that requires an implicit conversion** by declaring the constructor as `explicit`. The `explicit` keyword is meaningful **only** on constructors that can be called with a **single** argument. The `explicit` keyword is used **only** on the constructor declaration inside the class.
+
+<!-- prettier-ignore-start -->
+!!! warning "Implicit conversions happens when we use the **copy form of initialization** (with an `=`)."
+<!-- prettier-ignore-end -->
+
+`explicit` Constructors Can Be Used **Only** for Direct Initialization.
+
+-   `string` constructor that takes a single parameter of type `const char*` **is not** explicit.
+-   `vector` constructor that takes a size **is** explicit.
+
+#### Copy, Assignment, and Destruction
+
+If we do not define these operations, the compiler will synthesize them for us.
+Ordinarily, the versions that the compiler generates for us execute by copying, assigning, or destroying **each member of the object**.
+
+In particular, the synthesized versions are unlikely to work correctly for classes that **allocate resources that reside outside the class objects themselves**.
+
+#### Access Control and Encapsulation
+
+access specifiers to enforce encapsulation:
+
+-   `public`: members are accessible to all parts of the program.
+-   `private`: members are accessible to the member functions of the class.
+
+The only difference between `struct` and `class` is the default access level. If we use the `struct` keyword, the members defined before the first access specifier are `public`;if we use `class`, then the members are `private`.
+
+##### Friends
+
+A class can allow another class or function to access its nonpublic members by making that class or function a friend.
+
+Friend declarations may appear anywhere inside a class definition:
+
+```cpp
+class Sales_data { // friend declarations for nonmember Sales_dataoperations added
+    friend Sales_data add(const Sales_data&, const Sales_data&);
+    friend std::istream &read(std::istream&, Sales_data&);
+    friend std::ostream &print(std::ostream&, const Sales_data&);
+}
+```
+
+<!-- prettier-ignore-start -->
+!!! tip "A friend declaration only specifies access. It is **not a general declaration** of the function."
+<!-- prettier-ignore-end -->
+
+#### Additional Class Features
+
+-   Defining a Type Member
+-   member functions defined inside the class are automatically inline
+-   `mutable` Data Members is never `const`, a `const` member function may change a `mutable` member.
+-   Initializers for Data Members of Class Type (C++ 11). When we provide an in-class initializer, we must do so following **an `=` sign or inside braces**.
+
+<!-- prettier-ignore-start -->
+!!! tip "Overloading Based on `const`"
+
+    ```cpp
+    Screen &display(std::ostream &os) 
+        { do_display(os); return *this; }
+    const Screen &display(std::ostream &os) const 
+        { do_display(os); return *this; }
+    void do_display(std::ostream &os) const {os << contents;}
+    ```
+
+!!! tip "USE PRIVATE UTILITY FUNCTIONS FOR COMMON CODE"
+
+!!! warning "Forward Declaration"
+
+    After a declaration and **before a definition is seen, the type `Screen` is an incomplete type**—it’s known that `Screen` is a class type but not known what members that type contains.
+
+    We can use an incomplete type in only **limited ways**: We can define pointers or references to such types, and we can declare (but not define) functions that use an incomplete type as a parameter or return type.
+<!-- prettier-ignore-end -->
+
+-   Friendship between Classes
+-   Making AMember Function a Friend
+    -   First, define the Window_mgr class, which declares, but cannot define, clear. Screen must be declared before clear can use the members of Screen.
+    -   Next, define class Screen, including a friend declaration for clear.
+    -   Finally, define clear, which can now refer to the members in Screen.
+
+<!-- prettier-ignore-start -->
+!!! tip "Good practice: don’t use a member name for a parameter or other local variable"
+
+??? info "Aggregate Classes and Literal Classes"
+
+    An aggregate class gives users direct access to its members and has **special initialization syntax**. A class is an aggregate if:
+
+    -   All of its data members are `public`
+    -   It does not define any constructors
+    -   It has no in-class initializers
+    -   It has no base classes or `virtual` functions
+
+    We can initialize the data members of an aggregate class by providing a braced list of member initializers.
+
+    An aggregate Class whose data members are all of literal type is a **literal class**. A nonaggregate class, that meets the following restrictions, is also a literal class.
+
+    Although constructors can’t be `const`, constructors in a literal class can be `constexpr` functions. Indeed, a literal class must provide at least one `constexpr` constructor.
+<!-- prettier-ignore-end -->
+
+#### `static` Class Members
+
+Members that are **associated with the class**, rather than with individual objects of the class type.
+
+The `static` members of a class exist **outside any object**. Objects do not contain data associated with `static` data members.
+
+```cpp
+r = Account::rate(); // access a staticmember using the scope operator
+r = ac1.rate(); // through an Accountobject or reference
+r = ac2->rate(); // through a pointer to an Accountobject
+```
+
+They are not initialized by the class’ constructors. @e may not initialize a `static` member inside the class. We must define and initialize each `static` data member **outside the class body**.
+
+```cpp
+double Account::interestRate = initRate();
+```
+
+<!-- prettier-ignore-start -->
+!!! info "Even if a `const static` data member is initialized in the class body, that member ordinarily should be defined outside the class definition with no initializer."
+<!-- prettier-ignore-end -->
+
+`static` Members Can Be Used in Ways Ordinary Members Can’t. A `static` data member can have incomplete type. We can use a `static` member as a default argument.
+
+Similarly, `static` member **functions** are not bound to any object; they do not have a `this` pointer. As a result, static member functions may not be declared as `const`,and we maynot refer to `this` in the body of a static member.
+
+<!-- prettier-ignore-start -->
+!!! note "随手记点单词"
+
+    - encapsulation
+<!-- prettier-ignore-end -->
 
 ## Part II: The C++ Library
 
@@ -768,7 +1111,7 @@ decltype(sumLength) *getFcn(const string &);
 
 ### Chapter 16 Templates and Generic Programming
 
-## Part IV:  Advanced Topics
+## Part IV: Advanced Topics
 
 ### Chapter 17 Specialized Library Facilities
 
