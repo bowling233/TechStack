@@ -1,4 +1,4 @@
-# C++ Primer
+# C++ Primer 书摘
 
 <style>
 h1 {
@@ -36,7 +36,9 @@ h6:before {
 <!-- prettier-ignore-start -->
 !!! abstract
 
-    This note is written in English. 
+    这篇笔记是《C++ Primer》英文版的书摘。中文版我已经读过两遍，但因长时间没有写 C++ 程序而淡忘。我阅读英文版作为复习，同时把一些自己还不太熟的点摘下来。
+
+    这篇笔记不适合初学者。
 <!-- prettier-ignore-end -->
 
 ## Chapter 1 Getting Started
@@ -1091,9 +1093,142 @@ Similarly, `static` member **functions** are not bound to any object; they do no
 
 ## Part II: The C++ Library
 
+<!-- prettier-ignore-start -->
+!!! abstract 
+
+    Central to the library are a number of container classes and a family of generic algorithms that let us write programs that are succinct and efficient.
+<!-- prettier-ignore-end -->
+
 ### Chapter 8 The IO Library
 
+Headers:
+
+-   `iostream`: `istream, wistream, ostream, wostream, iostream, wiostream`
+-   `fstream`: `ifstream, wifstream, ofstream, wofstream, fstream, wfstream`
+-   `sstream`: `istringstream, wistringstream, ostringstream, wostringstream, stringstream, wstringstream`
+
+The names of the **widecharacter** versions begin with a `w`.
+
+The library lets us **ignore the differences among these different kinds of streams** by using **inheritance**.
+
+<!-- prettier-ignore-start -->
+!!! example 
+
+    The types `ifstream` and `istringstream` inherit from `istream`.Thus, we can use objects of type `ifstream` or `istringstream` as if they were `istream` objects.
+
+!!! warning "No Copy or Assign for IO Objects"
+!!! tip "We can read from or write to a stream only when it is in a non-error state."
+!!! info "Interrogating the State of a Stream"
+
+    - `iostate` Type
+    - Functions: `.eof()`, `.fail()`, `.bad()`, `.good()`.
+    - Recover: `.clear()`, `.clear(flags)`, `.setstate(flags)`, `.rdstate()`.
+
+    ```cpp
+    // turns offfailbitand badbitbut all other bits unchanged 
+    cin.clear(cin.rdstate() & ~cin.failbit & ~cin.badbit);
+    ```
+<!-- prettier-ignore-end -->
+
+Each output streammanages a buffer. Several conditions that cause the buffer to be flushed:
+
+-   The program completes normally.
+-   the buffer can become full.
+-   using a manipulator such as `endl`.
+-   use the unitbuf manipulator to set the stream’s internal state to empty the buffer after each output operation.
+-   An output stream might be tied to another stream. In this case, the output stream is flushed whenever the stream to which it is tied is read or written. **By default, `cin` and `cerr` are both tied to `cout`. Hence, reading `cin` or writing to `cerr` flushes the buffer in `cout`.**
+
+<!-- prettier-ignore-start -->
+!!! tip "When an input stream is tied to an output stream, any attempt to read the input stream will first flush the buffer associated with the output stream."
+
+    Interactive systems usually should tie their input stream to their output stream. Doing so means that all output, which might include **prompts to the user, will be written before attempting to read the input.**
+
+    - `tie()`: return the ostream to which this istream is tied.
+    - `tie(&ostream)`: take a pointer to `ostream` and tie to this ostream, return the old tie.
+
+    Each stream can be tied to at most one stream at a time. However, multiple streams can tie themselves to the same ostream.
+
+!!! info "manipulators"
+
+    - `endl`: newline, flush
+    - `flush`: flush
+    - `ends`: null, flush
+    - `unitbuf`, `nounitbuF`: flush or not.
+    - 
+<!-- prettier-ignore-end -->
+
+#### File Stream
+
+```cpp
+fstream fstrm(s);
+fstream fstrm(s, mode);
+fstrm.open(s);
+fstrm.open(s, mode);
+fstrm.close();
+fstrm.is_open();
+```
+
+Calling open on a file stream that is already open will fail and set `failbit`. **Subsequent attempts** to use that file stream will fail.
+
+When an `fstream` object is destroyed, `close` is called automatically.
+
+File modes:
+
+-   `in`: read
+-   `out`: write
+-   `app`: append
+-   `ate`: seek to the end of the stream immediately after opening the file
+-   `trunc`: truncate the file, only when `out` is set
+-   `binary`: binary mode
+
+#### String Stream
+
+```cpp
+sstream strm(s);
+strm.str(); // return a copy of the string
+strm.str(s); // copy s into strm
+```
+
+An `istringstream` is often usedwhen wehavesomeworkto do on an entire line.
+
+```cpp
+string line, word; // will hold a line and word from input, respectively
+vector<PersonInfo> people; // will hold all the records from the input
+// read the input a line at a time until cinhits end-of-file (or another error)
+while (getline(cin, line)) {
+    PersonInfo info; // create an object to hold this record’s data
+    istringstream record(line); // bind recordto the linewe just read
+    record >> info.name; // read the name
+    while (record >> word) // read the phone numbers
+        info.phones.push_back(word); // and store them
+    people.push_back(info); // append this record to people
+}
+```
+
+An `ostringstream` is useful when we need to build up our output a little at a time but do not want to print the output until later.
+
+```cpp
+for(const auto &entry : people) { // for each entry in people
+    ostringstream formatted, badNums; // objects created on each loop
+    for (const auto &nums : entry.phones) { // for each number
+        if (!valid(nums)) {
+            badNums << " " << nums; // string in badNums
+        } else
+            // “writes” to formatted’s string
+            formatted << " " << format(nums);
+    }
+    if (badNums.str().empty()) // there were no bad numbers
+        os << entry.name << " " // print the name
+            << formatted.str() << endl; // and reformatted numbers
+    else // otherwise, print the name and bad numbers
+        cerr << "input error: " << entry.name
+            << " invalid number(s) " << badNums.str() << endl;
+}
+```
+
 ### Chapter 9 Sequential Containers
+
+
 
 ### Chapter 10 Generic Algorithms
 
