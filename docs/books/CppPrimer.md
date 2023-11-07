@@ -1228,11 +1228,351 @@ for(const auto &entry : people) { // for each entry in people
 
 ### Chapter 9 Sequential Containers
 
+<!-- prettier-ignore-start -->
+!!! abstract 
 
+    - `vector`
+        - random access
+        - fast insert/delete at the end
+    - `deque`
+        - random access
+        - fast insert/delete at front or back
+    - `list`: doubly linked list
+        - fast insert and delete at any point in the sequence
+        - bidirectional sequential access
+        - substantial memory overhead
+    - `forward_list`: singly linked list
+        - fast insert and delete at any point in the sequence
+        - sequential access in one direction
+        - **no `size` operation**
+        - substantial memory overhead
+    - `array`: fixed-size
+        - cannot remove elements
+    - `string`: similar to `vector`
+
+    Each container is defined in a header file with the same name as the type.
+<!-- prettier-ignore-end -->
+
+#### Container Operations
+
+<!-- prettier-ignore-start -->
+!!! note "Contatiner Operations"
+
+    -   Type Aliases: useful in generic programming
+        -   `iterator`
+        -   `const_iterator`
+        -   `size_type`
+        -   `difference_type`
+        -   `value_type`
+        -   `reference`
+        -   `const_reference`
+    -   construction
+        -   `C c;`
+        -   `C c1(c2);`
+        -   `C c(b, e);`
+        -   `C c{a, b, c};`
+    -   assignment and `swap`
+        -   `c1 = c2`
+        -   `a.swap(b)`
+        -   `swap(a, b)`
+    -   Add/Remove Elements
+        -   `c.insert(args)`
+        -   `c.emplace(inits)`
+        -   `c.erase(args)`
+        -   `c.clear()`
+    -   Equality and Relational Operators
+        -   `==`, `!=`, `<`, `<=`, `>`, `>=`
+    -   Obtain Iterators
+        -   `c.begin()`, `c.end()`
+        -   `c.cbegin()`, `c.cend()`
+    -   Additional Members of Reversible Containers 
+        -   `reverse_iterator`
+        -   `const_reverse_iterator`
+        -   `c.rbegin(), c.rend()`
+        -   `c.crbegin(), c.crend()`
+
+!!! warning "Iterator Ranges"
+
+    An iterator range is denoted by a pair of iterators each of which refers to **an element, or to one past the last element, in the same container**.
+
+    This element range is called a **left-inclusive** interval. The standard mathematical notation for such a range is
+
+    $$
+    [begin, end)
+    $$
+
+    Three convient properties:
+
+    -   If `begin` equals `end`, the range is empty
+    -   If `begin` is not equal to `end`, there is at least one element in the range, and `begin` refers to the first element in that range
+    -   We can increment `begin` some number of times until `begin == end`
+
+    ```cpp
+    while (begin != end) { 
+        *begin = val; // ok: range isn’t empty so begindenotes an element 
+        ++begin; // advance the iterator to get the next element 
+    }
+    ```
+<!-- prettier-ignore-end -->
+
+Initializing a Container as a Copy of Another Container:
+
+-   To create a container as a copy of another container, the **container and element types must match**.
+-   When we pass iterators, there is no requirement that the container types be identical. as long as it is **possible to convert**.
+    -   As usual, the iterators mark the first and **one past the last element to be copied**
+
+<!-- prettier-ignore-start -->
+!!! warning "the size of a library `array` is part of its type."
+<!-- prettier-ignore-end -->
+
+Library `array` is:
+
+-   Default initialized
+-   If there are fewer initializers than the size of the array, any remaining elements are value initialized.
+
+Although we cannot **copy or assign objects** of built-in array types, there is no such restriction on `array`.
+
+##### Assign
+
+<!-- prettier-ignore-start -->
+!!! abstract 
+
+    ```cpp
+    sqe.assign(b, e);
+    sqe.assign(il);
+    seq.assign(n, t);
+    ```
+
+!!! warning "Assignment related operations **invalidate iterators, references, and pointers** into the left-hand container. Aside from `string` they remain **valid after a `swap`**,and (excepting arrays) the containers to which they refer are swapped."
+<!-- prettier-ignore-end -->
+
+-   **assignment operator** requires that the left-hand and right-hand operands have the same type. It copies all the elements from the right-hand operand into the lefthand operand.
+-   `assign` lets us assign from a different but compatible type, or assign from a subsequence of a container. replaces all the elements in the left-hand container with (copies of) the elements specified by its arguments.
+
+```cpp
+list<string> names;
+vector<const char*> oldstyle;
+names = oldstyle; // error: container types don’t match
+// ok: can convert from constchar*to string
+names.assign(oldstyle.cbegin(), oldstyle.cend());
+```
+
+<!-- prettier-ignore-start -->
+!!! warning "Because the existing elements are replaced, the iterators passed to assign must not refer to the container on which assign is called."
+<!-- prettier-ignore-end -->
+
+##### Swap
+
+The `swap` operation exchanges the contents of two containers of the same type. After the call to `swap`, the elements in the two containers are interchanged.
+
+Excepting array, swapping two containers is guaranteed to be fast— the elements themselves are not swapped; internal data structures are swapped. guaranteed to run in constant time.
+
+with the exception of `string`, iterators, references, and pointers into the containers are not invalidated. They refer to **the same elements as they did before the swap**. However, after the swap, those elements are in a different container.
+
+##### Relational Operators
+
+Comparing two containers performs a **pairwise comparison of the elements**. These operators work similarly to the string relationals
+
+Relational Operators Use **Their Element’s Relational Operator**. We can use a relational operator to compare two containers only if the appropriate comparison operator is defined for the element type.\
+
+#### Sequential Container Operations
+
+<!-- prettier-ignore-start -->
+!!! danger "Container Operations May Invalidate Iterators"
+
+    Refer to book.
+<!-- prettier-ignore-end -->
+
+##### Add
+
+-   `push_back`, `emplace_back`
+    -   aside from `array` and `forward_list`
+-   `push_front`, `emplace_front`
+    -   not valid for `vector`, `array` or `string`
+
+Specified Point:
+
+```cpp
+c.insert(p, t);
+c.emplace(p, args);
+c.insert(p, n, t);
+c.insert(p, b, e);
+c.insert(p, il);
+// all insert before p
+// return iterator to first element inserted
+```
+
+Note it returns an iterator to the first element inserted. Try to understand this:
+
+```cpp
+list<string> lst;
+auto iter = lst.begin();
+while (cin >> word)
+    iter = lst.insert(iter, word); // same as calling push_front
+```
+
+<!-- prettier-ignore-start -->
+!!! warning "Adding elements to a `vector`, `string`,or `deque` potentially invalidates all existing iterators, references, and pointers into the container."
+<!-- prettier-ignore-end -->
+
+##### Access
+
+-   `front`, `back` return reference to elements
+-   `c[n]`, `c.at(n)` return reference to elements
+    -   `at` **throws `out_of_range` exception**
+    -   `c[n]` is undefined if `n >= c.size()`
+
+<!-- prettier-ignore-start -->
+!!! warning "Don't call `front` or `back` on an empty container."
+<!-- prettier-ignore-end -->
+
+##### Erase
+
+-   `pop_back()`
+    -   not valid for `forward_list`
+-   `pop_front()`
+    -   not valid for `vector`, `array` or `string`
+
+```cpp
+c.erase(p);
+c.earse(b, e);
+c.clear();
+// returns an iterator to the element after the one deleted or the off-the-end iterator if p denotes the last element.
+```
+
+Removing elements **anywhere but the beginning or end of** a `deque` invalidates all iterators, references, and pointers. Iterators, references, and pointers to elements **after the erasure point** in a `vector` or `string` are invalidated.
+
+##### Resize
+
+```cpp
+c.resize(n);
+c.resize(n, t);
+```
+
+If resize shrinks the container, then iterators, references, and pointers to the deleted elements are invalidated.
+
+#### `forward_list`
+
+```cpp
+lst.before_begin();
+lst.cbefore_begin();
+lst.insert_after(p, t);
+lst.insert_after(p, n, t);
+lst.insert_after(p, b, e);
+lst.insert_after(p, il);
+emplace_after(p, args);
+lst.erase_after(p); // Returns an iterator to the element after the one deleted
+lst.erase_after(b, e); // from the one after the iterator b up to but not including the one denoted by e
+```
+
+When we add or remove elements in a forward_list, wehaveto keep track of **two iterators**—one to the element we’re **checking** and one to that element’s **predecessor**.
+
+#### `vector` and `string`
+
+part of the implementation leaks into its interface:
+
+-   Container Size Management
+    -   `c.shrink_to_fit()`, no guarantee to reduce capacity
+    -   `c.capacity()`
+    -   `c.reserve(n)`, will never shrink
+
+<!-- prettier-ignore-start -->
+!!! note "Understand the difference between `size` and `capacity`."
+!!! note "Also notice that `resize()` member do not change the capacity of the container, just change number of elements."
+<!-- prettier-ignore-end -->
+
+String supports addtional operations:
+
+-   Construct:
+    ```cpp
+    string s(cp, n);
+    string s(s2, pos2);
+    string s(s2, pos2, len2);
+    ```
+-   Substr:
+    `cpp
+string s2 = s.substr(pos, len);
+string s3 = s.substr(pos);
+`
+    In addition to the versions of `insert` and `erase` that take iterators, `string` provides versions that take an **index**. The string library also provides versions of insert and assign that take **Cstyle character arrays**.
+
+The string class defines two additional members, `append` and `replace`,that can change the contents of a string.
+
+-   Search:
+    ```cpp
+    s.find(args);
+    s.rfind(args);
+    s.find_first_of(args);
+    s.find_last_not_of(args);
+    ...
+    ```
+
+`args` can be:
+
+-   `cp, pos, n`: Look for the first n characters in the array pointed to by the pointer cp. Start looking at position pos in s. No default for pos or n.
+-   `c, pos`: Look for the character c starting at position pos in s. pos defaults to 0.
+
+If there is **no match**, the function returns a staticmember named `string::npos`.
+
+-   `compare` function also has many overloaded versions.
+-   Numeric Conversions
+    ```cpp
+    to_string(val);
+    stoi(s, p, b);
+    stol(s, p, b);
+    stoul(s, p, b);
+    stof(s, p);
+    stod(s, p);
+    ...
+    ```
+
+#### Container Adaptors
+
+Three sequential container adaptors: `stack`, `queue`,and `priority_queue`. A container adaptor takes an existing container type and makes it act like a different type.
+
+```cpp
+stack<int> stk(deq); // copies elements from deq into stk
+```
+
+By default:
+
+-   both `stack` and `queue` are implemented in terms of `deque`
+-   a `priority_queue` is implemented on a `vector`.
+
+```cpp
+// empty stackimplemented on top ofvector
+stack<string, vector<string>> str_stk;
+```
+
+<!-- prettier-ignore-start -->
+!!! note "`stack`"
+
+    ```cpp
+    s.pop();
+    s.push(item);
+    s.emplace(args);
+    s.top();
+    ```
+
+!!! note "`queue` and `priority_queue`"
+
+    ```cpp
+    q.pop();
+    q.push(item);
+    q.emplace(args);
+    q.front();
+    q.back(); // only for queue
+    q.top(); // only for priority_queue
+    ```
+<!-- prettier-ignore-end -->
 
 ### Chapter 10 Generic Algorithms
 
+Skipped.
+
 ### Chapter 11 Associative Containers
+
+Skipped.
 
 ### Chapter 12 Dynamic Memory
 
