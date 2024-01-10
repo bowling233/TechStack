@@ -74,7 +74,7 @@ theme:
   favicon: https://cdn.bowling233.top/note/avatar/bowling.svg
   features:
     - search.highlight
-    - navigation.instant
+#    - navigation.instant
     - navigation.tracking
     - navigation.tabs
     - navigation.prune
@@ -139,10 +139,14 @@ nav:
   - 🏫校内其他课程:
     - courses-zju/index.md
     - courses-zju/control-theory.md
+    - courses-zju/probability-and-statistics/index.md
+    - courses-zju/my.md
     - 普通物理学2:
       - courses-zju/general-physics2/index.md
       - courses-zju/general-physics2/math.md
       - courses-zju/general-physics2/static_electric.md
+      - courses-zju/general-physics2/optics.md
+      - courses-zju/general-physics2/quanta.md
 
   - ⛪校外课程:
     - courses-outside/index.md

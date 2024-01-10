@@ -1576,6 +1576,126 @@ Skipped.
 
 ### Chapter 12 Dynamic Memory
 
+We've used automatic (saved in **stack** memory) and `static` (saved in **static** memory) objects. C++ lets
+us allocate objects dynamically
+
+Dynamically allocated objects have a lifetime that is **independent of where they are created**; they exist until they are **explicitly freed**. They are stored in **heap** memory.
+
+Library provides two smart pointer types that manage dynamic objects. A smart pointer acts like a regular pointer with the important exception that it **automatically deletes** the object to which it points.
+
+Common operations:
+
+```cpp
+p.get(); // return a pointer
+swap(p, q);
+p.swap(q);
+shared_ptr<T> p(q, d);
+
+```
+
+#### `shared_ptr`
+
+```cpp
+shared_ptr<string> p1;
+auto p6 = make_shared<vector<string>>();
+auto q(p);
+p.unique();
+p.use_count();
+```
+
+It's a template.
+
+Allows multiple pointers to refer to the same object. Think of a `shared_ptr` as if it has an associated counter.
+
+-   count is incremented when
+    -   **copied**
+    -   used as **right-hand** operand of **assignment**
+    -   pass to or
+    -   return from a function by **value**.
+-   decremented when
+    -   assign new value to
+    -   destroyed.
+
+Once a **shared_ptr**’s counter goes to zero, the shared_ptr automatically frees the object that it manages.
+
+-   Cannot convert ordinary Pointers to `shared_ptr`s implicitly. Use initializer: `shared_ptr<int> p2(new int(42));`.
+
+<!-- prettier-ignore-start -->
+!!! warning "initialize a smart pointer must point to dynamic memory because use delete to free the associated object"
+<!-- prettier-ignore-end -->
+
+Use `make_shared` function to allocate and use dynamic memory.
+
+-   It returens a `shared_ptr`.
+-   It uses its arguments to construct an object of the given type.
+    -   Value initialization if no arguments.
+-   Use `auto` to avoid type name.
+
+<!-- prettier-ignore-start -->
+!!! note "Value Initialization"
+
+    Value Initialization is similar to default initialization. In the case of **built-in types** the difference is significant; a value-initialized object of built-in type has a well-defined value but a default-initialized object does not. 
+
+    We can usually omit the value and supply only a size. In this case the library creates a **value-initialized element initializer for us**. This library-generated value is used to initialize each element in the container. The value of the element initializer depends on the type of the elements stored in the vector. 
+
+    If the `vector` holds elements of a built-in type, such as int, then the element initializer has a value of 0. If the elements are of a class type, such as string,then the element initializer is itself default initialized.
+
+!!! danger "Memory Leak: `shared_ptr`s in a container"
+
+    If you put shared_ptrs in a container, and you subsequently need to use some, but not all, of the elements, remember to erase the elements you no longer need.
+<!-- prettier-ignore-end -->
+
+`shared_ptr` is usually used to allow multiple objects to **share the same state** (refer to same object when copied).
+
+<!-- prettier-ignore-start -->
+!!! example "`StrBlob`"
+
+    ```cpp
+    class StrBlob { 
+    public:
+        typedef std::vector<std::string>::size_type size_type; 
+        StrBlob();
+        StrBlob(std::initializer_list<std::string> il); 
+        size_type size() const { return data->size(); } 
+        bool empty() const { return data->empty(); } 
+        void push_back(const std::string &t) {data->push_back(t);} 
+        void pop_back(); 
+        std::string& front(); 
+        std::string& back();
+    private:
+        std::shared_ptr<std::vector<std::string>> data; 
+        void check(size_type i, const std::string &msg) const;
+    };
+    ```
+
+    Uses the **default versions** of the operations that copy, assign, and destroy objects of its type.
+<!-- prettier-ignore-end -->
+
+#### Direct manage memory
+
+```cpp
+int *pi = new int;
+int *pi = new int(1024);
+vector<int> *pv = new vector<int>{0,1,2,3,4,5,6,7,8,9};
+string *ps = new string(); // value initialized
+string *ps1 = new string; // default initialized
+auto p1 = new auto(obj);
+const string *pcs = new const string;
+int *p1 = new int; // ifallocation fails, new throws std::bad_alloc
+int *p2 = new (nothrow) int; // if allocation fails, new returns a null pointer
+```
+
+Two operators: `new`, `delete`.
+
+-   `new` returns a pointer to allocated memory.
+    -   can use direct initialization, traditional construction (parentheses) or list initialization.
+
+<!-- prettier-ignore-start -->
+!!! tip "Caller is responsible for deleting the memory."
+!!! tip "assign `nullptr` to the pointer after we use `delete`"
+!!! danger "Provides Only Limited Protection: There can be several pointers that point to the same memory."
+<!-- prettier-ignore-end -->
+
 ## Part III: Tools for Class Authors
 
 ### Chapter 13 Copy Control
