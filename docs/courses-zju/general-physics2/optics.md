@@ -142,7 +142,10 @@
     -   反射物象公式、焦距定义（同样适用凸面镜，注意符号）
     
     $$
-    \frac1{p}+\frac1{p'}=\frac1{f}=\frac2{r}\\
+    \frac1{p}+\frac1{p'}=\frac1{f}=\frac2{r}
+    $$
+
+    $$
     m=-\frac{p'}{p}
     $$
 
@@ -182,7 +185,10 @@
     -   折射物象公式：
 
     $$
-    \frac{n_1}{p}+\frac{n_2}{p'}=\frac{n_2-n_1}{r}\\
+    \frac{n_1}{p}+\frac{n_2}{p'}=\frac{n_2-n_1}{r}
+    $$
+
+    $$
     m=\frac{n_1p'}{n_2p}
     $$
 
