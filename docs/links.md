@@ -155,4 +155,3 @@ glightbox: False
 非常厉害的博客：
 
 -   [NTU 一位研究员的编程笔记](https://www3.ntu.edu.sg/home/ehchua/programming/index.html)
-    -   这个真的很强，覆盖了我所有想掌握的技术栈。

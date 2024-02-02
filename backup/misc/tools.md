@@ -1,0 +1,26 @@
+# Utilities
+
+<!-- prettier-ignore-start -->
+!!! abstract "摘要"
+
+    这里记录一些很好用的小工具，都是我自己使用过的。它们一般都有以下特点：
+    
+    -   非常轻量，功能实用。
+    -   适配最新的操作系统（Windows 11），不会出现兼容性问题。
+
+!!! note "久坐提醒 Stand Up Reminder"
+
+    -   Windows: [Big Stretch Reminder](https://monkeymatt.com/bigstretch/)
+    -   macOS: [Stand 2 for Mac](https://getstandapp.com/)/[StandUp](https://getstandupapp.com/)
+    -   Linux(Gnome): [Safe Eyes](https://slgobinath.github.io/SafeEyes/)
+
+!!! note "按键展示 Key Display"
+
+    -   Windows: [YetAnotherKeyDisplayer](https://github.com/Jagailo/YetAnotherKeyDisplayer)/[Kling](https://github.com/KaustubhPatange/Kling)
+    -   macOS: [KeyCastr](https://github.com/keycastr/keycastr)
+
+!!! note "连点器 Auto Clicker"
+
+    -   Windows: [OP Auto Clicker](https://www.opautoclicker.com/)
+    -   macOS: [macos-auto-clicker](https://github.com/othyn/macos-auto-clicker)
+<!-- prettier-ignore-end -->

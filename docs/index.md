@@ -1,51 +1,23 @@
 # 🎳Bowling's TechStack
 
 <!-- prettier-ignore-start -->
-!!! success "私、アイドル宣言"
+!!! success "欢迎来到 Bowling 的笔记本～"
 
     <div align="center" style="font-size:32px;font-family:'FZXS12';">
         写代码是热爱，写到世界充满爱！
     </div>
 <!-- prettier-ignore-end -->
 
-## 简介
+## 📒关于笔记
 
-这是 Bowling 的笔记本 📓。我想简要记录自己学过的知识、掌握的技能，搭建起自己的技术栈。
+做笔记的确是一门学问。
 
-<!-- prettier-ignore-start -->
-!!! warning "重构中"
-    
-    目前笔记本正在重构中，大部分笔记处于归档整理的状态，暂不可见。许多原有的链接也不再可用。预计本学期内完成重构。
-<!-- prettier-ignore-end -->
+搭建笔记本的初期，我的笔记本处于十分混乱的状态。大大小小的笔记文档混杂在一起，没有一个完善的体系来管理。于是我逐渐开始思考自己做笔记的目的。笔记可以承担的角色很多：助记、防止遗忘、知识总结、记录思考……想要实现的目标越多，笔记本的体系就越复杂，管理就越困难。初期我试图将笔记作为教程一样写作，但由于自己水平有限，最后难免成为搬运工，并没有多少自己的产出，这样的重复劳动意义并不大。于是在重构笔记本时，我决定让自己轻松一些，将笔记作为纯粹的个人笔记，不再追求完美，更加偏重对自己的实用性。
 
--   关于目前正在学习的内容，请参阅 [Project 页面](projects.md)。
--   关于整个笔记本的索引，请参阅 [Stack 技术栈](stack.md)。
+现在的这个笔记本更像一个助记簿，只会用尽可能简洁的语言记录自己觉得十分重要的知识，方便自己查阅，可能并不适合他人。不常用的、量太大的内容，也不会记录，而是给出链接、索引等。至于教程类的文章，我想后续会使用博客的形式呈现给大家，这或许是一个更好的选择。
 
-<!-- prettier-ignore-start -->
-!!! note "初衷"
+## 📚内容
 
-    计算机学科的知识和技能纷繁复杂，而且迭代很快。我常常面临学习完一项技术后，一段时间内没复习就忘掉的窘境。而且之前也没有建立起很系统的笔记体系，大部分笔记要么破碎、混乱而难以阅读，要么遗失了。于是我将自己的笔记按照计算机学科的分类，整理归类，希望使自己的知识和技能体系化。
-<!-- prettier-ignore-end -->
+这个笔记本是按知识分类的。没有选择按书本、课程等分类是因为它们有很多重叠的地方。按知识分类能够把这些重叠的部分放到一起，让知识更有条理性。
 
-## 内容
-
-目前依然觉得笔记本很乱，暂且划分为以下几个分区：
-
--  [主页](index.md)
-    -  [友链](links.md)：其他人的笔记本，都好厉害！
-    -  [项目](projects.md)：正在进行的项目
-    -  [技术栈](stack.md)：以技术树的形式索引笔记本中的内容
-    -  [标签](tags.md)：主要用来索引正在编写的页面
--  [校内 CS 课程](courses-zjucs/index.md)：浙江大学计算机课程的笔记，包括课程作业和实验。
-    -  [C 语言程序设计](courses-zjucs/c-programming/index.md)
-    -  [数据结构基础](courses-zjucs/data-structures/index.md)
-    -  [数字逻辑设计](courses-zjucs/digital-logic/index.md)
-    -  [HPC101](courses-zjucs/hpc101/index.md)
--  [校外课程](courses-outside/index.md)：主要为国外著名大学的 CS 课程
-    -  [CMU 15-213 深入理解计算机系统](courses-outside/CMU-15-213/index.md)
--  [其他课程](courses-zju/index.md)：浙江大学其他课程的笔记。
-    -  [控制论基础](courses-zju/control-theory.md)
-    -  [离散数学](courses-zju/discrete-math/index.md)
-    -  [概率论与数理统计](courses-zju/probability-and-statistics/index.md)
--  [图书馆](books/index.md)：读过的书的笔记。
--  [杂项](misc/index.md)：收集各种各样的东西。
+下面是该笔记本的标签列表，用于跟踪各笔记页面的完成情况：
