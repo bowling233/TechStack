@@ -4,6 +4,12 @@ tags:
 ---
 # ISA
 
+## 概述
+
+指令集架构从总体上可以分为精简指令集（RISC）和复杂指令集（CISC）。ARM、MIPS、RISC-V 属于 RISC，x86 属于 CISC。
+
+闭源的指令集有 x86、ARM。开源的指令集有 MIPS、RISC-V。设计 ARM 处理器需要购买授权。
+
 ## RISC-V 32
 
 <!-- prettier-ignore-start -->
@@ -31,6 +37,7 @@ tags:
     mul
     mulh, mulhsu, mulhu
     ```
+
 -   如何实现锁（原子化操作）？
 
 <!-- prettier-ignore-start -->
@@ -42,8 +49,15 @@ tags:
 
 ??? note "RISC-V 指令集标准"
 
-    <embed src="../attachment/riscv指令集标准.pdf" style="width:100%; height:80vh;" type="application/pdf">
+    <embed src="../attachment/riscv标准.pdf" style="width:100%; height:80vh;" type="application/pdf">
 <!-- prettier-ignore-end -->
+
+### RISC-V CPU 设计
+
+-   推荐视频：
+    -   Rong晔：[RISC-V设计入门指北](https://www.bilibili.com/video/BV1Qr4y1H7v8)
+-   推荐项目：
+    -   [tinyriscv](https://github.com/liangkangnan/tinyriscv)
 
 ## x86-64
 
