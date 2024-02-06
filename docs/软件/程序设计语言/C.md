@@ -1,6 +1,6 @@
 ---
 tags:
-  - 不完善
+    - 不完善
 ---
 
 # C
@@ -10,3 +10,9 @@ tags:
 ```c
 char *colorStr = (value == RED) ? "Red" : (value == BLUE) ? "Blue" : "Unknown";
 ```
+
+## 标准库
+
+- 合格程序员：ctype.h、stdio.h、stdlib.h、string.h
+- 熟练程序员：assert.h、limits.h、stddef.h、time.h
+- 优秀程序员：float.h、math.h、error.h、locale.h、setjmp.h、signal.h、stdarg.h
