@@ -54,10 +54,16 @@ tags:
 
 ### RISC-V CPU 设计
 
--   推荐视频：
-    -   Rong晔：[RISC-V设计入门指北](https://www.bilibili.com/video/BV1Qr4y1H7v8)
--   推荐项目：
-    -   [tinyriscv](https://github.com/liangkangnan/tinyriscv)
+
+
+<!-- prettier-ignore-start -->
+!!! info "推荐资源"
+
+    -   视频：
+        -   Rong晔：[RISC-V设计入门指北](https://www.bilibili.com/video/BV1Qr4y1H7v8)
+    -   项目：
+        -   [tinyriscv](https://github.com/liangkangnan/tinyriscv)
+<!-- prettier-ignore-end -->
 
 ## x86-64
 

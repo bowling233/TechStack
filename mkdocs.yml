@@ -4,48 +4,46 @@ site_url: https://note.bowling233.top
 repo_url: https://github.com/Tiandians/TechStack
 repo_name: TechStack
 edit_uri: blob/master/docs/
-site_description: 这是 Bowling 的笔记本
+site_description: Bowling 的笔记本
 site_author: Bowling
 copyright: <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
 
 # Material
 markdown_extensions:
-  # Python Markdown
-  - abbr
+  # Admonition
   - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # Code Block
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  # Tab
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  # Grid, Image
   - attr_list
-  - def_list
-  - footnotes
   - md_in_html
+  # Icon
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg 
+  # List
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  # TOC
   - toc:
       permalink: true
       toc_depth: 3
-  # Python Markdown Extensions
+  # MathJax
   - pymdownx.arithmatex:
       generic: true
-  - pymdownx.caret
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-  - pymdownx.snippets:
-      auto_append:
-        - includes/abbreviations.md
   # Not Standard
   - neoteroi.cards
 
@@ -54,9 +52,13 @@ extra:
     - icon: material/home-circle
       link: https://bowling233.com
 extra_javascript:
+  # MathJax
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  # Table Sort
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
 extra_css:
   - stylesheets/extra.css
   - stylesheets/flink.css
@@ -65,8 +67,6 @@ extra_css:
   - https://cdn.tonycrane.cc/lxgw/lxgwscreen.css
   - https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css
 
-#Documentation layout
-
 # Build directories
 theme:
   name: material
@@ -74,7 +74,6 @@ theme:
   favicon: https://cdn.bowling233.top/note/avatar/bowling.svg
   features:
     - search.highlight
-#    - navigation.instant
     - navigation.tracking
     - navigation.tabs
     - navigation.prune
@@ -89,7 +88,6 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -103,3 +101,4 @@ plugins:
       tags_file: index.md
   - search
   - glightbox
+  - git-revision-date-localized

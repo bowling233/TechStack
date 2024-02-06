@@ -1,10 +1,27 @@
+# Located at the project root
 root = true
 
-# Unix-style newlines with a newline ending every file
+# Base settings for most files
 [*]
-end_of_line = lf
 charset = utf-8
+end_of_line = lf
+insert_final_newline = true
 
-[*.md]
+indent_style = tab
+indent_size = 8
+
+# This avoids introducing too many unnecessary changes in trivial commits
+trim_trailing_whitespace = false
+
+# General 4-space files
+[*.{py,json,js,css,txt,md}]
 indent_style = space
 indent_size = 4
+
+# General 2-space files
+[*.{yaml,clang-format,yml}]
+indent_style = space
+indent_size = 4
+
+[Makefile]
+indent_style = tab
