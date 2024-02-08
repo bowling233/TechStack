@@ -49,7 +49,7 @@ glightbox: False
 </div>
 
 <div class="flink-list-item">
-    <a href="https://minjoker.github.io/" title="MinJoker" target="_blank">
+    <a href="https://note.minjoker.top/" title="MinJoker" target="_blank">
         <div class="flink-item-icon">
             <img src="https://avatars.githubusercontent.com/u/136879664?v=4" alt="MinJoker">
         </div>
