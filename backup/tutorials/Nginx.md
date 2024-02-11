@@ -2,10 +2,10 @@
 
 ## 简介
 
--   Nginx (念作 "engine x") 是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器。
+- Nginx (念作 "engine x") 是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器。
 
--   其特点是占有内存少，并发能力强，事实上 nginx 的并发能力确实在同类型的网页服务器中表现较好，中国大陆使用 nginx 网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。
--   Nginx 代码完全用 C 语言从头写成。
+- 其特点是占有内存少，并发能力强，事实上 nginx 的并发能力确实在同类型的网页服务器中表现较好，中国大陆使用 nginx 网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。
+- Nginx 代码完全用 C 语言从头写成。
 
 ## 安装
 
@@ -13,15 +13,13 @@
 
 ## 快速入手
 
-<!-- prettier-ignore-start -->
 !!! info
-    
+
     本节主要参考 
 
     - [Nginx Beginner's Guide](https://nginx.org/en/docs/beginners_guide.html)
     - [Nginx 快速教程](https://github.com/dunwu/nginx-tutorial)
     - [Nginx 使用手册](https://www.w3cschool.cn/nginxsysc/)
-<!-- prettier-ignore-end -->
 
 ### 从服务启动 Nginx
 
@@ -39,14 +37,14 @@ systemctl status nginx.service
 
 Nginx 仅有几个命令行参数，完全通过配置文件来配置。
 
--   `-c </path/to/config>` 为 Nginx 指定一个配置文件，来代替缺省的。
--   `-t` 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。
--   `-v` 显示 nginx 的版本。
--   `-V` 显示 nginx 的版本，编译器版本和配置参数。
--   `-s stop` 快速停止，可能并不保存相关信息，并迅速终止 Web 服务。
--   `-s quit` 从容关闭。
--   `-s reload` 重载配置
--   `-s reopen` 重新打开日志文件
+- `-c </path/to/config>` 为 Nginx 指定一个配置文件，来代替缺省的。
+- `-t` 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。
+- `-v` 显示 nginx 的版本。
+- `-V` 显示 nginx 的版本，编译器版本和配置参数。
+- `-s stop` 快速停止，可能并不保存相关信息，并迅速终止 Web 服务。
+- `-s quit` 从容关闭。
+- `-s reload` 重载配置
+- `-s reopen` 重新打开日志文件
 
 > 如何做到的呢？我们还是拿 reload 来说，我们看到，执行命令时，我们是启动一个新的 Nginx 进程，而新的 Nginx 进程在解析到 reload 参数后，就知道我们的目的是控制 Nginx 来重新加载配置文件了，它会向 master 进程发送信号，然后接下来的动作，就和我们直接向 master 进程发送信号一样了。
 
@@ -94,7 +92,7 @@ events{
     - `server` 一个 HTTP 服务器。
       > 一般用 `listen` 的端口和 `server_names` 区分不同服务器。
         - `listen` 监听的端口。若不设置则为 `80`。
-        - `location / {}` 
+        - `location / {}`
             - `root` 根目录
             - `index` 默认页面
 
@@ -109,7 +107,7 @@ events{
 `location` 有两种形式：前缀（路径名）和正则表达式。一个请求 URI 要匹配一个前缀，就必须以该前缀开始。URI 匹配到最长的匹配字符串。
 
 > 例：
-> 
+>
 > ```nginx
 > location /images/ {
 >     root /data;
@@ -120,48 +118,42 @@ events{
 >
 > - `server_name/images/example.png`: `/data/images/exmple.png`
 
-
-
 ### 配置实例：反向代理
 
-<!-- prettier-ignore-start -->
 !!! info "参考文献"
-    
+
     - [用Nginx做端口转发（反向代理）](https://zhuanlan.zhihu.com/p/108740468)
-<!-- prettier-ignore-end -->
 
 ## 进一步认识 Nginx
 
-<!-- prettier-ignore-start -->
 !!! info
-    
+
     本节主要参考
 
     - [Nginx 入门指南](https://www.w3cschool.cn/nginx/)
-<!-- prettier-ignore-end -->
 
--   Nginx 在启动后，在 unix 系统中会以 daemon （守护进程）的方式在后台运行，后台进程包含一个 master 进程和多个 worker 进程。
+- Nginx 在启动后，在 unix 系统中会以 daemon （守护进程）的方式在后台运行，后台进程包含一个 master 进程和多个 worker 进程。
 
-    -   **master 进程**主要用来管理 worker 进程，包含：接收来自外界的信号，向各 worker 进程发送信号，监控 worker 进程的运行状态，当 worker 进程退出后(异常情况下)，会自动重新启动新的 worker 进程。
-    -   基本的网络事件，则是放在 **worker 进程**中来处理了。多个 worker 进程之间是**对等的**，他们同等竞争来自客户端的请求，各进程互相之间是独立的。一个**请求**，只可能在一个 worker 进程中处理，一个 worker 进程，不可能处理其它进程的请求。worker 进程的个数是可以设置的，一般我们会设置与机器 cpu 核数一致，这里面的原因与 Nginx 的进程模型以及事件处理模型是分不开的。
+    - **master 进程**主要用来管理 worker 进程，包含：接收来自外界的信号，向各 worker 进程发送信号，监控 worker 进程的运行状态，当 worker 进程退出后(异常情况下)，会自动重新启动新的 worker 进程。
+    - 基本的网络事件，则是放在 **worker 进程**中来处理了。多个 worker 进程之间是**对等的**，他们同等竞争来自客户端的请求，各进程互相之间是独立的。一个**请求**，只可能在一个 worker 进程中处理，一个 worker 进程，不可能处理其它进程的请求。worker 进程的个数是可以设置的，一般我们会设置与机器 cpu 核数一致，这里面的原因与 Nginx 的进程模型以及事件处理模型是分不开的。
 
--   worker 进程又是如何处理请求的呢？
+- worker 进程又是如何处理请求的呢？
 
-    -   每个 worker 进程都是从 master 进程 fork 过来，在 master 进程里面，先建立好需要 listen 的 socket（listenfd）之后，然后再 fork 出多个 worker 进程。
-    -   所有 worker 进程的 listenfd 会在新连接到来时变得可读，为保证只有一个进程处理该连接，所有 worker 进程在注册 listenfd 读事件前抢 accept_mutex，抢到互斥锁的那个进程注册 listenfd 读事件，在读事件里调用 accept 接受该连接。
-    -   当一个 worker 进程在 accept 这个连接之后，就开始读取请求，解析请求，处理请求，产生数据后，再返回给客户端，最后才断开连接，这样一个完整的请求就是这样的了。
+    - 每个 worker 进程都是从 master 进程 fork 过来，在 master 进程里面，先建立好需要 listen 的 socket（listenfd）之后，然后再 fork 出多个 worker 进程。
+    - 所有 worker 进程的 listenfd 会在新连接到来时变得可读，为保证只有一个进程处理该连接，所有 worker 进程在注册 listenfd 读事件前抢 accept_mutex，抢到互斥锁的那个进程注册 listenfd 读事件，在读事件里调用 accept 接受该连接。
+    - 当一个 worker 进程在 accept 这个连接之后，就开始读取请求，解析请求，处理请求，产生数据后，再返回给客户端，最后才断开连接，这样一个完整的请求就是这样的了。
 
--   Nginx 采用这种进程模型有什么好处呢？
+- Nginx 采用这种进程模型有什么好处呢？
 
-    -   对于每个 worker 进程来说，独立的进程，不需要加锁，所以省掉了锁带来的开销，同时在编程以及问题查找时，也会方便很多
-    -   采用独立的进程，可以让互相之间不会影响，一个进程退出后，其它进程还在工作，服务不会中断，master 进程则很快启动新的 worker 进程
-    -   worker 进程的异常退出，肯定是程序有 bug 了，异常退出，会导致当前 worker 上的所有请求失败，不过不会影响到所有请求，所以降低了风险
+    - 对于每个 worker 进程来说，独立的进程，不需要加锁，所以省掉了锁带来的开销，同时在编程以及问题查找时，也会方便很多
+    - 采用独立的进程，可以让互相之间不会影响，一个进程退出后，其它进程还在工作，服务不会中断，master 进程则很快启动新的 worker 进程
+    - worker 进程的异常退出，肯定是程序有 bug 了，异常退出，会导致当前 worker 上的所有请求失败，不过不会影响到所有请求，所以降低了风险
 
--   Nginx 如何做到高并发？
+- Nginx 如何做到高并发？
 
-    -   Nginx 采用了**异步非阻塞**的方式来处理请求，也就是说，Nginx 是可以同时处理成千上万个请求的
+    - Nginx 采用了**异步非阻塞**的方式来处理请求，也就是说，Nginx 是可以同时处理成千上万个请求的
 
-    -   > 想想 apache 的常用工作方式（apache 也有异步非阻塞版本，但因其与自带某些模块冲突，所以不常用），每个请求会独占一个工作线程，当并发数上到几千时，就同时有几千的线程在处理请求了。这对操作系统来说，是个不小的挑战，线程带来的内存占用非常大，线程的上下文切换带来的 cpu 开销很大，自然性能就上不去了，而这些开销完全是没有意义的。
+    - > 想想 apache 的常用工作方式（apache 也有异步非阻塞版本，但因其与自带某些模块冲突，所以不常用），每个请求会独占一个工作线程，当并发数上到几千时，就同时有几千的线程在处理请求了。这对操作系统来说，是个不小的挑战，线程带来的内存占用非常大，线程的上下文切换带来的 cpu 开销很大，自然性能就上不去了，而这些开销完全是没有意义的。
 
 接下来的内容涉及系统级进程管理， #暂不学习
 
@@ -179,11 +171,11 @@ nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了
 
 当前 Nginx 支持的几个指令上下文：
 
--   main: Nginx 在运行时与具体业务功能（比如 http 服务或者 email 服务代理）无关的一些参数，比如工作进程数，运行的身份等。
--   http: 与提供 http 服务相关的一些配置参数。例如：是否使用 keepalive 啊，是否使用 gzip 进行压缩等。
--   server: http 服务上支持若干虚拟主机。每个虚拟主机一个对应的 server 配置项，配置项里面包含该虚拟主机相关的配置。在提供 mail 服务的代理时，也可以建立若干 server，每个 server 通过监听的地址来区分。
--   location: http 服务中，某些特定的 URL 对应的一系列配置项。
--   mail: 实现 email 相关的 SMTP/IMAP/POP3 代理时，共享的一些配置项（因为可能实现多个代理，工作在多个监听地址上）。
+- main: Nginx 在运行时与具体业务功能（比如 http 服务或者 email 服务代理）无关的一些参数，比如工作进程数，运行的身份等。
+- http: 与提供 http 服务相关的一些配置参数。例如：是否使用 keepalive 啊，是否使用 gzip 进行压缩等。
+- server: http 服务上支持若干虚拟主机。每个虚拟主机一个对应的 server 配置项，配置项里面包含该虚拟主机相关的配置。在提供 mail 服务的代理时，也可以建立若干 server，每个 server 通过监听的地址来区分。
+- location: http 服务中，某些特定的 URL 对应的一系列配置项。
+- mail: 实现 email 相关的 SMTP/IMAP/POP3 代理时，共享的一些配置项（因为可能实现多个代理，工作在多个监听地址上）。
 
 指令上下文，可能有**包含**的情况出现。例如：通常 http 上下文和 mail 上下文一定是出现在 main 上下文里的。在一个上下文里，可能包含另外一种类型的上下文多次。例如：如果 http 服务，支持了多个虚拟主机，那么在 http 上下文里，就会出现多个 server 上下文。
 
@@ -242,39 +234,39 @@ nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了
 
 存在于 main 上下文中的配置指令如下:
 
--   user
--   worker_processes
--   error_log
--   events
--   http
--   mail
+- user
+- worker_processes
+- error_log
+- events
+- http
+- mail
 
 存在于 http 上下文中的指令如下:
 
--   server
+- server
 
 存在于 mail 上下文中的指令如下：
 
--   server
--   auth_http
--   pop3_capabilities
--   imap_capabilities
+- server
+- auth_http
+- pop3_capabilities
+- imap_capabilities
 
 存在于 server 上下文中的配置指令如下：
 
--   listen
--   server_name
--   access_log
--   location
--   protocol
--   proxy
--   smtp_auth
--   xclient
+- listen
+- server_name
+- access_log
+- location
+- protocol
+- proxy
+- smtp_auth
+- xclient
 
 存在于 location 上下文中的指令如下：
 
--   index
--   root
+- index
+- root
 
 ## 配置文件中文详解示例
 

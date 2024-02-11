@@ -2,10 +2,10 @@
 
 ## Chapter 14 Structures and Other Data Forms
 
--   Keywords: struct, union, typedef
--   Operators: `. ->`
--   structure templates and variables
--   unions and pointers to functions
+- Keywords: struct, union, typedef
+- Operators: `. ->`
+- structure templates and variables
+- unions and pointers to functions
 
 **One of the most important steps in designing a program is choosing a good way to represent the data.**
 
@@ -13,24 +13,23 @@
 
 Three skill to learn
 
--   setting up format (or layout) for structure
--   declaring variables to fit that layout
--   gaining access to the members (or fields) of structure
+- setting up format (or layout) for structure
+- declaring variables to fit that layout
+- gaining access to the members (or fields) of structure
 
 ### 14.2 Setting Up the Structure Declaration
 
--   Structure declaration is often referred to as **template**.
+- Structure declaration is often referred to as **template**.
 
 Structure declaration:
 
--   keyword `struct`
--   optional **tag**
--   list of structure members `{}`
--   semicolon after the closing brace `;`
+- keyword `struct`
+- optional **tag**
+- list of structure members `{}`
+- semicolon after the closing brace `;`
 
-<!-- prettier-ignore-start -->
 !!! example
-    
+
     ```c
     struct book
     {
@@ -38,33 +37,28 @@ Structure declaration:
         double price;
     } book1, *books [10]; //variable names followed
     ```
-<!-- prettier-ignore-end -->
 
 Scope:
 
--   if declared inside a function, can only be used inside that function
--   if declared externally, available to all the functions **followed**
+- if declared inside a function, can only be used inside that function
+- if declared externally, available to all the functions **followed**
 
 ### 14.3 Defining a Structure Variable
 
-<!-- prettier-ignore-start -->
-!!! example 
-    
+!!! example
+
     ```c
     struct book book1, *books[10];
     ```
-<!-- prettier-ignore-end -->
 
 Initialization of a structure variable is similar to array:
 
-<!-- prettier-ignore-start -->
 !!! example
 
     ```c
     struct book book1 = { "1234556", 11.11 }; //list of initializers
     struct book book2 = { .price = 11.11, .isbn = "123" }; //designated initializers (C99)
     ```
-<!-- prettier-ignore-end -->
 
 > Storage Class Duration:
 >
@@ -78,17 +72,15 @@ Gaining access to structure members: `.` member operator. It has **higher preced
 
 > Structure and Memory:
 >
-> -   Array is an **automatic storage class object**, typically place on the **stack**.
-> -   Large array can cause runtime error.
+> - Array is an **automatic storage class object**, typically place on the **stack**.
+> - Large array can cause runtime error.
 >
 > Solution:
 >
-> -   make the array static or external
-> -   use the compiler options to set the stack size larger
+> - make the array static or external
+> - use the compiler options to set the stack size larger
 
 ### 14.5 Nested Structures
-
-
 
 > print out particular numbers of blanks: `printf("%40s", " ");`
 
@@ -96,7 +88,7 @@ Gaining access to structure members: `.` member operator. It has **higher preced
 
 Pointer to structures is a good idea:
 
--   pass a pointer as an argument is more efficient
+- pass a pointer as an argument is more efficient
 
 > On some systems, the size of a structure may be greater than the sum of its parts. That's because the system's alignment requirements,
 
@@ -104,17 +96,17 @@ Member Access by Pointer: `->` equals to `(*pts).member`
 
 ### 14.7 Telling Functions About Structures
 
--   Passing members: function doesn't care about whether it's a member of a structure; it only requires the **corresponding type**
--   Using the Structure Address
--   Passing a Structure as an Argument: will create automatic variable, initialized to be copies of the values
+- Passing members: function doesn't care about whether it's a member of a structure; it only requires the **corresponding type**
+- Using the Structure Address
+- Passing a Structure as an Argument: will create automatic variable, initialized to be copies of the values
 
 Structure can be assigned to each other. This works **even if a member is an array**
 
--   called/calling function
+- called/calling function
 
 **【nodus】** Character Arrays or Character Pointers in a Structure
 
--   where the arrays are stored?
+- where the arrays are stored?
 -
 
 ### 14.8 Saving the Structure Contents in a File
@@ -138,15 +130,15 @@ The compiler allots enough space so that it **can hold the largest** of the desc
 
 Initialization:
 
--   initialize **a union to another union** of the same type
--   initialize the **first element**
--   use a **designated initializer**
+- initialize **a union to another union** of the same type
+- initialize the **first element**
+- use a **designated initializer**
 
 > However, sometimes it can be useful to use one member to place values into a union and to then **use a different member for viewing the contents**.
 
 Usage:
 
--   in a structure for which the stored information depends on **one of the members** (usually the flag indicating which member is used)
+- in a structure for which the stored information depends on **one of the members** (usually the flag indicating which member is used)
 
 Anonymous Unions:
 
@@ -154,13 +146,13 @@ Anonymous Unions:
 
 Enumerated type: declare **symbolic names** to represent **integer constants**
 
--   Keyword: `enum`
+- Keyword: `enum`
 
--   enum constants are **type int**
+- enum constants are **type int**
 
--   Purpose: to enhance the readability of a program
+- Purpose: to enhance the readability of a program
 
-Enum declarations: keyword, tag, **enumerators ** (identifiers, symbolic constants)
+Enum declarations: keyword, tag, **enumerators** (identifiers, symbolic constants)
 
 ```C
 enum spectrum {red, orange, yellow, green, blue, violet};
@@ -171,23 +163,23 @@ printf("%d", red);//use alone
 
 > `enum` in C and C++:
 >
-> -   C allows you to apply the `++` operator to an enumeration variable
+> - C allows you to apply the `++` operator to an enumeration variable
 
 Values:
 
--   Default values: begin with 0
+- Default values: begin with 0
 
--   Assigned values: `enum levels {low = 100, medium = 500, high = 2000};`
+- Assigned values: `enum levels {low = 100, medium = 500, high = 2000};`
 
 **【Nodus】** Shared Namespaces
 
--   **Namespace**: to identify parts of a program in which a name is recognized
+- **Namespace**: to identify parts of a program in which a name is recognized
 
--   Structure **tags**, union tags, and enumeration tags in a particular scope all share the same namespace, and that namespace is different from the one used by **ordinary variables**.
+- Structure **tags**, union tags, and enumeration tags in a particular scope all share the same namespace, and that namespace is different from the one used by **ordinary variables**.
 
 > Namespace in C and C++:
 >
-> -   C++ doesn’t allow this because it puts **tags and variable names into the same namespace**
+> - C++ doesn’t allow this because it puts **tags and variable names into the same namespace**
 
 ### 14.12 typedef: A Quick Look
 
@@ -202,45 +194,41 @@ void qsort( void *ptr, size_t count, size_t size,int (*comp)(const void *, const
 int cmp(const void *a, const void *b);
 ```
 
--   A pointer to a function can hold the address marking the start of the function code.
+- A pointer to a function can hold the address marking the start of the function code.
 
--   To specify the function type, specify the function signature
+- To specify the function type, specify the function signature
 
     `int (*pf)(char *)`
 
--   Assign to it the addresses of functions: the name of a function represent the address of the function
+- Assign to it the addresses of functions: the name of a function represent the address of the function
 
     `pf = ToLower`
 
--   Usage: `(*pf)(mis)` or `pf(mis)`
+- Usage: `(*pf)(mis)` or `pf(mis)`
 
--   Function pointer as parameter: `void show(void (* fp)(char *), char * str)`
+- Function pointer as parameter: `void show(void (* fp)(char *), char * str)`
 
--   with `typedef`: `typedef void (*V_FP_CHARP)(char *)`, `V_FP_CHARP pfun`
+- with `typedef`: `typedef void (*V_FP_CHARP)(char *)`, `V_FP_CHARP pfun`
 
--   with array: `	V_FP_CHARP arpf[4] = {ToUpper, ToLower}`
-
-
+- with array: `V_FP_CHARP arpf[4] = {ToUpper, ToLower}`
 
 ## 数据结构
 
 ### 链表
 
->   内容来自 CMU [CS 15-122]
+> 内容来自 CMU [CS 15-122]
 
-<!-- prettier-ignore-start -->
 ??? tip "与表有关的英文单词"
-    
+
     - linked-list
     - list
     - table
     - form
 
     这些名词代表了不同的数据结构或应用。链表指的是 `linked-list`。
-<!-- prettier-ignore-end -->
 
--   链表由节点构成，节点含有数据和指向下一个节点的指针。
--   链表可以由数组或基于指针的结构实现。
+- 链表由节点构成，节点含有数据和指向下一个节点的指针。
+- 链表可以由数组或基于指针的结构实现。
 
 处理头、尾部节点有多种方式：
 
@@ -248,9 +236,9 @@ int cmp(const void *a, const void *b);
 
 在本课程中，采用第二种方式：设置尾部哑节点。
 
--   列表的片段（Segment）
-    -   本课中，我们认为片段是左闭右开的。这符合尾部哑节点的处理处理方式。
-    -   **编写函数** `bool is_segment(list * start, list * end)`。
--   如何检查链表中的循环？
-    -   **编写函数** `bool is_acyclic(list* start)`。
-    -   
+- 列表的片段（Segment）
+    - 本课中，我们认为片段是左闭右开的。这符合尾部哑节点的处理处理方式。
+    - **编写函数** `bool is_segment(list * start, list * end)`。
+- 如何检查链表中的循环？
+    - **编写函数** `bool is_acyclic(list* start)`。
+    -

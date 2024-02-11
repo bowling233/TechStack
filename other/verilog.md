@@ -1,8 +1,6 @@
 # Verilog 简明教程
 
-<!-- prettier-ignore-start -->
 !!! note 本篇教程主要依据《Verilog 数字系统设计（第三版）》。"
-<!-- prettier-ignore-end -->
 
 要熟练掌握 Verilog，硬件知识必不可少，《数字逻辑设计》课程已经覆盖了大部分内容，这里不再赘述。本篇笔记侧重于 Verilog 的语法和使用，帮助同学们解决实验、大作业中的代码问题。
 
@@ -18,8 +16,8 @@
 
 或许你会想，硬件描述语言为什么要有数据类型。人们只是出于编程语言的惯例，把硬件（如触发器等）抽象成了数据类型。我们可以从数字逻辑电路中抽象出的数据类型有：
 
--   `wire`：抽象自模块内部的连线，不能存储数据。
--   `reg`：抽象自寄存器，可以存储数据。
+- `wire`：抽象自模块内部的连线，不能存储数据。
+- `reg`：抽象自寄存器，可以存储数据。
 
 它们都有位宽的概念，如 `wire [7:0] a;` 表示 `a` 是一个 8 位的连线。方括号里的上下限由你自己决定，比如也可以写成 `wire [8:1] a;`。习惯上从 `0` 开始。
 
@@ -35,10 +33,10 @@ Verilog 中的常量都是整型（integer），表示方式为：
 
 可以使用的进制有：
 
--   二进制：`b` 或 `B`
--   八进制：`o` 或 `O`
--   十进制：`d` 或 `D`
--   十六进制：`h` 或 `H`
+- 二进制：`b` 或 `B`
+- 八进制：`o` 或 `O`
+- 十进制：`d` 或 `D`
+- 十六进制：`h` 或 `H`
 
 值除了各进制对应的数字外，还可以是 `x`（未知值）和 `z`（高阻值，也可以表示为 `?`）。此外，还可以用下划线 `_` 分隔，便于阅读。
 
@@ -51,16 +49,13 @@ Verilog 中的常量都是整型（integer），表示方式为：
 8'h4x // 8 位十六进制数，前 4 位为 4，后 4 位为不定值
 ```
 
-
 ## 二、初识模块和测试
 
 接下来我们将认识 Verilog 的基本组件——模块，并理解 Verilog 的三种编程模型：逻辑功能描述、内部连线描述、原语描述。
 
-<!-- prettier-ignore-start -->
 ??? info "Verilog 设计层次"
 
     除了这三种编程模型，Verilog 还可以在 5 种层次上进行设计：系统级、算法级、寄存器传输级、门级、原语级。这些内容比较综合，暂时不进行介绍。
-<!-- prettier-ignore-end -->
 
 ### 定义一个模块
 
@@ -80,11 +75,8 @@ endmodule
 module block_name(output a, output b, input c, input d);
 ```
 
-<!-- prettier-ignore-start -->
 !!! tip "习惯上，输出引脚被放在前面。"
-<!-- prettier-ignore-end -->
 
-<!-- prettier-ignore-start -->
 !!! note "二选一选择器的三种 Verilog 描述"
 
     === "逻辑功能描述"
@@ -132,7 +124,6 @@ module block_name(output a, output b, input c, input d);
         计算机科学中所谓原语（primitive）的概念，就是别人提供给你的最底层能调用的功能，不能再分割得更小了。
         
         在 Verilog 中，原语就是一些基本的逻辑门，如 `and`、`or`、`not` 等。我们自然可以用这些基本逻辑门实现各种各样的逻辑电路。
-<!-- prettier-ignore-end -->
 
 接下来，我们要编写一个测试来验证我们写的选择器是否正确，验证的思路很简单，就是把所有可能的输入都输入一遍，然后检查输出是否正确。
 
@@ -162,15 +153,13 @@ module t;
 endmodule
 ```
 
-
-
 ## 编程模型
 
 在书中展示了几种 Verilog 编程方式：
 
--   逻辑功能描述：使用 `if` 等逻辑语句描述该模块的功能
--   内部连线描述：使用 `wire` 定义模块内部的连线，使用 `assign` 连接连线和逻辑
--   原语描述：使用 `and`、`or` 等原语描述模块的功能
+- 逻辑功能描述：使用 `if` 等逻辑语句描述该模块的功能
+- 内部连线描述：使用 `wire` 定义模块内部的连线，使用 `assign` 连接连线和逻辑
+- 原语描述：使用 `and`、`or` 等原语描述模块的功能
 
 数逻教材中的大部分 Verilog 都采用后两种编程方式结合。
 
@@ -182,17 +171,15 @@ endmodule
 
 基本模块结构如下：
 
-
-
 接下来就是内部信号说明（`wire` 和 `reg` 等的声明）和功能定义（逻辑部分）
 
 ### 功能定义
 
 有 3 种方式能够产生逻辑：
 
--   `assign` 声明语句
--   实例元件 `and #2 ul(a, b, c);`
--   `always` 块
+- `assign` 声明语句
+- 实例元件 `and #2 ul(a, b, c);`
+- `always` 块
 
 ```verilog
 always @ (a or b)
@@ -201,25 +188,23 @@ always @ (a or b)
 
 `assign` 最常用，`always` 既可描述组合逻辑，也可描述时序逻辑，手段较多。
 
-<!-- prettier-ignore-start -->
 !!! warning "并行性"
 
     如果把上面三个部分放到一个模块中，它们之间是并行的。它们之间的顺序不会影响实现的功能。
 
     `always` 模块内，语句是顺序执行的。
-<!-- prettier-ignore-end -->
 
 ### 使用模块
 
 有两种方式：
 
--   严格按照定义的端口顺序来连接。
+- 严格按照定义的端口顺序来连接。
 
 ```verilog
 block MyBlock(a, b, c, d);
 ```
 
--   用 `.portname(signal)` 来连接：
+- 用 `.portname(signal)` 来连接：
 
 ```verilog
 block MyBlock(.a(a), .b(b), .c(c), .d(d));
@@ -242,7 +227,8 @@ parameter average_delay = (r + f) / 2;
 
 常见用法：
 
--   实例化时传参指定
+- 实例化时传参指定
+
     ```verilog
     module Decode(A,F);
         parameter Width=1, Polarity=1;
@@ -252,7 +238,9 @@ parameter average_delay = (r + f) / 2;
         Decode #(4, 0) D2(A,F); // 也可以省去关键字赋值
     endmodule
     ```
--   使用 `defparam` 语句改变任意模块的参数值
+
+- 使用 `defparam` 语句改变任意模块的参数值
+
     ```verilog
     module Decode(A,F);
         parameter Width=1, Polarity=1;
@@ -267,18 +255,23 @@ parameter average_delay = (r + f) / 2;
 
 #### 变量
 
--   网络数据类型：表示结构实体之间的连接
-    -   `wire`：单驱动
+- 网络数据类型：表示结构实体之间的连接
+    - `wire`：单驱动
+
         ```verilog
         wire a;
         wire [7:0] b;
         ```
-    -   `tri`：多驱动
--   寄存器 `reg`：数据存储单元的抽象
+
+    - `tri`：多驱动
+- 寄存器 `reg`：数据存储单元的抽象
+
     ```verilog
     reg [n-1:0] a;
     ```
--   `memory` 型：对 `reg` 建立数组
+
+- `memory` 型：对 `reg` 建立数组
+
     ```verilog
     reg[7:0] mem[0:255]; // 256 个 8 位寄存器组 mem
     reg[n-1:0] rega; // n 位寄存器 rega
@@ -291,23 +284,24 @@ parameter average_delay = (r + f) / 2;
 
 四则、位移、逻辑运算不再介绍。
 
--   位运算
+- 位运算
+
     ```verilog
     ~ & | ^ ^~
     ```
--   三目运算
--   拼接运算
+
+- 三目运算
+- 拼接运算
+
     ```verilog
     {a, b, c}
     ```
-
-
 
 ## 进阶：使用更加基础的工具
 
 提前准备、学习以下工具，它们用于 Verilog 的编译、仿真、综合等。
 
--   `verilator`：Verilog 编译器
+- `verilator`：Verilog 编译器
 
 看看系统贯通课的一个 `Makefile`：
 
@@ -336,7 +330,7 @@ clean:
 
 编译时抄抄就好。注意到其中几个关键的参数：
 
--   `--top-module`：编译出的模块名
+- `--top-module`：编译出的模块名
 
 `verilator` 将在 `DIR_BUILD` 编译出一大堆文件，还有一个 `.mk`，这是一个 `Makefile`。所以上面又 `make -C` 进入该目录使用该 `Makefile` 编译得到可执行文件，名称就是 `VERILATOR_TOP` 指定的。运行即可。此时 Testbench 也在里面。也可以看到 `gtkwave` 使用了其中的 `.vcd` 文件。
 

@@ -1,12 +1,10 @@
 # 首页
 
-<!-- prettier-ignore-start -->
 !!! success "欢迎来到 Bowling 的笔记本～"
 
     <div align="center" style="font-size:32px;font-family:'FZXS12';">
         写代码是热爱，写到世界充满爱！
     </div>
-<!-- prettier-ignore-end -->
 
 ## 📒关于笔记
 

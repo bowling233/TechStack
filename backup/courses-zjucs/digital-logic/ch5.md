@@ -2,7 +2,6 @@
 
 ## Vocabulary
 
-<!-- prettier-ignore-start -->
 !!! info "Vocabulary"
 
     | English | Chinese |
@@ -26,15 +25,14 @@
     | terminal | 端口 |
     | contact | 触点 |
     | fuse | 熔丝 |
-<!-- prettier-ignore-end -->
 
 ## Implementation Technology
 
 ### CMOS Transistor
 
--   nMOS: drain at a higher voltage than source
-    -   gate voltage > threshold voltage: on (closed)
-    -   gate voltage < threshold voltage: off (open)
+- nMOS: drain at a higher voltage than source
+    - gate voltage > threshold voltage: on (closed)
+    - gate voltage < threshold voltage: off (open)
 
 Input variable on the gate terminal represent the control voltage. nMOS: $X:X$, pMOS: $X:\overline{X}$.
 
@@ -45,22 +43,19 @@ OR function.
 
 Except during transitions, there is a path to the output of the circuit $F$ either from the power supply +V (logic $1$) or from ground (logic $0$). Such a circuit is called static CMOS.
 
-<!-- prettier-ignore-start -->
 !!! info "[Quora: Why is PMOS good to pass logic 1 and NMOS is good to pass logic 0?](https://www.quora.com/Why-is-PMOS-good-to-pass-logic-1-and-NMOS-is-good-to-pass-logic-0)"
-<!-- prettier-ignore-end -->
 
 $F$ is implemented using pMOS and connects the circuit output to logic 1 (VDD), while $\overline{F}$ is implemented using nMOS and connects the circuit output to logic 0 (GND).
 
 ### Technology Parameters
 
--   Fan-in: the number of inputs to a gate
--   Fan-out: the number of gates that can be driven by a gate
--   Propagation delay: the time required for a signal to propagate from input to output of a gate
--   Power dissipation (dissipation): the amount of power consumed by a gate
+- Fan-in: the number of inputs to a gate
+- Fan-out: the number of gates that can be driven by a gate
+- Propagation delay: the time required for a signal to propagate from input to output of a gate
+- Power dissipation (dissipation): the amount of power consumed by a gate
 
 ## Programmable Implementation Technology
 
 Four types of basic programmable logic devices (PLDs): ROM, PLA, PAL, and FPGA.
 
 ### ROM
-

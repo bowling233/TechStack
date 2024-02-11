@@ -26,19 +26,15 @@
 
 oneAPI 有几个工具可以用来分析性能：`vtune`、`traceanalyzer`、
 
-<!-- prettier-ignore-start -->
 !!! warning "一些老旧的命令"
 
     如 `amplxe-cl` 等工具已经被 `vtune` 取代，这里不再介绍。
-<!-- prettier-ignore-end -->
 
 ### VTune
 
-<!-- prettier-ignore-start -->
 !!! info "参考资料"
 
     https://www.intel.com/content/www/us/en/docs/vtune-profiler/get-started-guide/2024-0/linux-os.html
-<!-- prettier-ignore-end -->
 
 服务器端一般没有 GUI，本地 VTune 远程调试也需要将远程服务器 SSH 设置为无密码登陆（我们一般不会这样做）。因此常见的调试流程是：
 

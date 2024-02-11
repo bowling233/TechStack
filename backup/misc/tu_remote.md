@@ -2,30 +2,24 @@
 
 ## 准备
 
-<!-- prettier-ignore-start -->
 !!! note "准备 Windows 专业版"
-    
-    请先确认自己的 Windows 版本为专业版。一般笔记本默认安装的系统为家庭版，**不支持被远程控制**。只有 Windows 专业版及以上版本支持**被远程控制**。如果你在 *打开远程桌面* 步骤发现没有远程桌面窗格，说明你的 Windows 版本不支持被远程控制。
-<!-- prettier-ignore-end -->
 
--   电脑端：放在宿舍，连上有线网络（建议，连接方法参见 [校网连接指南 - 图灵 2022 学长组资料汇总](https://turing2022.tonycrane.cc/rvpn/#_3)）或者 `ZJUWLAN-Secure`。
--   移动端
-    -   安装 ![](http://cdn.bowling233.top/note/img/rd.01.png){: style="height:20px;width:20px"}`Microsoft Remote Desktop`。这是微软开发的远程桌面客户端，使用体验最好。
-    -   建议使用连接了蓝牙键鼠的平板，以获得笔记本的体验。触控笔也可。
+    请先确认自己的 Windows 版本为专业版。一般笔记本默认安装的系统为家庭版，**不支持被远程控制**。只有 Windows 专业版及以上版本支持**被远程控制**。如果你在 *打开远程桌面* 步骤发现没有远程桌面窗格，说明你的 Windows 版本不支持被远程控制。
+
+- 电脑端：放在宿舍，连上有线网络（建议，连接方法参见 [校网连接指南 - 图灵 2022 学长组资料汇总](https://turing2022.tonycrane.cc/rvpn/#_3)）或者 `ZJUWLAN-Secure`。
+- 移动端
+    - 安装 ![](http://cdn.bowling233.top/note/img/rd.01.png){: style="height:20px;width:20px"}`Microsoft Remote Desktop`。这是微软开发的远程桌面客户端，使用体验最好。
+    - 建议使用连接了蓝牙键鼠的平板，以获得笔记本的体验。触控笔也可。
 
 ## 电脑端设置
 
-<!-- prettier-ignore-start -->
 !!! quote
-    
-    参考 98 帖子：[校外使用rvpn连接内网Windows 10电脑](https://www.cc98.org/topic/5482686)
-<!-- prettier-ignore-end -->
 
-<!-- prettier-ignore-start -->
+    参考 98 帖子：[校外使用rvpn连接内网Windows 10电脑](https://www.cc98.org/topic/5482686)
+
 !!! tip "温馨提醒"
 
     点击图片可以放大查看~
-<!-- prettier-ignore-end -->
 
 ::cards:: cols=2
 
@@ -61,9 +55,8 @@ New-NetFirewallRule -DisplayName 'RDPPORTLatest-TCP-In' -Profile 'Public' -Direc
 New-NetFirewallRule -DisplayName 'RDPPORTLatest-UDP-In' -Profile 'Public' -Direction Inbound -Action Allow -Protocol UDP -LocalPort $portvalue
 ```
 
-<!-- prettier-ignore-start -->
 ??? info "技术细节"
-    
+
     - 为什么要更改端口号？
 
     出于安全性考虑，学校屏蔽了远程桌面的默认端口，因此需要更改。
@@ -71,7 +64,6 @@ New-NetFirewallRule -DisplayName 'RDPPORTLatest-UDP-In' -Profile 'Public' -Direc
     - 为什么使用 IPv6 地址？
 
     在校园内网，不同子网段的 IPv4 地址常常不能互连。但 IPv6 地址可以，这可能与校网环境有关。此外 IPv6 地址的租期似乎更长，更加稳定。
-<!-- prettier-ignore-end -->
 
 ## 移动端设置
 
@@ -104,11 +96,9 @@ New-NetFirewallRule -DisplayName 'RDPPORTLatest-UDP-In' -Profile 'Public' -Direc
 
 ::/cards::
 
-
-
--   点击保存。
--   点击刚刚添加的远程主机，即可连接。初次连接可能会弹出一些警告窗口，勾选不再提醒并确认即可。
--   享受远程桌面体验吧！
+- 点击保存。
+- 点击刚刚添加的远程主机，即可连接。初次连接可能会弹出一些警告窗口，勾选不再提醒并确认即可。
+- 享受远程桌面体验吧！
 
 ![](http://cdn.bowling233.top/note/img/rd.03.jpg)
 

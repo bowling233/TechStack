@@ -1,19 +1,15 @@
 # 数字逻辑设计
 
-<!-- prettier-ignore-start -->
 !!! abstract "课程信息"
 
     - 时间：2023-2024 学年 秋冬学期
     - 授课教师：马德
-<!-- prettier-ignore-end -->
 
-<!-- prettier-ignore-start -->
 !!! info "其他学长的笔记"
 
     - [Isshiki修：数字逻辑设计](https://note.isshikih.top/cour_note/D2QD_DigitalDesign/)
     - [Hobbitqia：计算机逻辑设计基础](https://note.hobbitqia.cc/Logic/)
     - [鹤翔万里：计算机系统I](https://note.tonycrane.cc/cs/system/cs1/)
-<!-- prettier-ignore-end -->
 
 ## 课堂简录
 

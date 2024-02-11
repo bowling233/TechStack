@@ -7,35 +7,33 @@ tags:
 
 ## 基本概念
 
--   LaTeX 是一种**排版格式**。
--   **排版引擎**如 `pdflatex`、`xelatex`、`lualatex` 可以将 `.tex` 编译成 `.pdf` 文件。
--   使用各种**宏包**为 LaTeX 添加更多功能，如 `amsmath` 包提供数学公式增强、`graphicx` 包提供图片功能。
--   TeX Live 是一个 **LaTeX 文档生成系统**，把各种引擎和宏包都打包起来了。
+- LaTeX 是一种**排版格式**。
+- **排版引擎**如 `pdflatex`、`xelatex`、`lualatex` 可以将 `.tex` 编译成 `.pdf` 文件。
+- 使用各种**宏包**为 LaTeX 添加更多功能，如 `amsmath` 包提供数学公式增强、`graphicx` 包提供图片功能。
+- TeX Live 是一个 **LaTeX 文档生成系统**，把各种引擎和宏包都打包起来了。
 
 ### 命令和环境
 
--   LaTeX **命令**有以下两种结构：
+- LaTeX **命令**有以下两种结构：
     1. 反斜杠开头及其后的**一串字母**，以任意非字母符号**（空格、数字、标点）**为界限：`\begin`
     2. 反斜杠及其后单个**非字母字符**：`\$`
-    -   注意：命令大小写敏感，如 `\LaTeX`。
-    -   **形式 1** 的命令忽略其后所有空格，如需引入空格请在命令后加`{}`或插入`\ `（代表一个空格）：`\TeX{}`
-    -   命令参数
-        -   `[]`：可选参数
-        -   `{}`：必选参数
-        -   `*`：可选的效果
-        -   单字符作为参数可不加 `{}`：如 `\frac{1}{2}` 可写为 `\frac12` 。
--   环境
-    -   环境让一些效果在局部生效或**生成特殊的文档元素**。
-    -   一对 `\begin{}[]{} `和 `\end{}` 组成一个环境。
-    -   有些命令对其后所有内容产生作用，若需限制作用范围需要**分组`{}`**，组中的命令作用范围限制在组内（在后文讲解**字体**时会提到）。
+    - 注意：命令大小写敏感，如 `\LaTeX`。
+    - **形式 1** 的命令忽略其后所有空格，如需引入空格请在命令后加`{}`或插入`\`（代表一个空格）：`\TeX{}`
+    - 命令参数
+        - `[]`：可选参数
+        - `{}`：必选参数
+        - `*`：可选的效果
+        - 单字符作为参数可不加 `{}`：如 `\frac{1}{2}` 可写为 `\frac12` 。
+- 环境
+    - 环境让一些效果在局部生效或**生成特殊的文档元素**。
+    - 一对 `\begin{}[]{}`和 `\end{}` 组成一个环境。
+    - 有些命令对其后所有内容产生作用，若需限制作用范围需要**分组`{}`**，组中的命令作用范围限制在组内（在后文讲解**字体**时会提到）。
 
 ### 简单语法
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [Learn LaTeX in 30 minutes](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes)
-<!-- prettier-ignore-end -->
 
 内容包括 LaTeX 文档的基本结构、基本语法、注释、字体（粗体、斜体 `\textit`、下划线、强调 `\emph`）、图片（图片路径 `\graphicspath{{path1/}}`、插入图片 `\includegraphics`、标题、标签和引用）、列表、数学公式（行内、展示模式）、段落和换行、摘要、章和节、表格 `tabular` 与 `table`、TOC（目录 `\tableofcontents`）、
 
@@ -45,41 +43,39 @@ tags:
 
 1. 空格和分段
 
--   连续的多个空白字符视为一个空格
--   换行符视为一个空格
--   多个空行视为一个空行
--   `\par`行末分段
+- 连续的多个空白字符视为一个空格
+- 换行符视为一个空格
+- 多个空行视为一个空行
+- `\par`行末分段
 
 2. 特殊字符
 
--   `# $ % & { } _ ^ ~ \`
--   注意：`\\`是手动换行，`\`应当使用`\textbackslash`
--   西文排版中的连字现象
+- `# $ % & { } _ ^ ~ \`
+- 注意：`\\`是手动换行，`\`应当使用`\textbackslash`
+- 西文排版中的连字现象
 
 3. 西文标点
 
--   单引号``和'`输入
--   双引号```和''`输入
--   其实，中西文引号使用 Unicode 中同一码位
--   连字号`-`、短破折号`--`（数字）、长破折号`---`（单词）
--   省略号`\dots`
--   其他文本符号 $\P{} \S{} \copyright{} \pounds{} \textregistered{} \texttrademark{}$
+- 单引号``和'`输入
+- 双引号```和''`输入
+- 其实，中西文引号使用 Unicode 中同一码位
+- 连字号`-`、短破折号`--`（数字）、长破折号`---`（单词）
+- 省略号`\dots`
+- 其他文本符号 $\P{} \S{} \copyright{} \pounds{} \textregistered{} \texttrademark{}$
 
 4. 断行断页
 
--   `~`输入一个不会断行的空格（用于人名、图标名等）
--   断行：**并非另起一段**`\\[length]`（可用于表格、公式）`\newline`（文本）
--   断页：`\newpage`（双栏中另起一栏）,`\clearpage`
+- `~`输入一个不会断行的空格（用于人名、图标名等）
+- 断行：**并非另起一段**`\\[length]`（可用于表格、公式）`\newline`（文本）
+- 断页：`\newpage`（双栏中另起一栏）,`\clearpage`
 
 ## 基础组件
 
 ### 封面 Cover
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [Stack Exchange: How can I design a book cover?](https://tex.stackexchange.com/questions/17579/how-can-i-design-a-book-cover)
-<!-- prettier-ignore-end -->
 
 ```latex
 \clearpage
@@ -124,11 +120,9 @@ With \LaTeX
 
 ### 页边距 Margin
 
-<!-- prettier-ignore-start -->
 !!! info
 
     [Overleaf: Page size and margins](https://www.overleaf.com/learn/latex/Page_size_and_margins)
-<!-- prettier-ignore-end -->
 
 LaTeX 默认页边距较大，常用窄边距设置如下：
 
@@ -144,11 +138,9 @@ LaTeX 默认页边距较大，常用窄边距设置如下：
 
 ### 首行缩进 Indent
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [Stack Exchange: No indent in the first paragraph in a section?](https://tex.stackexchange.com/questions/39227/no-indent-in-the-first-paragraph-in-a-section)
-<!-- prettier-ignore-end -->
 
 ```latex
 \usepackage{indentfirst}
@@ -169,11 +161,9 @@ LaTeX 默认页边距较大，常用窄边距设置如下：
 
 #### 表格对齐
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [Stack Exchange: Right alignment of column in table column](https://tex.stackexchange.com/questions/199744/right-alignment-of-column-in-table-column)
-<!-- prettier-ignore-end -->
 
 导言区新建列类型：
 
@@ -197,11 +187,9 @@ LaTeX 默认页边距较大，常用窄边距设置如下：
 
 #### 三线表
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [知乎：LaTeX保姆级教程|插入三线表](https://zhuanlan.zhihu.com/p/440498868)
-<!-- prettier-ignore-end -->
 
 三线表可以使用 `booktabs` 宏包，三条线分别是 `\toprule`、`\midrule`、`\bottomrule`。
 
@@ -221,19 +209,15 @@ LaTeX 默认页边距较大，常用窄边距设置如下：
 
 #### 跨页表格
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [Overleaf: Longtable](https://www.overleaf.com/learn/latex/Tables#Long_tables)
-<!-- prettier-ignore-end -->
 
 #### 复杂的单元格边框
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [](https://tex.stackexchange.com/questions/112343/complex-table-cell-border)
-<!-- prettier-ignore-end -->
 
 一般使用 `hhline` 或 `makecell` 宏包。请自行查阅文档。
 
@@ -241,11 +225,9 @@ LaTeX 默认页边距较大，常用窄边距设置如下：
 
 ### 代码清单 Code List
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [Overleaf：Code listing](https://www.overleaf.com/learn/latex/Code_listing)
-<!-- prettier-ignore-end -->
 
 在导言区加入以下设置：
 
@@ -321,11 +303,9 @@ def incmatrix(genl1,genl2):
 
 ### 算法描述 Algorithm
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [Overleaf：Algorithms](https://www.overleaf.com/learn/latex/Algorithms)
-<!-- prettier-ignore-end -->
 
 一般使用 `algorithm2e` 宏包，配置 `linesnumbered` 和 `ruled` 选项能显示行号和类似三线表的边框。
 
@@ -368,11 +348,9 @@ $N \gets n$\;
 
 ### 流程图 Flow Chart
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     [Overleaf: Creating Flowcharts](https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts)
-<!-- prettier-ignore-end -->
 
 导言区新建基本组件：
 
@@ -445,12 +423,10 @@ text text text};
 
 ### 散点图 Scatter Plot
 
-<!-- prettier-ignore-start -->
-!!! info 
+!!! info
 
     - [Overleaf: Pfgplots package](https://www.overleaf.com/learn/latex/Pgfplots_package)
     - [PGFplots Manual: Use Cases involving Scatter Plots](https://tikz.dev/pgfplots/tutorial3)
-<!-- prettier-ignore-end -->
 
 一个例子：
 

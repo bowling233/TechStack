@@ -4,7 +4,7 @@
     要是文档全都用英文写那就好了。切换输入法真的很烦！
 
 !!! quote "参考文档"
-    * [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines)
+    *[中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines)
     * [中文技术文档的写作规范](https://github.com/ruanyf/document-style-guide)
 
 ## 空格
@@ -17,12 +17,10 @@
 * **全角字符** 前后不需要空格。
 * **链接** 的前后需要有空格。
 
-<!-- prettier-ignore-start -->
 ??? info "全角和半角"
     ??? info "全角的其他意义"
         在排版中，“全角字”指的是显示上**字身宽度**为一比一正方形的字形。“全角字”还有其他意义，比如用两个字节存储的字符、ASCII（所谓半角英文和数字）以外所有的字符。
     在 Unicode 中，全角字符与半角字符有不同的编码。与 **ASCII码** 相同的是半角字符。
-<!-- prettier-ignore-end -->
 
 ## 标点
 

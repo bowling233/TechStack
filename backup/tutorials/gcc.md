@@ -1,25 +1,23 @@
 # 从 GCC 到 CMake
 
-<!-- prettier-ignore-start -->
 !!! abstract "通过本教程你能学会什么？"
-    
+
     - 了解程序的编译过程
     - 解决编译和链接中的问题
     - 学会使用调试器诊断程序的错误
     - 接触 Make、CMake 等构建工具
-<!-- prettier-ignore-end -->
 
 ## GCC 和 LLVM 简介
 
 简单来说：
+
 - `gcc` 是最通用的编译器，它由开源社区提供支持，但由于历史原因，它有一些奇怪的功能和实现，有时会引起困惑。
 - `clang` 是一个较新的编译器，它最初由苹果公司开发（你在 macOS 上使用的 `gcc` 就是 `clang` 的别名）。它提供了比 `gcc` 更好的编译体验。
 
 `gcc` 和 `clang` 如今作为成熟的编译器，在初学和日常使用时基本没有任何区别。考虑到通用性，我们选择主讲 `gcc`。
 
-<!-- prettier-ignore-start -->
 ??? note "一张表格简要总结 GCC 和 LLVM 的不同"
-    
+
     | 项目 | GCC | LLVM |
     | - | - | - |
     | 编译器 | `gcc` | `clang` |
@@ -28,21 +26,15 @@
     | 构建工具 | `make` | `cmake` |
     | 支持 | GNU | Google, Microsoft, Apple, Intel 等|
 
-<!-- prettier-ignore-end -->
-
 ## 编译过程
 
 让我们先来了解一下编译步骤。
 
-
-
 ## 使用 gdb 调试程序
 
-<!-- prettier-ignore-start -->
 !!! info "参考资料"
 
     - [GDB Tutorial - A Walkthrough with Examples](https://www.cs.umd.edu/~srhuang/teaching/cmsc212/gdb-tutorial-handout.pdf)
-<!-- prettier-ignore-end -->
 
 - 在 gcc 中添加调试选项
 
@@ -66,25 +58,18 @@ gdb prog1.x
 
 这是 gdb 的交互式终端，和你在 Linux 系统中用的功能一致，比如可以查询历史命令、自动补全等。
 
-<!-- prettier-ignore-start -->
 !!! note "gdb 中的命令"
-    
+
     | 命令 | 功能 |
     | - | - |
     | `help [command]` | 获取命令帮助 |
     | `file [program]` | 加载指定文件进行调试 |
     | `run` | 运行已经加载的程序 |
-<!-- prettier-ignore-end -->
 
 - 调试
 
-
-
-
-<!-- prettier-ignore-start -->
 !!! quote
     [GCC and Make Compiling, Linking and Building C/C++ Applications](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html)
-<!-- prettier-ignore-end -->
 
 GCC, formerly for "GNU C Compiler", has grown over times to support many languages such as C (gcc), C++ (g++), Objective-C, Objective-C++, Java (gcj), Fortran (gfortran), Ada (gnat), Go (gccgo), OpenMP, Cilk Plus, and OpenAcc. It is now referred to as "GNU Compiler Collection".
 
@@ -103,7 +88,6 @@ GCC is portable and run in many operating platforms. GCC (and GNU Toolchain) is 
 
 首先你需要了解一些 Windows 上 GNU 编译器相关的知识。不想了解的话，无脑选择已编译好的下载即可。下载地址在 [SourceForge](https://sourceforge.net/projects/mingw-w64/files/)，选择 `x86_64-posix-seh` 版本即可。
 
-<!-- prettier-ignore-start -->
 ??? info "关于 mingw-w64 版本的疑惑"
 
     可以参看操作系统方面的笔记。
@@ -111,11 +95,9 @@ GCC is portable and run in many operating platforms. GCC (and GNU Toolchain) is 
     `posix` 和 `win32`：不用疑惑，那些东西只影响是否能使用 `<thread>` 头文件。当你配置环境的时候，离学这东西还有很远。
     
     `sjlj` 和 `seh`：与错误处理系统（exception handling systems）有关。在现代系统上，选择 `seh` 即可。
-<!-- prettier-ignore-end -->
 
 ## 基本知识
 
-<!-- prettier-ignore-start -->
 ??? info "编译工具流"
 
     ![Preprocessor, Compiler, Assembler and Linker](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/images/GCC_CompilationProcess.png)
@@ -126,7 +108,6 @@ GCC is portable and run in many operating platforms. GCC (and GNU Toolchain) is 
     2. 编译（compilation）：`gcc -S hello.i`
     3. 汇编（Assembly）：`as -o hello.o hello.s`
     4. 链接（Linker）：`ld -o hello.exe hello.o ...libraries...`
-<!-- prettier-ignore-end -->
 
 ### `gcc` 命令
 
@@ -141,11 +122,9 @@ GCC is portable and run in many operating platforms. GCC (and GNU Toolchain) is 
 | `-shared` | compile to dynamic link library (`.dll` or `.so`) |
 | `-v`      | **v**erbose output                                |
 
-<!-- prettier-ignore-start -->
 !!! info
 
     当输入文件后缀为 `.o` 时，`gcc` 使用 `ld` 来执行链接。关于连接库的更多信息请看参考资料。
-<!-- prettier-ignore-end -->
 
 多文件编程只需要把文件依次放在后面就好了。但通常，我们单独编译，最后再一起链接（模块化编程）
 
@@ -176,11 +155,8 @@ GCC 将源代码编译为可执行程序有四个步骤：
 | 头文件     | -I*dir*          | CPATH<br />C_INCLUDE_PATH, CPLUS_INCLUDE_PATH |
 | 库文件     | -L*dir*, -l*lib* | LIBRARY_PATH                                  |
 
-- 库文件的名称：在 Unix 系统中，名为 `libxxx.a` 的库通过参数 `-lxxx` 指定，不需要 `lib ` 前缀和 `.a` 后缀。在 Windows 系统中指定完整的文件名。
+- 库文件的名称：在 Unix 系统中，名为 `libxxx.a` 的库通过参数 `-lxxx` 指定，不需要 `lib` 前缀和 `.a` 后缀。在 Windows 系统中指定完整的文件名。
 
-
-
-<!-- prettier-ignore-start -->
 !!! info "辅助工具"
 
     -   检查目标文件或可执行文件
@@ -189,5 +165,3 @@ GCC 将源代码编译为可执行程序有四个步骤：
             -   用于检查某个文件是否定义了某个函数。
             -   `T` 表示函数已定义，`U` 表示函数未定义，需要链接。
         -   `ldd` 列出需要的共享库。
-<!-- prettier-ignore-end -->
-

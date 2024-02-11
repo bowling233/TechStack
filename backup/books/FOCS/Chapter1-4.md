@@ -7,16 +7,14 @@ tags:
 
 These contents are closely related, so I put them together in one note.
 
-<!-- prettier-ignore-start -->
 !!! abstract
-    
+
     Main Topic are these:
 
     - Model of computer
     - Outline for this book
     - Storing Data
     - Data Operation
-<!-- prettier-ignore-end -->
 
 ## Ch1. Introduction
 
@@ -24,12 +22,11 @@ These contents are closely related, so I put them together in one note.
 
 **Turing model** is a mathematical and philosophical definition of computation. We only care about the philosophical definition here.
 
-He defined these things: 
+He defined these things:
 
 - Data processor: accepts input data, process the data, and creates output data.
 - Program: a set of instructions that tells the computer what to do with data.
 
-<!-- prettier-ignore-start -->
 !!! info
 
     Turing's thesis can be found here: [On Computable Numbers，with an Application to the Entscheidungsproblem](https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf)
@@ -37,7 +34,6 @@ He defined these things:
     In the thesis, he presented a mathematical description of the **universal Turing machine** than can perform all computation.
 
     A Chinese explanation can be found here: [《论可计算数及其在判定上的应用》简单理解](https://cloud.tencent.com/developer/article/1762927)
-<!-- prettier-ignore-end -->
 
 ### Von Neumann Model
 
@@ -88,9 +84,8 @@ Integral part and fractional part are handled differently.
     - **The intergral part** is inserted to the **right** of the destination.
     - Until fractional part is zero or destination digits are enough.
 
-<!-- prettier-ignore-start -->
 !!! question "Number of digits"
-    
+
     Given a positional number system with base $b$, find the number of digits of an integer N.
 
     ??? note
@@ -102,8 +97,6 @@ Integral part and fractional part are handled differently.
     ??? note
         
         The answer is $\left \lceil K \times (\log_{b_2}b_1) \right \rceil$.
-
-<!-- prettier-ignore-end -->
 
 ### Nonpositional number systems
 
@@ -129,13 +122,11 @@ We use **floating-point representation** to represent reals. It consists of thre
 - Shifter
 - Fixed-point number
 
-<!-- prettier-ignore-start -->
 !!! tip
-    
-    You can compare **scientific method** with floating-point method.
-<!-- prettier-ignore-end -->
 
-Normalization: 
+    You can compare **scientific method** with floating-point method.
+
+Normalization:
 
 - Decimal: `d.xxxxx`, d is 1-9 while x is 0-9.
 - Binary: `1.yyyyy`, y is 0 or 1.
@@ -150,12 +141,3 @@ The exponent can be positive and negative. We use **Excess system** to represent
 
 - Add a **bias** to shift positive or negative numbers uniformly to the nonnegative side.
 - The value of this bias is $2^{m-1}-1$, $m$ is the size of the memory location to store the exponent.
-
-
-
-
-
-
-
-
-

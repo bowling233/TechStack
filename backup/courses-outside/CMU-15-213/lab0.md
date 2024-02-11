@@ -1,10 +1,8 @@
 # Lab0: C Programming Lab
 
-<!-- prettier-ignore-start -->
 !!! note "第一次实验的提醒"
-    
+
     请仔细阅读实验手册。
-<!-- prettier-ignore-end -->
 
 本实验要求用链表实现一个字符串队列。该 Lab 对代码鲁棒性要求较高，需要尽可能多地**考虑各种情况**。此外，对**内存泄漏**的检查也十分严格。在所有进行了节点增删操作的函数中都应当注意。
 
@@ -70,9 +68,6 @@ bool queue_remove_head(queue_t *q, char *buf, size_t bufsize){
 
 上面的这个函数没有释放删去的节点的内存，是典型的内存泄露。
 
-
-<!-- prettier-ignore-start -->
 !!! info "实验解析和答案"
-    
+
     - [知乎：CSAPP:Lab0-C Programming Lab](https://zhuanlan.zhihu.com/p/127317503)
-<!-- prettier-ignore-end -->

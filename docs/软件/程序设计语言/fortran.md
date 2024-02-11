@@ -5,9 +5,35 @@ tags:
 
 # Fortran
 
-!!! abstract "大部分内容来自《Modern Fotran Explained》2018 版。"
+??? abstract "大部分内容来自《Modern Fotran Explained》2018 版。"
 
-## 第二章 语言元素
+    章节列表：
+
+    1. [x] Whence Fortran?
+    2. [x] Language Elements
+    3. [ ] Expressions and assignments
+    4. [ ] Control constructs
+    5. [ ] Program units and procedures
+    6. [ ] Allocation of data
+    7. [ ] Array features
+    8. [ ] Specification statements
+    9. [ ] Intrinsic procedures and modules
+    10. [ ] Data transfer
+    11. [ ] Edit descriptors
+    12. [ ] Operations on external files
+    13. [ ] Advanced type parameter features
+    14. [ ] Procedure pointers
+    15. [ ] Object-oriented programming
+    16. [ ] Submodules
+    17. [ ] Coarrays
+    18. [ ] Floating-point exception handling
+    19. [ ] Interoperability with C
+    20. [ ] Fortran 2018 coarray enhancements
+    21. [ ] Fortran 2018 enhancements to interoperability with C
+    22. [ ] Fortran 2018 conformance with ISO/IEC/IEEE 60559:2011
+    23. [ ] Minor Fortran 2018 features
+
+## 第二章 Language Elements
 
 ### 2.2 Fortran 字符集
 
@@ -278,49 +304,43 @@ end type triangle
 
     ```fortran
     character(len=80), dimension(60) :: page
+    page(j)(i:i)
     ```
 
 !!! tip "注意 `len` 和 `dimension` 的区别"
 
-这种情况下，可以连用数组下标和子串两个 designator：
-
-```fortran
-page(j)(i:i)
-```
-
-!!! warning "一定要区分字符串和数组"
-
-    作为从 C 转过来的人，很容易以为字符串和数组的处理方式是一样的。在 Fortran 中它们的处理方式完全不一样，典型的就是下面的例子：
+- 引用字符串的子串必须使用 `:`，**即使只访问一个字符**
+    - 缺省下界默认为 1，缺省上界默认为字符串长度
 
     ```fortran
-    character(len = 10) :: c = 'hello'
-    character :: d
-    d = c(1) ! Error: Unclassifiable statement at (1)
-    d = c(1:1) ! Correct
+    line(i:i)
+    line(:i)
+    line(:)
     ```
 
-    字符串不能像数组一样使用下标，而是必须使用子串，即使只访问一个字符。
-
-### 指针
-
-`pointer` 属性：
+### 2.12 指针
 
 ```fortran
 real, pointer, dimension(:,:) :: a
 ```
 
-上面是一个数组指针，而不是指针数组。它可以用于指向一个二维的数组。
+- `pointer` 属性
+- 数组指针只需声明 `rank`
+- 置为空指针 `nullify()`
 
-!!! note "`nullify()` 函数显式说明指针不指向任何东西。"
-!!! note "`allocate` 能够为指针分配空间。"
+!!! tip "注意空指针和野指针的差异"
 
-上面两个函数都能接收多个参数：
+- 为指针分配空间 `allocate()`
 
-```fortran
-allocate (son, x(10), y(-10:10), a(n, n))
-```
+    ```fortran
+    allocate (son, x(10), y(-10:10), a(n, n))
+    ```
 
-!!! tip "声明指针时总是初始化。"
+!!! tip "上面两个函数都能同时接受多个指针"
+
+!!! tip "声明指针时总是初始化"
+
+    内置函数 `null()` 返回空指针
 
     ```fortran
     real, pointer :: son => null()
@@ -330,280 +350,167 @@ allocate (son, x(10), y(-10:10), a(n, n))
 
     ```fortran
     type entry 
-        real :: value 
-        integer :: index 
-        type(entry), pointer :: next 
+        real                    :: value 
+        integer                 :: index 
+        type(entry), pointer    :: next 
     end type entry
     ```
 
-!!! question "章末练习"
+??? question "章末练习"
 
-    ??? note "1"
-
-        1. Yes
-        2. No
-        3. Not Determined
-        4. Not Determined
-        5. No
-        6. Yes
-    
-    ??? note "2"
-
-        1. Correct
-        2. Correct, with commentary
-        3. Correct
-        4. Correct
-        5. Not Correct, with commentary
-        6. Initial line
-        7. continuation line
-        8. Not correct
-        9. not correct
-        10, not correct
-
-    ??? note "3"
-
-        - `43`: integer
-        - `'word'`: string
-        - `4.39`: real
-        - **`1.9-4`: not legal**
-        - `0.0001e+20`: real
-        - `'stuff & nonsence`: string
-        - `4 9`: not legal
-        - `(0.,1.)`: complex
-        - `(1.e3,2)`: complex
-        - `'I can''t'`: string
-        - `'(4.3e9, 6.2)'`: string
-        - `.true._1`: logical
-        - `e5`: not legal
-        - `'shouldn' 't'`: not legal
-        - `1_2`: integer
-        - `"O.K."`: string
-        - `z10`: not legal
-        - `z'10'`: integer, hex
-    
-    ??? note "4"
-
-        Legal names:
+    - 第 6 题：Legal designators
 
         ```fortran
-        name
-        name32
-        quotient
-        a183c3
-        burn_
-        no_go
-        lone__name
+        character(len=10), dimension(0:5, 3) ::c 
+        c(3,2)(0:9) ! 不合法，字符串子串的选择应当从 1 开始。
         ```
 
-    ??? note "5"
-
-        （看错题目了）
-
-        First, Seventh, Last:
+    - 第 8 题：Is array?
 
         ```fortran
-        a(1), a(7), a(11)
-        b(0), b(6), b(11)
-        c(-11), c(-4), c(0)
-        d(10), not exist, d(10) ! 错了，要认清逗号和分号
-        e(5), not exits, e(9) ! 同样的错误
-        f(1, 0, 1), f(2, 1, 1), f(5, 1, 4)
-        [i, i=1, 7]
-        ```
-
-    ??? note "6"
-
-        Legal designators:
-
-        ```fortran
-        c(2,3)
-        c(0,3)
-        c(4,3)(:)
-        c(5,3)(9) ! 不合法，必须使用字串 `(9:9)` 而非数组下标 `(9)`
-        c(5,3)(9:9)
-        c(2,1)(4:8)
-        c(3,2)(0:9) ! 不合法，这里的不合法是因为从子串的选择应当从 1 开始。
-        ```
-
-        这道题强调了书本中的一句话：
-
-        > we could combine the array subscript and character substring notations into
-        > 
-        > ```fortran
-        > page(j)(i:i)
-        > ```
-
-        注意：只有数组下标和子字符串两个 designator 可以连用。
-
-    ??? note "7"
-
-        Vehicle registration:
-
-        ```fortran
-        type vehicle_reg
-            character(len=10) :: make
-            character(len=10) :: model
-            integer :: year
-            character(len=10) :: color
-            character(len=10) :: owner
-        end type vehicle_reg
-
-        vehicle_reg('Ford', 'Focus', 2010, 'red', 'John Doe')
-        ```
-
-        Circle:
-        ```fortran
-        type circle
-            real :: x, y, radius
-        end type circle
-
-        circle(0., 0., 1.)
-        ```
-
-        将坐标作为向量存储会更好。
-
-        Book:
-        ```fortran
-        type book
-            character(len=10):: title, author
-            integer :: pages
-        end type book
-
-        book('Modern Fortran Explained', 'Michael Metcalf', 496)
-        ```
-
-    ??? note "8"
-
-        ```fortran
-        type triplet 
-            real, dimension(3) :: vertex
-        end type triplet
         type(triplet), dimension(10) :: t
+        t(5:5) ! 数组切片也是数组
         ```
 
-        Is array:
+## 第三章 表达式和赋值
 
-        ```fortran
-        t
-        t(1)%vertex
-        t(5:6)
-        t(5:5) ! 注意：这也是数组！单元素切片是 size = 1 的数组
-        ```
+### 3.2 数值表达式
 
-    ??? note "9"
-
-        ```fortran
-        integer, parameter :: range = selected_int_kind(20)
-        integer(kind = rang):: i
-        integer, parameter :: range2 = selected_real_kind(12, 100)
-        real(kind = range2):: j
-        integer, parameter :: range3 = kind(2_"汉字")
-        character(kind = range3):: k
-        ```
-
-## 表达式和赋值
-
-### 一些表达式规则
-
-- 一元运算符不能紧跟在运算符后面。比如要表达 $x^{-y}$ 必须使用括号 `x**(-y)`。
+- 一元正负号不能直接接在运算符后。比如 $x^{-y}$ 应当写为 `x**(-y)`
 - 整数的除法将趋零截断。在指数运算时需要特别注意这一点
+
     !!! danger "`2**(-3)` is `1/(2**3)` is `0`!"
-- 混合类型表达式将会统一使用最高级的类型形式的值。
-    比如，如果 `a+b` 中 `a` 是整数，`b` 是复数，那么 `a` 将被替换为：
+
+- 混合类型表达式将会统一使用最高级的类型形式的值。比如，如果 `a+b` 中 `a` 是整数，`b` 是复数，那么 `a` 将被替换为：
 
     ```fortran
     complex(a, 0, kind(b))
     ```
 
-    !!! warning "混合类型表达式中的常数并不会自动提升，它会以默认的方式存储。记得为这些常数指定 `kind` 值。"
+    !!! warning "混合类型表达式中的常量并不会自动提升，它会保持自己的精度，而该精度并不一定比表达式高。记得为这些常数指定 `kind` 值。"
 
-        如果 `a` 的 `kind` 是 `long`：
+!!! info "有关复分析的内容：任意实数都能被写为复数的幂，关于 raising a complex value to a complex power 的数值方面的问题，请参阅书本。"
 
-        ```fortran
-        a/1.7
-        a/1.7_long
-        ```
+### 3.3 已定义和未定义的变量
 
-        上面的式子不一定比下面的式子更精确。
-    !!! info "有关复分析的内容：任意实数都能被写为复数的幂，关于 raising a complex value to a complex power 的数值方面的问题，请参阅书本。"
+- 变量具有**定义**和**未定义**两种状态
+    - 对于复合类型（数组、派生类型、字符串）的对象，其中的所有**非指针**子对象被定义时，该对象被定义
 
-### 已定义和未定义的变量
+!!! tip "可能出现数组中一个元素失去定义，而导致整个数组被视为未定义的情况"
 
-变量必须在定义的状态才能使用：
+- 指针还有另一层状态：**关联和未关联（association）**
+    - 指针是否定义取决于它关联的对象是否定义
+    - 即使它已经关联了某个对象，它仍有可能未定义
 
-- 数组：其中的每个元素都被定义
-- 派生类型：其中每个非指针元素都被定义
-- 字符串：每个字符都被定义
+### 3.4 数值赋值
 
-可能出现数组中一个元素失去定义，而导致整个数组被视为未定义的情况。
+对于 `variable = expr`，赋予的值为 `type(expr, kind(variable))`。
 
-对于指针，它是否定义取决于它关联的对象是否定义。因此**指针还有另一层状态：关联和未关联**。即使它已经关联了某个对象，它仍有可能未定义。
+### 3.5 比较运算符
 
-### 比较
+!!! warning "`/=` 表示不等于"
 
-大部分都和 C 一样。除了字符串可以直接比较（按字典序）。
-
-### 逻辑运算
+其余运算符和 C 一样，并且字符串可以直接比较（按字典序）。
 
 ```fortran
-logical :: i,j,k,l
+'ab' < 'ace' ! True
+```
+
+没有内置其他混合类型的比较运算符，可以自定义。
+
+### 3.6 逻辑表达式与赋值
+
+```fortran
+logical :: i,j,k,l ! declaration
+.not. .and. .or. .eqv. .neqv. ! operators
 ( .not.k .and. j .neqv. .not.l) .or. i
+cond = a>b .or. x<0.0 .and. y>1.0
 ```
 
 支持短路运算。
 
-### 字符串运算
+### 3.7 字符串表达式与赋值
 
-`//` 连接两个字符串：
+- `//` 连接两个字符串：
 
 ```fortran
 word1(4:4)//word2(2:4)//’S’
 ```
 
-值得注意，未定义的字符在比较中总是会使比较错误：
+- kind 相同的字符串可以相互连接和赋值
+    - 长度不一致时会截断或填充**空格（blank characters）**
+    - 赋值的两侧可以重叠，比如 `result(3:5)=result(1:3)`。
+
+!!! warning "未定义的字符在比较中总是会使比较错误"
+
+    ```fortran
+    character(len=5) :: fill 
+    fill(1:4) = 'AB'
+    fill == 'AB' ! False
+    ```
+
+    事实上，`fill` 现在的状态是 `AB  x`，即 AB 后跟两个空格，再是一个未定义的元素。改为 `fill(1:5)` 上面的片段就会正确。
+
+- 关于 ASCII、EBCDIC 和 ISO 10646 编码的使用问题，请参阅书本。
+
+!!! note "书本的错误"
+
+    书本 42 代码疑似出现错误：
+
+    ```fortran
+    integer, parameter :: ascii = selected_char_kind('ASCII')
+    character(ascii) :: x = ascii_'X'
+    ```
+
+    在 2.8 节我们已经知道，`character` 类型的无名参数视为 `len`，此处用法是不严谨的，应改为：
+
+    ```fortran
+    character(kind=ascii) :: x = ascii_'X'
+    ```
+
+### 3.8 结构构造器
 
 ```fortran
-character(len=5) :: fill 
-fill(1:4) = 'AB'
-fill == 'AB'
+! structure constructor
+derived-type-spec ([component-spec-list])
+! component-spec
+[keyword=]expr
+[keyword=]target ! not =>
 ```
 
-事实上，`fill` 现在的状态是 `AB  x`，即 AB 后跟两个空格，再是一个未定义的元素。如果将 `fill(1:5)` 上面的片段就会正确。
+### 3.9 自定义运算符
 
-赋值的两侧可以重叠，比如 `result(3:5)=result(1:3)`。
+- 使用 `interface` 块将**运算符与函数关联**
 
-关于 ASCII、EBCDIC 和 ISO 10646 编码的使用问题，请参阅书本。
+!!! example "`interval` 类型及其自定义运算符"
 
-### 自定义运算符
+    ```fortran
+    type interval
+        real :: lower, upper
+    end type interval
 
-将涉及到模块、函数等知识，这里仅浅提一下：
+    function add_interval(a,b)
+        type(interval) :: add_interval
+        type(interval), intent(in) :: a, b
+        add_interval%lower = a%lower + b%lower
+        add_interval%upper = a%upper + b%upper
+    end function add_interval
 
-- 需要在模块中设置函数、特定 intent 的参数、接口块
+    interface operator(+)
+        module procedure add_interval
+    end interface 
+    ```
 
-```fortran
-type interval
-    real :: lower, upper
-end type interval
+    - 运算符可以是任意内置运算符，或者使用小数点包围的不超过 63 个字符的序列，比如 `.sum.`
+    - 不能覆盖内置类型已经定义好的运算符
 
-function add_interval(a,b)
-    type(interval) :: add_interval
-    type(interval), intent(in) :: a, b
-    add_interval%lower = a%lower + b%lower
-    add_interval%upper = a%upper + b%upper
-end function add_interval
+- 运算符优先级
 
-interface operator(+)
-    module procedure add_interval
-end interface 
-```
+    ![fortran_operator_precedence](graph/fortran_operator_precedence.png)
 
-运算符可以是任意内置运算符，或者使用小数点包裹的不超过 63 个字符的序列。比如 `.sum.`。只需要设置好接口即可：`interface operator(.sum.)`。不能覆盖内置类型已经定义好的运算符。
+### 3.10 自定义赋值
 
-### 自定义赋值
-
-派生类型的赋值行为可以自定义。可以为不同类型间定义赋值。
-
-与自定义运算符不同的，就在于使用 `subroutine` 和 `assignment` 接口：
+使用 `subroutine`：
 
 ```fortran
 subroutine real_from_interval(a,b) 
@@ -617,13 +524,13 @@ interface assignment(=)
 end interface
 ```
 
-内置的赋值会为派生类型的所有非指针成员赋值，包括已经重定义了赋值的成员。
+- 自定义赋值函数的
+    - 第一个参数 `intent` 为 `out` 或 `inout`，对应变量
+    - 第二个参数 `intent` 为 `int`，对应表达式
+- 内置的赋值会为派生类型的所有非指针成员赋值，包括已经重定义了赋值的成员
+- 无法覆盖内置类型之间的内置赋值行为
 
-!!! tip "和 C++ 的类型体系行为有些相似。"
-
-### 数组表达式
-
-!!! tip "有点像 NumPy。"
+### 3.11 数组表达式
 
 一元、二元运算符都可以用于数组。二元运算符要求两个操作数的形状相同，或其中一个是标量（可以广播）。
 
@@ -631,53 +538,179 @@ end interface
 real, dimension(10,20) ::a,b
 real, dimension(5)::v
 a + b
-a == b ! 注意这里会产生一个布尔数组，而不是只有一个布尔值
-a(2:9,5:10) + b(1:8,15:20) ! 注意对应关系只用于形状，而与下标无关
+a == b ! 会产生一个布尔数组，而不是只有一个布尔值
+a(2:9,5:10) + b(1:8,15:20) ! 对应关系只用于形状，而与下标无关
 ```
 
-第 7 章将介绍，我们可以对特定维度的数组定义不同的数组运算。
+### 3.12 数组赋值
 
-### 数组赋值
+- 按元素赋值
+- 广播赋值
 
-按元素赋值、广播赋值。
+!!! tip "和字符串子串的行为一致，赋值右侧的操作数在赋值发生前会被求值"
 
-和一维的情况一样，赋值右侧的操作数在赋值发生前会被求值。如下：
+    ```fortran
+    v(2:5) = v(1:4)
+    ```
 
-```fortran
-v(2:5) = v(1:4)
-```
+### 3.13 表达式中的指针
 
-赋值的顺序、上面数组表达式的求值顺序都没有固定，预留了优化空间。
+- 不需要显式解引用就能访问指针所指对象
 
-### 表达式中指针
-
-!!! note "不需要显式解引用指针就能使用关联的对象。"
+!!! note "注意和 C 语言的差异"
 
     这意味着，如果赋值语句的两端都是指针，相应的对象将被赋值，而不是指针被赋值。
-!!! note "术语 target"
 
-    target 指的是指针所关联的对象。书本上的原话如下：
+    Fortran 这样做的原因是科学和工程中访问指针所指对象比更改所指对象频繁得多。
 
-    > -   A pointer may appear as a variable in the expressions and assignments that we have considered so far in this chapter, provided it has a valid association with a target.
-    > -   The target is accessed without any need for an explicit dereferencing symbol.
-    > -   In particular, if both sides of an assignment statement are pointers, data are copied from one target to the other target.
+- `=>` 为指针赋值，即改变指针所指
 
-如果需要对指针本身进行赋值，应当使用 `=>` 运算符。
+    ```fortran
+    pointer => target
+    ```
+
+    !!! tip "`pointer` 和 `target` 的类型、类型参数、`rank` 都必须相同"
+
+    - `target` 可以是变量，也可以是值为指针的函数如 `null()`
+    - `target` 如果是变量，必须具有 `target` 属性
+
+        ```fortran
+        real, target :: y
+        ```
+
+    - 指针指向的子对象（切片、子串、成员）可以直接作为 `target`
+
+        ```fortran
+        character(len=80), dimensioin(:), pointer :: page
+        type(entry) :: node
+        ! valid target
+        page, page(10), page(2:4), page(2)(3:15)
+        node%next%value
+        ```
+
+    - `target` 为指针时，发生指针拷贝
+        - 指针的关联状态也会被拷贝
+
+        !!! tip "显然指针无法指向指针"
+
+- 结构赋值时，指针成员发生指针赋值
+
+!!! example "链表操作：插入头节点"
+
+    ```fortran
+    allocate(current)
+    current = entry(new_value, new_index, first)
+    first => current
+    ```
+
+??? question "章末练习"
+
+    - 第 6 题：
+
+        ```fortran
+        d < c .and. 3.0 ! 非法：逻辑运算符不接受数值
+        ```
+
+    - 第 8 题：疑似答案错误
+
+        ```fortran
+        d = b + 1 ! 应当合法，1 提升为 real，从而参与运算
+        r = b + c ! 显然不合法，根据定义结果为 interval，无法赋值给 real
+        ```
+
+    - 第 10 题：数组切片有待后续章节深入学习
+
+        ```fortran
+        real, dimension(5, 6) :: a, b
+        real, dimension(5)    :: c
+        c = a(:,2) + b(5,:5) ! is valid
+        ```
+
+## 第四章 控制结构
+
+### 4.2 `if` 结构和语句
 
 ```fortran
-pointer => target
+[name:] if (scalar-logical-expr) then
+            block
+        [else if (scalar-logical-expr) then [name]
+            block]...
+        [else [name]
+            block]
+        end if [name]
+! example
+swap: if(x < y) then
+        temp = x
+        x = y
+        y = temp
+    end if swap
+! simplest form
+if (scalar-logical-expr) action-stmt
+! example
+if (x-y > 0.0) x = 0.0
 ```
 
-当然指针不能指向指针，target 为指针时，发生指针的拷贝，指针的 `state` 也会被拷贝。
+- `name` 必须保持一致
 
-target 甚至可以是返回指针值的 `function`。
-
-派生类型赋值时，指针也会被赋值：
+### 4.3 `case` 结构
 
 ```fortran
-allocate (current)
-current = entry(new_value, new_index, first)
-! 上面执行了 current%next => first
+[name:] select case (expr)
+        [case selector [name]
+            block]...
+        end select [name]
+! example
+select case (number)
+case (:-1)
+    n_sign = -1
+case (0)
+    n_sign = 0
+case (1:)
+    n_sign = 1
+end select
 ```
 
-这里还有个属性 `target`。如果变量要作为指针的 target，那么它必须带上 `target` 属性。
+- `expr` 和 `selector` 可以是字符、逻辑、整数
+    - 可以指定范围，如 `case (low:high)`
+    - `case default`
+    - 不允许重叠，仅有一个 `selector` 可以满足
+
+### 4.4 `do` 结构
+
+```fortran
+[name:] do [,]variable=expr1,expr2[,expr3]
+            block
+        end do [name]
+! example
+do  i = 1, 10
+    sum = sum+a(i)
+end do
+! complex one
+do i = j+4, m, -k(j)**2
+! zero-trip loop
+do i = 1, n
+! endless loop
+[name:] do
+    exit [name]
+    cycle [name]
+end do
+```
+
+- `expr` 中的变量**取初值**，循环中的改变不会影响迭代
+- 上面的 zero-trip loop，如果 $n\leq 0$，则不会进入循环
+- `variable` 在循环结束后**可用**
+
+!!! question "结束后，它的值是 $n$ 吗？"
+
+!!! example "链表迭代“
+
+    ```fortran
+    type(entry), pointer :: first, current
+    current => first
+    do
+        if (current%index == 10) exit
+        current => current%next
+    end do
+    ```
+
+

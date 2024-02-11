@@ -1,16 +1,13 @@
 # Latex 学习笔记
 
-<!-- prettier-ignore-start -->
 !!! abstract "摘要"
-    
+
     以下两份参考文献是我主要的 Latex 学习来源，都写得太好了，而且方便查询。因此本笔记仅作 cheatsheet 式的记录，使用方法请查询以下文献：
 
     - [Overleaf Documentation](https://www.overleaf.com/learn)
     - [111 分钟了解 Latex（lshort 的中文版）](https://texdoc.org/serve/lshort-zh-cn.pdf/0)
 
     还有一些其它内容，比如三线标、副标题等各种东西，大部分来自 StackOverflow 或知乎。
-<!-- prettier-ignore-end -->
-
 
 ## 数学
 
@@ -36,7 +33,6 @@
 
 `subsubsection` 默认无编号，可以用命令设置编号：`\setcounter{secnumdepth}{3}`。
 
-<!-- prettier-ignore-start -->
 ??? note "宏包 `titlesec`"
 
     使用 `titlesec` 宏包可以自定义标题的样式，这里展示两个常用的命令：
@@ -65,8 +61,6 @@
     ```
 
     > 回忆：方括号中为可选的参数
-<!-- prettier-ignore-end -->
-
 
 ### [目录](https://www.overleaf.com/learn/latex/Table_of_contents)
 
@@ -92,9 +86,8 @@
 
 `\ref{}` 命令显示引用的元素的编号，`\pageref{}` 命令则显示对应的页码。
 
-<!-- prettier-ignore-start -->
 !!! note "编译交叉引用文档"
-    
+
     在本地 LaTeX 环境编译时，如果希望交叉引用正常工作，需要**将文档编译两次**。第一次编译时，会报 warning 提示符号未定义，在生成的 pdf 中数字显示为 `??`。第二次编译即完成交叉引用，显示正常。
     
     或者使用这个命令：
@@ -108,7 +101,6 @@
         `latexmk` 工具用于自动化 LaTeX 文档的生成。有一些常用命令如下：
 
         - `-xelatex`, `-lualatex` 使用对应的引擎处理文件。
-<!-- prettier-ignore-end -->
 
 ### [术语表](https://www.overleaf.com/learn/latex/Indices)
 
@@ -143,8 +135,6 @@
 
 ## 展示
 
-
-
 ## 常用技巧
 
 ### 零散
@@ -163,7 +153,6 @@
 
 ---
 
-
 除了 `.tex`，我们还会编辑以下格式的文件：
 
 - `.bib`：参考文献数据库
@@ -176,41 +165,38 @@
     - `\input{<filename>}`：仅插入。导言区和复杂的图标、代码常常使用该命令。
     - 可以使用相对路径和绝对路径，都使用正斜线分隔路径（Windows 注意）。
 
-<!-- prettier-ignore-start -->
 !!! note "小技巧"
-    
+
     使用 `syntonly` 宏包 + `\syntaxonly` 命令，可以不生成文档，仅检查错误，速度很快。
-<!-- prettier-ignore-end -->
 
 ### LaTeX 术语
 
--   引擎：编译代码并生成文档的程序
-    -   pdfTeX, XeTeX
--   编译命令
-    -   `latex`: 调用 pdfTEX 生成 dvi
-    -   `pdflatex`：调用 pdfTEX 生成 pdf
-    -   `xelatex`：调用 XeTeX 生成 pdf。xelatex 是当前较为方便的中文解决方案。
+- 引擎：编译代码并生成文档的程序
+    - pdfTeX, XeTeX
+- 编译命令
+    - `latex`: 调用 pdfTEX 生成 dvi
+    - `pdflatex`：调用 pdfTEX 生成 pdf
+    - `xelatex`：调用 XeTeX 生成 pdf。xelatex 是当前较为方便的中文解决方案。
 
 ## Ch.2 LaTeX 排版文字
 
 简要解释一下中文文档排版现在究竟怎么用：
 
--   现行 XƎTEX 和 LuaTEX 直接编译 UTF-8 编码文档，不再需要 `inputenc` 宏包。
--   XƎTEX 和 LuaTEX 除了直接支持 UTF-8 编码外，还支持直接调用 TrueType / OpenType
+- 现行 XƎTEX 和 LuaTEX 直接编译 UTF-8 编码文档，不再需要 `inputenc` 宏包。
+- XƎTEX 和 LuaTEX 除了直接支持 UTF-8 编码外，还支持直接调用 TrueType / OpenType
     格式的字体。xeCJK 及 luatexja 宏包则在此基础上**封装了对汉字排版细节的处理功能**。
--   ctex 宏包和文档类进一步封装了CJK、xeCJK、luatexja 等宏包，包括ctexart / ctexrep
+- ctex 宏包和文档类进一步封装了CJK、xeCJK、luatexja 等宏包，包括ctexart / ctexrep
     / ctexbook。
--   
+-
 
 ### 中文排版
 
 两个问题：
 
--   中文字体支持
--   中文排版规则
+- 中文字体支持
+- 中文排版规则
 
 **ctex**宏包封装了 CJK, xeCJK, luatexja 等中文包，**无需考虑排版引擎**，能够识别操作系统和 TEX 中安装的中文字体，无需额外配置
-
 
 ## Ch.3 文档元素
 
@@ -222,8 +208,8 @@ chapter, section, subsection, subsubsection, paragraph, subparagraph
 
 变体类型：
 
--   `[short title]`：目录和页眉页脚
--   `*`：不生成目录项
+- `[short title]`：目录和页眉页脚
+- `*`：不生成目录项
 
 目录：`\tableofcontents`，生成单独一章/节，标题默认为 Contents，默认不写入目录。生成目录一般需要编译两次
 

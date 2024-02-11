@@ -1,8 +1,7 @@
 # Lab1 Construct simple cluster
 
-<!-- prettier-ignore-start -->
 !!! tip "Keep in mind"
-    
+
     **Always redirect the output of your commands to a file.** It helps to store informations in files. You may need them later to get information or debug.
     
     ```bash
@@ -16,7 +15,6 @@
     # Redirect stdout and stderr to files and print them to terminal
     command 2>&1 | tee stdout.log stderr.log
     ```
-<!-- prettier-ignore-end -->
 
 ## 0. Create a virtual machine
 
@@ -26,7 +24,7 @@ If you can't bear low display resolution in terminals, see [Configuring Network 
 
 ## 1. Build and install OpenMPI from source
 
-Follow the official tutorial [OpenMPI: FAQ:Building Open MPI](https://www.open-mpi.org/faq/?category=building#easy-build) to install OpenMPI. 
+Follow the official tutorial [OpenMPI: FAQ:Building Open MPI](https://www.open-mpi.org/faq/?category=building#easy-build) to install OpenMPI.
 
 ```bash
 wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.gz
@@ -38,9 +36,8 @@ make all install
 
 You may need `sudo` privilege to execute `make all install` because it needs to change `/usr/local/`. After installation, the binary files are in `/usr/local/bin` and you don't need to change PATH.
 
-<!-- prettier-ignore-start -->
 !!! note "Remember directory paths"
-    
+
     You'll need to configure paths to OpenMPI when compiling and running MPI programs. In my case, the paths are:
     
     - binary: `/usr/local/bin/`
@@ -48,11 +45,9 @@ You may need `sudo` privilege to execute `make all install` because it needs to 
     - hostfile: `/usr/local/etc/openmpi-default-hostfile`
     
     After I've done the lab, I understood that I should have used an independent path to save the OpenMPI files and other components, so that they can be found more easily. For example, I can use `/usr/local/openmpi-4.1.1` to save the files.
-<!-- prettier-ignore-end -->
 
-<!-- prettier-ignore-start -->
 ??? note "Test your OpenMPI installation"
-    
+
     You can test your OpenMPI installation by executing `mpirun`:
     
     ```bash
@@ -62,8 +57,6 @@ You may need `sudo` privilege to execute `make all install` because it needs to 
     If you see the version information, then you've installed OpenMPI successfully.
     
     If you want to test the compilation and execution of MPI programs, you can try to compile and run the `hello.c`. Follow the instructions on [Using MPI with C](https://curc.readthedocs.io/en/latest/programming/MPI-C.html)
-
-<!-- prettier-ignore-end -->
 
 ## 2. Build and install BLAS and CBLAS
 
@@ -122,9 +115,8 @@ make
 cp cblas_LINUX.a /usr/local/lib/libcblas.a
 ```
 
-<!-- prettier-ignore-start -->
 ??? failure "Error when compiling CBLAS"
-    
+
     If you encountered the same error when executing make in CBLAS folder and stopped at testing process, receiving the error message like:
     
     ```
@@ -144,11 +136,9 @@ cp cblas_LINUX.a /usr/local/lib/libcblas.a
     
     ![CBLAS Test](https://cdn.bowling233.top/note/hpc/l1/cblas_test.png)
 
-<!-- prettier-ignore-end -->
-
 ## 3. Build HPL
 
-There are some difference between the experiment manual and `INSTALL` file, you should follow the manual. 
+There are some difference between the experiment manual and `INSTALL` file, you should follow the manual.
 
 ```bash
 cp setup/Make.Linux_PII_CBLAS Make.test
@@ -188,9 +178,8 @@ Edit some lines in `Make.test`:
 > LINKER       = /usr/bin/g77
 ```
 
-<!-- prettier-ignore-start -->
 ??? failure "Error in linking"
-    
+
     You may encounter the error message like this:
     
     ![HPC_error](https://cdn.bowling233.top/images/2023/06/202306220048496.png)
@@ -204,8 +193,6 @@ Edit some lines in `Make.test`:
     Searching for the missing library was hard, because it happens everywhere. Solutions to others may not take effect on you.
     
     I'm still wondering why these libraries were not linked automatically, they are in the default `PATH`.
-
-<!-- prettier-ignore-end -->
 
 After make, you'll get the binary file `xhpl` in the folder `bin/test`.
 
@@ -225,9 +212,8 @@ ssh -p 3022 bowling@localhost
 
 ## 5. Experiment
 
-<!-- prettier-ignore-start -->
 ??? failure "Error: cannot open file HPL.dat"
-    
+
     You may encounter error like this:
     
     ![HPL.dat](https://cdn.bowling233.top/images/2023/06/202306220048495.png)
@@ -235,7 +221,6 @@ ssh -p 3022 bowling@localhost
     Refer to this issue:
     
     - [HPL Segmentation Fault](https://github.com/spack/spack/issues/6340)
-<!-- prettier-ignore-end -->
 
 Final result:
 
@@ -303,7 +288,7 @@ I found the computing speed in dockers is much faster then clusters. **DOCKERS A
 
 ## Extended
 
-Later in the course, instructors mentioned we can try to modify `HPL.dat` to get better performance and configure NFS to share files between nodes. I also tried to do these things. 
+Later in the course, instructors mentioned we can try to modify `HPL.dat` to get better performance and configure NFS to share files between nodes. I also tried to do these things.
 
 ### Tuning HPL.dat
 
@@ -330,7 +315,6 @@ sudo apt install nfs-common
 sudo mkdir /hpc
 ```
 
-<!-- prettier-ignore-start -->
 !!! warning "mount error"
 
     If you encounter the following error:
@@ -340,7 +324,6 @@ sudo mkdir /hpc
     ```
     
     You need to install `nfs-common` on clients.
-<!-- prettier-ignore-end -->
 
 Add the following line to clients:
 
@@ -351,7 +334,6 @@ Add the following line to clients:
 Then run the program and get the result:
 
 ![](https://cdn.bowling233.top/images/2023/07/202307052302166.png)
-
 
 ## Related links
 

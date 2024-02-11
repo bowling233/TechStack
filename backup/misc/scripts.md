@@ -6,7 +6,6 @@
 
 ## Makefile
 
-<!-- prettier-ignore-start -->
 ::cards::
 
 [
@@ -81,7 +80,6 @@
 ]
 
 ::/cards::
-<!-- prettier-ignore-end -->
 
 - 静态模式
 
@@ -101,9 +99,7 @@ $(objects): %.o: %.c
 
 ## CMake
 
-<!-- prettier-ignore-start -->
 !!! info "[CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)"
-<!-- prettier-ignore-end -->
 
 基本结构：
 
@@ -112,4 +108,3 @@ cmake_minimum_required()
 project()
 add_executable()
 ```
-

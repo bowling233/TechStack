@@ -4,9 +4,8 @@
 
 ### 如何阅读开源代码
 
-<!-- prettier-ignore-start -->
 !!! abstract ""
-    
+
     [如何阅读开源代码](https://www.bilibili.com/video/BV1oa4y1V7Rg)
     
     - 1 为什么阅读代码？Why
@@ -15,7 +14,6 @@
     - 4 如何阅读代码？How
     - 4.1 阅读代码的基础
     - 4.2 阅读大型项目的方法
-<!-- prettier-ignore-end -->
 
 ## 代码规范参考
 

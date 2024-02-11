@@ -1,10 +1,8 @@
 # Lab 2.5 SIMD Vectorization
 
-<!-- prettier-ignore-start -->
 !!! info "参考资料"
 
     - [C/C++指令集介绍以及优化（主要针对SSE优化）_指令集优化_LoveMIss-Y的博客-CSDN博客](https://blog.csdn.net/qq_27825451/article/details/103934359)
-<!-- prettier-ignore-end -->
 
 ## 为什么要使用 SIMD 指令？
 
@@ -18,7 +16,6 @@ $$
 
 下面的伪代码对比展示了使用 SIMD 指令和不使用 SIMD 指令的数组计算过程
 
-<!-- prettier-ignore-start -->
 === "without SIMD"
     ```
     for each f in array
@@ -37,7 +34,6 @@ $$
         store N results from the register to memory
     }
     ```
-<!-- prettier-ignore-end -->
 
 这似乎有点像循环展开。
 
@@ -55,11 +51,9 @@ $$
 
 ### SSE 指令集
 
-<!-- prettier-ignore-start -->
 !!! info "参考资料"
 
     - [SSE指令集学习笔记 - 吴俊贤的博客](https://packagewjx.github.io/2018/11/12/sse-note/)
-<!-- prettier-ignore-end -->
 
 具有从 `xmm0-xmm7` 8 个 128 位寄存器。后来在 x86-64 架构下，扩展到 16 个 128 位寄存器 `xmm0-xmm15`。
 
@@ -82,11 +76,9 @@ $$
 
 因为本次实验我选用了 AVX2 指令集，所以仅对其进行详细介绍。
 
-<!-- prettier-ignore-start -->
 !!! info "参考资料"
 
     - [Intel AVX2](https://www.intel.com/content/www/us/en/docs/cpp-compiler/developer-guide-reference/2021-8/intrinsics-for-avx2.html)
-<!-- prettier-ignore-end -->
 
 ### 编译
 
@@ -150,10 +142,3 @@ _mm256_storeu_pd(b, _mm256_add_pd(v, t));
 从寄存器中取出数据的命令为 `_mm256_storeu_pd`，它的参数是一个 `double` 指针和一个 `__m256d` 类型的寄存器，这点可以从名字上看出。
 
 ### 矩阵乘法实例
-
-
-
-
-
-
-

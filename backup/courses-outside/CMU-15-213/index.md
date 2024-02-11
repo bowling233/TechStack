@@ -1,8 +1,7 @@
 # CMU 15-213
 
-<!-- prettier-ignore-start -->
 !!! abstract
-    
+
     这是我学习《深入理解计算机系统》及 CMU 15-213 课程的笔记。
 
     - [书本网站](http://csapp.cs.cmu.edu/)
@@ -12,7 +11,6 @@
     - [课程中文翻译项目](https://github.com/EugeneLiu/translationCSAPP)
     - [书籍英文版](https://github.com/wudeng/ebook/blob/master/Computer.Systems.A.Programmers.Perspective.3rd.Global.Edition.2015.7-csapp.pdf)
     - [书籍中文版（gitbook）](https://hansimov.gitbook.io/csapp/)
-<!-- prettier-ignore-end -->
 
 ## 进度表
 
@@ -29,7 +27,6 @@
 | 03.18 | Complete C language note for ADT(especially for linked lists) |
 | 03.20 | Lab 0 due |
 | 03.21 | Bootcamp 1: Linux, Command Line, Git |
-
 
 ## 目录
 

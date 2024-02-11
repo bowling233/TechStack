@@ -42,12 +42,10 @@ tags:
 
 [Typora 官方快捷键表](https://support.typoraio.cn/Shortcut-Keys/)
 
--   File
+* File
 
-<!-- prettier-ignore-start -->
 !!! note
     Typora 没有选项卡概念，因此它其实是多窗口操作。打开文件一定会新建窗口而不是替换当前打开的文件，++ctrl+tab++ 也是在窗口之间切换。
-<!-- prettier-ignore-end -->
 
 | Function     | Hotkey (Windows/Linux) |
 | :----------- | :--------------------- |
@@ -55,7 +53,7 @@ tags:
 | Save         | Ctrl + S               |
 | Close        | Ctrl + W               |
 
-- Edit
+* Edit
 
 | Function                                         | Hotkey (Windows/Linux)     |
 | :----------------------------------------------- | :------------------------- |
@@ -75,7 +73,7 @@ tags:
 | Find Previous                                    | Shift + F3 / Shift + Enter |
 | Replace                                          | Ctrl + H                   |
 
-- Paragraph
+* Paragraph
 
 | Function               | Hotkey (Windows/Linux)     |
 | :--------------------- | :------------------------- |
@@ -92,7 +90,7 @@ tags:
 | Indent                 | Ctrl + [ / Tab             |
 | **Outdent**            | **Ctrl + ] / Shift + Tab** |
 
-- Format
+* Format
 
 | Function         | Hotkey (Windows/Linux) |
 | :--------------- | :--------------------- |
@@ -105,7 +103,7 @@ tags:
 | Image            | Ctrl + Shift + I       |
 | **Clear Format** | **Ctrl + \\**           |
 
-- View
+* View
 
 | Function                        | Hotkey (Windows/Linux) |
 | :------------------------------ | :--------------------- |

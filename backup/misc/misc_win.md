@@ -8,12 +8,9 @@ Windows 当然也需要美化啦。在网上看过各式各样的美化效果，
 
 如果希望让桌面丰富一些，可以安装 Rainmeter 的 [Big Sur RC1](https://www.deviantart.com/fediafedia/art/Big-Sur-RC1-for-Rainmeter-846882462)。
 
-<!-- prettier-ignore-start -->
 !!! bug "Weather 组件无法使用"
-    
 
     作者的 apikey 似乎过期了，因此组件显示不了数据。在 `UserVariables.inc`文件中将 apikey 更改为 `21d8a80b3d6b444998a80b3d6b1449d3` 就可以使用了，当然这一密钥也随时面临无法使用的情况。密钥来源：[Weather.com API Access Denied](https://github.com/raiguard/ModernGadgets/issues/274)。
-<!-- prettier-ignore-end -->
 
 ## 硬件部分
 
@@ -21,14 +18,14 @@ Windows 当然也需要美化啦。在网上看过各式各样的美化效果，
 
 台式机是因为看上了华硕的 AP201 机箱配的，具体配置如下：
 
--   机箱：华硕 AP201
--   主板：微星 B66OM 迫击炮 WIFI DDR4
--   处理器：Intel Core i5-12400
--   内存：镁光 16 GB 普条
--   电源：酷冷至尊 GX750 白色版
--   固态硬盘：三星 980 PRO 500 GB + MZVLW256HEHP
--   机械硬盘：Hitachi 4 TB x2
--   散热器：九州风神 AK400 HW
+- 机箱：华硕 AP201
+- 主板：微星 B66OM 迫击炮 WIFI DDR4
+- 处理器：Intel Core i5-12400
+- 内存：镁光 16 GB 普条
+- 电源：酷冷至尊 GX750 白色版
+- 固态硬盘：三星 980 PRO 500 GB + MZVLW256HEHP
+- 机械硬盘：Hitachi 4 TB x2
+- 散热器：九州风神 AK400 HW
 
 ### 第一次装机
 

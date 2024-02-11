@@ -1,10 +1,8 @@
 # 浙江大学计算机课程笔记
 
-<!-- prettier-ignore-start -->
 !!! abstract "简介"
 
     这里主要存放浙江大学计算机相关课程笔记。
-<!-- prettier-ignore-end -->
 
 ## 课程列表
 
