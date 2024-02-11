@@ -713,4 +713,94 @@ end do
     end do
     ```
 
+### 4.5-4.6
 
+- `exit` 语句可以从除 `do concurrent` 和 `critical` 外的所有语句跳出
+- `go to label` 无条件跳转
+    - 块语句的内外不能随意跳转
+
+## 第五章 程序单元
+
+- 三类程序单元：主程序、外部子程序、模块
+    - 主程序的主要作用就是调用辅助程序
+    - 子程序定义 `function` 和 `subroutine`，统称为 procedure
+        - `function` 返回一个对象，通常不改变参数（就像数学上函数的意义一样）
+        - `subroutine` 执行更复杂的任务，通过改变参数等方法返回多个结果
+    - 如果子程序自身是一个程序单元，就称为外部子程序
+        - 可以通过 Fortran 以外的方式定义
+    - 否则就是模块
+        - 模块中还有数据定义、派生数据类型定义、`interface` 块等
+
+### 主程序
+
+```fortran
+[program program-name]
+    [specification-stmts]
+    [executable-stmts]
+[contains
+    [internal-subprogram]...]
+end[program[program-name]]
+```
+
+- `stop` 语句可以在主程序（和子程序中）出现，停止程序执行
+
+```fortran
+stop stop-code ! integer or character constant expression
+stop 'load_data_type_1'
+```
+
+- `subroutine`、`function` 的结构与 `program` 一致，只是首语句可以附带参数列表
+- 在子程序间传递信息有两种方式：
+    - 使用模块
+    - 使用参数
+
+### 模块
+
+```fortran
+module module-name
+    [specification-stmts]
+[contains
+    [module-subprogram]...]
+end [module[module-name]]
+```
+
+- `use module-name` 使用模块
+
+### 子例程
+
+- C 中的形参现称为 dummy argument，实参名称未变
+- 实参和形参的数组形状应当一致
+    - 可以自动推断形状，形参声明如下：
+
+        ```fortran
+        real, dimension([lower-bound]:, ...) :: da
+        ```
+
+        - `pointer` 和 `allocatable` 属性的形参不会自动推断（不需要知道形状）
+- 指针实参可以赋给非指针形参，只要 target 类型一致即可
+
+!!! warning "实参有几条限制，较难理解，请参阅书本"
+
+    大概就是，如果对某个形参进行了修改，那么在子例程中只能使用该形参引用对应的实参。
+
+    ```fortran
+    call modify(a(1:5), a(3:9))
+    ```
+
+    则 `a(3:5)` 不应当通过任何一个形参改变。如果通过其中一个形参进行了修改，则会造成另一形参不可用。
+
+- 多数情况下，实现可以拷贝实参以提高效率，指向实参的指针不会与形参关联。但有情况不允许拷贝，此时，内部关联到这些形参的指针在退出后，仍然关联到实参的对应位置。
+
+!!! tip "这些行为都和 C/C++ 中的指针有些相似，能大概理解就好"
+
+- `return` 语句不能出现在主程序中。它将控制权交还给调用者。
+
+### `intent`
+
+- 定义 `operator` 的 `function` 形参必须 `intent=in`
+- 定义 assignment 的 `subroutine`，第一个形参必须 `intent=out` 或 `inout`，第二个形参必须 `in`
+- 如果没有 `intent`，但子例程改变了形参，对应的实参必须是变量
+
+!!! tip "加上括号，可以把变量实参变成表达式，从而无法修改"
+
+- 对于指针，`intent` 描述其本身，`in` 的指针对象的值可以改变
