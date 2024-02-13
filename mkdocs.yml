@@ -44,6 +44,8 @@ markdown_extensions:
   # MathJax
   - pymdownx.arithmatex:
       generic: true
+  # Keys
+  - pymdownx.keys
   # Not Standard
   - neoteroi.cards
 

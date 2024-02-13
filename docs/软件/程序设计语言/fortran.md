@@ -11,7 +11,7 @@ tags:
 
     1. [x] Whence Fortran?
     2. [x] Language Elements
-    3. [ ] Expressions and assignments
+    3. [x] Expressions and assignments
     4. [ ] Control constructs
     5. [ ] Program units and procedures
     6. [ ] Allocation of data
@@ -804,3 +804,13 @@ end [module[module-name]]
 !!! tip "加上括号，可以把变量实参变成表达式，从而无法修改"
 
 - 对于指针，`intent` 描述其本身，`in` 的指针对象的值可以改变
+
+### 函数
+
+- 返回值的类型可以直接写在 `function` 前面
+
+### 隐式接口
+
+- `external external-name-list` 声明外部名字
+
+<!-- 2024.02.13 P85 -->
