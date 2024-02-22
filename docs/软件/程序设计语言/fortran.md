@@ -776,7 +776,7 @@ end [module[module-name]]
         real, dimension([lower-bound]:, ...) :: da
         ```
 
-        - `pointer` 和 `allocatable` 属性的形参不会自动推断（不需要知道形状）
+        - `pointer` 和 `allocatable` 属性的形参不会自动推断（它们也不需要知道形状）
 - 指针实参可以赋给非指针形参，只要 target 类型一致即可
 
 !!! warning "实参有几条限制，较难理解，请参阅书本"
@@ -811,6 +811,89 @@ end [module[module-name]]
 
 ### 隐式接口
 
-- `external external-name-list` 声明外部名字
+下面两种方式不能同时使用：
+
+- `external external-name-list` 声明外部名字，此时参数类型通过调用语句自动推断
+- 或者使用 `interface` 块说明接口，其中 `interface-body` 部分基本就是函数声明头的拷贝：
+
+    ```fortran
+    interface
+        interface-body
+    end interface
+    ```
+
+!!! note "使用 `interface` 可以声明 C 或汇编的外部接口"
+
+!!! note "库的组织结构"
+
+    - 写一系列的 `subprogram`
+    - 把它们的 `interface` 放在一个 `module` 中，然后 `use` 它
+
+    有点像 C 的头文件
+
+- `interface` 块无法获得其宿主环境中的名字，可以使用 `import` 让这些名字可用
+
+    ```fortran
+    import [[::] import-name-list]
+    ! example
+    module m
+        type t
+    contains
+        subroutine
+            interface
+                function fun(f)
+                    import :: t
+    ```
+
+### 过程作为参数
+
+用 `interface` 块声明即可。函数形参不允许 `intent` 属性（没有意义）。
+
+```fortran
+real function minimum(a, b, func)
+    interface
+        real function func(x)
+            real, intent(in) :: x
+```
+
+内部、外部、模块的过程、过程指针都可以作为实参。
+
+- 当调用内部过程时，过程可以使用被调语句环境中的变量（称为**宿主环境**）
+
+### 关键字与可选参数
+
+- 调用时关键字参数放在普通参数后面
+- 使用内置函数 `present()` 判断参数是否存在
+
+### 作用域
+
+- 作用域单元有：派生类型定义 `type`、过程接口块 `interface`、程序单元或 `subprogram`
+- 宿主关联的有：派生类型定义、模块 `subprogram`、内部 `subprogram`
+- 全局的名字有：程序单元、外部过程
+
+### 递归
+
+- 都需要在函数定义前加上 `recursive` 关键字
+- 直接调用自己的，函数名字不能用于函数的结果，需要 `result` 变量
+
+    ```fortran
+    recursive function sum(top) result(s)
+        s = top%value + sum(top%next)
+    ```
+
+- 间接递归则不需要 `result`
+
+### 重载和泛型接口
+
+```fortran
+interface [generic-spec]
+    [interface-body]...
+    [[module]procedure[::]procedure-name-list]...
+end interface [generic-spec]
+```
+
+其中 `generic-spec` 可以是 `generic-name` 和运算符。
+
+
 
 <!-- 2024.02.13 P85 -->
