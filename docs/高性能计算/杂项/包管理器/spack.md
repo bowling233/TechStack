@@ -10,6 +10,7 @@ tags:
 > [https://spack.readthedocs.io/en/latest/getting_started.html](https://spack.readthedocs.io/en/latest/getting_started.html)
 
 - 添加 shell 支持
+    - 如果集群上已经下载过 Spack，加载脚本一般在 `spack/share/spack/setup-env.sh`
 - 配置编译器 `spack compiler`
     - `list` `add=find` `info`
     - `spack config edit compilers` 可以进一步指定编译选项、设置环境变量。

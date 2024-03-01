@@ -1,4 +1,18 @@
-# Lecture 6 GPU and CUDA API
+# Nvidia Profiler
+
+## Nsight Systems
+
+生成报告：
+
+```bash
+nsys profile --stats=true -o test-report ./my_report
+```
+
+---
+
+以下为原课程笔记内容，尚未整理完成
+
+Lecture 6 GPU and CUDA API
 
 Date: 2023/07/09
 
@@ -156,7 +170,7 @@ And now we can use other components of `gridDim` and `blockDim`. For example, `b
 
 ## Part 2 使用 CUDA C/C++ 统一内存和 Nsight Systems (nsys) 管理加速应用程序内存
 
-> reference: https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#memory-optimizations
+> reference: <https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#memory-optimizations>
 >
 > Nsight Systems命令行分析器
 >
@@ -177,18 +191,9 @@ cudaDeviceProp props;
 cudaGetDeviceProperties(&props, deviceId); // `props` now has many useful properties about the active GPU device.
 ```
 
-
-
-
 ## Part 3 Asynchronous Streaming and Visual Analysis of Accelerated C/C++ Applications
 
-### Nsight Systems
 
-生成报告：
-
-```bash
-nsys profile --stats=true -o test-report ./my_report
-```
 
 ### CUDA 流
 
@@ -205,7 +210,4 @@ cudaStreamDestroy(stream); // 注意，将值（而不是指针）传递给 `cud
 
 回忆我们已经学过的 `cudaMallocManaged` 和 `cudaMemPrefetchAsync` 函数。
 
-
-
 ```c
-

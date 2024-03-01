@@ -48,15 +48,6 @@ tags:
 
     <embed src="../attachment/riscv标准.pdf" style="width:100%; height:80vh;" type="application/pdf">
 
-### RISC-V CPU 设计
-
-!!! info "推荐资源"
-
-    -   视频：
-        -   Rong晔：[RISC-V设计入门指北](https://www.bilibili.com/video/BV1Qr4y1H7v8)
-    -   项目：
-        -   [tinyriscv](https://github.com/liangkangnan/tinyriscv)
-
 ## x86-64
 
 !!! abstract "内容来源"

@@ -6,6 +6,9 @@ tags:
 # C++
 
 <style>
+code {
+  white-space: pre-wrap !important;
+}
 h1 {
   counter-reset: h2;
 }
@@ -133,7 +136,7 @@ int units_sold{0};
 int units_sold(0);
 ```
 
-List initialization prevents narrowing conversions.
+List initialization prevents narrowing conversions. In C++, a narrowing conversion is a potentially unsafe numeric conversion where the destination type may not be able to hold all the values of the source type.
 
 !!! note "Variables must be defined exactly once but can be declared many times."
 
@@ -168,7 +171,7 @@ We cannot use a `void*` to operate on the object it addresses—we don’t know 
 
 #### `const` Qualifier
 
-!!! note "To share a const object among multiple files, you must define the variable as extern."
+!!! note "To share a `const` object among multiple files, you must define the variable as extern."
 
 ??? note "By Default, `const` Objects Are Local to a File"
 
@@ -189,8 +192,8 @@ We cannot use a `void*` to operate on the object it addresses—we don’t know 
 
 !!! tip "A Reference to `const` May Refer to an Object That Is Not `const`."
 
-- `Top-level` `const`: an object itself is a `const`.
-- `Low-level` `const`: the pointer points to a `const` object. appears in the base type of compound types such as pointers or references.
+- Top-level `const`: an object itself is a `const`.
+- Low-level `const`: the pointer points to a `const` object. appears in the base type of compound types such as pointers or references.
 
 When we copy an object, top-level `const`s are ignored. Low-level `const` is never ignored.
 
@@ -235,7 +238,7 @@ const int *p2 = &ci; // we can change p2; const is low-level
 
 !!! danger "`decltype` returns a reference type for expressions that yield objects that can stand on the left-hand side of the assignment"
 
-    If `p` is a pointer to `int`, then `decltype(*p)` is **`int&`**, not int.
+    If `p` is a pointer to `int`, then `decltype(*p)` is **`int&`**, not `int`.
 
 !!! danger "enclosing the name of a variable in parentheses affects the type returned by `decltype`"
 
@@ -258,7 +261,7 @@ const int *p2 = &ci; // we can change p2; const is low-level
 
 #### `using` Declaration
 
-- A Separate using Declaration Is Required for Each Name
+- A Separate `using` Declaration Is Required for Each Name
 
     ```cpp
     using std::cout; using std::endl;
@@ -292,7 +295,7 @@ s.empty(); // Returns true if s is empty; otherwise returns false.
     Used as condition.
 
 !!! tip "`getline()` don't save the newline character."
-!!! tip "`string::size_type` Type"
+!!! warning "`string::size_type` Type"
 
     It is an unsigned type.
 
@@ -348,7 +351,7 @@ Some operation:
 v.push_back(t); // Adds a copy of t to the end of v. Returns void.
 ```
 
-!!! danger "The body of a range for must not change the size of the sequence over which it is iterating."
+!!! danger "The body of a range `for` must not change the size of the sequence over which it is iterating."
 !!! tip "`vector<int>::size_type` instead of `vector::size_type`"
 
 #### Iterators
@@ -406,7 +409,7 @@ iter1 == iter2;
             end = mid; // if so, adjust the range to ignore the second half
         else // the element we want is in the second half
             beg = mid + 1; // start looking with the element just after mid
-    mid = beg + (end - beg)/2; // new midpoint
+        mid = beg + (end - beg)/2; // new midpoint
     }
     ```
 
@@ -443,7 +446,7 @@ cast-name<type>(expression);
 - `static_cast`:
     - Any well-defined type conversion, **other than those involving low-level const**, can be requested using a `static_cast`.
     - useful to perform a conversion that the compiler will not generate automatically.
-- `dynamic_cast`
+- `dynamic_cast` → see dynamic memory
 - `const_cast`:
 
     ```cpp
@@ -453,6 +456,7 @@ cast-name<type>(expression);
 
     - A `const_cast` changes only a low-level const in its operand.
     - the compiler will no longer prevent us from writing to that object.
+
 - `reinterpret_cast`:
 
     ```cpp
@@ -579,12 +583,12 @@ Values are returned in exactly the same way as variables and parameters are init
 
     ```cpp
     char &get_val(string &str, string::size_type ix) {
-        return str[ix]; // get_valassumes the given index is valid 
+        return str[ix]; // get_val assumes the given index is valid 
     }
     int main() {
         string s("a value"); 
         cout << s << endl; // prints a value 
-        get_val(s, 0) = ’A’; // changes s[0]to A 
+        get_val(s, 0) = ’A’; // changes s[0] to A 
         cout << s << endl; // prints A value return 0;
     }
     ```
@@ -642,7 +646,7 @@ Inner scope name hides uses of that name declared in an outer scope:
 string read();
 void print(const string &);
 void print(double); // overloads the printfunction v
-oid fooBar(int ival)
+void fooBar(int ival)
 {
     bool read = false; // new scope: hides the outer declaration of read
     string s = read(); // error: readis a boolvariable, not a function
@@ -659,7 +663,8 @@ oid fooBar(int ival)
 
 #### Specialized Uses
 
-- Default Arguments: - The default arguments are used for the trailing (right-most) arguments of a call.
+- Default Arguments:
+    - The default arguments are used for the trailing (right-most) arguments of a call.
 
     !!! danger "can omit only trailing arguments"
 
@@ -674,6 +679,7 @@ oid fooBar(int ival)
     - each parameter can have its default specified only once in a given scope.
     - any subsequent declaration can add a default only for a parameter that has **not previously** had a default specified.
     - defaults can be specified only if all parameters to the right already have defaults
+
 - Default Argument Initializers
     - a default argument can be any **expression** that has a type that is convertible to the type of the parameter
 - `inline` Functions Avoid Function Call Overhead
@@ -683,7 +689,7 @@ oid fooBar(int ival)
 - `constexpr` function is a function that can be used in a constant expression
 
     ```cpp
-    // scale(arg)is a constant expression ifarg is a constant expression
+    // scale(arg)is a constant expression if arg is a constant expression
     constexpr size_t scale(size_t cnt) { return new_sz() * cnt; }
     ```
 
@@ -697,11 +703,11 @@ oid fooBar(int ival)
 
 #### `assert` and `NDEBUG`
 
-- `_ _func_ _`: compiler defines, the name of the function in which the call appears.
-- `_ _FILE_ _`: preprocessor defines, string literal containing the name of the file
-- `_ _LINE_ _`: preprocessor defines, integer literal containing the line number of the file
-- `_ _TIME_ _`: preprocessor defines, string literal containing the time of translation
-- `_ _DATE_ _`: preprocessor defines, string literal containing the date of translation
+- `__func__`: compiler defines, the name of the function in which the call appears.
+- `__FILE__`: preprocessor defines, string literal containing the name of the file
+- `__LINE__`: preprocessor defines, integer literal containing the line number of the file
+- `__TIME__`: preprocessor defines, string literal containing the time of translation
+- `__DATE__`: preprocessor defines, string literal containing the date of translation
 
 #### Function Matching
 
@@ -745,12 +751,12 @@ Using auto or decltype for Function Pointer Types:
 
 ```cpp
 string::size_type sumLength(const string&, const string&);
-string::size_type largerLength(const string&, const string&); // depending on the value of its stringparameter,
+string::size_type largerLength(const string&, const string&); // depending on the value of its string parameter,
 // getFcn returns a pointer to sumLengthor to largerLength
 decltype(sumLength) *getFcn(const string &);
 ```
 
-!!! danger "The only tricky part in declaring `getFcn` is to remember that when we apply `decltype`to a function, it returns a function type, not a pointer to function type. We must add a `*` to indicate that we are **returning a pointer, not a function**."
+!!! danger "The only tricky part in declaring `getFcn` is to remember that when we apply `decltype` to a function, it returns a function type, not a pointer to function type. We must add a `*` to indicate that we are **returning a pointer, not a function**."
 
 ### Chapter 7 Classes
 
@@ -777,7 +783,7 @@ std::string isbn() const { return this->bookNo; }
 as:
 
 ```cpp
-std::string Sales_data::isbn(const Sales_data *const this)
+std::string Sales_data::isbn(const Sales_data, *const this)
 { return this->isbn; }
 ```
 
@@ -786,8 +792,8 @@ But the latter is not legal because we may not explicitly define the `this` poin
 Return `this` object: use reference to `this`.
 
 ```cpp
-Sales_data& Sales_data::combine(const Sales_data &rhs); // return reference
-return *this; // return the object on which the function was called
+Sales_data& Sales_data::combine(const Sales_data &rhs) // return reference
+{ return *this; } // return the object on which the function was called
 ```
 
 !!! warning "Return reference!"
@@ -816,7 +822,7 @@ When we define a member function outside the class body, the member’s definiti
 - A class can have multiple constructors.
 - Constructors may not be declared as `const`.
 
-When we create a `const` object of a class type, the object does not assume its “`const`ness” until after the constructor completes the object’s initialization. Thus, constructors **can write to `const` objects during their construction**.
+When we create a `const` object of a class type, the object does not assume its "`const`ness" until after the constructor completes the object’s initialization. Thus, constructors **can write to `const` objects during their construction**.
 
 Defining outside the class body:
 
@@ -840,7 +846,7 @@ The compiler generates a default constructor automatically **only if a class dec
 1. Classes that have members of **built-in or compound type** should ordinarily either initialize those members inside the class or define their own version of the default constructor. Otherwise, users could create objects with members that have **undefined value**.
 2. A class has a member that has a class type, and that class doesn’t have a default constructor, then the compiler can’t initialize that member.
 
-!!! tip "Often we are defining default constructor only becausewe want to provide other constructors as well as the default constructor.we "
+!!! tip "Often we are defining default constructor only because we want to provide other constructors as well as the default constructor"
 
 ```cpp
 Sales_data() = default; // we already provide initializers for the data members with built-in type.
@@ -894,7 +900,7 @@ Value initialization happens:
 - local static object without an initializer
 - request value initialization by writing an expressions of the form `T()` where `T` is the name of a type
 
-!!! warning "It is a commonmistake among programmers new to C++ to try to declare an object initialized with the default constructor as follows:"
+!!! warning "It is a common mistake among programmers new to C++ to try to declare an object initialized with the default constructor as follows:"
 
     ```cpp
     Sales_data obj(); // oops! declares a function, not an object 
@@ -937,7 +943,7 @@ access specifiers to enforce encapsulation:
 - `public`: members are accessible to all parts of the program.
 - `private`: members are accessible to the member functions of the class.
 
-The only difference between `struct` and `class` is the default access level. If we use the `struct` keyword, the members defined before the first access specifier are `public`;if we use `class`, then the members are `private`.
+The only difference between `struct` and `class` is the default access level. If we use the `struct` keyword, the members defined before the first access specifier are `public`; if we use `class`, then the members are `private`.
 
 ##### Friends
 
@@ -981,10 +987,10 @@ class Sales_data { // friend declarations for nonmember Sales_dataoperations add
     We can use an incomplete type in only **limited ways**: We can define pointers or references to such types, and we can declare (but not define) functions that use an incomplete type as a parameter or return type.
 
 - Friendship between Classes
-- Making AMember Function a Friend
-    - First, define the Window_mgr class, which declares, but cannot define, clear. Screen must be declared before clear can use the members of Screen.
-    - Next, define class Screen, including a friend declaration for clear.
-    - Finally, define clear, which can now refer to the members in Screen.
+- Making A Member Function a Friend
+    - First, define the `Window_mgr` class, which declares, but cannot define, `clear`. `Screen` must be declared before `clear` can use the members of `Screen`.
+    - Next, define `class Screen`, including a friend declaration for `clear`.
+    - Finally, define `clear`, which can now refer to the members in `Screen`.
 
 !!! tip "Good practice: don’t use a member name for a parameter or other local variable"
 
@@ -1011,13 +1017,13 @@ The `static` members of a class exist **outside any object**. Objects do not con
 
 ```cpp
 r = Account::rate(); // access a staticmember using the scope operator
-r = ac1.rate(); // through an Accountobject or reference
-r = ac2->rate(); // through a pointer to an Accountobject
+r = ac1.rate(); // through an Account object or reference
+r = ac2->rate(); // through a pointer to an Account object
 ```
 
-They are not initialized by the class’ constructors. @e may not initialize a `static` member inside the class. We must define and initialize each `static` data member **outside the class body**.
+They are not initialized by the class’ constructors. We may not initialize a `static` member inside the class. We must define and initialize each `static` data member **outside the class body**.
 
-```cpp
+```cpp 
 double Account::interestRate = initRate();
 ```
 
@@ -1025,7 +1031,7 @@ double Account::interestRate = initRate();
 
 `static` Members Can Be Used in Ways Ordinary Members Can’t. A `static` data member can have incomplete type. We can use a `static` member as a default argument.
 
-Similarly, `static` member **functions** are not bound to any object; they do not have a `this` pointer. As a result, static member functions may not be declared as `const`,and we maynot refer to `this` in the body of a static member.
+Similarly, `static` member **functions** are not bound to any object; they do not have a `this` pointer. As a result, static member functions may not be declared as `const`, and we maynot refer to `this` in the body of a static member.
 
 !!! note "随手记点单词"
 
@@ -1062,11 +1068,11 @@ The library lets us **ignore the differences among these different kinds of stre
     - Recover: `.clear()`, `.clear(flags)`, `.setstate(flags)`, `.rdstate()`.
 
     ```cpp
-    // turns offfailbitand badbitbut all other bits unchanged 
+    // turns off failbit and badbit but all other bits unchanged 
     cin.clear(cin.rdstate() & ~cin.failbit & ~cin.badbit);
     ```
 
-Each output streammanages a buffer. Several conditions that cause the buffer to be flushed:
+Each output stream manages a buffer. Several conditions that cause the buffer to be flushed:
 
 - The program completes normally.
 - the buffer can become full.
@@ -1089,7 +1095,6 @@ Each output streammanages a buffer. Several conditions that cause the buffer to 
     - `flush`: flush
     - `ends`: null, flush
     - `unitbuf`, `nounitbuF`: flush or not.
-    - 
 
 #### File Stream
 
@@ -1123,7 +1128,7 @@ strm.str(); // return a copy of the string
 strm.str(s); // copy s into strm
 ```
 
-An `istringstream` is often usedwhen wehavesomeworkto do on an entire line.
+An `istringstream` is often used when we have some work to do on an entire line.
 
 ```cpp
 string line, word; // will hold a line and word from input, respectively
@@ -1279,7 +1284,7 @@ Although we cannot **copy or assign objects** of built-in array types, there is 
 list<string> names;
 vector<const char*> oldstyle;
 names = oldstyle; // error: container types don’t match
-// ok: can convert from constchar*to string
+// ok: can convert from const char* to string
 names.assign(oldstyle.cbegin(), oldstyle.cend());
 ```
 
@@ -1297,7 +1302,7 @@ with the exception of `string`, iterators, references, and pointers into the con
 
 Comparing two containers performs a **pairwise comparison of the elements**. These operators work similarly to the string relationals
 
-Relational Operators Use **Their Element’s Relational Operator**. We can use a relational operator to compare two containers only if the appropriate comparison operator is defined for the element type.\
+Relational Operators Use **Their Element’s Relational Operator**. We can use a relational operator to compare two containers only if the appropriate comparison operator is defined for the element type.
 
 #### Sequential Container Operations
 
@@ -1333,7 +1338,7 @@ while (cin >> word)
     iter = lst.insert(iter, word); // same as calling push_front
 ```
 
-!!! warning "Adding elements to a `vector`, `string`,or `deque` potentially invalidates all existing iterators, references, and pointers into the container."
+!!! warning "Adding elements to a `vector`, `string`, or `deque` potentially invalidates all existing iterators, references, and pointers into the container."
 
 ##### Access
 
@@ -1486,11 +1491,62 @@ stack<string, vector<string>> str_stk;
 
 ### Chapter 10 Generic Algorithms
 
-Skipped.
+!!! abstract
+
+    - Header Files: `<algorithm> <numeric><functional><iterator>`
+    - Algorithms:
+
+        ```text
+        find, count, accumulate, equal
+        fill, fill_n, copy, replace, replace_copy
+        back_inserter(container)
+        sort, unique
+        stable_sort, partition
+        find_if
+        for_each
+        transform
+        count_if
+        unique_copy
+        replace, replace_if, replace_copy, replace_copy_if
+        ```
+
+    - Container-Specifc Algorithm as members: `list` and `forward_list`
+
+        ```text
+        sort, merge, remove, reverse, unique
+        splice
+        ```
+    
+    - Lambda expression and `Bind()` function:
+
+        ```cpp
+        [capture list](parameter list) -> return type {function body};
+        []{return 42;};
+        bind(callable, arg_list);
+        ref(); cref();
+        vector<int> vec(in_iter, eof);
+        ```
+
+    - Iterator:
+        - adaptor: insert, stream, reverse, move
+        - back_inserter, front_inserter, inserter
+        - (template) istream_iterator, ostream_iterator, default initialize: end iterator value
+        - rbegin, rend, crbegin, crend, `.base()` **adjacent positions**
+
+            !!! warning "Understand left-inclusive range and asymmetric"
+
+        - categorize by operations required by algorithms: input, output, forward, bidirectional, random-access
+            - single pass: may invalidate all other iterators into the stream
+            - random-access: subscript `iter[n]` synonym for `*(iter + n)`
+            - some auxiliary function: `distance()`
+    - Misc:
+        - C-style string equal
+        - container capacity, reserve, resize operation
+        - unique overwrites but not reorder
 
 ### Chapter 11 Associative Containers
 
-Skipped.
+`map` and `set`.
 
 ### Chapter 12 Dynamic Memory
 
@@ -1553,7 +1609,7 @@ Use `make_shared` function to allocate and use dynamic memory.
 
     We can usually omit the value and supply only a size. In this case the library creates a **value-initialized element initializer for us**. This library-generated value is used to initialize each element in the container. The value of the element initializer depends on the type of the elements stored in the vector. 
 
-    If the `vector` holds elements of a built-in type, such as int, then the element initializer has a value of 0. If the elements are of a class type, such as string,then the element initializer is itself default initialized.
+    If the `vector` holds elements of a built-in type, such as int, then the element initializer has a value of 0. If the elements are of a class type, such as string, then the element initializer is itself default initialized.
 
 !!! danger "Memory Leak: `shared_ptr`s in a container"
 
