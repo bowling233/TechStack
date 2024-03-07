@@ -79,6 +79,115 @@ from qutip import (Qobj, about, basis, coherent, coherent_dm, create, destroy,
                    sigmaz, tensor, thermal_dm)
 ```
 
+## Lab 2 光子偏振
+
+### 基础
+
+- 用 `Qobj` 来表示矩阵或向量，来表示光子的偏振态
+- `basis(N, i)` 表示 $N$ 维空间中的第 $i$ 个基矢量
+
+```python title="圆偏振光"
+from qutip import basis
+import numpy as np
+H = basis(2, 0)  # 水平偏振
+V = basis(2, 1)  # 垂直偏振
+R = (H - 1.j * V).unit()  # 右旋偏振
+R = (H - 1.j * V) / np.sqrt(2)  # 右旋偏振
+```
+
+- 要得到一个态的共轭转置（或者说是对偶），可以使用 `.dag()` 方法。计算内积也可以直接使用 `.overlap()`。下面计算 $\braket{H|R}$
+
+```python title="内积"
+print (H.diag() * R)
+H.overlap(R)
+```
+
+```python title="投影算子"
+Ph = H * H.dag()
+print(ph * R)
+```
+
+- 测量概率，就是求概率振幅的平方，而概率振幅就是两个态的内积
+
+```python
+def probability_amplitude(s1, s2):
+    return s1.unit().overlap(s2.unit())
+
+def measurement_probability(s1, s2):
+    return abs(probability_amplitude(s1.unit(), s2.unit()))**2
+
+print(probability_amplitude(V, R))
+print(measurement_probability(V, R))
+```
+
+### 量子密钥分发
+
+#### 理论
+
+- 基本的密码学知识
+    - 加密就是一个函数，$f(m)$，只有双方知道。但多次使用后，第三方可以通过统计分析得到 $f$ 的信息。
+    - 经典的解决办法是：用一个经常变动的密钥进行加密 $f(m, k)$，但这个密钥也可能会被第三方分析得到。
+    - 量子的解决办法是：第三方如果观测量子态，就会改变它的状态，这样就会被发现。上面的密钥使用量子分发。
+- BB84 协议
+    - 个人认为这一协议的核心在于：用相同的基测偏振光，才能得到必定一致的结果。
+    - 两个信道：一个是量子信道，一个是经典信道
+    - 第一步 量子信道：
+        - 发送：Alice 想向 Bob 传递一串比特。对于每一位比特，她随机用对角基或水平基编码，把光子传给 Bob。
+        - 接收：Bob 也随机选择对角基或水平基测量光子。
+        - 结果：显然，如果 Bob 选对了基，那么就能得到正确的比特。但如果 Bob 选错了基，那么他得到的结果就是随机的。
+    - 第二步 经典信道：
+        - 发送：Bob 告诉 Alice 他所用的基
+        - 回复：Alice 告诉 Bob 哪些基是错的
+        - 结果：现在，双方都知道哪些比特传错了。丢弃掉这些比特，剩下的就是密钥，称为 **Shifted Key**。
+    - 检测 Eve 的存在：
+        - Eve 也只能猜，随机测量光子。她的测量会随机改变光子的状态。因此，**即使 Bob 使用了正确的基，也可能得到错误结果**。
+        - 为了检测 Eve 的存在，Alice 和 Bob 会一起随机核对一部分比特。如果有错误，就说明有人监听了。
+
+        !!! bug "Eve 有机会逃逸！"
+
+            Eve 可能选择到正确的基。即使选择了错误的基，Bob 也可能测得正确的结果。只不过这概率很小：如果 Eve 检测了 $n$ 个比特，她逃逸成功的概率为 $\frac34^n$。
+
+        !!! bug "存在中间人攻击！"
+
+    - 缺陷：测量仪器、信道噪声、不可靠的光源……
+
+#### 编程
+
+让我们看看样例代码是怎么实现一次 BB84 协议的。
+
+```python title="BB84 协议"
+# 模式和基的准备
+basisHV = [H, V] # 水平基的 0 和 1
+basisPM45 = [P45, M45] # 对角基的 0 和 1
+modes = [basisHV, basisPM45] # 水平还是对角基？
+# 第一次：Alice 编码
+Alice_bits = bit_generate(nbits)
+for i in range(len(Alice_bits)):
+    mode = mode_select()
+    Alice_modes.append(mode)
+    Alice_prepared.append(Photon(modes[mode][Alice_bits[i]])) # 选择基，编码生成光子
+# 第一次：Bob 解码
+for p in Bob_received:
+    mode = mode_select()
+    Bob_modes.append(mode)
+    Bob_bits.append(p.measure(modes[mode]))
+# 第二次：Alice 和 Bob 交流，互换 modes 和 bits
+keys = []
+for am,bm,ab,bb in zip(Alice_modes,Bob_modes,Alice_bits,Bob_bits):
+    if (am == bm): # compared modes through a classical channel
+        assert ab == bb
+        keys.append(ab)
+```
+
+接下来是我们的编程任务：
+
+- 中间人攻击：
+    - 方法：Eve 拦截 Alice 发送给 Bob 的光子，将测量结果重新发送给 Bob。
+    - 概率：测量时，Eve 有 50% 的概率选择正确的基，并将正确的结果发送给 Bob。如果选择错误了，她发送错误基的光子，如果 Bob 选对了基，测对的结果为 50%。总的来说，这些比特中有 25% 会出现错误。
+    - 结果：当 Alice 和 Bob 交流基的信息时，Eve 也会知道，但这太晚了。
+    - 编程任务：展示 Alice 和 Bob 的密钥中有 25% 的比特不一致。
+
+
 ## Appendix 术语表和数学知识
 
 | Eng | 中文 |
