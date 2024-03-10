@@ -1546,7 +1546,89 @@ stack<string, vector<string>> str_stk;
 
 ### Chapter 11 Associative Containers
 
-`map` and `set`.
+Two primary types:
+
+- `map` key-value pairs (array)
+- `set` keys
+
+Eight associative containers: 
+
+- `map` or `set`
+- unique or `multi`
+- ordered or `unordered` (often Hash)
+
+Common feature:
+
+- bidirectional iterators
+- initialize as copy of another container (`vector` for example)
+
+Key constraints:
+
+- ordered: must define a way to compare elements, **strict weak ordering** `<`
+
+    ```cpp title="Example of comparison function"
+    multiset<Sales_data, decltype(compareIsbn) *> bookstore(compareIsbn);
+    ```
+
+    Function pointer type. Supply the function to the constructor.
+
+Aliases:
+
+```cpp
+key_type
+mapped_type
+value_type // pair for map, key is const
+```
+
+Iterator:
+
+- `key`s are `const`
+    - For example, both `iterator` and `const_iterator` for `set` are read-only.
+
+    ```cpp
+    // notice the function const arguments
+    multiset<Sales_data, bool (*)(const Sales_data &, const Sales_data &>::iterator it = bookstore.begin();
+    ```
+
+- ascending order
+
+!!! note "In general, we do not use the generic algorithms with the associative
+containers"
+
+Insert:
+
+- `insert` returns a `pair` of an iterator and a `bool` indicating whether the insertion took place.
+
+    ```cpp
+    auto ret = word_count.insert({word, 1});
+    if (!ret.second)
+        ++ret.first->second;
+    ```
+
+- For `multi` containers, don't return `bool` because insert always success.
+
+Erase：
+
+- return the number of elements removed
+
+
+#### Pair
+
+```cpp
+{v1, v2}; // easiest after c++11
+make_pair(v1, v2);
+p1 < p2; // compare first, then second
+p1 == p2; // respectively equal
+return pair<string, int>(v1, v2);
+```
+
+#### Map
+
+- `m[k]` returns value
+
+!!! warning "Only `map` and `unordered_map` has `[]` operator"
+
+- range `for` fetch template type `pair`, which has `first` and `second` members
 
 ### Chapter 12 Dynamic Memory
 
