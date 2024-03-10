@@ -55,9 +55,9 @@ h6:before {
     - [ ] Part II: The C++ Library
         - [x] Ch 8: The IO Library
         - [x] Ch 9: Sequential Containers
-        - [ ] Ch 10: Generic Algorithms
-        - [ ] Ch 11: Associative Containers
-        - [ ] Ch 12: Dynamic Memory
+        - [x] Ch 10: Generic Algorithms
+        - [x] Ch 11: Associative Containers
+        - [x] Ch 12: Dynamic Memory
     - [ ] Part III: Tools for Class Authors
         - [ ] Ch 13: Copy Control
         - [ ] Ch 14: Overloaded Operations and Conversions
@@ -1609,8 +1609,23 @@ Insert:
 
 Erase：
 
-- return the number of elements removed
+- `key_type` argument version return the number of elements removed
 
+!!! warning "must not be equal to the `end` iterator"
+
+Find:
+
+- `find`, `count`
+- `lower_bound`, `upper_bound`, `equal_range`
+
+#### Unordered Containers
+
+- use `==` operator, hash function
+- map hash to a bucket
+- object `hash<key_type>` to generate hash value
+    - built-in types and `string`, smart pointer has hash function
+
+!!! info "customized hash function see Chap.16"
 
 #### Pair
 
@@ -1625,8 +1640,13 @@ return pair<string, int>(v1, v2);
 #### Map
 
 - `m[k]` returns value
+    - if `key` is not present, new element will be inserted (**value initialized**)
+    - type returned differ from dereferencing iterator
+- `m.at(k)` will throw `out_of_range` exception
 
-!!! warning "Only `map` and `unordered_map` has `[]` operator"
+!!! warning "Can't be used on `const` map"
+
+!!! warning "Only `map` and `unordered_map` has `[]` operator and `at` function"
 
 - range `for` fetch template type `pair`, which has `first` and `second` members
 
@@ -1761,3 +1781,13 @@ Two operators: `new`, `delete`.
 ### Chapter 18 Tools for Large Programs
 
 ### Chapter 19 Specialized Tools and Techniques
+
+
+### 零碎技巧
+
+- 被换行符困扰？使用`getline`函数，或者在`>>`后面加上`ws`。
+    - 注意 `getline` 不会跳过前导空白字符。
+
+```cpp
+while (map_file >> key && getline(map_file, value))
+```
