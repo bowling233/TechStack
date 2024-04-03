@@ -1023,7 +1023,7 @@ r = ac2->rate(); // through a pointer to an Account object
 
 They are not initialized by the class’ constructors. We may not initialize a `static` member inside the class. We must define and initialize each `static` data member **outside the class body**.
 
-```cpp 
+```cpp
 double Account::interestRate = initRate();
 ```
 
@@ -1551,7 +1551,7 @@ Two primary types:
 - `map` key-value pairs (array)
 - `set` keys
 
-Eight associative containers: 
+Eight associative containers:
 
 - `map` or `set`
 - unique or `multi`
@@ -1768,6 +1768,38 @@ Two operators: `new`, `delete`.
 
 ### Chapter 13 Copy Control
 
+Five special member functions: copy
+constructor, copy-assignment operator, move constructor, move-assignment op-
+erator, and destructor.
+
+- copy and move constructor: initialize new object from another object of the same type
+- copy and move assignment: assign an object of a class type to another object of that same class type
+
+#### Copy Constructor
+
+its ﬁrst parameter is a reference to the class type and any additional parameters have default values.
+
+```cpp
+Foo(const Foo&);
+```
+
+#### Copy initialization
+
+```cpp
+string dots(10, ’.’); // direct initialization
+string s(dots); // direct initialization
+string s2 = dots; // copy initialization
+string null_book = "9-999-99999-9"; // copy initialization
+string nines = string(100, ’9’); // copy initialization
+```
+
+When copy initialization happens and that copy initialization requires either the copy constructor **or the move constructor**.
+
+- Pass an object as an argument
+- Return
+- Brace initialize
+- library containers allocate objects
+
 ### Chapter 14 Overloaded Operations and Conversions
 
 ### Chapter 15 Object-Oriented Programming
@@ -1780,8 +1812,59 @@ Two operators: `new`, `delete`.
 
 ### Chapter 18 Tools for Large Programs
 
-### Chapter 19 Specialized Tools and Techniques
+#### Exception Handling
 
+- `throw` expression
+- `try` block
+- `catch` clause
+- `exception` class
+    - `what` member function: return C-style string
+
+!!! note "Functions Are Exited during the Search for a Handler"
+
+    If no appropriate catch is found, execution is transferred to a library function named `terminate`. The behavior of that function is system dependent but is guaranteed to stop further execution of the program.
+
+!!! note "Standard Exception Classes"
+
+    Default initialization: 
+    
+    - `exception`
+    - `bad_alloc`
+    - `bad_cast`
+    - `bad_typeid`
+    - `bad_exception`
+
+    Cannot be default initialized:
+
+    - `runtime_error`
+        - `range_error`
+        - `overflow_error`
+        - `underflow_error`
+    - `logic_error`
+        - `domain_error`
+        - `invalid_argument`
+        - `length_error`
+        - `out_of_range`
+
+!!! note "Stack Unwind"
+
+    Because destructors may be invoked during stack unwinding, they should **never throw exceptions that the destructor itself does not handle**.
+
+    All of the standard library types guarantee that their destructors will not raise an exception.
+
+!!! note "Function `try` Blocks and Constructors"
+
+    An exception might occur while processing a constructor initializer.
+
+    ```cpp
+    template <typename T>
+    Blob<T>::Blob(std::initializer_list<T> il) try :
+    data(std::make_shared<std::vector<T>>(il)) {
+    /*empty body*/
+    } catch(const std::bad_alloc &e) { handle_out_of_memory(e); }
+    ```
+
+### Chapter 19 Specialized Tools and Techniques
 
 ### 零碎技巧
 

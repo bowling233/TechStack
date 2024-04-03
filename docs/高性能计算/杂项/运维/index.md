@@ -4,7 +4,4 @@
 
 - [硬件：设备](hardware.md)
 - [硬件：接口](hardware_port.md)
-- [软件：基础配置](basic_config.md)
-- [软件：操作系统](os.md)
-- [软件：网络](network.md)
-- [软件：服务](service.md)
+- [软件：系统配置](system_config.md)

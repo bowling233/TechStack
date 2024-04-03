@@ -108,16 +108,3 @@ SFF-8643
 ## PCI/PCIe
 
 ### PCIe
-
-::cards::
-
-[
-  {
-    "title": "",
-    "content": "",
-    "image": ""
-  },
-
-]
-
-::/cards::

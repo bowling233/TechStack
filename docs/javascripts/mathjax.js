@@ -1,10 +1,11 @@
 window.MathJax = {
   loader: { load: ["[tex]/physics"] },
   tex: {
+    packages: { "[+]": ["physics"] },
     inlineMath: [["\\(", "\\)"]],
     displayMath: [["\\[", "\\]"]],
     processEscapes: true,
-    processEnvironments: true
+    processEnvironments: true,
   },
   options: {
     ignoreHtmlClass: ".*|",
@@ -13,8 +14,8 @@ window.MathJax = {
 };
 
 document$.subscribe(() => {
-    MathJax.startup.output.clearCache();
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typesetPromise();
+  MathJax.startup.output.clearCache();
+  MathJax.typesetClear();
+  MathJax.texReset();
+  MathJax.typesetPromise();
 });
