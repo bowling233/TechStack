@@ -64,6 +64,3 @@ Host GitHub # 自定义主机名
 
 - 守护进程服务名称可能不是 `sshd` 而是 `ssh`。
 
-## VNC
-
-在 Windows 上我们更经常见到 RDP，而 Linux 上设置 VNC 似乎更为常见。
