@@ -1,7 +1,7 @@
 # Project information
 site_name: Bowling's TechStack
 site_url: https://note.bowling233.top
-repo_url: https://github.com/Tiandians/TechStack
+repo_url: https://github.com/bowling233/TechStack
 repo_name: TechStack
 edit_uri: blob/master/docs/
 site_description: Bowling 的笔记本
@@ -61,7 +61,7 @@ extra:
 extra_javascript:
   # MathJax
   - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://polyfill.alicdn.com/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   # Table Sort
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
