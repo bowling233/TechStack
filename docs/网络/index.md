@@ -24,3 +24,15 @@
     | L3 | 传输层（Transport Layer） | 端口号 | L4 交换机、防火墙 |
     | L2 | 网际层（Internet Layer） | IP 地址 | L3 交换机、路由器 |
     | L1 | 网络接口层（Network Interface Layer） | MAC 地址 | L2 交换机 |
+
+## 暂存笔记
+
+### CORS
+
+!!! info
+
+    - [MWD](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
+- 出于安全的考虑，**浏览器**会限制跨域请求。
+- 服务器使用 CORS，标示允许哪些源跨域访问。
+- 浏览器先向服务器发送预检请求，确认是否允许跨域，再发送真正的请求。
