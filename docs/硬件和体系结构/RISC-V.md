@@ -63,7 +63,7 @@ CPU 的几个指标：
 
 ### 指令
 
-图片均来自 [RISC-V Reference Card](https://riscv.org/wp-content/uploads/2018/05/1-RISC-V-ISA-Foundation-Overview-DAC2018-1.pdf)
+细节查阅 [RISC-V Reference Card](https://inst.eecs.berkeley.edu/~cs61c/fa17/img/riscvcard.pdf) 和 [RISC-V 指令集手册](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf)。
 
 ::cards:: cols=2
 
@@ -94,7 +94,6 @@ CPU 的几个指标：
     "content": "理解 SB 和 UJ 型指令立即数：[StackOverflow](https://stackoverflow.com/questions/58414772/why-are-risc-v-s-b-and-u-j-instruction-types-encoded-in-this-way)<br>符号位保持在最前面用于扩展，其余位尽可能与其他指令保持一致，用走线避免移位运算。",
     "image": "RISC-V.assets/image-20240508171657744.png"
   },
-
 ]
 
 ::/cards::
@@ -255,7 +254,7 @@ ELSE:
         v[k] = v[k+1];
         v[k+1] = temp;
     }
-
+    
     void sort(long long v[], size_t n)
     {
         for (size_t i = 0; i < n; i++)
@@ -269,10 +268,17 @@ ELSE:
 
 ### 约定
 
-- 时序：寄存器在时钟上升沿更新。
-    - 从而可以在一个时钟周期读写同一个寄存器：读到现有值，写入值在下一个上升沿才生效。
+- 时序：
+    - 单周期：寄存器在时钟上升沿更新。从而可以在一个时钟周期读写同一个寄存器：读到现有值，写入值在下一个上升沿才生效。
+    - 流水线：一个周期分成两部分，前半写入，后半读取。
 
-### 数据通路
+### 单周期数据通路
+
+全貌：
+
+![image-20240510230046092](RISC-V.assets/image-20240510230046092.png)
+
+分类总结：
 
 <div class="grid cards" markdown>
 
@@ -302,15 +308,43 @@ ELSE:
         - 0：Data Transfer ↑
         - 1：Conditional Branch B-type
 
--   __控制单元__
+-   __控制信号__
 
     ---
 
-    ALU control 四位：`Ainvert`、`Bnegate`、`Operation`，由 `func7`、`func3`、`ALUOp` 产生。
+    ```mermaid
+    graph LR
+        opcode --> Branch
+        ALU --> Zero
+        Branch --> PCSrc
+        Zero --> PCSrc
+        opcode --> Mux["`Mux(4)
+        ----
+        ALUSrc
+        Branch
+        MemtoReg
+        Jump`"]
+        opcode --> R/W["`R/W(3)
+        ----
+        MemRead
+        MemWrite
+        RegWrite`"]
+        opcode["opcode[6:0]"] --> ALUOp["ALUOp[1:0]"]
+        ALUOp --> ALUControl["`ALUControl[3:0]
+        ----
+        Ainvert
+        Bnegate
+        Operation[1:0]`"]
+        func7 --> ALUControl
+        func3 --> ALUControl
+    ```
 
-    Control 七位：`ALUOp`（2）、`Mux`（ALUSrc、Branch、MemtoReg、Jump）、`R/W`（MemRead、MemWrite、RegWrite）。由 `opcode` 产生。
+    ??? note "具体信号"
 
-    `PCSrc` 由 `Branch` 和 `Zero` 产生。
+        ![Screenshot 2024-05-10 at 11.25.20 PM](RISC-V.assets/Screenshot 2024-05-10 at 11.25.20 PM.png)
+
+        ![Screenshot 2024-05-10 at 11.27.56 PM](RISC-V.assets/Screenshot 2024-05-10 at 11.27.56 PM.png)
+
 
 -   :material-scale-balance:{ .lg .middle } __Open Source, MIT__
 
@@ -322,11 +356,18 @@ ELSE:
 
 </div>
 
+??? note "具体信号表"
+
+​    
+
 ??? note "其他"
 
     - Memory 读写都需要控制信号。读错产生的结果与存储器层次结构有关。
 
 ### 五级流水线
 
+![Screenshot 2024-05-10 at 11.19.05 PM](RISC-V.assets/Screenshot 2024-05-10 at 11.19.05 PM.png)
+
 ### 异常与中断
 
+![Screenshot 2024-05-10 at 11.20.59 PM](RISC-V.assets/Screenshot 2024-05-10 at 11.20.59 PM.png)
