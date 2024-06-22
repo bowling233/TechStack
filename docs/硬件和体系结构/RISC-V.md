@@ -101,6 +101,12 @@ CPU 的几个指标：
 - 名称和意义都要记忆并理解。
 - 从意义能推出用法和格式。
 
+??? question "值得注意的问题"
+
+    - 立即数的符号问题
+    
+    https://stackoverflow.com/questions/61046150/can-address-be-negative-in-the-immediate-field-of-the-risc-v-i-type
+
 ### C 与汇编
 
 #### 简单模块
@@ -243,7 +249,7 @@ ELSE:
 
 ??? note "锁与原子化 Lock and Atomicity"
 
-​    RVA 扩展原子指令集：![image-20240508171022603](RISC-V.assets/image-20240508171022603.png)
+    RVA 扩展原子指令集：![image-20240508171022603](RISC-V.assets/image-20240508171022603.png)
 
 !!! note "总结：一个 C 排序程序"
 
@@ -272,9 +278,7 @@ ELSE:
     - 单周期：寄存器在时钟上升沿更新。从而可以在一个时钟周期读写同一个寄存器：读到现有值，写入值在下一个上升沿才生效。
     - 流水线：一个周期分成两部分，前半写入，后半读取。
 
-### 单周期数据通路
-
-全貌：
+### 单周期
 
 ![image-20240510230046092](RISC-V.assets/image-20240510230046092.png)
 
@@ -342,17 +346,15 @@ ELSE:
     ??? note "具体信号"
 
         ![Screenshot 2024-05-10 at 11.25.20 PM](RISC-V.assets/Screenshot 2024-05-10 at 11.25.20 PM.png)
-
+        
         ![Screenshot 2024-05-10 at 11.27.56 PM](RISC-V.assets/Screenshot 2024-05-10 at 11.27.56 PM.png)
 
 
--   :material-scale-balance:{ .lg .middle } __Open Source, MIT__
+-   ____
 
     ---
 
-    Material for MkDocs is licensed under MIT and available on [GitHub]
 
-    [:octicons-arrow-right-24: License](#)
 
 </div>
 
@@ -368,6 +370,82 @@ ELSE:
 
 ![Screenshot 2024-05-10 at 11.19.05 PM](RISC-V.assets/Screenshot 2024-05-10 at 11.19.05 PM.png)
 
+三种冒险：
+
+- 结构冒险：多个指令需要同一硬件，在本书的实现中不需要考虑。
+- 数据冒险：需要的数据还没准备好。
+- 控制冒险：分支预测错误。
+
+??? note "会在哪里遇到结构冒险？"
+
+    如果我们的指令内存和数据内存是同一个内存，那么 MEM 阶段指令读取内存的同时，IF 阶段指令也需要读取内存，此时发生结构冒险。
+
+<div class="grid cards" markdown>
+
+-   __Forwarding__
+
+    === "情况"
+
+        只考虑到 EX 阶段的 forwarding：
+    
+        ![image-20240519221953040](RISC-V.assets/image-20240519221953040.png)
+    
+        | 情况 | 说明 |
+        | --- | --- |
+        | ID/EX Rs = EX/MEM Rd | 需要的数据刚从 ALU 计算出来 |
+        | ID/EX Rs = MEM/WB Rd | 需要的数据即将被写入 |
+    
+        上面两种情况可能同时发生，说明对同一个寄存器进行了连续操作，此时应当从 EX/MEM 阶段取最新的数据。
+    
+        不应该 forwarding 的情况：
+    
+        | 情况 | 措施 |
+        | --- | --- |
+        | 指令不涉及寄存器修改 | 检查 `RegWrite` |
+        | 向 `x0` 写入的数据 | 检查 `Rd` 是否为 `x0` |
+    
+    === "实现"
+        
+        用一个 Forwarding Unit 选择 ALU 的输入。
+    
+        ![image-20240519221924389](RISC-V.assets/image-20240519221924389.png)
+
+- __Stall__
+
+    === "情况"
+
+        -   Load-Use 数据冒险：Load 指令的数据还没准备好。
+        -   控制冒险：等待分支结果。但不采用，因为低效。
+
+    ​    ![image-20240519230034996](RISC-V.assets/image-20240519230034996.png)
+    ​    
+    === "实现"
+
+        用一个 Hazard Detection Unit 判断是否需要暂停。如果需要暂停，将控制信号刷为 `nop`，同时保持 ID 之前的寄存器状态不变。
+        
+        ![image-20240519225248359](RISC-V.assets/image-20240519225248359.png)
+
+-  __Branch Prediction__
+
+    ---
+
+    预测分支是否发生，解决控制冒险。
+
+    -   静态预测：总是预测不发生。
+    -   动态预测：根据历史记录预测。
+
+</div>
+
+
 ### 异常与中断
 
 ![Screenshot 2024-05-10 at 11.20.59 PM](RISC-V.assets/Screenshot 2024-05-10 at 11.20.59 PM.png)
+
+RISC-V 中异常一般指（内部或外部引起）程序控制流意外的变化，中断指外部事件引起的变化。
+
+- SEPC：异常发生时的 PC
+- SCAUSE：
+
+!!! info
+
+    - 另一种处理方式是 Vectored Interrupt，即中断向量表。提供多个中断处理程序的入口地址。

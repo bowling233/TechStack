@@ -1768,20 +1768,23 @@ Two operators: `new`, `delete`.
 
 ### Chapter 13 Copy Control
 
-Five special member functions: copy
-constructor, copy-assignment operator, move constructor, move-assignment op-
-erator, and destructor.
+Five special member functions: copy constructor, copy-assignment operator, move constructor, move-assignment operator, and destructor.
 
 - copy and move constructor: initialize new object from another object of the same type
 - copy and move assignment: assign an object of a class type to another object of that same class type
 
 #### Copy Constructor
 
-its ﬁrst parameter is a reference to the class type and any additional parameters have default values.
+- First parameter is a **reference** to the class type and any additional parameters have default values.
+- Always a reference to `const`.
+- Usually used **implicitly**.
 
 ```cpp
 Foo(const Foo&);
 ```
+
+- Synthesized copy constructor: memberwise copy.
+- 
 
 #### Copy initialization
 
