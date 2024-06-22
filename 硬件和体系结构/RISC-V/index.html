@@ -1,0 +1,2235 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bowling 的笔记本">
+      
+      
+        <meta name="author" content="Bowling">
+      
+      
+        <link rel="canonical" href="https://note.bowling233.top/%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/RISC-V/">
+      
+      
+        <link rel="prev" href="../ISA/">
+      
+      
+        <link rel="next" href="../fpga/">
+      
+      
+      <link rel="icon" href="https://cdn.bowling233.top/note/avatar/bowling.svg">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>RISC-V - Bowling's TechStack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/flink.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/neoteroi-mkdocs.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.tonycrane.cc/lxgw/lxgwscreen.css">
+    
+      <link rel="stylesheet" href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#risc-v" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bowling&#39;s TechStack" class="md-header__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bowling's TechStack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RISC-V
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+    
+  
+  友链
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-tabs__link">
+          
+  
+    
+  
+  人工智能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  实用技能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../FPGA/" class="md-tabs__link">
+          
+  
+    
+  
+  硬件和体系结构
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%A7%91%E7%A0%94/%E8%8D%89%E7%A8%BF/" class="md-tabs__link">
+          
+  
+    
+  
+  科研
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-tabs__link">
+          
+  
+    
+  
+  算法和数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%BD%91%E7%BB%9C/" class="md-tabs__link">
+          
+  
+    
+  
+  网络
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%8D%89%E7%A8%BF/CSAPP/" class="md-tabs__link">
+          
+  
+    
+  
+  草稿
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/opengl/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机图形学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-tabs__link">
+          
+  
+    
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%BD%AF%E4%BB%B6/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/C%2B%2B/" class="md-tabs__link">
+          
+  
+    
+  
+  软件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" class="md-tabs__link">
+          
+  
+    
+  
+  高性能计算
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bowling&#39;s TechStack" class="md-nav__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    Bowling's TechStack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    友链
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    人工智能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    实用技能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    硬件和体系结构
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            硬件和体系结构
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FPGA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FPGA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ISA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    RISC-V
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    RISC-V
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      导论
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risc-v-32i" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC-V 32I 指令集
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RISC-V 32I 指令集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      指令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      C 与汇编
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      汇编与机器码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risc-v-32i-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC-V 32I CPU 实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RISC-V 32I CPU 实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      约定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      单周期
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      五级流水线
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      异常与中断
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fpga/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FPGA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%8F%8A%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据表示与运算
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BC%93%E5%AD%98/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    缓存
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E7%A7%91%E7%A0%94/%E8%8D%89%E7%A8%BF/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    科研
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    算法和数学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    网络
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%8D%89%E7%A8%BF/CSAPP/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    草稿
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/opengl/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机图形学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E8%BD%AF%E4%BB%B6/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/C%2B%2B/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    软件
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    高性能计算
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      导论
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risc-v-32i" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC-V 32I 指令集
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RISC-V 32I 指令集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      指令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      C 与汇编
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      汇编与机器码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risc-v-32i-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC-V 32I CPU 实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RISC-V 32I CPU 实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      约定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      单周期
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      五级流水线
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      异常与中断
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="risc-v">RISC-V<a class="headerlink" href="#risc-v" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>对应课程</th>
+<th>对应书本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>《计算机组成》</td>
+<td>《计算机组成与设计：硬件/软件接口 RISC-V 版》</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<ul>
+<li>算是课程笔记，也算是读书笔记。</li>
+<li>正文都是应该记在脑子中的东西，不需要记忆的都折叠起来了。</li>
+<li>写得尽可能简略，有些地方一个词代表一整个句子了。</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">参考笔记</p>
+<ul>
+<li><a href="https://xuan-insr.github.io/computer_organization/">咸鱼暄</a></li>
+<li><a href="https://note.hobbitqia.cc/CO/">大 Q 老师</a></li>
+</ul>
+</div>
+<h2 id="_1">导论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">计算机系统八大思想</p>
+<ul>
+<li>摩尔定律 Moore's Law</li>
+<li>抽象 Abstraction</li>
+<li>普遍情况 Common Case</li>
+<li>并行 Parallelism</li>
+<li>流水线 Pipeline</li>
+<li>预测 Prediction</li>
+<li>存储器结构层次 Memory Hierarchy</li>
+<li>冗余 Redundancy</li>
+</ul>
+</div>
+<p>性能方面的概念：</p>
+<ul>
+<li>吞吐量 Throughput：实际处理的任务数</li>
+<li>带宽 Bandwidth：能够处理的任务数</li>
+</ul>
+<p>CPU 的几个指标：</p>
+<ul>
+<li>（程序在 CPU 上总的）执行时间 Execution Time</li>
+<li>（指令所消耗的）时钟周期数 Clock Cycle</li>
+<li>（CPU 的）时钟频率/周期 Clock Rate/Cycle Time</li>
+<li>（指令的）平均周期数 CPI：Cycles Per Instruction</li>
+<li>MIPS：Million Instructions Per Second</li>
+</ul>
+<p>其他：</p>
+<ul>
+<li>不太常见的存储单位：T P E Z Y</li>
+<li>Amdahl 定律（无非就是分有影响没影响）</li>
+</ul>
+<h2 id="risc-v-32i">RISC-V 32I 指令集<a class="headerlink" href="#risc-v-32i" title="Permanent link">&para;</a></h2>
+<p>一些东西的大小：</p>
+<ul>
+<li>寄存器：64b。</li>
+<li>字 Word：32b。衍生 Half Word、Double Word。</li>
+<li>地址：64b，即可寻 <span class="arithmatex">\(2^61\)</span> dword。</li>
+</ul>
+<p>一些概念：</p>
+<ul>
+<li>对齐（其他指令集中重要）：要求 word 起始于 word 整数倍，dword 起始于 dword 整数倍。RISC-V 对此不要求但低效。</li>
+<li>小端</li>
+<li>扩展：不足 64b 的数据载入寄存器需要做。<ul>
+<li>lw, lh, lb; lwu, lhu, lbu</li>
+</ul>
+</li>
+</ul>
+<h3 id="_2">指令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>细节查阅 <a href="https://inst.eecs.berkeley.edu/~cs61c/fa17/img/riscvcard.pdf">RISC-V Reference Card</a> 和 <a href="https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf">RISC-V 指令集手册</a>。</p>
+<div class="nt-cards nt-grid cols-2">
+<div class="nt-card">
+<div class="nt-card-wrap">
+<div>
+<div class="nt-card-image tags"><a class="glightbox" href="../RISC-V.assets/image-20240508171500133.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../RISC-V.assets/image-20240508171500133.png" /></a></div>
+<div class="nt-card-content">
+<p class="nt-card-title">寄存器名称</p>
+<p class="nt-card-text">调用者保存，说明被调可以随意使用。<br>被调保存，需要保存后才能覆盖使用。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="nt-card">
+<div class="nt-card-wrap">
+<div>
+<div class="nt-card-image tags"><a class="glightbox" href="../RISC-V.assets/image-20240508170129915.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../RISC-V.assets/image-20240508170129915.png" /></a></div>
+<div class="nt-card-content">
+<p class="nt-card-title">RISC-V 32I</p>
+</div>
+</div>
+</div>
+</div>
+<div class="nt-card">
+<div class="nt-card-wrap">
+<div>
+<div class="nt-card-image tags"><a class="glightbox" href="../RISC-V.assets/image-20240508170751558.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../RISC-V.assets/image-20240508170751558.png" /></a></div>
+<div class="nt-card-content">
+<p class="nt-card-title">RVM 乘除法扩展</p>
+</div>
+</div>
+</div>
+</div>
+<div class="nt-card">
+<div class="nt-card-wrap">
+<div>
+<div class="nt-card-image tags"><a class="glightbox" href="https://xuan-insr.github.io/assets/1653470001735-c9b5f2b8-f4c6-48ca-beec-7987bea5d71f.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="https://xuan-insr.github.io/assets/1653470001735-c9b5f2b8-f4c6-48ca-beec-7987bea5d71f.png" /></a></div>
+<div class="nt-card-content">
+<p class="nt-card-title">常见伪指令</p>
+</div>
+</div>
+</div>
+</div>
+<div class="nt-card">
+<div class="nt-card-wrap">
+<div>
+<div class="nt-card-image tags"><a class="glightbox" href="../RISC-V.assets/image-20240508171657744.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../RISC-V.assets/image-20240508171657744.png" /></a></div>
+<div class="nt-card-content">
+<p class="nt-card-title">指令格式</p>
+<p class="nt-card-text">理解 SB 和 UJ 型指令立即数：<a href="https://stackoverflow.com/questions/58414772/why-are-risc-v-s-b-and-u-j-instruction-types-encoded-in-this-way">StackOverflow</a><br>符号位保持在最前面用于扩展，其余位尽可能与其他指令保持一致，用走线避免移位运算。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>名称和意义都要记忆并理解。</li>
+<li>从意义能推出用法和格式。</li>
+</ul>
+<details class="question">
+<summary>值得注意的问题</summary>
+<ul>
+<li>立即数的符号问题</li>
+</ul>
+<p>https://stackoverflow.com/questions/61046150/can-address-be-negative-in-the-immediate-field-of-the-risc-v-i-type</p>
+</details>
+<h3 id="c">C 与汇编<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
+<h4 id="_3">简单模块<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<div class="grid">
+<div class="language-c highlight"><span class="filename">if-then-else</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">else</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="language-mips highlight"><span class="filename">if-then-else</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">        </span><span class="k">beq</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span>t1<span class="nb">,</span><span class="w"> </span>ELSE
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">        </span><span class="k">add</span><span class="w"> </span>t2<span class="nb">,</span><span class="w"> </span>t3<span class="nb">,</span><span class="w"> </span>t4
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="k">beq</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span>EXIT<span class="w"> </span><span class="c">#(j EXIT)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nf">ELSE:</span><span class="w"> </span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="k">sub</span><span class="w"> </span>t2<span class="nb">,</span><span class="w"> </span>t3<span class="nb">,</span><span class="w"> </span>t4
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nf">EXIT:</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">while</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">save</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="language-mips highlight"><span class="filename">while</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nf">LOOP:</span><span class="w"> </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">        </span>slli<span class="w"> </span>t1<span class="nb">,</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span><span class="kc">3</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="k">add</span><span class="w"> </span>t1<span class="nb">,</span><span class="w"> </span>t1<span class="nb">,</span><span class="w"> </span>t2
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="nv">ld</span><span class="w"> </span>t3<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(t1)
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="k">bne</span><span class="w"> </span>t3<span class="nb">,</span><span class="w"> </span>t4<span class="nb">,</span><span class="w"> </span>EXIT
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="k">addi</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span><span class="kc">1</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="k">beq</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span>x0<span class="w"> </span>EXIT<span class="w"> </span><span class="c">#(j LOOP)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nf">EXIT:</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">switch</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-mips highlight"><span class="filename">switch</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">        </span><span class="nv">blt</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span>EXIT
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">        </span><span class="nv">bge</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span>x5<span class="nb">,</span><span class="w"> </span>EXIT
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span>slli<span class="w"> </span>t1<span class="nb">,</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span><span class="kc">3</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="k">add</span><span class="w"> </span>t1<span class="nb">,</span><span class="w"> </span>t1<span class="nb">,</span><span class="w"> </span>t2
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="nv">ld</span><span class="w"> </span>t1<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(t1)
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="k">jalr</span><span class="w"> </span>x1<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(t1)
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nf">EXIT:</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>...
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nf">L0:</span><span class="w">     </span><span class="k">sub</span><span class="w"> </span>t3<span class="nb">,</span><span class="w"> </span>t4<span class="nb">,</span><span class="w"> </span>t5
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span><span class="k">jalr</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(x1)
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nf">L1:</span><span class="w">     </span><span class="k">mul</span><span class="w"> </span>t3<span class="nb">,</span><span class="w"> </span>t4<span class="nb">,</span><span class="w"> </span>t5
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="k">jalr</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(x1)
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="nf">L2:</span><span class="w">     </span><span class="k">div</span><span class="w"> </span>t3<span class="nb">,</span><span class="w"> </span>t4<span class="nb">,</span><span class="w"> </span>t5
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span><span class="k">jalr</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(x1)
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="nf">L3:</span><span class="w">     </span><span class="nv">rem</span><span class="w"> </span>t3<span class="nb">,</span><span class="w"> </span>t4<span class="nb">,</span><span class="w"> </span>t5
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span><span class="k">jalr</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(x1)
+</span></code></pre></div>
+</div>
+<h4 id="_4">函数调用<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li><a href="https://inst.eecs.berkeley.edu/~cs61c/resources/RISCV_Calling_Convention.pdf">Understanding RISC-V Calling Convention</a></li>
+</ul>
+</div>
+<p>函数调用前后的要求，也是我们可以检查正确性的地方：</p>
+<ul>
+<li><code>sp</code> 应当相同</li>
+<li><code>s</code> 寄存器应当不变</li>
+<li>默认应该返回到 <code>ra/x1</code>。</li>
+</ul>
+<p>为了完成上面的要求，函数调用归纳为 6 个步骤：</p>
+<ol>
+<li>设置参数 <code>a0-a7/x10-x17</code>。保存自己需要的寄存器 <code>a0-a7/x10-x17</code> 和 <code>t0-t6/x5-x7,x28-x31</code>。</li>
+<li>调用函数。<code>jal</code> 保存返回地址到 <code>x1/ra</code>。</li>
+<li>移动栈指针 <code>sp</code>。保存调用者寄存器 <code>s0-s11/x8-x9,x18-x27</code>。</li>
+<li>执行。</li>
+<li>放置返回值。<code>a0/x10</code>。</li>
+<li>返回。<code>jalr x0, 0(x1)</code>。</li>
+</ol>
+<div class="grid">
+<div class="language-c highlight"><span class="filename">递归</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">fact</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-mips highlight"><span class="filename">递归</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nf">fact:</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">        </span><span class="k">addi</span><span class="w"> </span>sp<span class="nb">,</span><span class="w"> </span>sp<span class="nb">,</span><span class="w"> </span><span class="kc">-16</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="nv">sd</span><span class="w"> </span>ra<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(sp)
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="nv">sd</span><span class="w"> </span>a0<span class="nb">,</span><span class="w"> </span><span class="kc">8</span>(sp)
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="nv">bgt</span><span class="w"> </span>a0<span class="nb">,</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span>ELSE
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="k">addi</span><span class="w"> </span>a0<span class="nb">,</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span><span class="kc">1</span><span class="w"> </span><span class="c">#(li a0, 1)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="nv">ld</span><span class="w"> </span>ra<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(sp)
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="nv">ld</span><span class="w"> </span>a0<span class="nb">,</span><span class="w"> </span><span class="kc">8</span>(sp)
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">        </span><span class="k">addi</span><span class="w"> </span>sp<span class="nb">,</span><span class="w"> </span>sp<span class="nb">,</span><span class="w"> </span><span class="kc">16</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="k">jalr</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(ra)
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nf">ELSE:</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="k">addi</span><span class="w"> </span>a0<span class="nb">,</span><span class="w"> </span>a0<span class="nb">,</span><span class="w"> </span><span class="kc">-1</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="k">jal</span><span class="w"> </span>ra<span class="nb">,</span><span class="w"> </span>fact
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="nv">ld</span><span class="w"> </span>ra<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(sp)
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="nv">ld</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span><span class="kc">8</span>(sp)
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span><span class="k">mul</span><span class="w"> </span>a0<span class="nb">,</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span>a0
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">        </span><span class="k">addi</span><span class="w"> </span>sp<span class="nb">,</span><span class="w"> </span>sp<span class="nb">,</span><span class="w"> </span><span class="kc">16</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">        </span><span class="k">jalr</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(ra)
+</span></code></pre></div>
+</div>
+<h3 id="_5">汇编与机器码<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">注意 RISC-V 指令是小端存储的，从中读取的立即数也是小端存储的，需要反着来。</p>
+</div>
+<p>分段：func7（7）、rs2（5）、rs1（5）、func3（3）、rd（5）、opcode（7）。</p>
+<h3 id="_6">其他<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>各类跳转总结：</p>
+<ul>
+<li>长度：<ul>
+<li>PC 相对寻址：branch，SB-type 12b（imm[12:1]）</li>
+<li>立即数、基址寻址 jump：UJ，20b（imm[20] + imm[10:1] + imm[11] + imm[19:12]）</li>
+</ul>
+</li>
+<li>32b 地址跳转：结合 <code>lui</code> 和 <code>addi</code>：</li>
+</ul>
+<div class="language-mips highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c"># 跳转到 0x12345678</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">lui</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>x12345
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">addi</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span>t0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>x678
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">jalr</span><span class="w"> </span>x0<span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(t0)
+</span></code></pre></div>
+</li>
+</ul>
+<details class="note">
+<summary>锁与原子化 Lock and Atomicity</summary>
+<p>RVA 扩展原子指令集：<a class="glightbox" href="../RISC-V.assets/image-20240508171022603.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image-20240508171022603" src="../RISC-V.assets/image-20240508171022603.png" /></a></p>
+</details>
+<div class="admonition note">
+<p class="admonition-title">总结：一个 C 排序程序</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">v</span><span class="p">[],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">}</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">v</span><span class="p">[],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">{</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">                </span><span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<h2 id="risc-v-32i-cpu">RISC-V 32I CPU 实现<a class="headerlink" href="#risc-v-32i-cpu" title="Permanent link">&para;</a></h2>
+<h3 id="_7">约定<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>时序：<ul>
+<li>单周期：寄存器在时钟上升沿更新。从而可以在一个时钟周期读写同一个寄存器：读到现有值，写入值在下一个上升沿才生效。</li>
+<li>流水线：一个周期分成两部分，前半写入，后半读取。</li>
+</ul>
+</li>
+</ul>
+<h3 id="_8">单周期<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../RISC-V.assets/image-20240510230046092.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image-20240510230046092" src="../RISC-V.assets/image-20240510230046092.png" /></a></p>
+<p>分类总结：</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><strong>R-type</strong></p>
+<hr />
+</li>
+<li>
+<p><strong>ImmGen</strong></p>
+<hr />
+<p>需要产生的立即数：</p>
+<ul>
+<li>I-type：<code>imm[11:0]</code></li>
+<li>S-type：<code>imm[11:5] + imm[4:0]</code></li>
+<li>B-type：<code>imm[12] + imm[10:5] + imm[4:1] + imm[11]</code></li>
+</ul>
+<p>将指令对应部分引出对应模式，然后根据指令类型选择。</p>
+<ul>
+<li>Opcode[5]<ul>
+<li>0：Load I-type</li>
+<li>1：Store S-type</li>
+</ul>
+</li>
+<li>Opcode[6]<ul>
+<li>0：Data Transfer ↑</li>
+<li>1：Conditional Branch B-type</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>控制信号</strong></p>
+<hr />
+<pre class="mermaid"><code>graph LR
+    opcode --&gt; Branch
+    ALU --&gt; Zero
+    Branch --&gt; PCSrc
+    Zero --&gt; PCSrc
+    opcode --&gt; Mux["`Mux(4)
+    ----
+    ALUSrc
+    Branch
+    MemtoReg
+    Jump`"]
+    opcode --&gt; R/W["`R/W(3)
+    ----
+    MemRead
+    MemWrite
+    RegWrite`"]
+    opcode["opcode[6:0]"] --&gt; ALUOp["ALUOp[1:0]"]
+    ALUOp --&gt; ALUControl["`ALUControl[3:0]
+    ----
+    Ainvert
+    Bnegate
+    Operation[1:0]`"]
+    func7 --&gt; ALUControl
+    func3 --&gt; ALUControl</code></pre>
+<details class="note">
+<summary>具体信号</summary>
+<p><a class="glightbox" href="../RISC-V.assets/Screenshot%202024-05-10%20at%2011.25.20%E2%80%AFPM.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot 2024-05-10 at 11.25.20 PM" src="../RISC-V.assets/Screenshot%202024-05-10%20at%2011.25.20%E2%80%AFPM.png" /></a></p>
+<p><a class="glightbox" href="../RISC-V.assets/Screenshot%202024-05-10%20at%2011.27.56%E2%80%AFPM.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot 2024-05-10 at 11.27.56 PM" src="../RISC-V.assets/Screenshot%202024-05-10%20at%2011.27.56%E2%80%AFPM.png" /></a></p>
+</details>
+</li>
+<li>
+<hr />
+<hr />
+</li>
+</ul>
+</div>
+<details class="note">
+<summary>具体信号表</summary>
+</details>
+<p>​    </p>
+<details class="note">
+<summary>其他</summary>
+<ul>
+<li>Memory 读写都需要控制信号。读错产生的结果与存储器层次结构有关。</li>
+</ul>
+</details>
+<h3 id="_9">五级流水线<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../RISC-V.assets/Screenshot%202024-05-10%20at%2011.19.05%E2%80%AFPM.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot 2024-05-10 at 11.19.05 PM" src="../RISC-V.assets/Screenshot%202024-05-10%20at%2011.19.05%E2%80%AFPM.png" /></a></p>
+<p>三种冒险：</p>
+<ul>
+<li>结构冒险：多个指令需要同一硬件，在本书的实现中不需要考虑。</li>
+<li>数据冒险：需要的数据还没准备好。</li>
+<li>控制冒险：分支预测错误。</li>
+</ul>
+<details class="note">
+<summary>会在哪里遇到结构冒险？</summary>
+<p>如果我们的指令内存和数据内存是同一个内存，那么 MEM 阶段指令读取内存的同时，IF 阶段指令也需要读取内存，此时发生结构冒险。</p>
+</details>
+<div class="grid cards">
+<ul>
+<li>
+<p><strong>Forwarding</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">情况</label><label for="__tabbed_1_2">实现</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>只考虑到 EX 阶段的 forwarding：</p>
+<p><a class="glightbox" href="../RISC-V.assets/image-20240519221953040.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image-20240519221953040" src="../RISC-V.assets/image-20240519221953040.png" /></a></p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID/EX Rs = EX/MEM Rd</td>
+<td>需要的数据刚从 ALU 计算出来</td>
+</tr>
+<tr>
+<td>ID/EX Rs = MEM/WB Rd</td>
+<td>需要的数据即将被写入</td>
+</tr>
+</tbody>
+</table>
+<p>上面两种情况可能同时发生，说明对同一个寄存器进行了连续操作，此时应当从 EX/MEM 阶段取最新的数据。</p>
+<p>不应该 forwarding 的情况：</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指令不涉及寄存器修改</td>
+<td>检查 <code>RegWrite</code></td>
+</tr>
+<tr>
+<td>向 <code>x0</code> 写入的数据</td>
+<td>检查 <code>Rd</code> 是否为 <code>x0</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<p>用一个 Forwarding Unit 选择 ALU 的输入。</p>
+<p><a class="glightbox" href="../RISC-V.assets/image-20240519221924389.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image-20240519221924389" src="../RISC-V.assets/image-20240519221924389.png" /></a></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Stall</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">情况</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Load-Use 数据冒险：Load 指令的数据还没准备好。</li>
+<li>控制冒险：等待分支结果。但不采用，因为低效。</li>
+</ul>
+</div>
+</div>
+</div>
+<p>​    <a class="glightbox" href="../RISC-V.assets/image-20240519230034996.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image-20240519230034996" src="../RISC-V.assets/image-20240519230034996.png" /></a>
+​    </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">实现</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>用一个 Hazard Detection Unit 判断是否需要暂停。如果需要暂停，将控制信号刷为 <code>nop</code>，同时保持 ID 之前的寄存器状态不变。</p>
+<p><a class="glightbox" href="../RISC-V.assets/image-20240519225248359.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image-20240519225248359" src="../RISC-V.assets/image-20240519225248359.png" /></a></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Branch Prediction</strong></p>
+<hr />
+<p>预测分支是否发生，解决控制冒险。</p>
+<ul>
+<li>静态预测：总是预测不发生。</li>
+<li>动态预测：根据历史记录预测。</li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="_10">异常与中断<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../RISC-V.assets/Screenshot%202024-05-10%20at%2011.20.59%E2%80%AFPM.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot 2024-05-10 at 11.20.59 PM" src="../RISC-V.assets/Screenshot%202024-05-10%20at%2011.20.59%E2%80%AFPM.png" /></a></p>
+<p>RISC-V 中异常一般指（内部或外部引起）程序控制流意外的变化，中断指外部事件引起的变化。</p>
+<ul>
+<li>SEPC：异常发生时的 PC</li>
+<li>SCAUSE：</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li>另一种处理方式是 Vectored Interrupt，即中断向量表。提供多个中断处理程序的入口地址。</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://bowling233.com" target="_blank" rel="noopener" title="bowling233.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.07 4.93C17.22 3 14.66 1.96 12 2c-2.66-.04-5.21 1-7.06 2.93C3 6.78 1.96 9.34 2 12c-.04 2.66 1 5.21 2.93 7.06C6.78 21 9.34 22.04 12 22c2.66.04 5.21-1 7.06-2.93C21 17.22 22.04 14.66 22 12c.04-2.66-1-5.22-2.93-7.07M17 12v6h-3.5v-5h-3v5H7v-6H5l7-7 7.5 7H17Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "navigation.tracking", "navigation.tabs", "navigation.prune", "navigation.indexes", "header.autohide", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.alicdn.com/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../javascripts/tablesort.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
