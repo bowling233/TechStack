@@ -45,7 +45,7 @@ markdown_extensions:
   # TOC
   - toc:
       permalink: true
-      toc_depth: 3
+      # toc_depth: 3
   # MathJax
   - pymdownx.arithmatex:
       generic: true
