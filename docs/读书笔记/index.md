@@ -1,6 +1,6 @@
 # 读书笔记
 
-点击封面可直达笔记。
+点击书籍标题可直达笔记。
 
 ## Linux
 
@@ -25,4 +25,3 @@
         - 进行中
     - RFC 7530 - Network File System (NFS) Version 4 Protocol
         - 已读
-

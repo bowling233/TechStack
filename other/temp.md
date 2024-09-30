@@ -121,6 +121,10 @@ Docker 官方和 Debian APT 的打包策略不同。
 - `docker-ce-cli` 命令行工具
 - `docker-compose-plugin` 作为 Docker CLI 的插件（子命令 `docker compose`）
 
+目前，Debian 源中的 `docker-compose` 仍然是 v1 版本（Python 编写），而官方仓库中的 `docker-compose-plugin` 是 v2 版本（Go 编写）。Debian 团队正在努力将 v2 版本打包到源中。最新进展可见 [Debian Bug Report](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1040417)。截止 2024 年 7 月，v2 版本的 Go 依赖处理仍在进行中。
+
+OpenWRT 上的 docker-compose 也是 v1 版本。
+
 ### Docker 原理
 
 !!! quote
@@ -161,6 +165,7 @@ Docker 官方和 Debian APT 的打包策略不同。
         - Docker 使用 iptables 进行相关 NAT、PNAT 和 masquerade 操作。
         - 默认情况下所有外部主机都能访问公开端口，如果需要限制，需要自己写 iptables 规则。
         - IPv6 下可能配置为直连路由。
+        - `-p host:docker`
 - 容器
     - 重启策略：`no`、`always`、`unless-stopped`、`on-failure`。
 
@@ -215,3 +220,10 @@ services:
 
 
 Refer to [riscv timer的基本逻辑](https://wangzhou.github.io/riscv-timer%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%80%BB%E8%BE%91/) for RISC-V.
+
+### Docker-Compose
+
+本节重点讲解 Docker Compose v1 和 v2 的区别，以便在不同环境中迁移。[](https://docs.docker.com/compose/releases/migrate/)
+
+- v2 版本将 compose 作为 docker 的子命令而非独立工具，能够直接使用 docker 根命令上相关的配置。
+- v2 版本生成的容器名从 `_` 改为 `-` 连接，能够用于 DNS，在网络中方便地访问。v1 不行。

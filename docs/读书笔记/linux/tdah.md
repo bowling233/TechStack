@@ -51,7 +51,7 @@
 
     使用邮件列表时，更经常使用 `git format-patch` 和 `git am`。
 
-    Debian 托管于 GitLab，服务器为 [salsa.debian.org](salsa.debian.org)。可以使用 pull requests 提交更改。
+    Debian 托管于 GitLab，服务器为 [salsa.debian.org](https://salsa.debian.org)。可以使用 pull requests 提交更改。
 
 - 安装 `how-can-i-help` 后，每次调用 APT 时都会显示本地安装的软件包是否有需要帮助的问题，这为 newcomer 提供了贡献的机会。
 - Debian System Administrators (DSA) 是 Debian 的运维团队，负责 GitLab 实例、CI 平台等基础设施的运维。

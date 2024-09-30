@@ -1,52 +1,47 @@
-# Computer Graphics Programming in OpenGL with C++, Second Edition
+# 计算机图形学编程（使用 OpenGL 和 C++）
 
-## 结构
+Computer Graphics Programming in OpenGL with C++, Second Edition
 
-- `opengl.cpp`:opengl 实现代码
-- `vertShader.glsl`和`fragShader.glsl`:用于存放顶点着色器和片段着色器代码
-- `Utils.cpp`:书本提供的一些重用函数：
+## 第一章：入门
 
-```C
-string Utils::readShaderFile(const char *filePath)
-bool Utils::checkOpenGLError()
-void Utils::printShaderLog(GLuint shader)
-GLuint Utils::prepareShader(int shaderTYPE, const char *shaderPath)
-void Utils::printProgramLog(int prog)
-int Utils::finalizeShaderProgram(GLuint sprogram)
-GLuint Utils::createShaderProgram(const char *vp, const char *fp)
-GLuint Utils::createShaderProgram(const char *vp, const char *gp, const char *fp)
-GLuint Utils::createShaderProgram(const char *vp, const char *tCS, const char* tES, const char *fp)
-```
+总的来说我们需要：
 
-## 代码结构
+- C++ 开发环境
+- OpenGL 和 GLSL
+- 窗口管理（GLFW）
+- 扩展库（GLEW）
+- 数学库（GLM）
+- 纹理管理（SOIL2）
 
-- OpenGL 程序对象包含了一系列编译过的着色器
+## 第二章：OpenGL 图像管线
+
+第一个 OpenGL 程序：
+
+- GLFW 创建窗口和相关的 OpenGL 上下文。OpenGL 上下文指 OpenGL 实例及其状态信息，包括颜色缓冲区等。
+- `createShaderProgram()` 创建程序对象。**程序对象是一系列编译过的着色器**。实现如下：
+
+    ```cpp
+    GLuint program = glCreateProgram();
+    GLuint shader = glCreateShader(type);
+    glShaderSource(shader, 1, &shaderSource, NULL);
+    glCompileShader(shader);
+    glAttachShader(program, shader);
+    glLinkProgram(program);
+    ```
+
+程序整体结构
 
 ```cpp
-//头文件部分
-#include <GL\glew.h>
-#include <GLFW\glfw3.h>
-#include <SOIL2\soil2.h>
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <glm\gtc\type_ptr.hpp> // glm::value_ptr
-#include <glm\gtc\matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
-#include "ImportedModel.h"
-#include "Utils.h"
-
 //全局定义部分
 GLuint vao[nmuVAOs];
 GLuint vbo[numVBOs];
 GLuint renderingProgram;//程序对象 ID
 
-//编写一个类给自己用
-
 void setupVertices(void) {
  float vertexPositions[108] = {
   //顶点数据
  };
- //相当于在 init 中完成缓冲区的建立和激活
+ //完成缓冲区的建立和激活
  glGenVertexArrays(1, vao);
  glBindVertexArray(vao[0]);
  glGenBuffers(numVBOs, vbo);
@@ -55,19 +50,19 @@ void setupVertices(void) {
  glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositions), vertexPositions, GL_STATIC_DRAW);
 }
 
-
 void init(GLFWwindow* window) {
- renderingProgram = Utils::createShaderProgram("vertShader.glsl", "fragShader.glsl");//创建程序对象
+//创建程序对象
+ renderingProgram = Utils::createShaderProgram("vertShader.glsl", "fragShader.glsl");
  cameraX = 0.0f; cameraY = 0.0f; cameraZ = 8.0f;
 }
 
 void display(GLFWwindow* window, double currentTime) {
- glUseProgram(renderingProgram);//调用程序对象，将着色器程序载入 OpenGL 管线阶段（GPU 上）
+//调用程序对象，将着色器程序载入 OpenGL 管线阶段（GPU 上）
+ glUseProgram(renderingProgram);
  glPointSize(30.0f);
- glDrawArrays(GL_POINTS, 0, 1);//启动运行管线过程
+//启动运行管线过程
+ glDrawArrays(GL_POINTS, 0, 1);
 }
-
-
 ```
 
 ## Chapter3:数学知识
@@ -190,57 +185,31 @@ mat4 buildRotateZ(float rad)
 }
 ```
 
-## Chapter4:管理 3D 数据
+## 管理 3D 数据
 
-### 1.缓冲区和顶点属性
+### 缓冲区和顶点属性
 
-在 init() 中创建缓冲区，在 C++ 段把顶点数据放入缓冲区，把缓冲区和着色器中声明的顶点属性相关联
+对象的顶点数据以**缓冲区**的形式发送给顶点着色器，需要：
 
-- Vertex Buffer Object:顶点缓冲对象，每个顶点都需要一个，用于存储顶点的各类属性信息，在显卡存储空间中
-- Vertex Array Object:顶点数组对象，是对很多个 VBO 的引用，用于组织缓冲区
+- 把顶点数据放到缓冲区
+    - Vertex Buffer Object:顶点缓冲对象，**每个对象需要一个**，用于存储顶点的各类属性信息，在显卡存储空间中。
+    - Vertex Array Object:顶点数组对象，是对很多个 VBO 的引用，**用于组织缓冲区**。
+- 把缓冲区与**着色器中声明的顶点属性**相关联
 
-```C
-GLuint vao[nmuVAOs];
-GLuint vbo[numVBOs];
+画图说明：
 
-glGenVertexArrays(numVAOs,vao);\\创建VAO，返回整数ID保存在数组vao中
-glBindVertexArrays(vao[0]);\\标记活跃
-glGenBuffers(numVBOs,vbo);
-```
+![vbo.svg](cgp-opengl-c2.assets/vbo.svg){align=center}
 
-init() 中
+具体来说：
 
-- 创建缓冲区
-- 把顶点复制到缓冲区
-
-display() 中
-
-- 启用包含顶点数据的缓冲区
-- 缓冲区和顶点属性关联
-- 启用顶点属性
-- 绘制对象：`glDrawArrays()`
-
-顶点着色器中
-
-```GLSL
-layout (location = 0) in vec3 position;
-```
-
-`layout(location=0)`是 layout 修饰符，把顶点属性和特定缓冲区关联起来。顶点属性的识别号是 0.
-
-绘制一个立方体：
-
-- 将顶点值复制到缓冲区中
-
-`glBindBuffer()`标记活跃
-
-`glBufferData()`将顶点从数组复制到活跃缓冲区
-
-- 将活跃缓冲区和着色器顶点属性关联
-
-`glVertexAttribPointr()`关联顶点属性到缓冲区
-
-`glEnableVertexAttribArray()`启用顶点属性
+- 只做一次
+    - 创建缓冲区：`glGenVertexArrays()` 和 `glGenBuffers()`
+    - 把顶点复制到缓冲区
+- 每帧都要做
+    - 启用包含顶点数据的缓冲区
+    - 缓冲区和顶点属性关联
+    - 启用顶点属性
+    - 绘制对象：`glDrawArrays()`
 
 ### 2.统一变量
 
@@ -250,7 +219,7 @@ layout (location = 0) in vec3 position;
 
 `glUniformMatrix*()`将矩阵值传递给统一变量
 
-glUniform\*():数字表示几个数值，数值后缩写表示 GL 数值类型 (GLfloat 等)，v 表示看作向量传递
+`glUniform*()`:数字表示几个数值，数值后缩写表示 GL 数值类型 (GLfloat 等)，v 表示看作向量传递
 
 有一些常见的：
 
