@@ -1,0 +1,4154 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bowling 的笔记本">
+      
+      
+        <meta name="author" content="Bowling">
+      
+      
+        <link rel="canonical" href="https://note.bowling233.top/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/theory/pfpl/">
+      
+      
+        <link rel="prev" href="../jsll/">
+      
+      
+        <link rel="next" href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+      
+      
+      <link rel="icon" href="https://cdn.bowling233.top/note/avatar/bowling.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Practical Foundations for Programming Languages, Second Edition - Bowling's TechStack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/flink.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/neoteroi-mkdocs.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.tonycrane.cc/lxgw/lxgwscreen.css">
+    
+      <link rel="stylesheet" href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practical-foundations-for-programming-languages-second-edition" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Bowling&#39;s TechStack" class="md-header__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bowling's TechStack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Practical Foundations for Programming Languages, Second Edition
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../links/" class="md-tabs__link">
+        
+  
+    
+  
+  友链
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-tabs__link">
+          
+  
+    
+  
+  人工智能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  实用技能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/" class="md-tabs__link">
+          
+  
+    
+  
+  硬件和体系结构
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A7%91%E7%A0%94/dpdk/" class="md-tabs__link">
+          
+  
+    
+  
+  科研
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-tabs__link">
+          
+  
+    
+  
+  算法和数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%BD%91%E7%BB%9C/" class="md-tabs__link">
+          
+  
+    
+  
+  网络
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%8D%89%E7%A8%BF/CSAPP/" class="md-tabs__link">
+          
+  
+    
+  
+  草稿
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/cgp-opengl-c2/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机图形学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  读书笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-tabs__link">
+          
+  
+    
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%BD%AF%E4%BB%B6/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/C%2B%2B/" class="md-tabs__link">
+          
+  
+    
+  
+  软件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" class="md-tabs__link">
+          
+  
+    
+  
+  高性能计算
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Bowling&#39;s TechStack" class="md-nav__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    Bowling's TechStack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    友链
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    人工智能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    实用技能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    硬件和体系结构
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A7%91%E7%A0%94/dpdk/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    科研
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    算法和数学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    网络
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%8D%89%E7%A8%BF/CSAPP/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    草稿
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/cgp-opengl-c2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机图形学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    读书笔记
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            读书笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../RFCs/nfsv4_wg/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    RFCs
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../ai/d2l/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Ai
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../linux/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../network/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Network
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../system/caaqa/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    System
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11_7" id="__nav_11_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Theory
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11_7">
+            <span class="md-nav__icon md-icon"></span>
+            Theory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsll/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算理论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Practical Foundations for Programming Languages, Second Edition
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Practical Foundations for Programming Languages, Second Edition
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一部分：判断和规则
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一部分：判断和规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一章：抽象语法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章：抽象语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      抽象语法树
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      抽象绑定树
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二章：归纳定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章：归纳定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      判断
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      推理规则
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      推导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      规则归纳
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      迭代和同时归纳定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过规则定义函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三章：假设判断与一般判断
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三章：假设判断与一般判断">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      假设判断
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="假设判断">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      可导性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      可接受性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      假设性归纳定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      一般判断
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二部分：静态与动态
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二部分：静态与动态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四章：静态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五章：动态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六章：类型安全
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七章：动态类型推导
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三部分：全函数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三部分：全函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      第八章：函数定义和值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      第九章：高阶递归的 \(T\) 系统
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四部分：有限数据类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第四部分：有限数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十章：乘积类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十一章：和类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五部分：类型和提议
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第五部分：类型和提议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十二章：构造逻辑
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十三章：经典逻辑
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六部分：无限数据类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第六部分：无限数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十四章：泛型编程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十五章：归纳与协归纳类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七部分：变量类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第七部分：变量类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十六章：多态类型的 \(F\) 系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十七章：抽象类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十八章：更高种类
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      第八部分：部分和递归类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第八部分：部分和递归类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pcf" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十九章：递归函数的 \(PCF\) 系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十章：递归类型的 \(FPC\) 系统
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      第九部分：动态类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第九部分：动态类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十一章：无类型 \(\lambda\) 演算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十二章：动态类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十三章：混合类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十部分：子类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十部分：子类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十四章：结构化子类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十五章：行为类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十一部分：动态发射
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十一部分：动态发射">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十六章：类与方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十七章：继承
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十二部分：控制流
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十二部分：控制流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十八章：控制栈
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十九章：异常
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十章：继续
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十三部分：符号数据
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十三部分：符号数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十一章：符号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十二章：流体绑定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十三章：动态分类
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十四部分：可变状态
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十四部分：可变状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十四章：现代化变星
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十五章：可分配引用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十六章：懒惰估值
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十五部分：并行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十五部分：并行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十七章：嵌套并行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十八章：未来和推测
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十六部分：并发和分布式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十六部分：并发和分布式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十九章：进程演算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十章：并发变星
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十一章：分布式变星
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十七部分：模块
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十七部分：模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_67" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十二章：模块和链接
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_68" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十三章：单身种类和子种类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_69" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十四章：类型抽象和类型类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_70" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十五章：层次和参数化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_71" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十八部分：等价证明
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十八部分：等价证明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十六章：系统 \(T\) 的等价
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pcf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十七章：系统 \(PCF\) 的等价
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_72" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十八章：参数化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_73" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十九章：进程等价
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%BD%AF%E4%BB%B6/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/C%2B%2B/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    软件
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    高性能计算
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一部分：判断和规则
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一部分：判断和规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一章：抽象语法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章：抽象语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      抽象语法树
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      抽象绑定树
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二章：归纳定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章：归纳定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      判断
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      推理规则
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      推导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      规则归纳
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      迭代和同时归纳定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过规则定义函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三章：假设判断与一般判断
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三章：假设判断与一般判断">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      假设判断
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="假设判断">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      可导性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      可接受性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      假设性归纳定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      一般判断
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二部分：静态与动态
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二部分：静态与动态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四章：静态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五章：动态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六章：类型安全
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七章：动态类型推导
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三部分：全函数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三部分：全函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      第八章：函数定义和值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      第九章：高阶递归的 \(T\) 系统
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四部分：有限数据类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第四部分：有限数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十章：乘积类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十一章：和类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五部分：类型和提议
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第五部分：类型和提议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十二章：构造逻辑
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十三章：经典逻辑
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六部分：无限数据类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第六部分：无限数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十四章：泛型编程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十五章：归纳与协归纳类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七部分：变量类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第七部分：变量类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十六章：多态类型的 \(F\) 系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十七章：抽象类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十八章：更高种类
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      第八部分：部分和递归类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第八部分：部分和递归类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pcf" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十九章：递归函数的 \(PCF\) 系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十章：递归类型的 \(FPC\) 系统
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      第九部分：动态类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第九部分：动态类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十一章：无类型 \(\lambda\) 演算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十二章：动态类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十三章：混合类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十部分：子类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十部分：子类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十四章：结构化子类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十五章：行为类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十一部分：动态发射
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十一部分：动态发射">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十六章：类与方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十七章：继承
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十二部分：控制流
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十二部分：控制流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十八章：控制栈
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二十九章：异常
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十章：继续
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十三部分：符号数据
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十三部分：符号数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十一章：符号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十二章：流体绑定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十三章：动态分类
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十四部分：可变状态
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十四部分：可变状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十四章：现代化变星
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十五章：可分配引用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十六章：懒惰估值
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十五部分：并行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十五部分：并行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十七章：嵌套并行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十八章：未来和推测
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十六部分：并发和分布式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十六部分：并发和分布式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三十九章：进程演算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十章：并发变星
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十一章：分布式变星
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十七部分：模块
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十七部分：模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_67" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十二章：模块和链接
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_68" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十三章：单身种类和子种类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_69" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十四章：类型抽象和类型类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_70" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十五章：层次和参数化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_71" class="md-nav__link">
+    <span class="md-ellipsis">
+      第十八部分：等价证明
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第十八部分：等价证明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十六章：系统 \(T\) 的等价
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pcf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十七章：系统 \(PCF\) 的等价
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_72" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十八章：参数化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_73" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四十九章：进程等价
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="practical-foundations-for-programming-languages-second-edition">Practical Foundations for Programming Languages, Second Edition<a class="headerlink" href="#practical-foundations-for-programming-languages-second-edition" title="Permanent link">&para;</a></h1>
+<p>本篇笔记大部分都是原书的翻译。仅引用块和 abstract 块是我自己的笔记内容。</p>
+<h2 id="_1">第一部分：判断和规则<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">第一章：抽象语法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>抽象语法（abstract syntax）也称为结构语法（structural syntax），考虑词组（phrase）的结构，它们如何有别的词组组成。在这一层次，词组是一棵树，节点是将多个词组组合在一起的操作符（operator）。</p>
+<p>语法的绑定（binding）结构引入了标识符（identifier），考虑它们如何声明和使用。在这一层次，词组视为抽象绑定树（abstract binding tree）。</p>
+<p>本节分两部分：</p>
+<ul>
+<li>定义抽象语法树</li>
+<li>介绍标识符绑定和作用域（scope）的规则</li>
+</ul>
+<p>接下来将会在 ABT 上精确定义一些函数和关系，来阐明绑定和作用域的精确含义。这两个概念难以正确定义，通常是语言实现者产生错误的地方。</p>
+</blockquote>
+<h4 id="_3">抽象语法树<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<ul>
+<li>定义：<ul>
+<li>范畴 <span class="arithmatex">\(s\)</span>、范畴集合 <span class="arithmatex">\(S\)</span>、运算符 <span class="arithmatex">\(o\)</span>、运算符集族 <span class="arithmatex">\(O\)</span>、变量 <span class="arithmatex">\(x\)</span>、变量集 <span class="arithmatex">\(X\)</span>、变量集族 <span class="arithmatex">\(X_s\)</span></li>
+<li>抽象语法树 <span class="arithmatex">\(a\)</span>、抽象语法树家族 <span class="arithmatex">\(A[X]\)</span></li>
+<li>添加范畴 <span class="arithmatex">\(X, x\)</span></li>
+<li>替换 <span class="arithmatex">\([b/x]a\)</span></li>
+</ul>
+</li>
+<li>应用：<ul>
+<li>结构归纳法</li>
+</ul>
+</li>
+<li>定理：<ul>
+<li>替换的良定义</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>通常情况下，应用结构归纳原理时，会考虑将变量解释为合适范畴的抽象语法树 (AST) 的占位符。非正式地讲，在证明涉及变量的 AST 性质时，通常有用的是以变量满足某种性质为前提，来证明 AST 的某个性质。这样做的目的是预期这些变量将被具有该性质的 AST 替换，从而替换后的结果也会保持该性质。这相当于将结构归纳原理应用于某种形式的性质 <span class="arithmatex">\(P(a)\)</span>，即“如果 <span class="arithmatex">\(a\)</span> 包含变量 <span class="arithmatex">\(x_1, \dots, x_k\)</span>，并且每个 <span class="arithmatex">\(x_i\)</span> 都满足性质 <span class="arithmatex">\(Q\)</span>，那么 <span class="arithmatex">\(a\)</span> 也满足 <span class="arithmatex">\(Q\)</span>”。因此，通过结构归纳证明所有 AST <span class="arithmatex">\(a\)</span> 的 <span class="arithmatex">\(P(a)\)</span>，实际上就是在假设 <span class="arithmatex">\(Q\)</span> 对这些变量成立的情况下，证明 <span class="arithmatex">\(Q(a)\)</span> 对所有 AST <span class="arithmatex">\(a\)</span> 都成立。当没有变量时，不存在任何假设，证明 <span class="arithmatex">\(P\)</span> 就是证明 <span class="arithmatex">\(Q\)</span> 对所有封闭的 AST 都成立。另一方面，如果 <span class="arithmatex">\(a\)</span> 中的变量 <span class="arithmatex">\(x\)</span> 被满足性质 <span class="arithmatex">\(Q\)</span> 的 AST <span class="arithmatex">\(b\)</span> 替换，那么在 <span class="arithmatex">\(a\)</span> 中将 <span class="arithmatex">\(x\)</span> 替换为 <span class="arithmatex">\(b\)</span> 的结果也将满足性质 <span class="arithmatex">\(Q\)</span>。</p>
+<p>为了精确起见，我们现在给出这些概念的准确定义。设 <span class="arithmatex">\(S\)</span> 为一个有限的范畴集合。对于给定的范畴集合 <span class="arithmatex">\(S\)</span>，一个算子的元数（arity）形式为 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span>，表示该算子取 <span class="arithmatex">\(n \geq 0\)</span> 个参数，每个参数的范畴为 <span class="arithmatex">\(s_i \in S\)</span>，且算子的范畴为 <span class="arithmatex">\(s \in S\)</span>。令 <span class="arithmatex">\(O = \{ O_\alpha \}\)</span> 为一组按元数 <span class="arithmatex">\(\alpha\)</span> 索引的不交算子集 <span class="arithmatex">\(O_\alpha\)</span>，其中每个算子具有元数 <span class="arithmatex">\(\alpha\)</span>。如果 <span class="arithmatex">\(o\)</span> 是元数为 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span> 的算子，我们称 <span class="arithmatex">\(o\)</span> 的范畴为 <span class="arithmatex">\(s\)</span>，且它有 <span class="arithmatex">\(n\)</span> 个参数，其范畴分别为 <span class="arithmatex">\(s_1, \dots, s_n\)</span>。</p>
+<p>固定一个范畴集合 <span class="arithmatex">\(S\)</span> 和一个按元数索引的运算符集族 <span class="arithmatex">\(O\)</span>，每个运算符集对应不同的元数。令 <span class="arithmatex">\(X = \{ X_s \}_{s \in S}\)</span> 为按范畴索引的变量集族，每个变量集 <span class="arithmatex">\(X_s\)</span> 是一个属于范畴 <span class="arithmatex">\(s\)</span> 的不相交有限变量集。当上下文清楚时，如果 <span class="arithmatex">\(x \in X_s\)</span>，我们称变量 <span class="arithmatex">\(x\)</span> 属于范畴 <span class="arithmatex">\(s\)</span>。如果 <span class="arithmatex">\(x\)</span> 对于 <span class="arithmatex">\(X\)</span> 是新的，即 <span class="arithmatex">\(x \notin X_s\)</span>（对任何范畴 <span class="arithmatex">\(s\)</span> 都不在其变量集中），我们就说 <span class="arithmatex">\(x\)</span> 对于 <span class="arithmatex">\(X\)</span> 是“新鲜”的，或者在已知 <span class="arithmatex">\(X\)</span> 的情况下，直接称 <span class="arithmatex">\(x\)</span> 为“新鲜”的。如果 <span class="arithmatex">\(x\)</span> 对于 <span class="arithmatex">\(X\)</span> 是新鲜的且 <span class="arithmatex">\(s\)</span> 是一个范畴，那么 <span class="arithmatex">\(X, x\)</span> 表示通过将 <span class="arithmatex">\(x\)</span> 添加到 <span class="arithmatex">\(X_s\)</span> 中得到的变量集族。该符号具有一定的歧义性，因为范畴 <span class="arithmatex">\(s\)</span> 没有明确给出，而是从上下文中确定的。</p>
+<div class="admonition note">
+<p class="admonition-title">抽象语法树的定义</p>
+<p>抽象语法树（AST）家族 <span class="arithmatex">\(A[X] = \{ A[X]_s \}_{s \in S}\)</span> 是满足以下条件的最小集合：</p>
+<ol>
+<li>属于范畴 <span class="arithmatex">\(s\)</span> 的变量是范畴 <span class="arithmatex">\(s\)</span> 的抽象语法树：如果 <span class="arithmatex">\(x \in X_s\)</span>，则 <span class="arithmatex">\(x \in A[X]_s\)</span>。</li>
+<li>运算符可以组合抽象语法树：如果 <span class="arithmatex">\(o\)</span> 是一个元数为 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span> 的运算符，并且 <span class="arithmatex">\(a_1 \in A[X]_{s_1}, \dots, a_n \in A[X]_{s_n}\)</span>，则 <span class="arithmatex">\(o(a_1; \dots; a_n) \in A[X]_s\)</span>。</li>
+</ol>
+</div>
+<p>根据这个定义，可以应用结构归纳原理来证明某个性质 <span class="arithmatex">\(P\)</span> 对每个抽象语法树都成立。要证明 <span class="arithmatex">\(P(a)\)</span> 对所有 <span class="arithmatex">\(a \in A[X]\)</span> 成立，只需证明：</p>
+<div class="admonition note">
+<p class="admonition-title">结构归纳法</p>
+<ol>
+<li>如果 <span class="arithmatex">\(x \in X_s\)</span>，则 <span class="arithmatex">\(P_s(x)\)</span> 成立。</li>
+<li>如果 <span class="arithmatex">\(o\)</span> 的元数为 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span>，且 <span class="arithmatex">\(P_{s_1}(a_1)\)</span>、<span class="arithmatex">\(\dots\)</span>、<span class="arithmatex">\(P_{s_n}(a_n)\)</span> 成立，则 <span class="arithmatex">\(P_s(o(a_1; \dots; a_n))\)</span> 成立。</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">例如，通过结构归纳法很容易证明，当 <span class="arithmatex">\(X \subseteq Y\)</span> 时，<span class="arithmatex">\(A[X] \subseteq A[Y]\)</span>。</p>
+</div>
+<p>变量的意义通过替换来赋予。如果 <span class="arithmatex">\(a \in A[X, x]_{s'}\)</span>，且 <span class="arithmatex">\(b \in A[X]_s\)</span>，则 <span class="arithmatex">\([b/x]a \in A[X]_{s'}\)</span> 表示将 <span class="arithmatex">\(b\)</span> 替换 <span class="arithmatex">\(a\)</span> 中每个出现的 <span class="arithmatex">\(x\)</span> 的结果。此时，抽象语法树 <span class="arithmatex">\(a\)</span> 被称为替换的目标，<span class="arithmatex">\(x\)</span> 被称为替换的对象。替换由以下方程定义：</p>
+<div class="admonition note">
+<p class="admonition-title">抽象语法树中替换的定义</p>
+<ol>
+<li><span class="arithmatex">\([b/x]x = b\)</span> 且 <span class="arithmatex">\([b/x]y = y\)</span>（如果 <span class="arithmatex">\(x \neq y\)</span>）。</li>
+<li><span class="arithmatex">\([b/x]o(a_1; \dots; a_n) = o([b/x]a_1; \dots; [b/x]a_n)\)</span>。</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">例如，我们可以验证：<span class="arithmatex">\([\text{num}[2]/x]\text{plus}(x; \text{num}[3]) = \text{plus}(\text{num}[2]; \text{num}[3])\)</span></p>
+</div>
+<p>我们可以通过结构归纳法证明抽象语法树上的替换是良定义的。</p>
+<div class="admonition note">
+<p class="admonition-title">定理 1.1 替换的良定义</p>
+<p><strong>定理 1.1</strong>：如果 <span class="arithmatex">\(a \in A[X, x]\)</span>，那么对于每个 <span class="arithmatex">\(b \in A[X]\)</span>，存在唯一的 <span class="arithmatex">\(c \in A[X]\)</span>，使得 <span class="arithmatex">\([b/x]a = c\)</span>。</p>
+<hr />
+<p><strong>证明</strong>：通过对 <span class="arithmatex">\(a\)</span> 进行结构归纳。如果 <span class="arithmatex">\(a = x\)</span>，则根据定义 <span class="arithmatex">\(c = b\)</span>；如果 <span class="arithmatex">\(a = y \neq x\)</span>，则根据定义 <span class="arithmatex">\(c = y\)</span>。否则，<span class="arithmatex">\(a = o(a_1, \dots, a_n)\)</span>，根据归纳假设，存在唯一的 <span class="arithmatex">\(c_1, \dots, c_n\)</span>，使得 <span class="arithmatex">\([b/x]a_1 = c_1\)</span> 以及 <span class="arithmatex">\([b/x]a_n = c_n\)</span>。因此，根据替换的定义，<span class="arithmatex">\(c\)</span> 为 <span class="arithmatex">\(c = o(c_1; \dots; c_n)\)</span>。</p>
+</div>
+<h4 id="_4">抽象绑定树<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<ul>
+<li>定义：<ul>
+<li>绑定 <span class="arithmatex">\(\text{let}(a_1; x.a_2)\)</span></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>抽象绑定树（ABT）是在抽象语法树（AST）的基础上进行扩展的，用来引入新的变量和符号，这种引入称为绑定，并具有一个特定的作用范围，称为其作用域。绑定的作用域是一个 ABT，在该范围内被绑定的标识符可以被使用，或者作为占位符（在变量声明的情况下），或者作为某个运算符的索引（在符号声明的情况下）。因此，在 ABT 的某个子树中，活动标识符的集合可能比其外部树中的更大。此外，不同的子树可能引入具有不相交作用域的标识符。关键原则是，标识符的任何使用都应被理解为对其绑定的引用或抽象指针。由此产生的一个结果是，标识符的选择并不重要，只要我们始终可以将每次标识符的使用唯一地关联到其绑定即可。</p>
+<div class="admonition example">
+<p class="admonition-title">作为一个激励性的例子，考虑表达式 <span class="arithmatex">\(\texttt{ let } x \texttt{ be } 7 \texttt{ in } x + x\)</span>。这个表达式引入了一个变量 <span class="arithmatex">\(x\)</span>，该变量在表达式 <span class="arithmatex">\(x + x\)</span> 中表示 <span class="arithmatex">\(7\)</span>。变量 <span class="arithmatex">\(x\)</span> 由 <span class="arithmatex">\(\texttt{ let }\)</span> 表达式绑定，仅在 <span class="arithmatex">\(x + x\)</span> 内部使用；任何在 <span class="arithmatex">\(7\)</span> 中对 <span class="arithmatex">\(x\)</span> 的使用都指代一个不同的变量，即使它恰好具有相同的名称。另一方面，表达式 <span class="arithmatex">\(\texttt{ let } x \texttt{ be } x \times x \texttt{ in } x + x\)</span> 中，乘法中的 <span class="arithmatex">\(x\)</span> 指代的是 <span class="arithmatex">\(\texttt{ let }\)</span> 引入的绑定，而加法中的 <span class="arithmatex">\(x\)</span> 指代的是某个外部绑定（这里未展示）。</p>
+</div>
+<p>被绑定变量的名称并不重要，只要它们指向相同的绑定。</p>
+<div class="admonition example">
+<p class="admonition-title">例如，表达式 <span class="arithmatex">\(\texttt{ let } x \texttt{ be } x \times x \texttt{ in } x + x\)</span> 也可以写作 <span class="arithmatex">\(\texttt{ let } y \texttt{ be } x \times x \texttt{ in } y + y\)</span>，而不会改变其含义。在前一种情况下，加法中的变量 <span class="arithmatex">\(x\)</span> 被绑定，而在后一种情况下，被绑定的是变量 <span class="arithmatex">\(y\)</span>，但“指针结构”保持不变。另一方面，表达式 <span class="arithmatex">\(\texttt{ let } x \texttt{ be } y \times y \texttt{ in } x + x\)</span> 与前两者的含义不同，因为乘法中的变量 <span class="arithmatex">\(y\)</span> 此时指向的是一个不同的外部变量。</p>
+</div>
+<p>重命名被绑定变量的约束在于，它不能改变表达式的引用结构。</p>
+<div class="admonition example">
+<p class="admonition-title">例如，表达式 <span class="arithmatex">\(\texttt{ let } x \texttt{ be } 2 \texttt{ in } \texttt{ let } y \texttt{ be } 3 \texttt{ in } x + x\)</span> 与表达式 <span class="arithmatex">\(\texttt{ let } y \texttt{ be } 2 \texttt{ in } \texttt{ let } y \texttt{ be } 3 \texttt{ in } y + y\)</span> 含义不同，因为在第二个表达式中，加法中的 <span class="arithmatex">\(y + y\)</span> 引用了内部的声明，而不像第一个表达式那样引用外部的声明。</p>
+</div>
+<p>抽象语法树（AST）的概念可以通过引入变量的绑定和作用域来进行扩展。这些扩展后的 AST 称为抽象绑定树（ABT）。ABT 扩展了 AST 的概念，通过允许一个运算符在每个参数中绑定任意数量（可能为零）的变量。</p>
+<div class="admonition note">
+<p class="admonition-title">抽象器的定义</p>
+<p>运算符的一个参数称为抽象器，其形式为 <span class="arithmatex">\(x_1, \dots, x_k .a\)</span>。其中，变量序列 <span class="arithmatex">\(x_1, \dots, x_k\)</span> 在 ABT <span class="arithmatex">\(a\)</span> 中被绑定。（当 <span class="arithmatex">\(k\)</span> 为零时，我们省略抽象器中的点，直接写作 <span class="arithmatex">\(a\)</span>）。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">绑定的 ABT 写法</p>
+<p>以 ABT 的形式书写，表达式 <span class="arithmatex">\(\texttt{ let } x \texttt{ be } a_1 \texttt{ in } a_2\)</span> 的形式是 <span class="arithmatex">\(\texttt{ let }(a_1; x.a_2)\)</span>，这更清楚地指定了变量 <span class="arithmatex">\(x\)</span> 是在 <span class="arithmatex">\(a_2\)</span> 中绑定的，而不是在 <span class="arithmatex">\(a_1\)</span> 中。我们常用 <span class="arithmatex">\(\vec{x}\)</span> 来表示一个有限的、不同的变量序列 <span class="arithmatex">\(x_1, \dots, x_n\)</span>，并用 <span class="arithmatex">\(\vec{x}.a\)</span> 表示 <span class="arithmatex">\(x_1, \dots, x_n .a\)</span>。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">广义元数和价位的定义</p>
+<p>为了处理绑定，运算符被赋予形式为 <span class="arithmatex">\((\nu_1, \dots, \nu_n)s\)</span> 的广义元数，这表示范畴为 <span class="arithmatex">\(s\)</span> 的运算符具有 <span class="arithmatex">\(n\)</span> 个参数，每个参数的价位分别为 <span class="arithmatex">\(\nu_1, \dots, \nu_n\)</span>。通常，价位 <span class="arithmatex">\(\nu\)</span> 具有形式 <span class="arithmatex">\(s_1, \dots, s_k .s\)</span>，这指定了一个参数的范畴以及在该参数中绑定的变量的数量和范畴。</p>
+</div>
+<p>我们说变量序列 <span class="arithmatex">\(\vec{x}\)</span> 的范畴为 <span class="arithmatex">\(\vec{s}\)</span>，意味着这两个序列的长度 <span class="arithmatex">\(k\)</span> 相同，并且对于每个 <span class="arithmatex">\(1 \leq i \leq k\)</span>，变量 <span class="arithmatex">\(x_i\)</span> 的范畴为 <span class="arithmatex">\(s_i\)</span>。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>因此，指定运算符 <span class="arithmatex">\(\texttt{let}\)</span> 的元数为 <span class="arithmatex">\((\mathsf{Exp}, \mathsf{Exp}.\mathsf{Exp})\mathsf{Exp}\)</span> 表示它是一个范畴为 <span class="arithmatex">\(\mathsf{Exp}\)</span> 的运算符，其第一个参数的范畴为 <span class="arithmatex">\(\mathsf{Exp}\)</span>，并且不绑定任何变量；第二个参数也是 <span class="arithmatex">\(\mathsf{Exp}\)</span> 的范畴，并在其中绑定一个 <span class="arithmatex">\(\mathsf{Exp}\)</span> 范畴的变量。非正式表达式 <span class="arithmatex">\(\texttt{let } x \texttt{ be } 2 \texttt{ in } x + x\)</span> 可以写作 ABT 形式 <span class="arithmatex">\(\texttt{let}(\texttt{num}[2]; x.\texttt{plus}(x; x))\)</span>。其中运算符 <span class="arithmatex">\(\texttt{let}\)</span> 具有两个参数，第一个是表达式，第二个是一个抽象器，它绑定了一个表达式变量。</p>
+</div>
+<p>固定一个范畴集合 <span class="arithmatex">\(S\)</span> 和一个按广义元数索引的互不相交的运算符集族 <span class="arithmatex">\(O\)</span>。对于给定的互不相交的变量集族 <span class="arithmatex">\(X\)</span>，抽象绑定树（ABT）家族 <span class="arithmatex">\(B[X]\)</span> 的定义类似于 <span class="arithmatex">\(A[X]\)</span>，但不同的是，<span class="arithmatex">\(X\)</span> 在定义过程中不是固定不变的，而是随着进入抽象器的作用域而变化。</p>
+<p>这个简单的概念在精确定义上意外地困难。对其定义的初步尝试是作为满足以下条件的最小集合族：</p>
+<div class="admonition note">
+<p class="admonition-title">抽象绑定树的初步定义</p>
+<ol>
+<li>如果 <span class="arithmatex">\(x \in X_s\)</span>，则 <span class="arithmatex">\(x \in B[X]_s\)</span>。</li>
+<li>对于每个元数为 <span class="arithmatex">\((\vec{s_1}.s_1, \dots, \vec{s_n}.s_n)s\)</span> 的运算符 <span class="arithmatex">\(o\)</span>，如果 <span class="arithmatex">\(a_1 \in B[X, \vec{x_1}]_{s_1}, \dots, a_n \in B[X, \vec{x_n}]_{s_n}\)</span>，则 <span class="arithmatex">\(o(\vec{x_1}.a_1; \dots; \vec{x_n}.a_n) \in B[X]_s\)</span>。</li>
+</ol>
+</div>
+<p>绑定变量被附加到每个参数的活动变量集合中，每个变量的范畴由运算符的价位决定。</p>
+<p>这个定义几乎是正确的，但未能正确处理绑定变量的重命名。按照这个定义，形如 <span class="arithmatex">\(\texttt{let } x \texttt{ be } 2 \texttt{ in } \texttt{let } x \texttt{ be } 3 \texttt{ in } x + x\)</span> 的 ABT 是合法的，因为第一个 <span class="arithmatex">\(\texttt{let}\)</span> 绑定的 <span class="arithmatex">\(x\)</span> 与第二个 <span class="arithmatex">\(\texttt{let}\)</span> 绑定的 <span class="arithmatex">\(x\)</span> 是不同的。但是，这个 ABT 的意义是不明确的，因为两个绑定变量具有相同的名称，这可能会导致混淆。为了避免这种混淆，我们需要确保每个参数都是合法的，无论绑定变量名称的选择如何。这通过使用新的重命名来实现，新的重命名是变量序列之间的双射。</p>
+<div class="admonition note">
+<p class="admonition-title">重命名的定义</p>
+<p>具体来说，相对于 <span class="arithmatex">\(X\)</span> 的一个有限变量序列 <span class="arithmatex">\(\vec{x}\)</span> 的新的重命名是一个双射 <span class="arithmatex">\(\rho : \vec{x} \leftrightarrow \vec{x'}\)</span>，其中 <span class="arithmatex">\(\vec{x'}\)</span> 对 <span class="arithmatex">\(X\)</span> 是新的。我们用 <span class="arithmatex">\(\hat{\rho}(a)\)</span> 表示将 <span class="arithmatex">\(a\)</span> 中每个 <span class="arithmatex">\(x_i\)</span> 替换为其新的对应变量 <span class="arithmatex">\(\rho(x_i)\)</span> 的结果。</p>
+</div>
+<p>这通过使用新的重命名来修改 ABT 定义的第二条规则实现，如下所示：</p>
+<div class="admonition note">
+<p class="admonition-title">抽象绑定树的精确定义</p>
+<p>对于每个元数为 <span class="arithmatex">\((\vec{s_1}.s_1, \dots, \vec{s_n}.s_n)s\)</span> 的运算符 <span class="arithmatex">\(o\)</span>，如果对于每个 <span class="arithmatex">\(1 \leq i \leq n\)</span> 和每个新的重命名 <span class="arithmatex">\(\rho_i : \vec{x_i} \leftrightarrow \vec{x'_i}\)</span>，我们有 <span class="arithmatex">\(\hat{\rho_i}(a_i) \in B[X, \vec{x'_i}]\)</span>，则 <span class="arithmatex">\(o(\vec{x_1}.a_1; \dots; \vec{x_n}.a_n) \in B[X]_s\)</span>。</p>
+</div>
+<p>重命名 <span class="arithmatex">\(\hat{\rho_i}(a_i)\)</span> 确保了不会发生冲突，并且 ABT 对几乎所有的绑定变量的重命名都是有效的。</p>
+<p>结构归纳原理可以扩展到抽象绑定树（ABT），这种扩展称为“结构归纳模新重命名”。它表明，为了证明 <span class="arithmatex">\(P[X](a)\)</span> 对于每个 <span class="arithmatex">\(a \in B[X]\)</span> 都成立，只需证明以下条件即可：</p>
+<ol>
+<li>如果 <span class="arithmatex">\(x \in X_s\)</span>，则 <span class="arithmatex">\(P[X]_s(x)\)</span> 成立。</li>
+<li>对于每个元数为 <span class="arithmatex">\((\vec{s_1}.s_1, \dots, \vec{s_n}.s_n)s\)</span> 的运算符 <span class="arithmatex">\(o\)</span>，如果对于每个 <span class="arithmatex">\(1 \leq i \leq n\)</span>，对于每个新重命名 <span class="arithmatex">\(\rho_i : \vec{x_i} \leftrightarrow \vec{x'_i}\)</span>（其中 <span class="arithmatex">\(\vec{x'_i} \notin X\)</span>），有 <span class="arithmatex">\(P[X, \vec{x'_i}]_{s_i}(\hat{\rho_i}(a_i))\)</span> 成立，则 <span class="arithmatex">\(P[X]_s(o(\vec{x_1}.a_1; \dots; \vec{x_n}.a_n))\)</span> 也成立。</li>
+</ol>
+<p>第二个条件确保归纳假设对所有新选择的绑定变量名称都成立，而不仅仅是 ABT 中实际给出的那些名称。</p>
+<p>作为一个例子，我们定义判断 <span class="arithmatex">\(x \in a\)</span>，其中 <span class="arithmatex">\(a \in B[X, x]\)</span>，表示 <span class="arithmatex">\(x\)</span> 在 <span class="arithmatex">\(a\)</span> 中自由出现。非正式地，这意味着 <span class="arithmatex">\(x\)</span> 在 <span class="arithmatex">\(a\)</span> 外部某处被绑定，而不是在 <span class="arithmatex">\(a\)</span> 本身内部。如果 <span class="arithmatex">\(x\)</span> 在 <span class="arithmatex">\(a\)</span> 内部被绑定，则这些 <span class="arithmatex">\(x\)</span> 的出现与绑定外部的那些出现不同。以下定义确保了这一点：</p>
+<div class="admonition note">
+<p class="admonition-title">判断 <span class="arithmatex">\(x \in a\)</span> 的定义</p>
+<ol>
+<li><span class="arithmatex">\(x \in x\)</span>。</li>
+<li><span class="arithmatex">\(x \in o(\vec{x_1}.a_1; \dots; \vec{x_n}.a_n)\)</span> 如果存在 <span class="arithmatex">\(1 \leq i \leq n\)</span>，对于每个新的重命名 <span class="arithmatex">\(\rho : \vec{x_i} \leftrightarrow \vec{z_i}\)</span>，我们有 <span class="arithmatex">\(x \in \hat{\rho}(a_i)\)</span>。</li>
+</ol>
+</div>
+<p>第一个条件声明 <span class="arithmatex">\(x\)</span> 在 <span class="arithmatex">\(x\)</span> 中是自由的，但在任何变量 <span class="arithmatex">\(y\)</span>（除了 <span class="arithmatex">\(x\)</span> 之外）中不是自由的。第二个条件声明，如果 <span class="arithmatex">\(x\)</span> 在某个参数中是自由的，无论该参数中的绑定变量名称如何选择，那么它在整个 ABT 中也是自由的。</p>
+<div class="admonition note">
+<p class="admonition-title"><span class="arithmatex">\(\alpha\)</span>-等价的定义</p>
+<p>关系 <span class="arithmatex">\(a =_\alpha b\)</span>（称为 <span class="arithmatex">\(\alpha\)</span>-等价，因历史原因）表示 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 在绑定变量名称选择上是相同的。<span class="arithmatex">\(\alpha\)</span>-等价关系是包含以下两个条件的最强同余关系：</p>
+<ol>
+<li><span class="arithmatex">\(x =_\alpha x\)</span>。</li>
+<li><span class="arithmatex">\(o(\vec{x_1}.a_1; \dots; \vec{x_n}.a_n) =_\alpha o(\vec{x'_1}.a'_1; \dots; \vec{x'_n}.a'_n)\)</span> 如果对于每个 <span class="arithmatex">\(1 \leq i \leq n\)</span>，<span class="arithmatex">\(\hat{\rho_i}(a_i) =_\alpha \hat{\rho'_i}(a'_i)\)</span> 对于所有新的重命名 <span class="arithmatex">\(\rho_i : \vec{x_i} \leftrightarrow \vec{z_i}\)</span> 和 <span class="arithmatex">\(\rho'_i : \vec{x'_i} \leftrightarrow \vec{z_i}\)</span>。</li>
+</ol>
+</div>
+<p>这个想法是我们一致地重命名 <span class="arithmatex">\(\vec{x_i}\)</span> 和 <span class="arithmatex">\(\vec{x'_i}\)</span>，以避免混淆，并检查 <span class="arithmatex">\(a_i\)</span> 和 <span class="arithmatex">\(a'_i\)</span> 是否是 <span class="arithmatex">\(\alpha\)</span>-等价的。如果 <span class="arithmatex">\(a =_\alpha b\)</span>，则 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 是对方的 <span class="arithmatex">\(\alpha\)</span>-变体。</p>
+<p>在定义将一个 ABT <span class="arithmatex">\(b\)</span>（其类型为 <span class="arithmatex">\(s\)</span>）替换到另一个 ABT <span class="arithmatex">\(a\)</span> 的某个变量 <span class="arithmatex">\(x\)</span>（其类型为 <span class="arithmatex">\(s\)</span>）的自由出现位置时（记作 <span class="arithmatex">\([b/x]a\)</span>），需要小心。替换的部分定义如下：</p>
+<div class="admonition note">
+<p class="admonition-title">ABT 中替换的定义</p>
+<ol>
+<li><span class="arithmatex">\([b/x]x = b\)</span>，而 <span class="arithmatex">\([b/x]y = y\)</span>（如果 <span class="arithmatex">\(x \neq y\)</span>）。</li>
+<li><span class="arithmatex">\([b/x]o(\vec{x_1}.a_1; \dots; \vec{x_n}.a_n) = o(\vec{x_1}.a'_1; \dots; \vec{x_n}.a'_n)\)</span>，其中，对于每个 <span class="arithmatex">\(1 \leq i \leq n\)</span>，我们要求 <span class="arithmatex">\(\vec{x_i} \notin b\)</span>，并且设置 <span class="arithmatex">\(a'_i = [b/x]a_i\)</span> 如果 <span class="arithmatex">\(x \notin \vec{x_i}\)</span>，否则 <span class="arithmatex">\(a'_i = a_i\)</span>。</li>
+</ol>
+</div>
+<p>定义 <span class="arithmatex">\([b/x]a\)</span> 是相当精细的，需要仔细考虑。</p>
+<p>替换的一个问题是，如果 <span class="arithmatex">\(x\)</span> 在 <span class="arithmatex">\(a\)</span> 内部由抽象器绑定，则 <span class="arithmatex">\(x\)</span> 在抽象器内部不会出现为自由变量，因此不会被替换。</p>
+<div class="admonition example">
+<p class="admonition-title">例如，<span class="arithmatex">\([b/x] \text{let}(a_1; x.a_2) = \texttt{let}([b/x]a_1; x.a_2)\)</span>，因为在 <span class="arithmatex">\(x.a_2\)</span> 中没有 <span class="arithmatex">\(x\)</span> 的自由出现。</p>
+</div>
+<p>另一个问题是替换过程中可能会捕获到 <span class="arithmatex">\(b\)</span> 中的自由变量。</p>
+<div class="admonition example">
+<p class="admonition-title">例如，如果 <span class="arithmatex">\(y \in b\)</span> 且 <span class="arithmatex">\(x \neq y\)</span>，则 <span class="arithmatex">\([b/x] \texttt{let}(a_1; y.a_2)\)</span> 是未定义的，而不是 <span class="arithmatex">\(\texttt{let}([b/x]a_1; y.[b/x]a_2)\)</span>，这可能在初看时会有所误解。</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">例如，给定 <span class="arithmatex">\(x \neq y\)</span>，<span class="arithmatex">\([y/x] \texttt{let}(\text{num}[0]; y.\text{plus}(x; y))\)</span> 是未定义的，而不是 <span class="arithmatex">\(\texttt{let}(\text{num}[0]; y.\text{plus}(y; y))\)</span>，因为这混淆了两个不同的变量 <span class="arithmatex">\(y\)</span>。</p>
+</div>
+<p>尽管避免捕获（capture avoidance）是替换的一个基本特征，但在某种意义上，它仅仅是一个技术上的麻烦。如果绑定变量的名称没有实际意义，那么可以通过首先重命名 <span class="arithmatex">\(a\)</span> 中的绑定变量来避免 <span class="arithmatex">\(b\)</span> 中的任何自由变量，从而总是能够避免捕获。在前面的例子中，如果我们将绑定变量 <span class="arithmatex">\(y\)</span> 重命名为 <span class="arithmatex">\(y'\)</span>，得到 <span class="arithmatex">\(a' = \texttt{let}(\text{num}[0]; y'.\text{plus}(x; y'))\)</span>，那么 <span class="arithmatex">\([b/x]a'\)</span> 是定义好的，且等于 <span class="arithmatex">\(\texttt{let}(\text{num}[0]; y'.\text{plus}(b; y'))\)</span>。以这种方式避免捕获的代价是，替换仅在 <span class="arithmatex">\(\alpha\)</span>-等价下确定，因此我们可能不再将替换视为一个函数，而只能视为一个适当的关系。</p>
+<p>为了恢复替换的函数特性，采用以下识别约定是足够的：</p>
+<div class="admonition note">
+<p class="admonition-title">识别约定</p>
+<p>抽象绑定树（ABTs）总是按 <span class="arithmatex">\(\alpha\)</span>-等价（<span class="arithmatex">\(\alpha\)</span>-equivalence）来识别。</p>
+</div>
+<p>也就是说，<span class="arithmatex">\(\alpha\)</span>-等价的 ABT 被视为相同。替换可以扩展到 ABT 的 <span class="arithmatex">\(\alpha\)</span>-等价类，以避免捕获，通过选择 ABT 的等价类的代表，从而使得替换是定义良好的，然后形成结果的等价类。任何两个替换定义良好的代表选择都将给出 <span class="arithmatex">\(\alpha\)</span>-等价的结果，因此替换变成一个定义明确的全函数。在本书中，我们将采用 ABT 的识别约定。</p>
+<p>我们经常需要考虑那些其抽象语法不能通过固定的操作符集合来指定的语言，而是需要操作符对其出现的上下文敏感。</p>
+<div class="admonition note">
+<p class="admonition-title">符号的定义</p>
+<p>为了我们的目的，我们将考虑一组符号参数，或称为符号，这些符号索引操作符的家族，从而在符号集变化时，操作符集也会变化。一个索引操作符 <span class="arithmatex">\(o\)</span> 是一个由符号 <span class="arithmatex">\(u\)</span> 索引的操作符家族，当 <span class="arithmatex">\(u\)</span> 是一个可用符号时，<span class="arithmatex">\(o[u]\)</span> 是一个操作符。</p>
+</div>
+<p>如果 <span class="arithmatex">\(U\)</span> 是一个有限的符号集，那么 <span class="arithmatex">\(B[U; X]\)</span> 是按照之前的方式生成的按类型索引的 ABTs 家族，接受所有符号 <span class="arithmatex">\(u \in U\)</span> 的索引操作符实例。</p>
+<p>虽然变量是一个占位符，代表其类型的未知 ABT，但符号本身并不代表任何东西，也不是一个 ABT。符号的唯一意义在于它是否与另一个符号相同或不同；操作符实例 <span class="arithmatex">\(o[u]\)</span> 和 <span class="arithmatex">\(o[u']\)</span> 只有在 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(u'\)</span> 相同时才相同，即当 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(u'\)</span> 是相同的符号时，操作符实例才相同。</p>
+<p>符号集通过在作用域内引入新的或“新鲜的”符号来扩展，这使用抽象符号 <span class="arithmatex">\(u.a\)</span>，该抽象符号在 ABT <span class="arithmatex">\(a\)</span> 中绑定了符号 <span class="arithmatex">\(u\)</span>。抽象符号在某种意义上是“新”的，就像抽象变量一样：绑定符号的名称可以随意变化，只要不产生冲突。这种重命名属性确保了抽象符号在作用域内是唯一的。</p>
+<div class="admonition note">
+<p class="admonition-title">符号与变量的区别</p>
+<p>符号和变量之间的唯一区别在于对符号的唯一操作是重命名；对于符号，没有替换的概念。</p>
+</div>
+<p>最后，关于符号表示法的一点说明：为了提高可读性，我们通常会对操作符的参数进行“分组”和“分阶段”处理，使用圆括号和花括号来显示分组，并且一般认为阶段从右到左进行。所有在一个组中的参数被认为是在相同的阶段出现的，尽管它们的顺序是有意义的，而连续的组被认为是在顺序的阶段中出现的。分阶段和分组通常是一个有用的记忆工具，但没有根本意义。例如，ABT <span class="arithmatex">\(o\{a1; a2\}(a3; x.a4)\)</span> 与 <span class="arithmatex">\(o(a1; a2; a3; x.a4)\)</span> 是相同的，任何其他保持顺序的分组或分阶段方法也会得到相同的结果。</p>
+<h3 id="_5">第二章：归纳定义<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>归纳定义是编程语言研究中不可或缺的工具。在本章中，我们将建立归纳定义的基本框架，并给出其一些应用实例。归纳定义由一组用于推导各种形式的判断或断言的规则组成。判断是关于某种抽象绑定树的一个或多个的陈述。这些规则规定了判断有效的必要和充分条件，从而完全确定了其含义。</p>
+<h4 id="_6">判断<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>我们首先介绍关于抽象绑定树的判断（或断言）的概念。我们将使用多种形式的判断，其中包括以下示例：</p>
+<ul>
+<li><span class="arithmatex">\(n \text{ nat}\)</span> 表示 <span class="arithmatex">\(n\)</span> 是一个自然数</li>
+<li><span class="arithmatex">\(n_1 + n_2 = n\)</span> 表示 <span class="arithmatex">\(n\)</span> 是 <span class="arithmatex">\(n_1\)</span> 和 <span class="arithmatex">\(n_2\)</span> 的和</li>
+<li><span class="arithmatex">\(\tau \text{ type}\)</span> 表示 <span class="arithmatex">\(\tau\)</span> 是一种类型</li>
+<li><span class="arithmatex">\(e : \tau\)</span> 表示表达式 <span class="arithmatex">\(e\)</span> 的类型是 <span class="arithmatex">\(\tau\)</span></li>
+<li><span class="arithmatex">\(e \Downarrow v\)</span> 表示表达式 <span class="arithmatex">\(e\)</span> 的值为 <span class="arithmatex">\(v\)</span></li>
+</ul>
+<p>一个判断声明一个或多个抽象绑定树具有某种属性或彼此之间存在某种关系。属性或关系本身被称为判断形式，而对象具有该属性或存在该关系的判断则称为该判断形式的一个实例。判断形式也称为谓词，而构成实例的对象称为其主体。我们用 <span class="arithmatex">\(a \ J\)</span> 或 <span class="arithmatex">\(J \ a\)</span> 来表示断言判断 <span class="arithmatex">\(J\)</span> 对抽象绑定树 <span class="arithmatex">\(a\)</span> 成立。相应地，有时我们用 <span class="arithmatex">\(- J\)</span> 或 <span class="arithmatex">\(J -\)</span> 来表示判断形式 <span class="arithmatex">\(J\)</span>，其中破折号表示 <span class="arithmatex">\(J\)</span> 没有具体的参数。当判断的主体不重要时，我们用 <span class="arithmatex">\(J\)</span> 来代表未指定的判断，即某个判断形式的实例。对于特定的判断形式，我们可以自由地使用前缀、后缀或混合表示法，如上例所示，以增强可读性。</p>
+<h4 id="_7">推理规则<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>判断形式的归纳定义由一组形式为：</p>
+<div class="arithmatex">\[
+\frac{J_1 \dots J_k}{J}
+\]</div>
+<p>的规则组成，其中 <span class="arithmatex">\(J\)</span> 和 <span class="arithmatex">\(J_1, \dots, J_k\)</span> 都是所定义的判断形式。水平线以上的判断称为规则的前提，水平线以下的判断称为其结论。如果一个规则没有前提（即 <span class="arithmatex">\(k\)</span> 为零），该规则称为公理；否则，称为适当的规则。</p>
+<p>推理规则可以理解为前提对于得出结论是充分的：要证明 <span class="arithmatex">\(J\)</span>，只需要证明 <span class="arithmatex">\(J_1, \dots, J_k\)</span>。当 <span class="arithmatex">\(k\)</span> 为零时，规则表示其结论无条件成立。请记住，通常可能存在多个具有相同结论的规则，每个规则都为结论提供充分条件。因此，如果某个规则的结论成立，并不意味着该规则的前提必须成立，因为它可能是由另一条规则推导出来的。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>例如，以下规则构成了判断形式 <span class="arithmatex">\(- \text{nat}\)</span> 的归纳定义：</p>
+<div class="arithmatex">\[
+\frac{}{\text{zero nat}}
+\]</div>
+<div class="arithmatex">\[
+\frac{a \text{ nat}}{\text{succ}(a) \text{ nat}} \quad (2.2b)
+\]</div>
+<p>这些规则指定了当 <span class="arithmatex">\(a\)</span> 为零，或 <span class="arithmatex">\(a\)</span> 为 <span class="arithmatex">\(\text{succ}(b)\)</span> 且 <span class="arithmatex">\(b\)</span> 对于某个 <span class="arithmatex">\(b\)</span> 满足 <span class="arithmatex">\(\text{nat}\)</span> 时，<span class="arithmatex">\(a \text{ nat}\)</span> 成立。将这些规则视为完整的，可以得出 <span class="arithmatex">\(a \text{ nat}\)</span> 当且仅当 <span class="arithmatex">\(a\)</span> 是一个自然数。</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>类似地，以下规则构成了判断形式 <span class="arithmatex">\(- \text{tree}\)</span> 的归纳定义：</p>
+<div class="arithmatex">\[
+\frac{}{\text{empty tree}}
+\]</div>
+<div class="arithmatex">\[
+\frac{a_1 \text{ tree} \quad a_2 \text{ tree}}{\text{node}(a_1 ; a_2) \text{ tree}}
+\]</div>
+<p>这些规则表明，当 <span class="arithmatex">\(a\)</span> 是 <span class="arithmatex">\(\text{empty}\)</span>，或 <span class="arithmatex">\(a\)</span> 是 <span class="arithmatex">\(\text{node}(a_1 ; a_2)\)</span> 且 <span class="arithmatex">\(a_1 \text{ tree}\)</span> 和 <span class="arithmatex">\(a_2 \text{ tree}\)</span> 时，<span class="arithmatex">\(a \text{ tree}\)</span> 成立。将这些规则视为完整的，它们表示 <span class="arithmatex">\(a\)</span> 是一棵二叉树，即它要么是空树，要么是由两个子节点组成的节点，而每个子节点也是二叉树。</p>
+</div>
+<p>判断形式 <span class="arithmatex">\(a \text{ is } b\)</span> 表示两个抽象绑定树 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 的相等性，其中 <span class="arithmatex">\(a \text{ nat}\)</span> 且 <span class="arithmatex">\(b \text{ nat}\)</span>，其归纳定义由以下规则给出：</p>
+<div class="arithmatex">\[
+\frac{}{\text{zero is zero}} \quad (2.4a)
+\]</div>
+<div class="arithmatex">\[
+\frac{a \text{ is } b}{\text{succ}(a) \text{ is } \text{succ}(b)} \quad (2.4b)
+\]</div>
+<p>在前面的例子中，我们使用了一种符号惯例，通过有限数量的模式或规则方案指定无限多的规则。例如，规则 (2.2b) 是一个规则方案，它为规则中的每个对象 <span class="arithmatex">\(a\)</span> 确定了一条规则，称为规则方案的实例。我们将依赖上下文来判断一条规则是针对特定对象 <span class="arithmatex">\(a\)</span> 还是作为一个规则方案，进而为规则中的每个对象提供相应的规则。</p>
+<p>一组规则被认为定义了在这些规则下闭合或遵守这些规则的最强判断形式。对规则闭合意味着这些规则足以证明判断的有效性：如果有办法通过给定的规则得到 <span class="arithmatex">\(J\)</span>，则 <span class="arithmatex">\(J\)</span> 成立。作为最强判断形式，规则是必要的：<span class="arithmatex">\(J\)</span> 仅当通过应用规则能够得到时才成立。规则的充分性意味着我们可以通过组合规则来推导出 <span class="arithmatex">\(J\)</span> 的成立。而规则的必要性则意味着我们可以使用规则归纳对其进行推理。</p>
+<h4 id="_8">推导<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>要证明一个归纳定义的判断成立，展示其推导过程就足够了。判断的推导是规则的有限组合，开始于公理，结束于该判断。可以将其看作一个树结构，其中每个节点代表一个规则，而其子节点是该规则前提的推导过程。我们有时会说，某个判断 <span class="arithmatex">\(J\)</span> 的推导是该归纳定义的判断 <span class="arithmatex">\(J\)</span> 成立的证据。</p>
+<p>通常，我们将推导描绘成一棵树，结论位于底部，而规则的前提作为证据出现在该节点的上方。因此，如果</p>
+<div class="arithmatex">\[
+\frac{J_1 \quad \dots \quad J_k}{J}
+\]</div>
+<p>是一个推理规则，并且 <span class="arithmatex">\(\bigtriangledown_1, \dots, \bigtriangledown_k\)</span> 是其前提的推导过程，那么</p>
+<div class="arithmatex">\[
+\frac{\bigtriangledown_1 \quad \dots \quad \bigtriangledown_k}{J}
+\]</div>
+<p>就是其结论的推导。特别地，当 <span class="arithmatex">\(k = 0\)</span> 时，节点没有子节点。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>例如，以下是 <span class="arithmatex">\(\text{succ}(\text{succ}(\text{succ}(\text{zero}))) \text{ nat}\)</span> 的一个推导过程：</p>
+<div class="arithmatex">\[
+\frac{\frac{\frac{\frac{}{\text{zero nat}}}{\text{succ}(\text{zero}) \text{ nat}}}{\text{succ}(\text{succ}(\text{zero})) \text{ nat}}}{\text{succ}(\text{succ}(\text{succ}(\text{zero}))) \text{ nat}} \quad (2.5)
+\]</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>类似地，下面是 <span class="arithmatex">\(\text{node}(\text{node}(\text{empty}; \text{empty}); \text{empty}) \text{ tree}\)</span> 的一个推导过程：</p>
+<div class="arithmatex">\[
+\frac{
+    \frac{
+        \frac{}{\text{empty tree}} \frac{}{\text{empty tree}}
+    }{
+        \text{node}(\text{empty}; \text{empty}) \text{ tree}
+    }
+    \frac{}{\text{empty tree}}
+}
+{\text{node}(\text{node}(\text{empty}; \text{empty}); \text{empty}) \text{ tree}} \quad (2.6)
+\]</div>
+</div>
+<p>为了证明一个归纳定义的判断是可推导的，我们只需要找到一个推导过程。寻找推导的主要方法有两种，分别称为<strong>前向推导</strong>（或自下而上的构造）和<strong>后向推导</strong>（或自上而下的构造）。<strong>前向推导</strong>从公理开始，朝着所需的结论逐步推进，而<strong>后向推导</strong>则从目标结论出发，向后追溯到公理。</p>
+<p>更具体地说，前向推导的搜索方法会维护一组可推导的判断，并通过添加所有前提已在该集合中的推理规则的结论，持续扩展这一集合。最初，该集合为空；当所需的判断出现在集合中时，过程结束。假设在每个阶段都考虑了所有规则，那么前向推导最终会找到任何可推导判断的推导过程，但通常无法通过算法确定何时应该停止扩展集合，并得出所需判断不可推导的结论。我们可能会不断地将更多判断添加到可推导集合中，却始终无法实现预期目标。要判断给定的判断是否不可推导，必须理解规则的全局特性。</p>
+<p>前向推导是<strong>无目标指向的</strong>，因为在每一步决定如何继续时，它并不考虑最终目标。相比之下，后向推导是<strong>目标导向的</strong>。后向推导的搜索方法会维护一个当前目标的队列，这些是需要寻找推导过程的判断。最初，该队列仅包含我们希望推导的判断。在每个阶段，我们从队列中移除一个判断，并考虑所有以该判断为结论的推理规则。对于每个这样的规则，我们将该规则的前提添加到队列的末尾，然后继续。如果有多条符合条件的规则，这个过程必须为每个候选规则重复，使用相同的初始队列。该过程在队列为空时终止，所有目标都已实现；此过程中可以丢弃对候选规则的任何未完成的考虑。和前向推导一样，后向推导最终也会找到任何可推导判断的推导过程，但通常没有算法可以确定当前目标是否可推导。如果不可推导，我们可能徒劳地将更多判断添加到目标集合中，永远无法满足所有目标。</p>
+<h4 id="_9">规则归纳<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>由于归纳定义指定了在一组规则下封闭的最强判断形式，我们可以通过<strong>规则归纳</strong>对它们进行推理。规则归纳原理表明，要证明某个性质 <span class="arithmatex">\( P \)</span> 在 <span class="arithmatex">\( J \)</span> 可导时成立，只需证明 <span class="arithmatex">\( P \)</span> 在定义判断形式 <span class="arithmatex">\( J \)</span> 的规则下是封闭的或遵守这些规则。</p>
+<p>更具体地说，性质 <span class="arithmatex">\( P \)</span> 遵守如下规则：</p>
+<div class="arithmatex">\[
+\frac{a_1 J \ \dots \ a_k J}
+{a J}
+\]</div>
+<p>如果当 <span class="arithmatex">\( P(a_1), \dots, P(a_k) \)</span> 成立时，<span class="arithmatex">\( P(a) \)</span> 也成立。假设 <span class="arithmatex">\( P(a_1), \dots, P(a_k) \)</span> 被称为归纳假设，而 <span class="arithmatex">\( P(a) \)</span> 被称为推理的归纳结论。</p>
+<p>规则归纳原理只是归纳定义的表达形式，它说明通过一组规则定义的判断形式是最强的、在这些规则下封闭的形式。因此，规则归纳定义的判断形式有两个特性：(a) 在这些规则下封闭，即通过规则推导出的结论是有效的；(b) 足以用于推理其他在规则下也封闭的性质。这意味着推导出的判断是判断有效性的证据，同时我们可以通过规则归纳推理关于归纳定义的判断形式。</p>
+<p>对于规则 (2.2)，规则归纳原理表明，要证明 <span class="arithmatex">\( P(a) \)</span> 在 <span class="arithmatex">\( a \)</span> 为自然数时成立，只需证明：</p>
+<ol>
+<li><span class="arithmatex">\( P(zero) \)</span>。</li>
+<li>对任意 <span class="arithmatex">\( a \)</span>，如果 <span class="arithmatex">\( P(a) \)</span> 成立，则 <span class="arithmatex">\( P(succ(a)) \)</span> 也成立。</li>
+</ol>
+<p>这些条件的充分性是我们熟悉的数学归纳法原理。同样，对于规则 (2.3)，规则归纳法表明，要证明 <span class="arithmatex">\( P(a) \)</span> 在 <span class="arithmatex">\( a \)</span> 为树时成立，只需证明：</p>
+<ol>
+<li><span class="arithmatex">\( P(empty) \)</span>。</li>
+<li>对任意 <span class="arithmatex">\( a_1 \)</span> 和 <span class="arithmatex">\( a_2 \)</span>，如果 <span class="arithmatex">\( P(a_1) \)</span> 和 <span class="arithmatex">\( P(a_2) \)</span> 成立，则 <span class="arithmatex">\( P(node(a_1; a_2)) \)</span> 也成立。</li>
+</ol>
+<p>这些条件的充分性被称为<strong>树归纳原理</strong>。</p>
+<p>我们还可以通过规则归纳证明，自然数的前驱也是自然数。尽管这看起来显而易见，但这个例子展示了如何从基本原则推导出这一结论。</p>
+<div class="admonition note">
+<p class="admonition-title">引理 2.1：自然数的后继还是自然数</p>
+<p><strong>引理 2.1</strong> 如果 <span class="arithmatex">\( succ(a) \)</span> 是自然数，则 <span class="arithmatex">\( a \)</span> 也是自然数。</p>
+<hr />
+<p><strong>证明</strong> 我们只需证明性质 <span class="arithmatex">\( P(a) \)</span>，即如果 <span class="arithmatex">\( a \)</span> 是自然数且 <span class="arithmatex">\( a = succ(b) \)</span>，则 <span class="arithmatex">\( b \)</span> 是自然数，该性质遵守规则 (2.2)。</p>
+<ul>
+<li><strong>规则 (2.2a)</strong>：显然 <span class="arithmatex">\( zero \)</span> 是自然数，且第二个条件空成立，因为 <span class="arithmatex">\( zero \)</span> 不是 <span class="arithmatex">\( succ(-) \)</span> 的形式。</li>
+<li><strong>规则 (2.2b)</strong>：归纳假设下，我们知道 <span class="arithmatex">\( a \)</span> 是自然数，且如果 <span class="arithmatex">\( a \)</span> 是 <span class="arithmatex">\( succ(b) \)</span> 的形式，则 <span class="arithmatex">\( b \)</span> 是自然数。我们要证明 <span class="arithmatex">\( succ(a) \)</span> 是自然数，这是显然的；且如果 <span class="arithmatex">\( succ(a) \)</span> 是 <span class="arithmatex">\( succ(b) \)</span> 的形式，则 <span class="arithmatex">\( b \)</span> 是自然数，根据归纳假设，<span class="arithmatex">\( b \)</span> 是自然数。</li>
+</ul>
+</div>
+<p>通过规则归纳，我们还可以证明按照规则 (2.4) 定义的等式是自反的。</p>
+<div class="admonition note">
+<p class="admonition-title">引理 2.2：自然数等于自身</p>
+<p><strong>引理 2.2</strong> 如果 <span class="arithmatex">\( a \)</span> 是自然数，则 <span class="arithmatex">\( a = a \)</span>。</p>
+<hr />
+<p><strong>证明</strong> 通过对规则 (2.2) 进行规则归纳：</p>
+<ul>
+<li><strong>规则 (2.2a)</strong>：应用规则 (2.4a)，我们得到 <span class="arithmatex">\( zero = zero \)</span>。</li>
+<li><strong>规则 (2.2b)</strong>：假设 <span class="arithmatex">\( a = a \)</span>，那么通过应用规则 (2.4b)，可以推导出 <span class="arithmatex">\( succ(a) = succ(a) \)</span>。</li>
+</ul>
+</div>
+<p>类似地，我们可以证明后继运算是单射的。</p>
+<div class="admonition note">
+<p class="admonition-title">引理 2.3：自然数的后继是单射的</p>
+<p><strong>引理 2.3</strong> 如果 <span class="arithmatex">\( succ(a_1) = succ(a_2) \)</span>，则 <span class="arithmatex">\( a_1 = a_2 \)</span>。</p>
+<hr />
+<p><strong>证明</strong> 类似于引理 2.1 的证明。</p>
+</div>
+<h4 id="_10">迭代和同时归纳定义<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>归纳定义通常是迭代进行的，意味着一个归纳定义是在另一个归纳定义的基础上构建的。在迭代归纳定义中，规则的前提：</p>
+<div class="arithmatex">\[
+\frac{J_1 \ \dots \ J_k}
+{J}
+\]</div>
+<p>可以是之前定义的判断形式的实例，也可以是正在定义的判断形式的实例。例如，以下规则定义了判断形式 <span class="arithmatex">\(- \text{list}\)</span>，它表示 <span class="arithmatex">\(a\)</span> 是一个自然数列表：</p>
+<div class="arithmatex">\[
+\frac{}{\text{nil list}} \quad (2.7a)
+\]</div>
+<div class="arithmatex">\[
+\frac{a \text{ nat} \quad b \text{ list}}{\text{cons}(a;b) \text{ list}} \quad (2.7b)
+\]</div>
+<p>规则 (2.7b) 的第一个前提是之前定义的判断形式 <span class="arithmatex">\(a \text{ nat}\)</span> 的实例，而前提 <span class="arithmatex">\(b \text{ list}\)</span> 则是正在通过这些规则定义的判断形式的实例。</p>
+<p>同时，归纳定义经常一次定义两个或更多的判断形式。一个同时归纳定义包含一组规则，用于推导多个不同判断形式的实例，任何判断形式都可以作为任何规则的前提。由于定义每个判断形式的规则可能涉及其他判断形式，因此这些判断形式没有一个是先于其他形式定义的。相反，我们必须理解，这些判断形式是由整组规则同时定义的。由这些规则定义的判断形式仍然是封闭在这些规则下的最强判断形式。因此，规则归纳的证明原则仍然适用，不过它要求我们同时证明每个定义的判断形式的某个性质。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>例如，以下规则构成了 <span class="arithmatex">\(a \text{even}\)</span>（表示 <span class="arithmatex">\(a\)</span> 是偶数）和 <span class="arithmatex">\(a \text{odd}\)</span>（表示 <span class="arithmatex">\(a\)</span> 是奇数）判断的同时归纳定义：</p>
+<div class="arithmatex">\[
+\frac{}{\text{zero even}} \quad (2.8a)
+\]</div>
+<div class="arithmatex">\[
+\frac{b \text{ odd}}{\text{succ}(b) \text{ even}} \quad (2.8b)
+\]</div>
+<div class="arithmatex">\[
+\frac{a \text{ even}}{\text{succ}(a) \text{ odd}} \quad (2.8c)
+\]</div>
+</div>
+<p>这些规则的规则归纳原理表明，要同时证明 <span class="arithmatex">\(P(a)\)</span> 对于 <span class="arithmatex">\(a\)</span> 是偶数时成立，且 <span class="arithmatex">\(Q(b)\)</span> 对于 <span class="arithmatex">\(b\)</span> 是奇数时成立，只需证明以下几点：</p>
+<ol>
+<li><span class="arithmatex">\(P(\text{zero})\)</span>；</li>
+<li>如果 <span class="arithmatex">\(Q(b)\)</span> 成立，则 <span class="arithmatex">\(P(\text{succ}(b))\)</span> 成立；</li>
+<li>如果 <span class="arithmatex">\(P(a)\)</span> 成立，则 <span class="arithmatex">\(Q(\text{succ}(a))\)</span> 成立。</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">例如，我们可以使用同时规则归纳来证明：（1）如果 <span class="arithmatex">\(a\)</span> 是偶数，则 <span class="arithmatex">\(a\)</span> 要么是 0，要么是 <span class="arithmatex">\( \text{succ}(b) \)</span>，其中 <span class="arithmatex">\(b\)</span> 是奇数；（2）如果 <span class="arithmatex">\(a\)</span> 是奇数，则 <span class="arithmatex">\(a\)</span> 是 <span class="arithmatex">\( \text{succ}(b) \)</span>，其中 <span class="arithmatex">\(b\)</span> 是偶数。</p>
+</div>
+<p>我们定义 <span class="arithmatex">\(P(a)\)</span> 当且仅当 <span class="arithmatex">\(a\)</span> 是 0 或 <span class="arithmatex">\(a\)</span> 是 <span class="arithmatex">\( \text{succ}(b) \)</span>，其中 <span class="arithmatex">\(b\)</span> 是奇数时成立，并定义 <span class="arithmatex">\(Q(b)\)</span> 当且仅当 <span class="arithmatex">\(b\)</span> 是 <span class="arithmatex">\( \text{succ}(a) \)</span>，其中 <span class="arithmatex">\(a\)</span> 是偶数时成立。通过规则归纳可以证明：</p>
+<ol>
+<li><span class="arithmatex">\(P(\text{zero})\)</span> 成立，因为 <span class="arithmatex">\( \text{zero} \)</span> 是 0；</li>
+<li>如果 <span class="arithmatex">\(Q(b)\)</span> 成立，则 <span class="arithmatex">\( \text{succ}(b) \)</span> 是 <span class="arithmatex">\( \text{succ}(b') \)</span>，其中 <span class="arithmatex">\(b' = b\)</span>，并应用归纳假设；</li>
+<li>如果 <span class="arithmatex">\(P(a)\)</span> 成立，则 <span class="arithmatex">\( \text{succ}(a) \)</span> 是 <span class="arithmatex">\( \text{succ}(a') \)</span>，其中 <span class="arithmatex">\(a' = a\)</span>，并应用归纳假设。</li>
+</ol>
+<h4 id="_11">通过规则定义函数<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>归纳定义的一个常见用途是通过给定输入和输出之间的图的归纳定义来定义函数，然后证明该关系唯一地确定了给定输入的输出。例如，我们可以定义自然数上的加法函数为关系 <span class="arithmatex">\( \text{sum}(a; b; c) \)</span>，其意图是表示 <span class="arithmatex">\(c\)</span> 是 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 的和，定义如下：</p>
+<div class="arithmatex">\[
+\frac{b \text{ nat}}{\text{sum(zero; b; b)}} \quad (2.9a)
+\]</div>
+<div class="arithmatex">\[
+\frac{\text{sum}(a; b; c)}{\text{sum(succ}(a); b; \text{succ}(c))} \quad (2.9b)
+\]</div>
+<p>这些规则定义了自然数 <span class="arithmatex">\(a\)</span>、<span class="arithmatex">\(b\)</span> 和 <span class="arithmatex">\(c\)</span> 之间的三元关系 <span class="arithmatex">\( \text{sum}(a; b; c) \)</span>。我们可以证明，在这个关系中，<span class="arithmatex">\(c\)</span> 是由 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 唯一确定的。</p>
+<div class="admonition note">
+<p class="admonition-title">定理 2.4: 和函数的存在性和唯一性</p>
+<p><strong>定理 2.4</strong> 对于每个自然数 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span>，存在唯一的自然数 <span class="arithmatex">\(c\)</span>，使得 <span class="arithmatex">\( \text{sum}(a; b; c) \)</span> 成立。</p>
+<hr />
+<p><strong>证明</strong> 该证明分为两部分：</p>
+<ol>
+<li><strong>存在性</strong>：如果 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 是自然数，则存在自然数 <span class="arithmatex">\(c\)</span>，使得 <span class="arithmatex">\( \text{sum}(a; b; c) \)</span> 成立。</li>
+<li><strong>唯一性</strong>：如果 <span class="arithmatex">\( \text{sum}(a; b; c_1) \)</span> 和 <span class="arithmatex">\( \text{sum}(a; b; c_2) \)</span> 都成立，则 <span class="arithmatex">\(c_1 = c_2\)</span>。</li>
+</ol>
+<hr />
+<p>对于存在性，我们令 <span class="arithmatex">\(P(a)\)</span> 表示以下命题：如果 <span class="arithmatex">\(b\)</span> 是自然数，则存在自然数 <span class="arithmatex">\(c\)</span>，使得 <span class="arithmatex">\( \text{sum}(a; b; c) \)</span> 成立。我们通过规则归纳来证明，如果 <span class="arithmatex">\(a\)</span> 是自然数，则 <span class="arithmatex">\(P(a)\)</span> 成立。我们有两个情况需要考虑：</p>
+<ul>
+<li><strong>规则 (2.2a)</strong>：我们要证明 <span class="arithmatex">\(P(\text{zero})\)</span>。假设 <span class="arithmatex">\(b\)</span> 是自然数，并令 <span class="arithmatex">\(c = b\)</span>，根据规则 (2.9a)，我们得出 <span class="arithmatex">\( \text{sum(zero; b; c)} \)</span>。</li>
+<li><strong>规则 (2.2b)</strong>：假设 <span class="arithmatex">\(P(a)\)</span> 成立，我们要证明 <span class="arithmatex">\(P(\text{succ}(a))\)</span>。也就是说，我们假设如果 <span class="arithmatex">\(b\)</span> 是自然数，则存在自然数 <span class="arithmatex">\(c\)</span>，使得 <span class="arithmatex">\( \text{sum}(a; b; c) \)</span> 成立，并且要证明如果 <span class="arithmatex">\(b' \)</span> 是自然数，则存在 <span class="arithmatex">\(c'\)</span>，使得 <span class="arithmatex">\( \text{sum(succ}(a); b'; c') \)</span> 成立。为此，假设 <span class="arithmatex">\(b' \)</span> 是自然数。根据归纳假设，存在 <span class="arithmatex">\(c\)</span> 使得 <span class="arithmatex">\( \text{sum}(a; b'; c) \)</span> 成立。令 <span class="arithmatex">\(c' = \text{succ}(c)\)</span>，并应用规则 (2.9b)，我们得出 <span class="arithmatex">\( \text{sum(succ}(a); b'; c') \)</span>，如所需。</li>
+</ul>
+<hr />
+<p>对于唯一性，我们证明，如果 <span class="arithmatex">\( \text{sum}(a; b; c_1) \)</span> 成立，且 <span class="arithmatex">\( \text{sum}(a; b; c_2) \)</span> 成立，则 <span class="arithmatex">\(c_1 = c_2\)</span>，通过基于规则 (2.9) 的规则归纳来证明。</p>
+<ul>
+<li><strong>规则 (2.9a)</strong>：我们有 <span class="arithmatex">\(a = 0\)</span> 且 <span class="arithmatex">\(c_1 = b\)</span>。通过相同规则的内归纳，我们可以证明如果 <span class="arithmatex">\( \text{sum(zero; b; c_{2})} \)</span> 成立，则 <span class="arithmatex">\(c_2 = b\)</span>。根据引理 2.2，我们得出 <span class="arithmatex">\(b = b\)</span>。</li>
+<li><strong>规则 (2.9b)</strong>：我们有 <span class="arithmatex">\(a = \text{succ}(a')\)</span> 且 <span class="arithmatex">\(c_1 = \text{succ}(c'_1)\)</span>，其中 <span class="arithmatex">\( \text{sum}(a'; b; c'_1) \)</span> 成立。通过相同规则的内归纳，我们可以证明如果 <span class="arithmatex">\( \text{sum}(a; b; c_2) \)</span> 成立，则 <span class="arithmatex">\(c_2 = \text{succ}(c'_2)\)</span>，其中 <span class="arithmatex">\( \text{sum}(a'; b; c'_2) \)</span> 成立。根据外归纳假设，<span class="arithmatex">\(c'_1 = c'_2\)</span>，因此 <span class="arithmatex">\(c_1 = c_2\)</span>。</li>
+</ul>
+</div>
+<h3 id="_12">第三章：假设判断与一般判断<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>假设判断表达了一个或多个假设与结论之间的蕴涵关系。我们将考虑两种蕴涵概念，分别是<strong>可导性</strong>和<strong>可接受性</strong>。两者都表示某种形式的蕴涵，但区别在于可导性在扩展新规则时是稳定的，而可接受性则不是。<strong>一般判断</strong>表达了判断的普遍性或泛化性。一般判断有两种形式：<strong>泛型</strong>和<strong>参数化</strong>。泛型判断表示相对于判断中变量的所有替换实例的泛化，而参数化判断表示相对于符号重命名的泛化。</p>
+<h4 id="_13">假设判断<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>假设判断编纂了表达一个结论在一个或多个假设成立的条件下有效性的规则。假设判断有两种形式，区别在于结论在何种意义上依赖于假设。其中一种在扩展更多规则时是稳定的，另一种则不是。</p>
+<h5 id="_14">可导性<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h5>
+<p>对于给定的规则集合 <span class="arithmatex">\(R\)</span>，我们定义<strong>可导性判断</strong>，记为 <span class="arithmatex">\(J_1, ..., J_k \vdash_R K\)</span>，其中每个 <span class="arithmatex">\(J_i\)</span> 和 <span class="arithmatex">\(K\)</span> 是基本判断，意思是我们可以从将 <span class="arithmatex">\(R\)</span> 扩展为 <span class="arithmatex">\(R \cup \{J_1, ..., J_k\}\)</span> 的规则中推导出 <span class="arithmatex">\(K\)</span>。我们将判断的假设或前提 <span class="arithmatex">\(J_1, ..., J_k\)</span> 视为“临时公理”，并通过组合 <span class="arithmatex">\(R\)</span> 中的规则推导出结论或后件。因此，假设判断的证据由使用 <span class="arithmatex">\(R\)</span> 中的规则从假设推导出结论的推导过程组成。</p>
+<p>我们用大写希腊字母（通常是 <span class="arithmatex">\(\Gamma\)</span> 或 <span class="arithmatex">\(\Delta\)</span>）表示一组有限的基本判断，并写作 <span class="arithmatex">\(R \cup \Gamma\)</span> 表示 <span class="arithmatex">\(R\)</span> 扩展为包含 <span class="arithmatex">\(\Gamma\)</span> 中每个判断的公理的集合。判断 <span class="arithmatex">\(R \vdash \Gamma\)</span> 表示从 <span class="arithmatex">\(R \cup \Gamma\)</span> 中可以推导出 <span class="arithmatex">\(\Gamma\)</span> 中的每个 <span class="arithmatex">\(J\)</span>。一种等价的定义 <span class="arithmatex">\(J_1, ..., J_n \vdash_R J\)</span> 的方式是说规则：</p>
+<p>[
+J_1, ..., J_n \
+J
+]
+（3.1）</p>
+<p>是从 <span class="arithmatex">\(R\)</span> 中可导出的，这意味着存在一个由 <span class="arithmatex">\(R\)</span> 中的规则组成的 <span class="arithmatex">\(J\)</span> 的推导过程，并将 <span class="arithmatex">\(J_1, ..., J_n\)</span> 作为公理。例如，考虑相对于规则 (2.2) 的可导性判断：</p>
+<div class="arithmatex">\[
+a \ \text{nat} \quad (2.2) \quad \text{succ(succ}(a)) \ \text{nat} \quad (3.2)
+\]</div>
+<p>对于任何对象 <span class="arithmatex">\(a\)</span>，这个判断都是有效的，如推导所示：</p>
+<div class="arithmatex">\[
+a \ \text{nat} \quad \text{succ}(a) \ \text{nat} \quad (3.3) \quad \text{succ(succ}(a)) \ \text{nat}
+\]</div>
+<p>这是通过组合规则 (2.2) 从 <span class="arithmatex">\(a \ \text{nat}\)</span> 作为公理出发，最终得到 <span class="arithmatex">\( \text{succ(succ}(a)) \ \text{nat}\)</span>。等价地，(3.2) 的有效性也可以通过表示规则</p>
+<p>[
+a \ \text{nat} \
+\text{succ(succ}(a)) \ \text{nat}
+]
+（3.4）</p>
+<p>是从规则 (2.2) 可导出来表达。这直接源于可导性的定义，即它在扩展新规则时是稳定的。</p>
+<p><strong>定理 3.1（稳定性）</strong> 如果 <span class="arithmatex">\(R \vdash J\)</span>，那么 <span class="arithmatex">\(R \cup R' \vdash J\)</span>。</p>
+<p><strong>证明</strong> 从 <span class="arithmatex">\(R \cup \Gamma\)</span> 中的任何推导也可以从 <span class="arithmatex">\(R \cup R' \cup \Gamma\)</span> 中推导出来，因为 <span class="arithmatex">\(R\)</span> 中的任何规则也是 <span class="arithmatex">\(R \cup R'\)</span> 中的规则。</p>
+<p>可导性具有许多结构性质，它们独立于所讨论的规则 <span class="arithmatex">\(R\)</span> 而存在：</p>
+<ul>
+<li><strong>自反性</strong> 每个判断都是自己的后件：<span class="arithmatex">\(\Gamma, J \vdash_R J\)</span>。每个假设都可以证明自己为结论。</li>
+<li><strong>弱化</strong> 如果 <span class="arithmatex">\(R \vdash J\)</span>，那么 <span class="arithmatex">\(\Gamma, K \vdash_R J\)</span>。未使用的选项不会影响蕴涵。</li>
+<li><strong>传递性</strong> 如果 <span class="arithmatex">\(\Gamma, K \vdash_R J\)</span> 并且 <span class="arithmatex">\(R \vdash K\)</span>，那么 <span class="arithmatex">\(R \vdash J\)</span>。如果我们用一个推导替换掉一个公理，结果仍然是该后件的推导。</li>
+</ul>
+<p>自反性直接源于可导性的定义。弱化直接来自可导性的定义。传递性通过对第一个前提进行规则归纳来证明。</p>
+<h5 id="_15">可接受性<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h5>
+<p><strong>可接受性</strong>，记为 <span class="arithmatex">\(\Gamma \models_R J\)</span>，是一种较弱的假设判断形式，表示 <span class="arithmatex">\(R\)</span> 推导出 <span class="arithmatex">\(R \vdash J\)</span>。也就是说，当假设可以从 <span class="arithmatex">\(R\)</span> 中推导出时，结论 <span class="arithmatex">\(J\)</span> 也可以从 <span class="arithmatex">\(R\)</span> 中推导出。特别地，如果任何假设不能相对于 <span class="arithmatex">\(R\)</span> 推导出来，那么判断是空真值。另一种定义 <span class="arithmatex">\(J_1, ..., J_n \models_R J\)</span> 的等价方式是说规则：</p>
+<p>[
+J_1 \dots J_n \
+J
+]
+（3.5）</p>
+<p>相对于 <span class="arithmatex">\(R\)</span> 的规则是可接受的。也就是说，给定任何使用 <span class="arithmatex">\(R\)</span> 中规则推导出的 <span class="arithmatex">\(J_1, ..., J_n\)</span>，我们可以使用 <span class="arithmatex">\(R\)</span> 中的规则推导出 <span class="arithmatex">\(J\)</span>。</p>
+<p>例如，可接受性判断：</p>
+<div class="arithmatex">\[
+\text{succ}(a) \ \text{even} \models_{(2.8)} a \ \text{odd} \quad (3.6)
+\]</div>
+<p>是有效的，因为从规则 (2.8) 中推导出 <span class="arithmatex">\(\text{succ}(a) \ \text{even}\)</span> 的任何推导都必须包含从相同规则中推导出 <span class="arithmatex">\(a \ \text{odd}\)</span> 的子推导，这证明了结论。这个事实可以通过对规则 (2.8) 进行归纳证明。判断 (3.6) 的有效性也可以通过表示规则：</p>
+<p>[
+\text{succ}(a) \ \text{even} \
+a \ \text{odd}
+]
+（3.7）</p>
+<p>相对于规则 (2.8) 是可接受的来表达。</p>
+<p>与可导性不同，可接受性判断在扩展规则时并不稳定。例如，如果我们用公理：</p>
+<div class="arithmatex">\[
+\text{succ(zero)} \ \text{even} \quad (3.8)
+\]</div>
+<p>扩展规则 (2.8)，则规则 (3.6) 就变得不可接受了，因为没有规则组合可以推导出 <span class="arithmatex">\( \text{zero odd}\)</span>。可接受性对归纳定义中缺失或存在的规则都非常敏感。</p>
+<p><strong>定理 3.2</strong> 如果 <span class="arithmatex">\(R \vdash J\)</span>，那么 <span class="arithmatex">\(\Gamma \models_R J\)</span>。</p>
+<p><strong>证明</strong> 通过多次应用可导性的传递性，可以证明如果 <span class="arithmatex">\(R \vdash J\)</span> 并且 <span class="arithmatex">\(R \vdash \Gamma\)</span>，那么 <span class="arithmatex">\(R \vdash J\)</span>。</p>
+<p>反例说明了反过来的情况并不成立。例如，<span class="arithmatex">\(\text{succ(zero)} \ \text{even} \vdash_{(2.8)} \ \text{zero odd}\)</span> 并不成立，因为在添加 <span class="arithmatex">\(\text{succ(zero)} \ \text{even}\)</span> 作为公理时，无法推导出 <span class="arithmatex">\(\text{zero odd}\)</span>。然而，相关的可接受性判断：</p>
+<div class="arithmatex">\[
+\text{succ(zero)} \ \text{even} \models_{(2.8)} \ \text{zero odd}
+\]</div>
+<p>是有效的，因为假设是假的：根据规则 (2.8)，无法推导出 <span class="arithmatex">\(\text{succ(zero)} \ \text{even}\)</span>。即便如此，可导性判断</p>
+<div class="arithmatex">\[
+\text{succ(zero) even} \quad (2.8) \quad \text{succ(succ(zero)) odd}
+\]</div>
+<p>是有效的，因为我们可以通过组合规则 (2.8) 从左边推导出右边。</p>
+<p>可接受性的证据可以被视为一个数学函数，将假设的推导 <span class="arithmatex">\( \delta_1, \dots, \delta_n \)</span> 转化为结论的推导 <span class="arithmatex">\( \delta \)</span>。因此，可接受性判断享有与可导性相同的结构性质，因此也是一种假设判断：</p>
+<ul>
+<li><strong>自反性</strong> 如果 <span class="arithmatex">\( J \)</span> 可以从原始规则中推导出，那么 <span class="arithmatex">\( J \)</span> 也可以从原始规则中推导出：<span class="arithmatex">\( J \models_R J \)</span>。</li>
+<li><strong>弱化</strong> 如果在假设每个判断 <span class="arithmatex">\( \Delta \)</span> 都可以从这些规则中推导出的前提下 <span class="arithmatex">\( J \)</span> 可导，那么在假设 <span class="arithmatex">\( \Delta \)</span> 和 <span class="arithmatex">\( K \)</span> 都可以从原始规则中推导出的前提下，<span class="arithmatex">\( J \)</span> 也必须是可导的：如果 <span class="arithmatex">\( \Delta \models_R J \)</span>，那么 <span class="arithmatex">\( \Delta, K \models_R J \)</span>。</li>
+<li><strong>传递性</strong> 如果 <span class="arithmatex">\( \Delta, K \models_R J \)</span> 且 <span class="arithmatex">\( \Delta \models_R K \)</span>，那么 <span class="arithmatex">\( \Delta \models_R J \)</span>。如果 <span class="arithmatex">\( \Delta \)</span> 中的判断是可导的，那么 <span class="arithmatex">\( K \)</span> 也是可导的，因此 <span class="arithmatex">\( \Delta, K \)</span> 中的判断也是可导的，进而 <span class="arithmatex">\( J \)</span> 也是可导的。</li>
+</ul>
+<p><strong>定理 3.3</strong> 可接受性判断 <span class="arithmatex">\( \Delta \models_R J \)</span> 享有蕴涵的结构性质。</p>
+<p><strong>证明</strong> 这一结论直接来源于可接受性的定义，即假设相对于规则 <span class="arithmatex">\( R \)</span> 是可导的，那么结论也是可导的。</p>
+<p>如果一个规则 <span class="arithmatex">\( r \)</span> 对于规则集合 <span class="arithmatex">\( R \)</span> 是可接受的，那么 <span class="arithmatex">\( R, r \vdash J \)</span> 等价于 <span class="arithmatex">\( R \vdash J \)</span>。因为如果 <span class="arithmatex">\( R \vdash J \)</span>，那么显然 <span class="arithmatex">\( R, r \vdash J \)</span>，只需忽略 <span class="arithmatex">\( r \)</span> 即可。反之，如果 <span class="arithmatex">\( R, r \vdash J \)</span>，那么我们可以用 <span class="arithmatex">\( r \)</span> 在 <span class="arithmatex">\( R \)</span> 规则中的展开替代对 <span class="arithmatex">\( r \)</span> 的任何使用。通过对 <span class="arithmatex">\( R, r \)</span> 进行规则归纳，可以得出从扩展后的规则集合 <span class="arithmatex">\( R, r \)</span> 推导出的任何推导都可以转化为仅从 <span class="arithmatex">\( R \)</span> 中推导出的推导。因此，如果我们想要证明从 <span class="arithmatex">\( R, r \)</span> 推导出的判断的某一性质，而 <span class="arithmatex">\( r \)</span> 对 <span class="arithmatex">\( R \)</span> 是可接受的，只需证明该性质在 <span class="arithmatex">\( R \)</span> 规则下是闭合的即可，因为 <span class="arithmatex">\( r \)</span> 的可接受性表明 <span class="arithmatex">\( r \)</span> 的结果隐含于 <span class="arithmatex">\( R \)</span> 的结果之中。</p>
+<h4 id="_16">假设性归纳定义<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p>将归纳定义的概念拓展为允许包含推导性判断作为前提和结论的规则是非常有用的。这样做可以让我们引入仅适用于某个特定前提推导过程的局部假设，同时也允许我们在规则应用的点约束基于有效全局假设的推理。</p>
+<p>一个假设性归纳定义由以下形式的一组假设性规则组成：</p>
+<div class="arithmatex">\[
+\frac{\Gamma_1 \vdash J_1 \quad \dots \quad \Gamma_n \vdash J_n}{\Gamma \vdash J} \quad (3.9)
+\]</div>
+<p>其中，<span class="arithmatex">\( \Gamma \)</span> 是规则的全局假设，而 <span class="arithmatex">\( \Gamma_i \)</span> 是第 <span class="arithmatex">\( i \)</span> 个前提的局部假设。非正式地，这条规则表明，当每个 <span class="arithmatex">\( J_i \)</span> 都是 <span class="arithmatex">\( \Gamma \)</span>，并扩展了对应的局部假设 <span class="arithmatex">\( \Gamma_i \)</span> 时，可以从 <span class="arithmatex">\( \Gamma \)</span> 推导出 <span class="arithmatex">\( J \)</span>。因此，证明 <span class="arithmatex">\( J \)</span> 可以从 <span class="arithmatex">\( \Gamma \)</span> 推导的方式之一是依次证明每个 <span class="arithmatex">\( J_i \)</span> 都可以从 <span class="arithmatex">\( \Gamma_i \)</span> 推导出。每个前提的推导涉及一种“上下文切换”，我们在该前提的推导中，将全局假设扩展为包括局部假设。</p>
+<p>我们要求假设性归纳定义中的所有规则都是<strong>一致的</strong>，即这些规则在所有全局上下文中都适用。<strong>一致性</strong>确保规则可以以隐含或局部形式呈现：</p>
+<div class="arithmatex">\[
+\frac{J_1 \quad \dots \quad J_n}{J} \quad (3.10)
+\]</div>
+<p>在这里，全局上下文被隐含忽略，并默认规则适用于任意全局假设的选择。</p>
+<p>假设性归纳定义应被视为形式推导判断 <span class="arithmatex">\( \Gamma \vdash J \)</span> 的普通归纳定义，推导过程由一组有限的基本判断 <span class="arithmatex">\( \Gamma \)</span> 和一个基本判断 <span class="arithmatex">\( J \)</span> 构成。一组假设性规则 <span class="arithmatex">\( R \)</span> 定义了最强的形式推导判断，该判断具有结构性并在一致规则 <span class="arithmatex">\( R \)</span> 下封闭。<strong>结构性</strong>意味着形式推导判断必须在以下规则下封闭：</p>
+<ol>
+<li><span class="arithmatex">\( \Gamma, J \vdash J \)</span> \quad (3.11a)</li>
+<li><span class="arithmatex">\( \Gamma, K \vdash J \Rightarrow \Gamma \vdash J \)</span> \quad (3.11b)</li>
+<li><span class="arithmatex">\( \Gamma \vdash K \quad \Gamma, K \vdash J \Rightarrow \Gamma \vdash J \)</span> \quad (3.11c)</li>
+</ol>
+<p>这些规则确保形式推导行为像假设性判断一样。我们写作 <span class="arithmatex">\( \Gamma \vdash_R J \)</span> 来表示 <span class="arithmatex">\( J \)</span> 是从规则 <span class="arithmatex">\( R \)</span> 中推导出来的。</p>
+<p>假设性规则归纳的原则仅是形式假设性推导判断上的规则归纳原则。因此，若要证明 <span class="arithmatex">\( P(\Gamma \vdash J) \)</span>，只需证明 <span class="arithmatex">\( P \)</span> 在规则 <span class="arithmatex">\( R \)</span> 和结构规则下封闭。因此，对于每条形式如 (3.9) 的规则（无论是结构性的还是 <span class="arithmatex">\( R \)</span> 中的），我们必须证明：</p>
+<p>如果 <span class="arithmatex">\( P(\Gamma_1 \vdash J_1) \)</span>、……以及 <span class="arithmatex">\( P(\Gamma_n \vdash J_n) \)</span> 成立，那么 <span class="arithmatex">\( P(\Gamma \vdash J) \)</span> 也成立。</p>
+<p>但这只是第二章中规则归纳原则的重新表述，专门针对形式推导判断 <span class="arithmatex">\( \Gamma \vdash J \)</span>。</p>
+<p>在实践中，我们通常通过 3.1.2 节中描述的方法省略结构规则。通过证明结构规则是可接受的，任何基于规则归纳的证明都可以将注意力限制在 <span class="arithmatex">\( R \)</span> 中的规则上。如果假设性归纳定义的所有规则都是一致的，那么结构规则 (3.11b) 和 (3.11c) 显然是可接受的。通常，规则 (3.11a) 必须显式地作为一条规则提出，而不是基于其他规则来证明其可接受性。</p>
+<h4 id="_17">一般判断<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>一般判断编纂了处理判断中的变量的规则。与数学中类似，变量被视为一个未知量，范围在指定的对象集内。一个<strong>泛化判断</strong>表明，对于替换判断中指定变量的任何对象，判断都成立。另一种形式的泛化判断编纂了符号参数的处理。一个<strong>参数化判断</strong>表示对于指定符号的任何新的重命名，判断都成立。</p>
+<p>为了跟踪推导中的活动变量和符号，我们写作 <span class="arithmatex">\( U;X \vdash_R J \)</span>，表示在符号 <span class="arithmatex">\( U \)</span> 和变量 <span class="arithmatex">\( X \)</span> 构成的 abt（抽象绑定树）对象上，<span class="arithmatex">\( J \)</span> 可以根据规则 <span class="arithmatex">\( R \)</span> 被推导出来。</p>
+<p>规则的一致性概念必须扩展，要求规则在变量的重命名和替换下封闭，并且在参数的重命名下封闭。更精确地说，如果 <span class="arithmatex">\( R \)</span> 是包含类型为 <span class="arithmatex">\( s \)</span> 的自由变量 <span class="arithmatex">\( x \)</span> 的规则集，那么它必须包含所有可能的替换实例，将类型为 <span class="arithmatex">\( s \)</span> 的 abt <span class="arithmatex">\( a \)</span> 替换为 <span class="arithmatex">\( x \)</span>，包括那些包含其他自由变量的 abt。同样，如果 <span class="arithmatex">\( R \)</span> 包含带有参数 <span class="arithmatex">\( u \)</span> 的规则，那么它必须包含通过将类型为 <span class="arithmatex">\( u \)</span> 的参数重命名为同类型的其他 <span class="arithmatex">\( u \)</span> 而获得的所有规则实例。一致性排除了只为某个变量声明规则而不为该变量的所有实例声明规则的情况，也排除了只为某个参数声明规则而不为该参数的所有可能重命名声明规则的情况。</p>
+<p><strong>泛化推导判断</strong>定义如下：</p>
+<div class="arithmatex">\[
+X \vdash_R J \quad \text{当且仅当} \quad Y \vdash_R J
+\]</div>
+<p>其中，<span class="arithmatex">\( Y.X \)</span> 是通用的。泛化推导的证据由涉及变量 <span class="arithmatex">\( X, Y \)</span> 的泛化推导 <span class="arithmatex">\( \delta \)</span> 构成。只要规则是一致的，选择 <span class="arithmatex">\( Y \)</span> 并无区别，原因将在后面解释。</p>
+<p>例如，以下泛化推导：</p>
+<div class="arithmatex">\[
+x \vdash \text{nat} \quad \text{succ}(x) \vdash \text{nat}, \quad \text{succ}(\text{succ}(x)) \vdash \text{nat}
+\]</div>
+<p>可以作为判断 <span class="arithmatex">\( X \vdash x \vdash \text{nat} \quad (2.2) \quad \text{succ}(\text{succ}(x)) \vdash \text{nat} \)</span> 的证据，只要 <span class="arithmatex">\( x \notin X \)</span>。只要所有规则是一致的，其他任何 <span class="arithmatex">\( x \)</span> 的选择都同样有效。</p>
+<p>只要 <span class="arithmatex">\( R \)</span> 是一致的，泛化推导判断享有以下结构性质，这些性质约束了变量的行为：</p>
+<ul>
+<li><strong>增生</strong>：如果 <span class="arithmatex">\( Y \vdash_R J \)</span>，那么 <span class="arithmatex">\( Y, y \vdash_R J \)</span>。</li>
+<li><strong>重命名</strong>：如果 <span class="arithmatex">\( Y, y \vdash_R J \)</span>，那么 <span class="arithmatex">\( Y, y \vdash_R J[y'/y] \)</span> 对于任意 <span class="arithmatex">\( y' \notin XY \)</span>。</li>
+<li><strong>替换</strong>：如果 <span class="arithmatex">\( Y, y \vdash_R J \)</span> 且 <span class="arithmatex">\( a \in B[XY] \)</span>，那么 <span class="arithmatex">\( Y \vdash_R J[a/y] \)</span>。</li>
+</ul>
+<p>增生由规则模式的解释保证，它涵盖了宇宙的所有扩展。重命名内置于泛化判断的意义中。替换原则中隐含的是，替换的 abt 与被替换的变量类型相同。</p>
+<p><strong>参数化推导</strong>类似于泛化推导，只是其泛化对象是符号而非变量。参数化推导定义如下：</p>
+<div class="arithmatex">\[
+U; X \vdash_R J \quad \text{当且仅当} \quad V; X \vdash_R J
+\]</div>
+<p>其中，<span class="arithmatex">\( V.U \)</span> 是通用的。参数化推导的证据由涉及符号 <span class="arithmatex">\( V \)</span> 的推导 <span class="arithmatex">\( \delta \)</span> 构成。规则的一致性确保了参数名称的任意选择都同样有效；推导在重命名下是稳定的。</p>
+<h2 id="_18">第二部分：静态与动态<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<h3 id="_19">第四章：静态<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<h3 id="_20">第五章：动态<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h3 id="_21">第六章：类型安全<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<h3 id="_22">第七章：动态类型推导<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<h2 id="_23">第三部分：全函数<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
+<h3 id="_24">第八章：函数定义和值<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<h3 id="t">第九章：高阶递归的 <span class="arithmatex">\(T\)</span> 系统<a class="headerlink" href="#t" title="Permanent link">&para;</a></h3>
+<h2 id="_25">第四部分：有限数据类型<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
+<h3 id="_26">第十章：乘积类型<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<h3 id="_27">第十一章：和类型<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<h2 id="_28">第五部分：类型和提议<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h2>
+<h3 id="_29">第十二章：构造逻辑<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<h3 id="_30">第十三章：经典逻辑<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<h2 id="_31">第六部分：无限数据类型<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
+<h3 id="_32">第十四章：泛型编程<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<h3 id="_33">第十五章：归纳与协归纳类型<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<h2 id="_34">第七部分：变量类型<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h2>
+<h3 id="f">第十六章：多态类型的 <span class="arithmatex">\(F\)</span> 系统<a class="headerlink" href="#f" title="Permanent link">&para;</a></h3>
+<h3 id="_35">第十七章：抽象类型<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<h3 id="_36">第十八章：更高种类<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<h2 id="_37">第八部分：部分和递归类型<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h2>
+<h3 id="pcf">第十九章：递归函数的 <span class="arithmatex">\(PCF\)</span> 系统<a class="headerlink" href="#pcf" title="Permanent link">&para;</a></h3>
+<h3 id="fpc">第二十章：递归类型的 <span class="arithmatex">\(FPC\)</span> 系统<a class="headerlink" href="#fpc" title="Permanent link">&para;</a></h3>
+<h2 id="_38">第九部分：动态类型<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h2>
+<h3 id="lambda">第二十一章：无类型 <span class="arithmatex">\(\lambda\)</span> 演算<a class="headerlink" href="#lambda" title="Permanent link">&para;</a></h3>
+<h3 id="_39">第二十二章：动态类型<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<h3 id="_40">第二十三章：混合类型<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
+<p>编程语言原理课内部分到此为止。</p>
+<hr />
+<h2 id="_41">第十部分：子类型<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h2>
+<h3 id="_42">第二十四章：结构化子类型<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h3>
+<h3 id="_43">第二十五章：行为类型<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
+<h2 id="_44">第十一部分：动态发射<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h2>
+<h3 id="_45">第二十六章：类与方法<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h3>
+<h3 id="_46">第二十七章：继承<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h3>
+<h2 id="_47">第十二部分：控制流<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h2>
+<h3 id="_48">第二十八章：控制栈<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h3>
+<h3 id="_49">第二十九章：异常<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h3>
+<h3 id="_50">第三十章：继续<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
+<h2 id="_51">第十三部分：符号数据<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h2>
+<h3 id="_52">第三十一章：符号<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h3>
+<h3 id="_53">第三十二章：流体绑定<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h3>
+<h3 id="_54">第三十三章：动态分类<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h3>
+<h2 id="_55">第十四部分：可变状态<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h2>
+<h3 id="_56">第三十四章：现代化变星<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h3>
+<h3 id="_57">第三十五章：可分配引用<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h3>
+<h3 id="_58">第三十六章：懒惰估值<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h3>
+<h2 id="_59">第十五部分：并行<a class="headerlink" href="#_59" title="Permanent link">&para;</a></h2>
+<h3 id="_60">第三十七章：嵌套并行<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h3>
+<h3 id="_61">第三十八章：未来和推测<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h3>
+<h2 id="_62">第十六部分：并发和分布式<a class="headerlink" href="#_62" title="Permanent link">&para;</a></h2>
+<h3 id="_63">第三十九章：进程演算<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h3>
+<h3 id="_64">第四十章：并发变星<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h3>
+<h3 id="_65">第四十一章：分布式变星<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h3>
+<h2 id="_66">第十七部分：模块<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h2>
+<h3 id="_67">第四十二章：模块和链接<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h3>
+<h3 id="_68">第四十三章：单身种类和子种类<a class="headerlink" href="#_68" title="Permanent link">&para;</a></h3>
+<h3 id="_69">第四十四章：类型抽象和类型类<a class="headerlink" href="#_69" title="Permanent link">&para;</a></h3>
+<h3 id="_70">第四十五章：层次和参数化<a class="headerlink" href="#_70" title="Permanent link">&para;</a></h3>
+<h2 id="_71">第十八部分：等价证明<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h2>
+<h3 id="t_1">第四十六章：系统 <span class="arithmatex">\(T\)</span> 的等价<a class="headerlink" href="#t_1" title="Permanent link">&para;</a></h3>
+<h3 id="pcf_1">第四十七章：系统 <span class="arithmatex">\(PCF\)</span> 的等价<a class="headerlink" href="#pcf_1" title="Permanent link">&para;</a></h3>
+<h3 id="_72">第四十八章：参数化<a class="headerlink" href="#_72" title="Permanent link">&para;</a></h3>
+<h3 id="_73">第四十九章：进程等价<a class="headerlink" href="#_73" title="Permanent link">&para;</a></h3>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://bowling233.com" target="_blank" rel="noopener" title="bowling233.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.07 4.93C17.22 3 14.66 1.96 12 2c-2.66-.04-5.21 1-7.06 2.93C3 6.78 1.96 9.34 2 12c-.04 2.66 1 5.21 2.93 7.06C6.78 21 9.34 22.04 12 22c2.66.04 5.21-1 7.06-2.93C21 17.22 22.04 14.66 22 12c.04-2.66-1-5.22-2.93-7.07M17 12v6h-3.5v-5h-3v5H7v-6H5l7-7 7.5 7z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.tracking", "navigation.tabs", "navigation.prune", "navigation.indexes", "header.autohide", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.alicdn.com/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
