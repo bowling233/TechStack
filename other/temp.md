@@ -103,7 +103,7 @@ https://www.reddit.com/r/linux4noobs/comments/bj7ezk/genymotion_increase_interna
 
 Debian 目前支持的桌面环境，除 KDE 和 Xfce 外，均 fork 自 GNOME，包括 LXDE、LXQT、MATE 和 Cinnamon 等。GNOME KDE 是未来的选择。
 
-## Docker
+## 容器
 
 ### 软件包
 
@@ -159,6 +159,11 @@ OpenWRT 上的 docker-compose 也是 v1 版本。
         - 用户定义 `bridge`：
             - 自动 DNS 功能：容器可以使用 IP 地址或**容器名**相互沟通。
             - 热插拔：不需要关闭容器即可移动到其他网络。
+
+    !!! note "Compose 中的网络"
+
+        Compose 会自动为应用创建一个网络，容器可以通过服务名相互访问。
+
     - `host`：
         - 端口映射不生效。
     - 端口映射：
@@ -227,3 +232,10 @@ Refer to [riscv timer的基本逻辑](https://wangzhou.github.io/riscv-timer%E7%
 
 - v2 版本将 compose 作为 docker 的子命令而非独立工具，能够直接使用 docker 根命令上相关的配置。
 - v2 版本生成的容器名从 `_` 改为 `-` 连接，能够用于 DNS，在网络中方便地访问。v1 不行。
+
+### API
+
+/run/docker/docker.sock
+/run/podman/podman.sock
+/run/user/${UID}/podman/podman.sock
+systemctl --user enable podman.sock

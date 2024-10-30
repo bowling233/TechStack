@@ -197,6 +197,11 @@ void glUniformMatrix{234}{fd}v(GLint location, GLsizei count, GLboolean transpos
 
 ### OpenGL 绘图命令
 
+## 第五章：视图变换、裁切和反馈
+
+- **model-view** 变换：放置相机或放置物体（两个变换互逆）。
+- **视锥体（viewing frustum）**：视图变换后的视锥体。
+
 ## 在本书中学习到的 API
 
 ### OpenGL

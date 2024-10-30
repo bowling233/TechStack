@@ -1,0 +1,17 @@
+## OTel Collector 源码阅读
+
+[:simple-github: open-telemetry/opentelemetry-collector-contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib)
+
+首先看仓库结构：
+
+- `receiver`、`processor`、`exporter`、`connector`：流水线四大组件。
+- `pkg` 一些 Go 模块，用于辅助处理外部格式的数据。比如 `stanza` 用于处理传统日志。
+- `extension` 额外功能，本身不是流水线的一部分。比如 Health Check、PProf。
+
+### pkg/stanza
+
+- `adapter/converter.go` 负责 `entry.Entry` 到 `plog.Logs`。
+- `adapter/frompdataconverter.go` 负责 `plog.Logs` 到 `entry.Entry`。
+- `dadapter/receiver.go` 定义 `receiver` 结构。
+    - `receiver` 具有 `pipline`、`converter` 等成员。
+    - `Start()` 首先启动存储和流水线，然后启动 `converter` 准备接收数据。启动两个循环，一个用于接收数据，一个用于发送数据。
