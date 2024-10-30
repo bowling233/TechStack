@@ -1,0 +1,2536 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bowling 的笔记本">
+      
+      
+        <meta name="author" content="Bowling">
+      
+      
+        <link rel="canonical" href="https://note.bowling233.top/%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/latex/">
+      
+      
+        <link rel="prev" href="../doxygen/">
+      
+      
+        <link rel="next" href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/">
+      
+      
+      <link rel="icon" href="https://cdn.bowling233.top/note/avatar/bowling.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>LaTeX - Bowling's TechStack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/flink.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/neoteroi-mkdocs.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.tonycrane.cc/lxgw/lxgwscreen.css">
+    
+      <link rel="stylesheet" href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#latex" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Bowling&#39;s TechStack" class="md-header__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bowling's TechStack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LaTeX
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../links/" class="md-tabs__link">
+        
+  
+    
+  
+  友链
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-tabs__link">
+          
+  
+    
+  
+  人工智能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  实用技能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/" class="md-tabs__link">
+          
+  
+    
+  
+  硬件和体系结构
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A7%91%E7%A0%94/dpdk/" class="md-tabs__link">
+          
+  
+    
+  
+  科研
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-tabs__link">
+          
+  
+    
+  
+  算法和数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%BD%91%E7%BB%9C/" class="md-tabs__link">
+          
+  
+    
+  
+  网络
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%8D%89%E7%A8%BF/CSAPP/" class="md-tabs__link">
+          
+  
+    
+  
+  草稿
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/cgp-opengl-c2/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机图形学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  读书笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-tabs__link">
+          
+  
+    
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%BD%AF%E4%BB%B6/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/C%2B%2B/" class="md-tabs__link">
+          
+  
+    
+  
+  软件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" class="md-tabs__link">
+          
+  
+    
+  
+  高性能计算
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Bowling&#39;s TechStack" class="md-nav__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    Bowling's TechStack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    友链
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    人工智能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    实用技能
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            实用技能
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    代码风格和编辑器
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    命令行
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%B0%8F%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    小工具
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../Linux/%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    工具
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            工具
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doxygen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Doxygen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    LaTeX
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    LaTeX
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本概念
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      命令和环境
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      简单语法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基础组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      封面 Cover
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#margin" class="md-nav__link">
+    <span class="md-ellipsis">
+      页边距 Margin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indent" class="md-nav__link">
+    <span class="md-ellipsis">
+      首行缩进 Indent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      引用 Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    <span class="md-ellipsis">
+      表格 Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="表格 Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      表格对齐
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      三线表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      跨页表格
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      复杂的单元格边框
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码相关
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代码相关">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码清单 Code List
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      算法描述 Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      特殊组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="特殊组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flow-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      流程图 Flow Chart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scatter-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      散点图 Scatter Plot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    硬件和体系结构
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A7%91%E7%A0%94/dpdk/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    科研
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    算法和数学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    网络
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%8D%89%E7%A8%BF/CSAPP/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    草稿
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/cgp-opengl-c2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机图形学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    读书笔记
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%BD%AF%E4%BB%B6/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/C%2B%2B/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    软件
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    高性能计算
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本概念
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      命令和环境
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      简单语法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基础组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      封面 Cover
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#margin" class="md-nav__link">
+    <span class="md-ellipsis">
+      页边距 Margin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indent" class="md-nav__link">
+    <span class="md-ellipsis">
+      首行缩进 Indent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      引用 Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    <span class="md-ellipsis">
+      表格 Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="表格 Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      表格对齐
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      三线表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      跨页表格
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      复杂的单元格边框
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码相关
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代码相关">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码清单 Code List
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      算法描述 Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      特殊组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="特殊组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flow-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      流程图 Flow Chart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scatter-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      散点图 Scatter Plot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <a href="../../../#" class="md-tag">较完善</a>
+    
+  
+</nav>
+
+
+  
+  
+
+
+<h1 id="latex">LaTeX<a class="headerlink" href="#latex" title="Permanent link">&para;</a></h1>
+<h2 id="_1">基本概念<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>LaTeX 是一种<strong>排版格式</strong>。</li>
+<li><strong>排版引擎</strong>如 <code>pdflatex</code>、<code>xelatex</code>、<code>lualatex</code> 可以将 <code>.tex</code> 编译成 <code>.pdf</code> 文件。</li>
+<li>使用各种<strong>宏包</strong>为 LaTeX 添加更多功能，如 <code>amsmath</code> 包提供数学公式增强、<code>graphicx</code> 包提供图片功能。</li>
+<li>TeX Live 是一个 <strong>LaTeX 文档生成系统</strong>，把各种引擎和宏包都打包起来了。</li>
+</ul>
+<h3 id="_2">命令和环境<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>LaTeX <strong>命令</strong>有以下两种结构：<ol>
+<li>反斜杠开头及其后的<strong>一串字母</strong>，以任意非字母符号<strong>（空格、数字、标点）</strong>为界限：<code>\begin</code></li>
+<li>反斜杠及其后单个<strong>非字母字符</strong>：<code>\$</code></li>
+<li>注意：命令大小写敏感，如 <code>\LaTeX</code>。</li>
+<li><strong>形式 1</strong> 的命令忽略其后所有空格，如需引入空格请在命令后加<code>{}</code>或插入<code>\</code>（代表一个空格）：<code>\TeX{}</code></li>
+<li>命令参数<ul>
+<li><code>[]</code>：可选参数</li>
+<li><code>{}</code>：必选参数</li>
+<li><code>*</code>：可选的效果</li>
+<li>单字符作为参数可不加 <code>{}</code>：如 <code>\frac{1}{2}</code> 可写为 <code>\frac12</code> 。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>环境<ul>
+<li>环境让一些效果在局部生效或<strong>生成特殊的文档元素</strong>。</li>
+<li>一对 <code>\begin{}[]{}</code>和 <code>\end{}</code> 组成一个环境。</li>
+<li>有些命令对其后所有内容产生作用，若需限制作用范围需要<strong>分组<code>{}</code></strong>，组中的命令作用范围限制在组内（在后文讲解<strong>字体</strong>时会提到）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="_3">简单语法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">Learn LaTeX in 30 minutes</a></p>
+</div>
+<p>内容包括 LaTeX 文档的基本结构、基本语法、注释、字体（粗体、斜体 <code>\textit</code>、下划线、强调 <code>\emph</code>）、图片（图片路径 <code>\graphicspath{{path1/}}</code>、插入图片 <code>\includegraphics</code>、标题、标签和引用）、列表、数学公式（行内、展示模式）、段落和换行、摘要、章和节、表格 <code>tabular</code> 与 <code>table</code>、TOC（目录 <code>\tableofcontents</code>）、</p>
+<p>值得提醒的是，在 LaTeX 中，展示模式的公式不推荐使用 <code>$$</code> 标记，简单的请使用 <code>\[</code> 标记，多行等复杂公式请使用公式环境如 <code>displaymath</code> 和 <code>equation</code>。换行与段落的不同也应当注意，换行后仍停留在同一段落中。</p>
+<h3 id="_4">字符<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>空格和分段</p>
+</li>
+<li>
+<p>连续的多个空白字符视为一个空格</p>
+</li>
+<li>换行符视为一个空格</li>
+<li>多个空行视为一个空行</li>
+<li>
+<p><code>\par</code>行末分段</p>
+</li>
+<li>
+<p>特殊字符</p>
+</li>
+<li>
+<p><code># $ % &amp; { } _ ^ ~ \</code></p>
+</li>
+<li>注意：<code>\\</code>是手动换行，<code>\</code>应当使用<code>\textbackslash</code></li>
+<li>
+<p>西文排版中的连字现象</p>
+</li>
+<li>
+<p>西文标点</p>
+</li>
+<li>
+<p>单引号<code>`和'</code>输入</p>
+</li>
+<li>双引号<code>``和''</code>输入</li>
+<li>其实，中西文引号使用 Unicode 中同一码位</li>
+<li>连字号<code>-</code>、短破折号<code>--</code>（数字）、长破折号<code>---</code>（单词）</li>
+<li>省略号<code>\dots</code></li>
+<li>
+<p>其他文本符号 <span class="arithmatex">\(\P{} \S{} \copyright{} \pounds{} \textregistered{} \texttrademark{}\)</span></p>
+</li>
+<li>
+<p>断行断页</p>
+</li>
+<li>
+<p><code>~</code>输入一个不会断行的空格（用于人名、图标名等）</p>
+</li>
+<li>断行：<strong>并非另起一段</strong><code>\\[length]</code>（可用于表格、公式）<code>\newline</code>（文本）</li>
+<li>断页：<code>\newpage</code>（双栏中另起一栏）,<code>\clearpage</code></li>
+</ol>
+<h2 id="_5">基础组件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="cover">封面 Cover<a class="headerlink" href="#cover" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://tex.stackexchange.com/questions/17579/how-can-i-design-a-book-cover">Stack Exchange: How can I design a book cover?</a></p>
+</div>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">\clearpage</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c">%% temporary titles</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c">% command to provide stretchy vertical space in proportion</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">\newcommand\nbvspace</span><span class="na">[1][3]</span><span class="nb">{</span><span class="k">\vspace*</span><span class="nb">{</span><span class="k">\stretch</span><span class="nb">{</span>#1<span class="nb">}}}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c">% allow some slack to avoid under/overfull boxes</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">\newcommand\nbstretchyspace</span><span class="nb">{</span><span class="k">\spaceskip</span>0.5em plus 0.25em minus 0.25em<span class="nb">}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c">% To improve spacing on titlepages</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\nbtitlestretch</span><span class="nb">}{</span><span class="k">\spaceskip</span>0.6em<span class="nb">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">\pagestyle</span><span class="nb">{</span>empty<span class="nb">}</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">\begin</span><span class="nb">{</span>center<span class="nb">}</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">\bfseries</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">\nbvspace</span><span class="na">[1]</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">\Huge</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nb">{</span><span class="k">\nbtitlestretch\huge</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>Main Title<span class="nb">}</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">\nbvspace</span><span class="na">[1]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">\normalsize</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>Prject No. <span class="k">\\</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>Some information 
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">\nbvspace</span><span class="na">[1]</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">\small</span> BY<span class="k">\\</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">\Large</span> Author<span class="k">\\</span><span class="na">[0.5em]</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">\footnotesize</span> Student ID: <span class="k">\\</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>Teacher: 
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">\nbvspace</span><span class="na">[2]</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>Accomplished on <span class="k">\today</span> <span class="k">\\</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="k">\nbvspace</span><span class="na">[3]</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">\normalsize</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>Made<span class="k">\\</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">\large</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>With <span class="k">\LaTeX</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="k">\nbvspace</span><span class="na">[1]</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">\end</span><span class="nb">{</span>center<span class="nb">}</span>
+</span></code></pre></div>
+<h3 id="margin">页边距 Margin<a class="headerlink" href="#margin" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://www.overleaf.com/learn/latex/Page_size_and_margins">Overleaf: Page size and margins</a></p>
+</div>
+<p>LaTeX 默认页边距较大，常用窄边距设置如下：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">\usepackage</span><span class="nb">{</span>geometry<span class="nb">}</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> <span class="k">\geometry</span><span class="nb">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> a4paper,
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a> total=<span class="nb">{</span>170mm,257mm<span class="nb">}</span>,
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a> left=20mm,
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a> top=20mm,
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a> <span class="nb">}</span>
+</span></code></pre></div>
+<h3 id="indent">首行缩进 Indent<a class="headerlink" href="#indent" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://tex.stackexchange.com/questions/39227/no-indent-in-the-first-paragraph-in-a-section">Stack Exchange: No indent in the first paragraph in a section?</a></p>
+</div>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">\usepackage</span><span class="nb">{</span>indentfirst<span class="nb">}</span>
+</span></code></pre></div>
+<h3 id="reference">引用 Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h3>
+<p>要按国标 GB/T 7714-2015 规定，则在导言区设置：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">\usepackage</span><span class="nb">{</span>gbt7714<span class="nb">}</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">\bibliographystyle</span><span class="nb">{</span>gbt7714-numerical<span class="nb">}</span>
+</span></code></pre></div>
+<p>即可。</p>
+<h3 id="table">表格 Table<a class="headerlink" href="#table" title="Permanent link">&para;</a></h3>
+<h4 id="_6">表格对齐<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://tex.stackexchange.com/questions/199744/right-alignment-of-column-in-table-column">Stack Exchange: Right alignment of column in table column</a></p>
+</div>
+<p>导言区新建列类型：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">\newcolumntype</span><span class="nb">{</span>R<span class="nb">}</span>[1]<span class="nb">{</span>&gt;<span class="nb">{</span><span class="k">\RaggedLeft\arraybackslash</span><span class="nb">}</span>p<span class="nb">{</span>#1<span class="nb">}}</span>
+</span></code></pre></div>
+<p>正文：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>[h!]
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>R<span class="nb">{</span>1.5cm<span class="nb">}</span> R<span class="nb">{</span>2.5cm<span class="nb">}</span> p<span class="nb">{</span>5cm<span class="nb">}</span> p<span class="nb">{</span>4cm<span class="nb">}}</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>        <span class="k">\toprule</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        类型        <span class="nb">&amp;</span> 标识符          <span class="nb">&amp;</span> 参数                            <span class="nb">&amp;</span> 描述           <span class="k">\\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="k">\midrule</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        void<span class="nb">&amp;</span>OutputData<span class="nb">&amp;</span>(char *fileName)<span class="nb">&amp;</span>向指定文件输出数据      <span class="k">\\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="k">\bottomrule</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">\end</span><span class="nb">{</span>table<span class="nb">}</span>
+</span></code></pre></div>
+<h4 id="_7">三线表<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://zhuanlan.zhihu.com/p/440498868">知乎：LaTeX保姆级教程|插入三线表</a></p>
+</div>
+<p>三线表可以使用 <code>booktabs</code> 宏包，三条线分别是 <code>\toprule</code>、<code>\midrule</code>、<code>\bottomrule</code>。</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c">%preamble \usepackage{booktabs}</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>[h!]
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>llll<span class="nb">}</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="hll">        <span class="k">\toprule</span>
+</span></span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        1 <span class="nb">&amp;</span> 2 <span class="nb">&amp;</span> 3 <span class="nb">&amp;</span> 4<span class="k">\\</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="hll">        <span class="k">\midrule</span>
+</span></span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        1 <span class="nb">&amp;</span> 2 <span class="nb">&amp;</span> 3 <span class="nb">&amp;</span> 4<span class="k">\\</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        1 <span class="nb">&amp;</span> 2 <span class="nb">&amp;</span> 3 <span class="nb">&amp;</span> 4<span class="k">\\</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="hll">        <span class="k">\bottomrule</span>
+</span></span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="k">\end</span><span class="nb">{</span>table<span class="nb">}</span>
+</span></code></pre></div>
+<h4 id="_8">跨页表格<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://www.overleaf.com/learn/latex/Tables#Long_tables">Overleaf: Longtable</a></p>
+</div>
+<h4 id="_9">复杂的单元格边框<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://tex.stackexchange.com/questions/112343/complex-table-cell-border"></a></p>
+</div>
+<p>一般使用 <code>hhline</code> 或 <code>makecell</code> 宏包。请自行查阅文档。</p>
+<h2 id="_10">代码相关<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="code-list">代码清单 Code List<a class="headerlink" href="#code-list" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://www.overleaf.com/learn/latex/Code_listing">Overleaf：Code listing</a></p>
+</div>
+<p>在导言区加入以下设置：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">\usepackage</span><span class="nb">{</span>listings<span class="nb">}</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">\usepackage</span><span class="nb">{</span>xcolor<span class="nb">}</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">\definecolor</span><span class="nb">{</span>codegreen<span class="nb">}{</span>rgb<span class="nb">}{</span>0,0.6,0<span class="nb">}</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">\definecolor</span><span class="nb">{</span>codegray<span class="nb">}{</span>rgb<span class="nb">}{</span>0.5,0.5,0.5<span class="nb">}</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">\definecolor</span><span class="nb">{</span>codepurple<span class="nb">}{</span>rgb<span class="nb">}{</span>0.58,0,0.82<span class="nb">}</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">\definecolor</span><span class="nb">{</span>backcolour<span class="nb">}{</span>rgb<span class="nb">}{</span>0.95,0.95,0.92<span class="nb">}</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">\lstdefinestyle</span><span class="nb">{</span>mystyle<span class="nb">}{</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    backgroundcolor=<span class="k">\color</span><span class="nb">{</span>backcolour<span class="nb">}</span>,
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    commentstyle=<span class="k">\color</span><span class="nb">{</span>codegreen<span class="nb">}</span>,
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    keywordstyle=<span class="k">\color</span><span class="nb">{</span>magenta<span class="nb">}</span>,
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    numberstyle=<span class="k">\tiny\color</span><span class="nb">{</span>codegray<span class="nb">}</span>,
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    stringstyle=<span class="k">\color</span><span class="nb">{</span>codepurple<span class="nb">}</span>,
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    basicstyle=<span class="k">\ttfamily\footnotesize</span>,
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    breakatwhitespace=false,
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    breaklines=true,
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    captionpos=b,
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    keepspaces=true,
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    numbers=left,
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>    numbersep=5pt,
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>    showspaces=false,
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>    showstringspaces=false,
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>    showtabs=false,
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    tabsize=2
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="nb">}</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="k">\lstset</span><span class="nb">{</span>style=mystyle<span class="nb">}</span>
+</span></code></pre></div>
+<p>在正文中使用 <code>lstlisting</code> 环境，指定语言和描述：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">\begin</span><span class="nb">{</span>lstlisting<span class="nb">}</span>[language=Python, caption=Python example]
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>import numpy as np
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>def incmatrix(genl1,genl2):
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    m = len(genl1)
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    n = len(genl2)
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    M = None #to become the incidence matrix
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    VT = np.zeros((n*m,1), int)  #dummy variable
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    #compute the bitwise xor matrix
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    M1 = bitxormatrix(genl1)
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    M2 = np.triu(bitxormatrix(genl2),1)
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    for i in range(m-1):
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        for j in range(i+1, m):
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>            [r,c] = np.where(M2 == M1[i,j])
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>            for k in range(len(r)):
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>                VT[(i)*n + r[k]] = 1;
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>                VT[(i)*n + c[k]] = 1;
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>                VT[(j)*n + r[k]] = 1;
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>                VT[(j)*n + c[k]] = 1;
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>                if M is None:
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>                    M = np.copy(VT)
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>                else:
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>                    M = np.concatenate((M, VT), 1)
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>                VT = np.zeros((n*m,1), int)
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>    return M
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="k">\end</span><span class="nb">{</span>lstlisting<span class="nb">}</span>
+</span></code></pre></div>
+<p>或者从外部文件中导入代码：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">\lstinputlisting</span><span class="na">[language=Octave]</span><span class="nb">{</span>BitXorMatrix.m<span class="nb">}</span>
+</span></code></pre></div>
+<h3 id="algorithm">算法描述 Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://www.overleaf.com/learn/latex/Algorithms">Overleaf：Algorithms</a></p>
+</div>
+<p>一般使用 <code>algorithm2e</code> 宏包，配置 <code>linesnumbered</code> 和 <code>ruled</code> 选项能显示行号和类似三线表的边框。</p>
+<p>导言区：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">\usepackage</span><span class="na">[linesnumbered, ruled]</span><span class="nb">{</span>algorithm2e<span class="nb">}</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c">%% This declares a command \Comment</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c">%% The argument will be surrounded by /* ... */</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">\SetKwComment</span><span class="nb">{</span>Comment<span class="nb">}{</span>/* <span class="nb">}{</span> */<span class="nb">}</span>
+</span></code></pre></div>
+<p>正文：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">\begin</span><span class="nb">{</span>algorithm<span class="nb">}</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">\caption</span><span class="nb">{</span>An algorithm with caption<span class="nb">}</span><span class="k">\label</span><span class="nb">{</span>alg:two<span class="nb">}</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">\KwData</span><span class="nb">{</span><span class="s">$</span><span class="nb">n </span><span class="nv">\geq</span><span class="nb"> </span><span class="m">0</span><span class="s">$</span><span class="nb">}</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">\KwResult</span><span class="nb">{</span><span class="s">$</span><span class="nb">y </span><span class="o">=</span><span class="nb"> x^n</span><span class="s">$</span><span class="nb">}</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="s">$</span><span class="nb">y </span><span class="nv">\gets</span><span class="nb"> </span><span class="m">1</span><span class="s">$</span><span class="k">\;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="s">$</span><span class="nb">X </span><span class="nv">\gets</span><span class="nb"> x</span><span class="s">$</span><span class="k">\;</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="s">$</span><span class="nb">N </span><span class="nv">\gets</span><span class="nb"> n</span><span class="s">$</span><span class="k">\;</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">\While</span><span class="nb">{</span><span class="s">$</span><span class="nb">N </span><span class="nv">\neq</span><span class="nb"> </span><span class="m">0</span><span class="s">$</span><span class="nb">}{</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  <span class="k">\eIf</span><span class="nb">{</span><span class="s">$</span><span class="nb">N</span><span class="s">$</span> is even<span class="nb">}{</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="s">$</span><span class="nb">X </span><span class="nv">\gets</span><span class="nb"> X </span><span class="nv">\times</span><span class="nb"> X</span><span class="s">$</span><span class="k">\;</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>    <span class="s">$</span><span class="nb">N </span><span class="nv">\gets</span><span class="nb"> </span><span class="nv">\frac</span><span class="nb">{N}{</span><span class="m">2</span><span class="nb">}</span><span class="s">$</span> <span class="k">\Comment*</span><span class="na">[r]</span><span class="nb">{</span>This is a comment<span class="nb">}</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>  <span class="nb">}{</span><span class="k">\If</span><span class="nb">{</span><span class="s">$</span><span class="nb">N</span><span class="s">$</span> is odd<span class="nb">}{</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>      <span class="s">$</span><span class="nb">y </span><span class="nv">\gets</span><span class="nb"> y </span><span class="nv">\times</span><span class="nb"> X</span><span class="s">$</span><span class="k">\;</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>      <span class="s">$</span><span class="nb">N </span><span class="nv">\gets</span><span class="nb"> N </span><span class="o">-</span><span class="nb"> </span><span class="m">1</span><span class="s">$</span><span class="k">\;</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="nb">}</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>  <span class="nb">}</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="nb">}</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="k">\end</span><span class="nb">{</span>algorithm<span class="nb">}</span>
+</span></code></pre></div>
+<p>可以在 <code>algorithm</code> 环境中使用 <code>caption</code>、<code>ref</code> 等命令。环境中的每一行（除了 <code>{}</code>
+表示的块的开始和结尾）都需要以 <code>\;</code> 结尾。</p>
+<h2 id="_11">特殊组件<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="flow-chart">流程图 Flow Chart<a class="headerlink" href="#flow-chart" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts">Overleaf: Creating Flowcharts</a></p>
+</div>
+<p>导言区新建基本组件：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">\usepackage</span><span class="nb">{</span>tikz<span class="nb">}</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">\usetikzlibrary</span><span class="nb">{</span>shapes.geometric, arrows<span class="nb">}</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">\tikzstyle</span><span class="nb">{</span>startstop<span class="nb">}</span> = [rectangle, rounded corners, 
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>minimum width=3cm, 
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>minimum height=1cm,
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>text centered, 
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>draw=black, 
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>fill=red!30]
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="k">\tikzstyle</span><span class="nb">{</span>io<span class="nb">}</span> = [trapezium, 
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>trapezium stretches=true, <span class="c">% A later addition</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>trapezium left angle=70, 
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>trapezium right angle=110, 
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>minimum width=3cm, 
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>minimum height=1cm, text centered, 
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>draw=black, fill=blue!30]
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="k">\tikzstyle</span><span class="nb">{</span>process<span class="nb">}</span> = [rectangle, 
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>minimum width=3cm, 
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>minimum height=1cm, 
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>text centered, 
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>text width=3cm, 
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>draw=black, 
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>fill=orange!30]
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="k">\tikzstyle</span><span class="nb">{</span>decision<span class="nb">}</span> = [diamond, 
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>minimum width=3cm, 
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>minimum height=1cm, 
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>text centered, 
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>draw=black, 
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>fill=green!30]
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a><span class="k">\tikzstyle</span><span class="nb">{</span>arrow<span class="nb">}</span> = [thick,-&gt;,&gt;=stealth]
+</span></code></pre></div>
+<p>正文：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">\begin</span><span class="nb">{</span>tikzpicture<span class="nb">}</span>[node distance=2cm]
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">\node</span> (start) [startstop] <span class="nb">{</span>Start<span class="nb">}</span>;
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">\node</span> (in1) [io, below of=start] <span class="nb">{</span>Input<span class="nb">}</span>;
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">\node</span> (pro1) [process, below of=in1] <span class="nb">{</span>Process 1<span class="nb">}</span>;
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">\node</span> (dec1) [decision, below of=pro1, yshift=-0.5cm] <span class="nb">{</span>Decision 1<span class="nb">}</span>;
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="k">\node</span> (pro2a) [process, below of=dec1, yshift=-0.5cm] <span class="nb">{</span>Process 2a
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>text text text text
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>text text text 
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>text text text<span class="nb">}</span>;
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="k">\node</span> (pro2b) [process, right of=dec1, xshift=2cm] <span class="nb">{</span>Process 2b<span class="nb">}</span>;
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="k">\node</span> (out1) [io, below of=pro2a] <span class="nb">{</span>Output<span class="nb">}</span>;
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="k">\node</span> (stop) [startstop, below of=out1] <span class="nb">{</span>Stop<span class="nb">}</span>;
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="k">\draw</span> [arrow] (start) -- (in1);
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="k">\draw</span> [arrow] (in1) -- (pro1);
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="k">\draw</span> [arrow] (pro1) -- (dec1);
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="k">\draw</span> [arrow] (dec1) -- node[anchor=east] <span class="nb">{</span>yes<span class="nb">}</span> (pro2a);
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="k">\draw</span> [arrow] (dec1) -- node[anchor=south] <span class="nb">{</span>no<span class="nb">}</span> (pro2b);
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="k">\draw</span> [arrow] (pro2b) |- (pro1);
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="k">\draw</span> [arrow] (pro2a) -- (out1);
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="k">\draw</span> [arrow] (out1) -- (stop);
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="k">\end</span><span class="nb">{</span>tikzpicture<span class="nb">}</span>
+</span></code></pre></div>
+<h3 id="scatter-plot">散点图 Scatter Plot<a class="headerlink" href="#scatter-plot" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li><a href="https://www.overleaf.com/learn/latex/Pgfplots_package">Overleaf: Pfgplots package</a></li>
+<li><a href="https://tikz.dev/pgfplots/tutorial3">PGFplots Manual: Use Cases involving Scatter Plots</a></li>
+</ul>
+</div>
+<p>一个例子：</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c">% Preamble: \pgfplotsset{width=7cm,compat=1.18}</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">\begin</span><span class="nb">{</span>tikzpicture<span class="nb">}</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">\begin</span><span class="nb">{</span>axis<span class="nb">}</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="k">\addplot</span> [
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        scatter,
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        only marks,
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        point meta=explicit symbolic,
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        scatter/classes=<span class="nb">{</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>            a=<span class="nb">{</span>mark=square*,blue<span class="nb">}</span>,
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>            b=<span class="nb">{</span>mark=triangle*,red<span class="nb">}</span>,
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>            c=<span class="nb">{</span>mark=o,draw=black<span class="nb">}</span><span class="c">% &lt;-- don&#39;t add comma</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>        <span class="nb">}</span>,
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>    ] table [meta=label] <span class="nb">{</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        x      y        label
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        0.1    0.15     a
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        0.45   0.27     c
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>        0.02   0.17     a
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>        0.06   0.1      a
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>        0.9    0.5      b
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>        0.5    0.3      c
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>        0.85   0.52     b
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>        0.12   0.05     a
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>        0.73   0.45     b
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>        0.53   0.25     c
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>        0.76   0.5      b
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>        0.55   0.32     c
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>    <span class="nb">}</span>;
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="k">\end</span><span class="nb">{</span>axis<span class="nb">}</span>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="k">\end</span><span class="nb">{</span>tikzpicture<span class="nb">}</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://bowling233.com" target="_blank" rel="noopener" title="bowling233.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.07 4.93C17.22 3 14.66 1.96 12 2c-2.66-.04-5.21 1-7.06 2.93C3 6.78 1.96 9.34 2 12c-.04 2.66 1 5.21 2.93 7.06C6.78 21 9.34 22.04 12 22c2.66.04 5.21-1 7.06-2.93C21 17.22 22.04 14.66 22 12c.04-2.66-1-5.22-2.93-7.07M17 12v6h-3.5v-5h-3v5H7v-6H5l7-7 7.5 7z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.tracking", "navigation.tabs", "navigation.prune", "navigation.indexes", "header.autohide", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.alicdn.com/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
