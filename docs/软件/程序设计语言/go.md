@@ -213,7 +213,11 @@ b := make([]*Saiyan, 10)
     go: creating new go.mod: module mymod
     ```
 
-包的名称遵循 Go 工作区的目录结构，如 `shopping` 包位于 `$GOPATH/src/shopping`。使用 `package` 命名包时可以不含路径，但是用 `import` 从其他地方导入时需要使用路径。
+    下文中过时的内容使用引用格式标注。
+
+> 包的名称遵循 Go 工作区的目录结构，如 `shopping` 包位于 `$GOPATH/src/shopping`。
+
+使用 `package` 命名包时可以不含路径，但是用 `import` 从其他地方导入时需要使用路径。
 
 Go 不允许循环导入（cyclical imports）。
 
@@ -334,3 +338,36 @@ string := string(byts)
 函数是第一类类型（first-class type），可以在任何地方使用：作为类型、参数、返回值。
 
 ### 第六章：并发
+
+## 个人笔记
+
+### Go 代码组织和编译运行
+
+!!! quote
+
+    - [How to Write Go Code - The Go Programming Language](https://go.dev/doc/code#Organization)
+    - [Managing Go installations - The Go Programming Language](https://go.dev/doc/manage-install#installing-multiple)
+
+- Package：Go 中的包的概念很简单，与 Java、Python 中类似。
+- Module：
+    - Packages 的集合，目的是管理依赖。项目中的 `go.mod` 文件会描述：用到了哪些 package，它们由哪些 module 提供。
+    - 在 [Tutorial: Get started with Go - The Go Programming Language](https://go.dev/doc/tutorial/getting-started) 的一开始，我们就使用了 `go mod init` 这条命令。
+- Repository：Modules 的集合。然而一般情况下一个仓库包含一个 module。
+
+!!! example
+
+    Google 发布的 module `go-cmp` 有一个包 `cmp`，那么它的 `import` 路径是
+
+    ```text
+    github.com/google/go-cmp/cmp
+    ```
+
+Go 语言本身更新也比较频繁，需要像 Python 那样做版本管理。非常方便的事情是：Go 可以管理自身的版本。因此系统的 Go 版本陈旧并不是问题（比如 Debian 对 Go 的更新是比较不及时的）。
+
+```shell
+go install golang.org/dl/go1.23.3@latest
+go1.23.3 download
+```
+
+- `go install` 命令将软件包安装到 `$GOPATH/bin` 或 `$HOME/go/bin`。然后就可以通过把版本号加到命令行来使用这个版本的 Go。
+- `go download` 将该版本的 Go 下载到 `$HOME/sdk/go<version>`。

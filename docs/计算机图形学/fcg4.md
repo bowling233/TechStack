@@ -38,22 +38,22 @@
 
     - [GAMES 301: 第 1 讲 曲面参数化介绍 - USTC](http://staff.ustc.edu.cn/~renjiec/GAMES301/games301_lec01.pdf)
 
-- 三维曲面 $f(\mathbf{p}) = 0$。
-- 法向量（normal vector）$\mathbf{n} = \nabla f(\mathbf{p}) = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$，指向 $f(\mathbf{p}) > 0$ 的方向。
-- 平面
+- **三维曲面**：$f(\mathbf{p}) = 0$。
+- **法向量（normal vector）**：$\mathbf{n} = \nabla f(\mathbf{p}) = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$，指向 $f(\mathbf{p}) > 0$ 的方向。
+- **三维平面**：
     - $(\mathbf{p} - \mathbf{a}) \cdot \mathbf{n} = 0$。
     - $(\mathbf{p} - \mathbf{a}) \cdot ((\mathbf{b} - \mathbf{a}) \times (\mathbf{c} - \mathbf{a})) = 0$。
     - $\begin{vmatrix} x - x_a & y - y_a & z - z_a \\ x_b - x_a & y_b - y_a & z_b - z_a \\ x_c - x_a & y_c - y_a & z_c - z_a \end{vmatrix} = 0$。
-- 三维曲线：使用曲面的交集表示 $f(\mathbf{p}) = 0$ 和 $g(\mathbf{p}) = 0$。
-- 二维参数化曲线：$\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} x(t) \\ y(t) \end{bmatrix}$ 或者表示为向量函数 $\mathbf{p} = f(t)$。
-    - 直线 $\mathbf{p}(t) = \mathbf{o} + t (\mathbf{d}$)。
-    - 椭圆 $\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} x_c + a \cos \phi \\ y_c + b \sin \phi \end{bmatrix}$。
-- 三维参数化曲线：$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = \mathbf{p}(t)$。
-- 三维参数化曲面：$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = \mathbf{p}(u, v)$。
+- **三维曲线**：使用曲面的交集表示，$f(\mathbf{p}) = 0$ 和 $g(\mathbf{p}) = 0$。
+- **二维参数化曲线**：$\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} x(t) \\ y(t) \end{bmatrix}$ 或者表示为向量函数 $\mathbf{p} = f(t)$。
+    - **直线**：$\mathbf{p}(t) = \mathbf{o} + t (\mathbf{d}$)。
+    - **椭圆**：$\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} x_c + a \cos \phi \\ y_c + b \sin \phi \end{bmatrix}$。
+- **三维参数化曲线**：$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = \mathbf{p}(t)$。
+- **三维参数化曲面**：$\begin{bmatrix} x \\ y \\ z \end{bmatrix} = \mathbf{p}(u, v)$。
     - 曲面上的等值曲线（isoparametric curve）：$\mathbf{q}(t) = \mathbf{p}(t, v_0)$。
     - 法向量 $\mathbf{n} = \mathbf{p}_u \times \mathbf{p}_v$。
 - 总结：
-    - 隐式二维曲线、三维曲面：$S=\{\mathbf{p}|f(\mathbf{p})=0\}$，$f$ 是 $\mathbb{R}^3$ 或 $\mathbb{R}^2 \to \mathbb{R}$。法向量由 $f$ 的导数（梯度）给出，用法向量构建基底得到切向量（平面）
+    - 隐式二维曲线、三维曲面：$S=\{\mathbf{p}|f(\mathbf{p})=0\}$，$f$ 是 $\mathbb{R}^3$ 或 $\mathbb{R}^2 \to \mathbb{R}$。法向量由 $f$ 的导数（梯度）给出，用法向量构建基底得到切向量或切平面。
     - 二维、三维参数化曲线：$S=\{\mathbf{p}(t) | t \in D\}$。$\mathbf{p}$ 的导数给出切向量（tangent vector）。
     - 参数化曲面：$S=\{\mathbf{p}(u, v) | (u, v) \in D\}$。
 
@@ -69,7 +69,7 @@ $$
 
 - 法向量：$\mathbf{n} = (\mathbf{b} - \mathbf{a}) \times (\mathbf{c} - \mathbf{a})$。
 
-以三角形的两条边为基地，可以构建质心坐标系：
+以三角形的两条边为基底，可以构建质心坐标系：
 
 $$
 \mathbf{p} = \mathbf{a} + \beta(\mathbf{b} - \mathbf{a}) + \gamma(\mathbf{c} - \mathbf{a}) = (1 - \beta - \gamma)\mathbf{a} + \beta\mathbf{b} + \gamma\mathbf{c}\\
@@ -92,8 +92,6 @@ $$
 $$
 
 ## 第三章：栅格化图像
-
-本章讲解了栅格化图像的基本概念。
 
 ### 像素与几何
 
@@ -136,14 +134,16 @@ $$
 
 ### 简单光线追踪算法
 
-渲染的过程就是接收一组物体，产生二维图像。两种渲染顺序：
+渲染的过程就是接收一组物体，产生二维图像。
 
-- 物体顺序（object-order）：逐个物体渲染，更新影响的像素。
-- 图像顺序（image-order）：逐个像素渲染，考虑所有物体。
+两种渲染顺序：
+
+- **物体顺序（object-order）**：逐个物体渲染，更新影响的像素。
+- **图像顺序（image-order）**：逐个像素渲染，考虑所有物体。
 
 这两种顺序用于不同效果，性能也不同。
 
-光线追踪是一种图像顺序算法。从观察者的视角出发，每个像素**看向不同地方**，目标是找到该视线所看到的物体。找到视线于物体的交点后，着色器使用交点、表面法向量和其他信息确定像素的颜色。光线追踪器包含三个部分：
+光线追踪是一种图像顺序算法。从观察者的视角出发，每个像素**看向不同地方**，目标是找到该视线所看到的物体。找到视线与物体的交点后，着色器使用**交点、表面法向量和其他信息确定像素的颜色**。光线追踪器包含三个部分：
 
 - **光线生成器**：确定视线的起点和方向。
 - **光线求交器**：找到视线与物体的交点。
@@ -162,11 +162,11 @@ for each pixel (x, y) {
 - **平行投影（parallel projection）**：视线是平行的。若投影面与投影线垂直，所得图像是正交的（orthographic），否则为斜交的（oblique）。
 - **透视投影（perspective projection）**：视线收敛于一点，所得图像是透视的（perspective）。
 
-在艺术中，使用三点透视法（three-point perspective）。有趣的事，只要使用透视投影，三点透视法的条件就自然满足。
+在艺术中，使用三点透视法（three-point perspective）。有趣的是，只要使用透视投影，三点透视法的条件就自然满足。
 
 ### 计算视线
 
-三维参数化曲线很适合描述视线。令视点（viewpoint 或 eye point）为 $e$，所看点为 $s$，则视线表示为
+三维参数化曲线很适合描述视线。令**视点（viewpoint 或 eye point）**为 $e$，所看点为 $s$，则视线表示为
 
 $$
 \mathbf{p}(t) = e + t(s - e)
@@ -185,7 +185,7 @@ $$
 | 正交投影 | $-\mathbf{w}$ | $e + u\mathbf{u} + v\mathbf{v}$ |
 | 透视投影 | $-d\mathbf{w} + u\mathbf{u} + v\mathbf{v}$ | $e$ |
 
-其中焦距 $d$ 为投影面距离 $e$ 距离。
+其中焦距 $d$ 为视点 $e$ 与投影面的距离。
 
 ### 光线求交
 
@@ -201,7 +201,7 @@ $$
 \mathbf{e} + t\mathbf{d} = \mathbf{f}(u, v)
 $$
 
-三角形是平面图形，上式换成平面方程：
+**三角形**是平面图形，上式换成平面方程：
 
 $$
 \mathbf{e} + t\mathbf{d} = \mathbf{a} + \beta(\mathbf{b} - \mathbf{a}) + \gamma(\mathbf{c} - \mathbf{a})
@@ -210,13 +210,14 @@ $$
 1. 解出 $t, \beta, \gamma$。
 1. 如果满足 $\beta > 0, \gamma > 0, \beta + \gamma < 1$，则交点在三角形内部。
 
-平面多边形具有顶点 $\mathbf{p}_1 \ldots \mathbf{p}_n$ 和法向量 $\mathbf{n}$。
+**平面多边形**具有顶点 $\mathbf{p}_1 \ldots \mathbf{p}_n$ 和法向量 $\mathbf{n}$。
 
 1. 计算光线与平面交点：$(\mathbf{p} - \mathbf{p}_1) \cdot \mathbf{n} = 0$ 得到 $t$。
-2. 将交点和平面多边形投影到 xy 平面上，判断是否在多边形内部。
+2. 将交点和平面多边形投影到 $xy$ 平面上，判断是否在多边形内部。
 
-    - 最简单的方法是从该点发出一条射线，计算与多边形的交点数。奇数个交点则在内部，偶数个交点则在外部。另一种方法是用多个三角形拼接多边形。
-    - 如果投影到 xy 平面是一条线，我们可以选用其他平面，如 yz、zx 平面。
+    - 最简单的方法是从该点发出一条**射线，计算与多边形的交点数**。奇数个交点则在内部，偶数个交点则在外部。
+    - 另一种方法是**用多个三角形拼接多边形**，转化为点是否在三角形内部的问题。
+    - 如果投影到 $xy$ 平面是一条线，我们可以选用其他平面，如 $yz$、$zx$ 平面。
 
 ### 着色
 
@@ -234,13 +235,15 @@ $$
     - 像素颜色 $L = k_a I_a + k_d I \max(0, \mathbf{n} \cdot \mathbf{l}) + k_s I \max(0, \mathbf{n} \cdot \mathbf{h})^n$。$k_a$ 为环境光系数（ambient coefficient），$I_a$ 为环境光强。
 - 多点光源：$L = k_a I_a + \sum_{i=1}^n [k_d I_i \max(0, \mathbf{n} \cdot \mathbf{l}_i) + k_s I_i \max(0, \mathbf{n} \cdot \mathbf{h}_i)^n]$。
 
+![figure_4.13](fcg4.assets/figure_4.13.png)
+
 ### 光线追踪程序
 
-本节描述使用面向对象的方法写一个简单的光线追踪程序。
+展示了使用面向对象的方法写一个简单的光线追踪程序。
 
 ### 阴影
 
-从交点沿光线入射反方向发射光线 $\mathbf{p} + t\mathbf{l}$，如果遇到物体，则交点在阴影中。该射线称为阴影射线（shadow ray），与观测射线（view ray）区分。
+从交点沿光线入射反方向发射光线 $\mathbf{p} + t\mathbf{l}$，如果遇到物体，则交点在阴影中。该射线称为**阴影射线（shadow ray）**，与观测射线（view ray）区分。
 
 !!! warning "数值问题"
 
@@ -256,7 +259,7 @@ $$
 
 !!! note "为什么是递归？"
 
-    因为光线就是递归的啊（
+    因为光线就是递归的。
 
     需要注意的是，递归可能永远不会停下。此时需要加入最大递归深度进行限制。
 
@@ -345,6 +348,16 @@ $$
 ## 第十九章：色彩
 
 ## 第二十章：视觉感知
+
+### 视觉敏感度
+
+#### 色彩
+
+- 人眼：
+    - 可视的波长范围从 370nm 到 730nm。
+    - 视网膜两种光受体（photoreceptor）：视锥细胞（cone）负责颜色感知，（rod）负责光强。
+    - 有三种视锥细胞，对光谱的敏感度不同。
+- 光谱的不同分布可以产生相同的颜色。比如 540nm 和 700nm 混合产生的效果与 580nm 无法分辨。
 
 ## 第二十一章：风格化
 

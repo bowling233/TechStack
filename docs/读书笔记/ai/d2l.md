@@ -316,6 +316,65 @@ $$
 - ImageNet
 - Fashion-MNIST
 
+!!! note "技能：如何加载数据集"
+
+    - [Datasets & DataLoaders — PyTorch Tutorials documentation](https://pytorch.org/tutorials/beginner/basics/data_tutorial.html)
+
+    PyTorch 提供两种数据类型：`torch.utils.data.DataLoader` 和 `torch.utils.data.Dataset`。Dataset 存储样本（sample）及其标签（label），dataloader 在其上实现了一个迭代器，方便访问数据。
+
+    对于 PyTorch 自身提供的数据集，加载很简单，直接实例化即可：
+
+    ```python
+    self.train = torchvision.datasets.FashionMNIST(root="../data", train=True, transform=transform, download=True)
+    ```
+
+    最原始的方法是手动索引数据集：
+
+    ```python
+    img, label = self.train[i]
+    ```
+
+    要手动创建一个数据集，需要实现 `__init__`、`__len__` 和 `__getitem__` 方法：
+
+    ```python
+    def __getitem__(self, idx):
+        img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 0])
+        image = read_image(img_path)
+        label = self.img_labels.iloc[idx, 1]
+        if self.transform:
+            image = self.transform(image)
+        if self.target_transform:
+            label = self.target_transform(label)
+        return image, label
+    ```
+
+    在训练过程中，使用 `DataLoader` 类从数据集中加载数据**到内存**，一般是加载小批量（batch）数据：
+
+    ```python
+    return torch.utils.data.DataLoader(dataset, batch_size, shuffle=shuffle)
+
+    for X, y in data.train_dataloader():
+        continue
+    ```
+
+!!! example "实践：从 CIFAR 数据集中提取文件"
+
+    CIFAR 数据集可以在 [](https://www.cs.toronto.edu/~kriz/cifar.html) 下载。其 Python 版本有 6 个 batch 文件，这里我们尝试将其提取为 `torchvision.datasets.ImageFolder` 所要求的布局：
+
+    ```text
+    root/dog/xxx.png
+    root/dog/xxy.png
+    root/dog/[...]/xxz.png
+
+    root/cat/123.png
+    root/cat/nsdf3.png
+    root/cat/[...]/asd932_.png
+    ```
+
+    阅读 CIFAR 数据集说明，使用 `pickle` 载入得到一个 `dict`。
+
+### 待办
+
 ## 第五章：多层感知机 Multilayer Perceptrons
 
 多层感知机是最简单的神经网络，由多个全连接层组成。本章关注：
