@@ -1,0 +1,17 @@
+[
+    {
+        "title": "[TCP/IP Illustrated, Volume 1, 2nd Edition](network/tii1.md)",
+        "content": "[PDF](http://www.r-5.org/files/books/computers/internals/net/Richard_Stevens-TCP-IP_Illustrated-EN.pdf)<br/>进行中",
+        "image": "network/tii1.assets/tii1_cover.jpg"
+    },
+    {
+        "title": "Linux iptables Pocket Reference",
+        "content": "[PDF](https://linuxbg.eu/books/Linux%20Iptables%20Pocket%20Reference.pdf)<br />已读（2024/09/01）",
+        "image": "network/lipr.assets/lipr_cover.jpg"
+    },
+    {
+        "title": "Understanding Linux Network Internals",
+        "content": "暂缓",
+        "image": "network/ulni.assets/ulni_cover.jpg"
+    }
+]
