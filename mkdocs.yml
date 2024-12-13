@@ -37,7 +37,7 @@ markdown_extensions:
   # Icon
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg 
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   # List
   - def_list
   - pymdownx.tasklist:
@@ -109,3 +109,4 @@ plugins:
   - search
   - glightbox
   - git-revision-date-localized
+  - drawio_file

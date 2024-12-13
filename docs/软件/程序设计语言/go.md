@@ -341,6 +341,20 @@ string := string(byts)
 
 ## 个人笔记
 
+### Go 配置与维护
+
+国内最好用的 Go 代理是 [七牛云 - Goproxy.cn](https://goproxy.cn/)，先配置好代理。
+
+Go 语言本身更新比较频繁，需要像 Python 那样做版本管理。非常方便的事情是：Go 可以管理自身的版本。因此系统的 Go 版本陈旧并不是问题（比如 Debian 官方源的 Go 更新十分缓慢）。
+
+```shell
+go install golang.org/dl/go1.23.3@latest
+go1.23.3 download
+```
+
+- `go install` 命令将软件包安装到 `$GOPATH/bin` 或 `$HOME/go/bin`。然后就可以通过把版本号加到命令行来使用这个版本的 Go。
+- `go download` 将该版本的 Go 下载到 `$HOME/sdk/go<version>`。
+
 ### Go 代码组织和编译运行
 
 !!! quote
@@ -362,12 +376,3 @@ string := string(byts)
     github.com/google/go-cmp/cmp
     ```
 
-Go 语言本身更新也比较频繁，需要像 Python 那样做版本管理。非常方便的事情是：Go 可以管理自身的版本。因此系统的 Go 版本陈旧并不是问题（比如 Debian 对 Go 的更新是比较不及时的）。
-
-```shell
-go install golang.org/dl/go1.23.3@latest
-go1.23.3 download
-```
-
-- `go install` 命令将软件包安装到 `$GOPATH/bin` 或 `$HOME/go/bin`。然后就可以通过把版本号加到命令行来使用这个版本的 Go。
-- `go download` 将该版本的 Go 下载到 `$HOME/sdk/go<version>`。

@@ -40,7 +40,7 @@
     - 为了进一步优化，将式中所有项同乘 $\Delta x$，误差项也乘 $2$ 化为整数，得到 Bresenham 算法。
 
 ### 圆的光栅化
- 
+
 - [Bresenham’s circle drawing algorithm](https://www.geeksforgeeks.org/bresenhams-circle-drawing-algorithm/)
 - [:simple-wikipedia: Midpoint circle algorithm](https://en.wikipedia.org/wiki/Midpoint_circle_algorithm)
 

@@ -6,10 +6,52 @@ glightbox: False
 
 ## 浙里的朋辈们
 
+[ZJU CS - All Sum in One!](https://github.com/IsshikiHugh/zju-cs-asio)
+
 <div class="flink-list">
 
 <div class="flink-list-item">
-    <a href="https://heap.45gfg9.net/about/" title="45gfg9" target="_blank">
+    <a href="https://note.tonycrane.cc/" title="TonyCrane" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.bowling233.top/note/avatar/tonycrane.jpeg" alt="TonyCrane">
+        </div>
+        <div class="flink-item-name">TonyCrane / 鹤翔万里</div>
+        <div class="flink-item-desc">xg 浇死我 🤤</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
+    <a href="https://xuan-insr.github.io/" title="咸鱼暄" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.bowling233.top/note/avatar/xyx.png" alt="咸鱼暄">
+        </div>
+        <div class="flink-item-name">咸鱼暄</div>
+        <div class="flink-item-desc">好怪的学长 🫨</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
+    <a href="https://note.isshikih.top/" title="Isshiki 修" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.bowling233.top/note/avatar/isshiki.png" alt="Isshiki 修">
+        </div>
+        <div class="flink-item-name">Isshiki 修</div>
+        <div class="flink-item-desc">修佬 tql 😍</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
+    <a href="https://note.hobbitqia.cc/" title="HobbitQia" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.bowling233.top/note/avatar/hobbitqia.ico" alt="HobbitQia">
+        </div>
+        <div class="flink-item-name">HobbitQia</div>
+        <div class="flink-item-desc">捏捏小 Q 😋</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
+    <a href="https://45gfg9.net" title="45gfg9" target="_blank">
         <div class="flink-item-icon">
             <img src="https://cdn.bowling233.top/note/avatar/45gfg9.png" alt="45gfg9">
         </div>
@@ -19,7 +61,7 @@ glightbox: False
 </div>
 
 <div class="flink-list-item">
-    <a href="https://shadowash0215.github.io/about/" title="shad0wash" target="_blank">
+    <a href="https://shadowash0215.github.io" title="shad0wash" target="_blank">
         <div class="flink-item-icon">
             <img src="https://shadowash0215.github.io/img/yukinoshita.jpg" alt="shad0wash">
         </div>
@@ -44,7 +86,7 @@ glightbox: False
             <img src="https://cdn.bowling233.top/note/avatar/sanaQWQ.png" alt="sanaQWQ">
         </div>
         <div class="flink-item-name">sana</div>
-        <div class="flink-item-desc">sana酱 🤤</div>
+        <div class="flink-item-desc">sana 酱 🤤</div>
     </a>
 </div>
 
@@ -63,38 +105,8 @@ glightbox: False
         <div class="flink-item-icon">
             <img src="https://cdn.bowling233.top/note/avatar/thnk.webp" alt="thnk">
         </div>
-        <div class="flink-item-name">TH讠NK</div>
+        <div class="flink-item-name">TH 讠 NK</div>
         <div class="flink-item-desc">%%% 😚</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
-    <a href="https://note.tonycrane.cc/" title="TonyCrane" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/tonycrane.jpeg" alt="TonyCrane">
-        </div>
-        <div class="flink-item-name">TonyCrane / 鹤翔万里</div>
-        <div class="flink-item-desc">xg 浇死我 🤤</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
-    <a href="https://note.isshikih.top/" title="Isshiki修" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/isshiki.png" alt="Isshiki修">
-        </div>
-        <div class="flink-item-name">Isshiki修</div>
-        <div class="flink-item-desc">修佬 tql 😍</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
-    <a href="https://xuan-insr.github.io/" title="咸鱼暄" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/xyx.png" alt="咸鱼暄">
-        </div>
-        <div class="flink-item-name">咸鱼暄</div>
-        <div class="flink-item-desc">好怪的学长 🫨</div>
     </a>
 </div>
 
@@ -119,12 +131,12 @@ glightbox: False
 </div>
 
 <div class="flink-list-item">
-    <a href="https://note.hobbitqia.cc/" title="HobbitQia" target="_blank">
+    <a href="https://guahao31.github.io/Notebook/" title="Gua" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/hobbitqia.ico" alt="HobbitQia">
+            <img src="https://avatars.githubusercontent.com/Guahao31" alt="Gua">
         </div>
-        <div class="flink-item-name">HobbitQia</div>
-        <div class="flink-item-desc">捏捏小 Q 😋</div>
+        <div class="flink-item-name">Gua</div>
+        <div class="flink-item-desc">🍉劳斯</div>
     </a>
 </div>
 

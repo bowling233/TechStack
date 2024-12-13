@@ -179,8 +179,6 @@
 
 允许几个可能的下一个状态，选择转移到这些状态中的一个。这一选择不被任何东西决定。
 
-
-
 - **形式定义**：$M=(K, \Sigma, \Delta, s, F)$，与 DFA 一致，只是**状态转移函数**变成了**转移关系**
     - $\Delta\subseteq K\times(\Sigma\cup\{e\})\times K$：转移关系，其中每一个三元组 $(q, u, p)$ 表示从状态 $q$ 读取符号 $u$ 转移到状态 $p$。
 - **格局**：$(q, w)$ 也是 $K\times\Sigma^*$ 的元素。
@@ -213,6 +211,8 @@
 
 ### 上下文无关文法
 
+这是一种语言生成器，“上下文无关”的意思是替换规则不依赖于字符串的上下文。
+
 - **形式定义**：$G=(V, \Sigma, R, S)$
     - $V$：字母表。
     - $\Sigma$：终结符集合。
@@ -220,8 +220,26 @@
     - $S\in V - \Sigma$：开始符号。
     - $V - \Sigma$ 是**非终结符**。
 - **关系**：
-    - **可以是**：$A\rightarrow_G u$。
-    - **一步产生**：$u\Rightarrow_G v$。
-    - **产生**：$u\Rightarrow_G^* v$。
+    - **可以是**：$A\rightarrow u$。
+    - **一步产生**：$u\Rightarrow v$。
+    - **产生**：$u\Rightarrow^* v$。
 - **$G$ 生成的语言**：$L(G)=\{w\in\Sigma^*|S\Rightarrow_G^* w\}$。上下文无关语言。
 - **推导**：$w_0\Rightarrow_G w_1\Rightarrow_G \ldots \Rightarrow_G w_n$，有 $n$ 步。
+
+CFG 和正则表达式的关系：
+
+- 都是语言生成器
+- $L$ 是正则语言当且仅当存在一个正则表达式 $r$ 使得 $L=L(r)$
+- $L$ 是上下文无关语言当且仅当存在一个上下文无关文法 $G$ 使得 $L=L(G)$
+
+!!! example "证明：所有正则语言是上下文无关的（直接构造法）"
+
+    考虑由 DFA $M=(K, \Sigma, \delta, s, F)$ 生成的正则语言 $L(M)$。构造下面的 CFG $G=(V, \Sigma, R, S)$：
+
+    - $V=K\cup \Sigma$
+    - $S=s$
+    - $R=\{q\rightarrow ap: \delta(q, a)=p\}\cup\{q\rightarrow e: q\in F\}$
+
+### 语法分析树
+
+

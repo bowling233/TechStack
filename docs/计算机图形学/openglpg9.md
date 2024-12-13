@@ -1,13 +1,5 @@
 # OpenGL Programming Guide: The Official Guide to Learning OpenGL, Version 4.5 with SPIR-V
 
-## 附录 A：第三方支持库
-
-!!! quote
-
-    - [What are GLAD, GLFW and OpenGL?. What is OpenGL? - Medium](https://matt-pinch.medium.com/what-are-glad-glfw-and-opengl-569136024c87)
-
-简单来说，GLWF 负责管理窗口和处理输入，OpenGL 负责绘制图形。
-
 ## 附录 B：OpenGL ES 与 WebGL
 
 - 在大多数系统中 OpenGL ES 命名为 EGL。
