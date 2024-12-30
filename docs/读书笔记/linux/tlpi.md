@@ -138,3 +138,37 @@ Linux 实现两种 CPU 亲和性：
         cpuset 实现为不影响性能的路径上的一些内核钩子，比如 `fork()`、`exec()`、`exit()` 和 `page_alloc.c` 等。
 
         `/proc/<pid>/status` 文件中包含了 cpuset 信息 `Cpus_allowed` 和 `Mems_allowed`。
+
+## 网络
+
+第 56-61 章都在介绍套接字编程。
+
+### 第五十六章 套接字：简介
+
+概念：
+
+- **通信域（communication domain）**：决定地址格式和通信的范围。`AF_UNIX`、`AF_INET`、`AF_INET6`。
+- **套接字类型（socket type）**：每种套接字实现至少提供两种
+    - `SOCK_STREAM`：可靠双向字节流，面向连接。
+    - `SOCK_DGRAM`：无连接，不可靠（乱序、丢失），消息边界。
+
+一张图概括 Socket 通信模式：
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="tlpi.assets/56-1.png" alt="Socket Stream Communication Mode 1" style="height: 300px;"/>
+    <img src="tlpi.assets/56-4.png" alt="Socket Stream Communication Mode 2" style="height: 300px;"/>
+</div>
+
+- 对于 stream 模式，其中客户端的 `connect()` 可能发生在服务器的 `accept()` 之前，此时客户端阻塞。
+
+### 第五十七章 套接字：UNIX 域
+
+TODO
+
+### 第五十八章 套接字：TCP/IP 网络基础
+
+略。
+
+### 第五十九章 套接字：Internet 域
+
+

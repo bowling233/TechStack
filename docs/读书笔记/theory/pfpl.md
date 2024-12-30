@@ -814,7 +814,7 @@ a \ \mathsf{odd}\tag{3.7}
 **泛化可导性（Generic derivability）判断**定义如下：
 
 \[
-\mathcal{Y} | \Gamma \vdash^\mathcal{X} _\mathcal{R} J \quad \text{iff} \quad \Gamma \vdash^\mathcal{XY} _\mathcal{R} J
+\mathcal{Y} | \Gamma \vdash^\mathcal{X} _\mathcal{R} J \quad \text{iff} \quad \Gamma \vdash^\mathcal{XY}_\mathcal{R} J
 \]
 
 其中，\( \mathcal{Y\cap X} = \emptyset \)。泛化推导的证据由涉及变量 \( \mathcal{XY} \) 的泛化推导 \( \bigtriangledown  \) 构成。只要规则是一致的，选择 \( \mathcal{Y} \) 并无区别，原因将在后面解释。
@@ -863,26 +863,159 @@ $$
 
 ### 第四章：静态语义（Statics）
 
+大多数编程语言表现出静态和动态处理阶段之间的**阶段区分**。
+
+- 静态阶段包括解析和类型检查，以确保程序是形式正确的。
+- 动态阶段包括形式正确程序的执行。
+
+当形式正确的程序在执行时表现良好时，一种语言被称为**安全的**。静态阶段通过一组用于推导**类型判断**的规则（称为 statics）来指定，这些规则声明表达式在某种类型上是形式正确的。类型通过“预测”程序的组成部分在运行时的某些执行行为的方式来调节这些部分之间的交互，从而确保它们在运行时正确地配合。如果这些预测是正确的，类型安全得以保证；如果不是，则静态语义被认为定义不当，该语言被视为执行时**不安全**。
+
+在本章中，我们介绍一种简单表达式语言 $E$ 的静态语义，作为贯穿本书的分析方法的一个示例。
+
 #### 语法 Syntax
+
+在定义一种语言时，我们主要关注其抽象语法，该语法由一组操作符及其元数（arity）指定。抽象语法提供了语言的系统化、明确的层级结构和绑定结构的描述，并被视为该语言的官方表示。然而，为了清晰起见，通常还需要指定最小的具体语法约定，而无需建立完全精确的语法。
+
+我们通过以下方式完成这两个目的：使用一个**语法表**，并通过示例说明其含义。以下表格总结了 $E$ 的抽象语法和具体语法：
+
+| **抽象语法（Typ 和 Exp）**  | **具体语法** |
+|----------------------------|---------------|
+| $\text{Typ} \; \tau ::= \text{num}$       | numbers       |
+| $\phantom{\text{Typ} \; \tau ::= }\text{str}$       | strings       |
+| $\text{Exp} \; e ::= x$       | variable       |
+| $\phantom{\text{Exp} \; e ::= }\text{num}[n]$ | numeral        |
+| $\phantom{\text{Exp} \; e ::= }\text{str}[s]$ | literal        |
+| $\phantom{\text{Exp} \; e ::= }\text{plus}(e_1, e_2)$ | $e_1 + e_2$   |
+| $\phantom{\text{Exp} \; e ::= }\text{times}(e_1, e_2)$ | $e_1 \ast e_2$ |
+| $\phantom{\text{Exp} \; e ::= }\text{cat}(e_1, e_2)$ | $e_1 \wedge e_2$ |
+| $\phantom{\text{Exp} \; e ::= }\text{len}(e)$ | $\|e\|$          |
+| $\phantom{\text{Exp} \; e ::= }\text{let}(e_1; x.e_2)$ | $\text{let } x \text{ be } e_1 \text{ in } e_2$ |
+
+此表定义了两种类别：
+
+1. **类型**（Typ），由 $\tau$ 表示。
+2. **表达式**（Exp），由 $e$ 表示。
+
+表格定义了一组操作符及其元数。例如，操作符 $\text{let}$ 的元数为 $(\text{Exp}, \text{Exp.Exp})\text{Exp}$，这意味着该操作符有两个属于 $\text{Exp}$ 类型的参数，并且在第二个参数中绑定一个属于 $\text{Exp}$ 类型的变量。
 
 #### 类型系统 Type System
 
+类型系统的作用是对短语的构成施加约束，这些短语对其出现的上下文敏感。例如，表达式 $\text{plus}(x; \text{num}[n])$ 是否合理，取决于变量 $x$ 是否被限制为表达式上下文中 $\text{num}$ 类型。这一示例实际上说明了一般情况：关于表达式上下文的唯一信息是其所在范围内变量的类型。因此，语言 $E$ 的静态语义包括对通用假设判断形式的归纳定义：
+
+\[
+\vec{x} \mid \Gamma \vdash e : \tau
+\]
+
+其中 $\vec{x}$ 是变量的有限集合，$\Gamma$ 是一个**类型上下文（typing context）**，包含形如 $x : \tau$ 的假设，每个 $x \in \vec{x}$ 都有一个假设。我们依赖于排版约定来确定变量的集合，使用字母 $x$ 和 $y$ 表示它们。我们写作 $x \notin \text{dom}(\Gamma)$ 来表示 $\Gamma$ 中没有关于 $x : \tau$ 的假设（对于任意类型 $\tau$），此时我们说变量 $x$ 对于 $\Gamma$ 是新的。
+
+定义 $E$ 静态语义的规则如下：
+
+\[
+\frac{}{\Gamma, x : \tau \vdash x : \tau} \tag{4.1a}
+\]
+
+\[
+\frac{}{\Gamma \vdash \text{str}[s] : \text{str}} \tag{4.1b}
+\]
+
+\[
+\frac{}{\Gamma \vdash \text{num}[n] : \text{num}} \tag{4.1c}
+\]
+
+\[
+\frac{\Gamma \vdash e_1 : \text{num}, \Gamma \vdash e_2 : \text{num}}{\Gamma \vdash \text{plus}(e_1, e_2) : \text{num}} \tag{4.1d}
+\]
+
+\[
+\frac{\Gamma \vdash e_1 : \text{num}, \Gamma \vdash e_2 : \text{num}}{\Gamma \vdash \text{times}(e_1, e_2) : \text{num}} \tag{4.1e}
+\]
+
+\[
+\frac{\Gamma \vdash e_1 : \text{str}, \Gamma \vdash e_2 : \text{str}}{\Gamma \vdash \text{cat}(e_1, e_2) : \text{str}} \tag{4.1f}
+\]
+
+\[
+\frac{\Gamma \vdash e : \text{str}}{\Gamma \vdash \text{len}(e) : \text{num}} \tag{4.1g}
+\]
+
+\[
+\frac{\Gamma \vdash e_1 : \tau_1 \quad \Gamma, x : \tau_1 \vdash e_2 : \tau_2}{\Gamma \vdash \text{let}(e_1; x.e_2) : \tau_2} \tag{4.1h}
+\]
+
+在规则 (4.1h) 中，我们隐式地假设变量 $x$ 未在 $\Gamma$ 中声明。这一条件可通过为 $\text{let}$ 表达式选择合适的 $\alpha$-等价类的表示来满足。
+
+> - 前三条表明在 $\Gamma$ 上下文中，变量 $x$、操作符 $\text{str}$ 和 $\text{num}$ 的类型。
+> - 中间四条表明在 $\Gamma$ 上下文中，四种运算的结果的类型。
+> - 最后一条表明在 $\Gamma$ 上下文中，如果变量 $x$ 在 $\Gamma$ 中未声明，$e_1$ 的类型是 $\tau_1$，$e_2$ 的类型是 $\tau_2$，那么将 $e_1$ 绑定到 $x$ 后，$e_2$ 的类型不变。
+
+通过对规则 (4.1) 应用类型归纳，可以很容易地检查每个表达式至多有一种类型。
+
+!!! note "引理 4.1（类型唯一性）"
+    **引理** 对于任意类型上下文 $\Gamma$ 和表达式 $e$，至多存在一个 $\tau$ 使得 $\Gamma \vdash e : \tau$。
+
+    ---
+
+    **证明** 通过对规则 (4.1) 进行规则归纳，利用变量在任意类型上下文中至多具有一种类型的事实。
+
+类型规则是**语法导向**的，因为每种表达式形式恰好对应一条规则。因此，可以容易地给出类型判断的必要条件，它们是通过反转对应类型规则的充分条件得到的。
+
+!!! note "引理 4.2（类型反推）"
+    **引理** 假设 $\Gamma \vdash e : \tau$。如果 $e = \text{plus}(e_1, e_2)$，则 $\tau = \text{num}$，$\Gamma \vdash e_1 : \text{num}$，并且 $\Gamma \vdash e_2 : \text{num}$。对于语言的其他构造形式也是类似的。
+
+    ---
+
+    **证明** 所有这些都可以通过对类型判断 $\Gamma \vdash e : \tau$ 的推导过程进行归纳来证明。
+
+在更复杂的语言中，这种反转原则更难陈述和证明。
+
 #### 结构性质 Structual Properties
 
-PPL Part2, 3
-4. Statics
-大多数语言在处理时区分静态和动态阶段。静态包含解析和类型检查，确保程序正确性，动态部分包含执行正确的程序。
-语言的安全性：正确的程序在执行时表现良好。
-静态阶段由一组类型推断规则组成。类型推断本质上预测了程序执行时的表现的某些方面。
-本章探索简单的表达式语言 E
-4.1 语法
-注意两种类别：Typ 和 Exp。目前我尚不太理解 Typ 这个类型的意义。
-4.2 类型系统
-类型上下文\Delta：形如 x:\tao。注意回忆递归定义章节，\Delta 表示一组有限的基本判断，冒号表示：表达式 e 的类型是 \tao。
-引理：类型的唯一性：对于一个类型上下文和表达式，表达式最多只有一个类型。
-引理：类型反推
-4.3 结构性质
+静态语义具有通用假设判断的结构属性。
 
+> 回忆：一般假设判断的结构属性有自反性、弱化、传递性。
+
+!!! note "引理 4.3（弱化）"
+    **引理** 如果 $\Gamma \vdash e' : \tau'$，那么 $\Gamma, x : \tau \vdash e' : \tau'$，其中 $x \notin \text{dom}(\Gamma)$ 且 $\tau$ 是任意类型。
+
+    ---
+
+    **证明** 通过对 $\Gamma \vdash e' : \tau'$ 的推导过程进行归纳。以下给出规则 (4.1h) 的情况：
+    已知 $e' = \text{let}(e_1; z.e_2)$，根据变量约定，可以假设 $z$ 被选为 $z \notin \text{dom}(\Gamma)$ 且 $z \neq x$。通过归纳假设，我们有：
+
+    1. $\Gamma, x : \tau \vdash e_1 : \tau_1$；
+    2. $\Gamma, x : \tau, z : \tau_1 \vdash e_2 : \tau'$。
+    由规则 (4.1h) 可得结论。
+
+从编程的角度来看，引理 4.3 表明我们可以在任何绑定其自由变量的上下文中使用一个表达式：如果表达式 $e$ 在某上下文 $\Gamma$ 中是类型正确的，那么我们可以将其“导入”到包含假设 $\Gamma$ 的任何上下文中。换句话说，为表达式 $e$ 引入超出其所需的变量不会使 $e$ 无效；它保持良构，且类型不变。
+
+!!! note "引理 4.4（替换）"
+    **引理** 如果 $\Gamma, x : \tau \vdash e' : \tau'$ 且 $\Gamma \vdash e : \tau$，那么 $\Gamma \vdash [e/x]e' : \tau'$。
+
+    ---
+
+    **证明** 通过对 $\Gamma, x : \tau \vdash e' : \tau'$ 的推导过程进行归纳。我们同样仅考虑规则 (4.1h) 的情况：
+    如前所述，$e' = \text{let}(e_1; z.e_2)$，其中 $z$ 被选为 $z \neq x$ 且 $z \notin \text{dom}(\Gamma)$。通过归纳假设和引理 4.3，我们有：
+
+    1. $\vdash [e/x]e_1 : \tau_1$；
+    2. $\Gamma, z : \tau_1 \vdash [e/x]e_2 : \tau'$。
+    由于 $z$ 的选择，我们有：
+    \[
+    [e/x]\text{let}(e_1; z.e_2) = \text{let}([e/x]e_1; z.[e/x]e_2)。
+    \]
+    由规则 (4.1h) 可得 $\vdash [e/x]\text{let}(e_1; z.e_2) : \tau'$，即得证。
+
+更重要的是，引理 4.4 表达了模块化和链接的重要概念。我们可以将表达式 $e$ 和 $e'$ 视为更大系统中的两个组件，其中 $e'$ 是实现 $e$ 的客户端。客户端声明了一个变量以指定实现的类型，并在仅了解此信息的情况下进行类型检查。实现必须符合客户端的假设类型。如果符合，则可以将它们链接形成复合系统 $[e/x]e'$。该实现本身可能是另一个组件的客户端，用变量 $y$ 表示，并在链接期间被该组件替换。当所有此类变量都被实现后，结果是一个封闭表达式，准备好进行执行（求值）。
+
+!!! note "引理 4.5（分解）"
+    **引理** 如果 $\vdash [e/x]e' : \tau'$，那么对于任何类型 $\tau$，只要 $\vdash e : \tau$，就有 $\Gamma, x : \tau \vdash e' : \tau'$。
+
+    ---
+
+    **证明** 表达式 $[e/x]e'$ 的类型仅依赖于 $e$ 的类型（若有出现）。引理 4.5 表明，任何子表达式都可以作为更大系统的单独模块被隔离出来。当变量 $x$ 在 $e'$ 中多次出现时，这一性质尤为有用，因为一个 $e$ 的副本足以满足 $e'$ 中所有 $x$ 的出现。
+
+规则 (4.1) 给出的 $E$ 的静态语义体现了一个重复出现的模式。语言的构造被分类为两种形式：**引入形式（introduction）**和**消解形式（elimination）**。一种类型的引入形式决定了该类型的值或规范形式（canonical form）；消解形式决定了如何操作该类型的值以形成另一种（可能相同）类型的计算。在语言 $E$ 中，类型 $\text{num}$ 的引入形式是数字，类型 $\text{str}$ 的引入形式是字符串字面量。类型 $\text{num}$ 的消解形式是加法和乘法，类型 $\text{str}$ 的消解形式是字符串拼接和求长度。
+
+这种分类的重要性将在第 5 章定义语言的动态语义时变得清晰。届时，我们将看到消解形式是引入形式的逆操作，因为它们“分解”了引入形式“组合”起来的内容。语言静态语义和动态语义的一致性表达了**类型安全**的概念，这是第 6 章的主题。
 
 ### 第五章：动态语义 Dynamics
 
@@ -915,7 +1048,7 @@ s \longmapsto^* s \tag{5.1a}
 
 \[
 \frac{
-s \longmapsto s'\quad s' \longmapsto^* s''
+s \longmapsto s'\quad s' \longmapsto^*s''
 }{
 s \longmapsto^* s''
 }
@@ -1273,7 +1406,7 @@ n_1 + n_2 \equiv n_2 + n_1 : \text{num} \tag{5.12}
 
 一般法则（如式 (5.11)）与其所有实例（如式 (5.12)）之间的“差距”可以通过扩展等价的概念来弥补，包括一种基于数学归纳法的证明原则。这种等价有时被称为**语义等价**，因为它表达了因表达式动态而成立的关系。（语义等价在第 46 章中针对相关语言进行了严格的发展。）
 
-对于表达式语言 \(E\)，关系 \(e \equiv e' : \tau\) 当且仅当存在 \(e_0 \in \text{val}\)，使得 \(e \rightarrow^* e_0\) 且 \(e' \rightarrow^* e_0\)。
+对于表达式语言 \(E\)，关系 \(e \equiv e' : \tau\) 当且仅当存在 \(e_0 \in \text{val}\)，使得 \(e \rightarrow^*e_0\) 且 \(e' \rightarrow^* e_0\)。
 
 **证明**
 从右到左的证明是直接的，因为每一步转化都是一个有效的等式。反之，则基于以下更一般的命题（通过对规则 (5.10) 归纳证明）：如果 \(\Gamma \vdash e \equiv e' : \tau\)，并且对于每个 \(1 \leq i \leq n\)，表达式 \(e_i\) 和 \(e_i'\) 都计算为一个共同的值 \(v_i\)，那么存在 \(e_0 \in \text{val}\)，使得：
@@ -1290,8 +1423,6 @@ n_1 + n_2 \equiv n_2 + n_1 : \text{num} \tag{5.12}
 
 ### 第六章：类型安全
 
-### **第6章 类型安全**
-
 大多数编程语言是安全的（或者称为类型安全、强类型）。非正式地，这意味着某些类型的不匹配不会在执行过程中出现。例如，对于语言 \(E\) 的类型安全而言，以下情况不会发生：将一个数字与一个字符串相加，或将两个数字连接起来，这些操作在语义上都是无意义的。
 
 通常，类型安全表示**静态性质**和**动态性质**之间的一致性。静态性质可以看作预测了表达式的值将具有某种形式，从而保证该表达式的动态行为是定义良好的。因此，计算不会“卡死”在某种无可转换的状态下，这在实现中对应于运行时不会出现“非法指令”错误。通过证明每一步转换都保留可类型性，并证明可类型状态是定义良好的，可以证明类型安全。结果是，计算不会“偏离正轨”，因此永远不会遇到非法指令。
@@ -1301,6 +1432,7 @@ n_1 + n_2 \equiv n_2 + n_1 : \text{num} \tag{5.12}
 ---
 
 #### **定理 6.1 （类型安全）**
+
 1. 如果 \(e : \tau\) 且 \(e \rightarrow e'\)，则 \(e' : \tau\)。
 2. 如果 \(e : \tau\)，那么 \(e\) 或是一个值 \(e \text{ val}\)，或者存在 \(e'\)，使得 \(e \rightarrow e'\)。
 
@@ -1319,9 +1451,10 @@ n_1 + n_2 \equiv n_2 + n_1 : \text{num} \tag{5.12}
 ---
 
 #### **定理 6.2 （保型性）**
+
 如果 \(e : \tau\) 且 \(e \rightarrow e'\)，则 \(e' : \tau\)。
 
-**证明**  
+**证明**
 我们通过两种情况进行证明，其余部分留给读者。首先考虑规则 (5.4b)：
 
 \[
@@ -1351,12 +1484,13 @@ e_1 \rightarrow e_1' \quad \text{则} \quad \text{plus}(e_1 ; e_2) \rightarrow \
 ---
 
 #### **引理 6.3 （规范形式）**
+
 如果 \(e \text{ val}\) 且 \(e : \tau\)，则：
 
 1. 如果 \(\tau = \text{num}\)，那么 \(e = \text{num}[n]\)，其中 \(n\) 是某个数字。
 2. 如果 \(\tau = \text{str}\)，那么 \(e = \text{str}[s]\)，其中 \(s\) 是某个字符串。
 
-**证明**  
+**证明**
 通过对规则 (4.1) 和 (5.3) 的归纳。
 
 ---
@@ -1366,9 +1500,10 @@ e_1 \rightarrow e_1' \quad \text{则} \quad \text{plus}(e_1 ; e_2) \rightarrow \
 ---
 
 #### **定理 6.4 （前进性）**
+
 如果 \(e : \tau\)，那么 \(e\) 或是一个值 \(e \text{ val}\)，或者存在 \(e'\) 使得 \(e \rightarrow e'\)。
 
-**证明**  
+**证明**
 通过对类型推导的归纳证明。我们仅考虑以下一种情况，对于规则 (4.1d)：
 
 \[
@@ -1389,17 +1524,1059 @@ e_1 : \text{num} \quad e_2 : \text{num} \quad \text{则} \quad \text{plus}(e_1 ;
 
 ### 第七章：动态类型推导
 
+课内不涉及，略过。
+
 ## 第三部分：全函数
+
+> 该部分从表达式中扩展函数的概念。
 
 ### 第八章：函数定义和值
 
+在语言 E 中，我们可以执行诸如给定表达式的加倍计算，但我们无法将加倍作为一个概念本身来表达。为了捕捉加倍一个数字的模式，我们使用变量来表示一个固定但未指定的数字，从而表达任意数字的加倍。然后，通过将一个数值表达式替换为该变量，可以获得加倍的特定实例。一般来说，一个表达式可能涉及许多不同的变量，因此我们需要指定在特定上下文中哪个变量在变化，从而产生该变量的**函数（function）**。
+
+在本章中，我们将考虑 E 的两个扩展，分别是函数。第一个也是最明显的扩展是将**函数定义**添加到语言中。函数通过将名称绑定到一个带有绑定变量的 abt（抽象绑定树）来定义，该变量作为该函数的参数。通过将特定表达式（具有适当类型）替换绑定变量来应用函数，从而获得一个表达式。
+
+定义函数的域和范围仅限于类型 nat 和 str，因为这些是唯一的表达式类型。这些函数称为**一阶函数（first-order）**，与之相对的是高阶函数，它们允许函数作为其他函数的参数和结果。由于函数的域和范围是类型，这要求我们引入函数类型，其元素是函数。因此，我们可以形成高阶类型的函数，其域和范围本身可能是函数类型。
+
+#### 一阶函数 First-Order Functions
+
+语言 ED 扩展了 E，增加了函数定义和函数应用，如下所示：
+
+!!! note "定义：函数定义（definition）和应用（application）"
+
+    \[
+    \begin{aligned}
+    \text{Exp} \ e ::= &\text{apply}\{f \}(e) \quad & f (e) \ \text{应用} \\
+    &\text{fun}\{\tau_1; \tau_2\}(x_1.e_2; f.e) \quad & \text{fun} \ f (x_1 : \tau_1) : \tau_2 = e_2 \ \text{in} \ e \ \text{定义}
+    \end{aligned}
+    \]
+
+    表达式 \(\text{fun}\{\tau_1; \tau_2\}(x_1.e_2; f.e)\) 在 \(e\) 中将函数名 \(f\) 绑定到模式 \(x_1.e_2\)，该模式具有参数 \(x_1\) 和定义 \(e_2\)。函数的域和范围分别是类型 \(\tau_1\) 和 \(\tau_2\)。表达式 \(\text{apply}\{f \}(e)\) 用参数 \(e\) 实例化 \(f\) 的绑定。
+
+ED 的静态语义定义了两种形式的判断：
+
+1. 表达式类型判断，\(e : \tau\)，表示 \(e\) 的类型是 \(\tau\)；
+2. 函数类型判断，\(f (\tau_1) : \tau_2\)，表示 \(f\) 是一个参数类型为 \(\tau_1\)，结果类型为 \(\tau_2\) 的函数。
+
+判断 \(f (\tau_1) : \tau_2\) 称为 \(f\) 的函数头，它指定了函数的域类型和范围类型。
+
+ED 的静态语义由以下规则定义：
+
+\[
+\frac{\Gamma, x_1 : \tau_1 \vdash e_2 : \tau_2 \quad \Gamma, f (\tau_1) : \tau_2 \vdash e : \tau}{\Gamma \vdash \text{fun}\{\tau_1; \tau_2\}(x_1.e_2; f.e) : \tau} \tag{8.1a}
+\]
+
+\[
+\frac{\Gamma \vdash f (\tau_1) : \tau_2 \quad \Gamma \vdash e : \tau_1}{\Gamma \vdash \text{apply}\{f \}(e) : \tau_2} \tag{8.1b}
+\]
+
+函数替换，记作 \([[ x.e/f ]] e'\)，通过对 \(e'\) 的结构进行归纳定义，类似于普通替换。然而，函数名 \(f\) 不代表一个表达式，只能出现在形式为 \(\text{apply}\{f \}(e)\) 的应用中。函数替换由以下规则定义：
+
+\[
+[[ x.e/f ]] \text{apply}\{f \}(e') = \text{let}([[ x.e/f ]] e'; x.e) \tag{8.2}
+\]
+
+在应用 \(f\) 的位置，带参数 \(e'\) 的函数替换产生一个 \(\text{let}\) 表达式，将 \(x\) 绑定到扩展 \(e'\) 中任何进一步应用 \(f\) 的结果。
+
+!!! note "引理 8.1"
+    如果 \(\Gamma, f (\tau_1) : \tau_2 \vdash e : \tau\) 且 \(\Gamma, x_1 : \tau_1 \vdash e_2 : \tau_2\)，则 \(\Gamma \vdash [[ x_1.e_2/f ]] e : \tau\)。
+
+    **证明** 通过对第一个前提进行规则归纳，类似于引理 4.4 的证明。
+
+ED 的动态语义使用函数替换定义：
+
+\[
+\text{fun}\{\tau_1; \tau_2\}(x_1.e_2; f.e) \rightarrow [[ x_1.e_2/f ]] e \tag{8.3}
+\]
+
+因为函数替换将所有 \(f\) 的应用替换为适当的 \(\text{let}\) 表达式，所以不需要为应用表达式给出规则（本质上，它们在求值期间表现得像变量，而不是语言的原始操作）。
+
+ED 的安全性可以通过高阶函数的安全性定理推导出来，我们将在下一节讨论。
+
+#### 高阶函数 Higher-Order Functions
+
+ED 中变量定义和函数定义之间的相似性是显而易见的。是否可以将它们结合起来？需要弥合的差距是函数与表达式的隔离。
+
+函数名 \( f \) 绑定到一个抽象器 \( x.e \)，指定了一个模式，当 \( f \) 被应用时实例化。为了将函数定义简化为普通定义，我们将抽象器具体化为一种表达式形式，称为 \(\lambda\)-抽象，记作 \(\lambda\{\tau_1\}(x.e)\)。应用推广为 \(\text{ap}(e_1; e_2)\)，其中 \( e_1 \) 是表示函数的表达式，而不仅仅是函数名。 \(\lambda\)-抽象和应用是函数类型 \(\text{arr}(\tau_1; \tau_2)\) 的引入和消解形式，该类型分类了域为 \(\tau_1\) 且范围为 \(\tau_2\) 的函数。
+
+语言 EF 通过以下语法扩展了 E，增加了函数类型：
+
+\[
+\begin{aligned}
+\text{Typ} \ \tau &::= \text{arr}(\tau_1; \tau_2) \quad \tau_1 \rightarrow \tau_2 \quad \text{函数} \\
+\text{Exp} \ e &::= \lambda\{\tau\}(x.e) \quad \lambda (x : \tau) \ e \quad \text{抽象} \\
+&\quad \quad \text{ap}(e_1; e_2) \quad e_1(e_2) \quad \text{应用}
+\end{aligned}
+\]
+
+在 EF 中，函数是一等公民，因为它们是一种可以像其他表达式一样使用的表达式形式。特别地，函数可以作为参数传递给其他函数，也可以作为结果返回。因此，一等函数被称为高阶函数，而不是一阶函数。
+
+EF 的静态语义通过扩展规则 (4.1) 定义如下规则：
+
+\[
+\frac{\Gamma, x : \tau_1 \vdash e : \tau_2}{\Gamma \vdash \lambda\{\tau_1\}(x.e) : \text{arr}(\tau_1; \tau_2)} \tag{8.4a}
+\]
+
+\[
+\frac{\Gamma \vdash e_1 : \text{arr}(\tau_2; \tau) \quad \Gamma \vdash e_2 : \tau_2}{\Gamma \vdash \text{ap}(e_1; e_2) : \tau} \tag{8.4b}
+\]
+
+!!! note "引理 8.2（反演）"
+    假设 \(\Gamma \vdash e : \tau\)。
+
+    1. 如果 \(e = \lambda\{\tau_1\}(x.e_2)\)，则 \(\tau = \text{arr}(\tau_1; \tau_2)\) 且 \(\Gamma, x : \tau_1 \vdash e_2 : \tau_2\)。
+    2. 如果 \(e = \text{ap}(e_1; e_2)\)，则存在 \(\tau_2\)，使得 \(\Gamma \vdash e_1 : \text{arr}(\tau_2; \tau)\) 且 \(\Gamma \vdash e_2 : \tau_2\)。
+
+    **证明** 证明通过对类型规则的规则归纳进行。观察到对于每条规则，恰好有一个情况适用，并且规则的前提提供了所需的结果。
+
+!!! note "引理 8.3（替换）"
+    如果 \(\Gamma, x : \tau \vdash e' : \tau'\)，且 \(\Gamma \vdash e : \tau\)，则 \(\Gamma \vdash [e/x]e' : \tau'\)。
+
+    **证明** 通过对第一个判断的推导进行规则归纳。
+
+EF 的动态语义通过以下规则扩展了 E：
+
+\[
+\lambda\{\tau\}(x.e) \ \text{val} \tag{8.5a}
+\]
+
+\[
+\frac{e_1 \rightarrow e_1'}{\text{ap}(e_1; e_2) \rightarrow \text{ap}(e_1'; e_2)} \tag{8.5b}
+\]
+
+\[
+\frac{e_1 \ \text{val} \quad e_2 \rightarrow e_2'}{\text{ap}(e_1; e_2) \rightarrow \text{ap}(e_1; e_2')} \tag{8.5c}
+\]
+
+\[
+\frac{e_2 \ \text{val}}{\text{ap}(\lambda\{\tau_2\}(x.e_1); e_2) \rightarrow [e_2/x]e_1} \tag{8.5d}
+\]
+
+带括号的规则和前提适用于按值调用的函数应用解释，而不适用于按名调用的解释。
+
+当函数是一等公民时，不需要函数声明：只需将函数声明 \(\text{fun} \ f (x_1 : \tau_1) : \tau_2 = e_2 \ \text{in} \ e\) 替换为定义 \(\text{let} \ \lambda (x : \tau_1) \ e_2 \ \text{be} \ f \ \text{in} \ e\)，并将二等函数应用 \(f (e)\) 替换为一等函数应用 \(f (e)\)。由于 \(\lambda\)-抽象是值，无论定义是按值还是按名求值，这种替换都是有意义的。
+
+然而，使用普通定义，我们可以给部分应用的函数命名，例如：
+
+\[
+\text{let} \ k \ \text{be} \ \lambda (x_1 : \text{num}) \ \lambda (x_2 : \text{num}) \ x_1 \ \text{in} \ \text{let} \ \text{kz} \ \text{be} \ k(0) \ \text{in} \ \text{kz}(3) + \text{kz}(5)
+\]
+
+没有一等函数，我们甚至无法形成返回函数作为结果的函数 \(k\)，当应用于其第一个参数时。
+
+!!! theorem "定理 8.4（保型性）"
+    如果 \(\Gamma \vdash e : \tau\) 且 \(e \rightarrow e'\)，则 \(\Gamma \vdash e' : \tau\)。
+
+    **证明** 证明通过对定义语言动态的规则 (8.5) 进行归纳。考虑规则 (8.5d)：
+
+    \[
+    \text{ap}(\lambda\{\tau_2\}(x.e_1); e_2) \rightarrow [e_2/x]e_1
+    \]
+
+    假设 \(\text{ap}(\lambda\{\tau_2\}(x.e_1); e_2) : \tau_1\)。根据引理 8.2，我们有 \(e_2 : \tau_2\) 且 \(\Gamma, x : \tau_2 \vdash e_1 : \tau_1\)，因此根据引理 8.3，\([e_2/x]e_1 : \tau_1\)。
+
+    其他应用规则类似处理。
+
+!!! lemma "引理 8.5（规范形式）"
+    如果 \(\Gamma \vdash e : \text{arr}(\tau_1; \tau_2)\) 且 \(e \ \text{val}\)，则 \(e = \lambda (x : \tau_1) \ e_2\)，其中 \(x\) 是某个变量，\(e_2\) 是某个表达式，使得 \(\Gamma, x : \tau_1 \vdash e_2 : \tau_2\)。
+
+    **证明** 通过对类型规则进行归纳，使用假设 \(e \ \text{val}\)。
+
+!!! theorem "定理 8.6（前进性）"
+    如果 \(\Gamma \vdash e : \tau\)，则 \(e\) 要么是值 \(e \ \text{val}\)，要么存在 \(e'\)，使得 \(e \rightarrow e'\)。
+
+    **证明** 证明通过对规则 (8.4) 进行归纳。注意，由于我们只考虑封闭项，类型推导没有假设。
+
+考虑规则 (8.4b)（按名解释）。通过归纳，\(e_1\) 要么是值，要么存在 \(e_1'\)，使得 \(e_1 \rightarrow e_1'\)。在后一种情况下，我们有 \(\text{ap}(e_1; e_2) \rightarrow \text{ap}(e_1'; e_2)\)。在前一种情况下，根据引理 8.5，我们有 \(e_1 = \lambda\{\tau_2\}(x.e)\)，其中 \(x\) 和 \(e\) 是某个变量和表达式。但此时 \(\text{ap}(e_1; e_2) \rightarrow [e_2/x]e\)。
+
+#### 估值动态与定义等价 Evaluation Dynamics and Definitional Equality
+
+EF 的估值判断 \( e \Downarrow v \) 的归纳定义如下：
+
+\[
+\frac{}{
+\lambda\{\tau\}(x.e) \Downarrow \lambda\{\tau\}(x.e)
+}
+\tag{8.6a}
+\]
+
+\[
+\frac{
+e_1 \Downarrow \lambda\{\tau\}(x.e) \quad [e_2/x]e \Downarrow v
+}{
+\text{ap}(e_1; e_2) \Downarrow v
+}
+\tag{8.6b}
+\]
+
+很容易验证，如果 \( e \Downarrow v \)，则 \( v \ \text{val} \)，并且如果 \( e \ \text{val} \)，则 \( e \Downarrow e \)。
+
+!!! theorem "定理 8.7"
+    \( e \Downarrow v \iff e \rightarrow^* v \) 且 \( v \ \text{val} \)。
+
+    ---
+
+
+    **证明**：在正向证明中，我们通过对规则 (8.6) 进行规则归纳，类似于定理 7.2 的证明。在反向证明中，我们通过对规则 (5.1) 进行规则归纳。证明依赖于引理 7.4 的类似结论，该引理表明估值在逆向执行下是封闭的，这通过对规则 (8.5) 进行归纳证明。
+
+EF 的按名调用动态的定义等价通过扩展规则 (5.10) 定义：
+
+\[
+\frac{}{
+\text{ap}(\lambda\{\tau\}(x.e_2); e_1) \equiv [e_1/x]e_2 : \tau_2
+}
+\tag{8.7a}
+\]
+
+\[
+\frac{
+\Gamma \vdash e_1 \equiv e_1' : \tau_2 \rightarrow \tau \quad \Gamma \vdash e_2 \equiv e_2' : \tau_2
+}{
+\Gamma \vdash \text{ap}(e_1; e_2) \equiv \text{ap}(e_1'; e_2') : \tau
+}
+\tag{8.7b}
+\]
+
+\[
+\frac{
+\Gamma, x : \tau_1 \vdash e_2 \equiv e_2' : \tau_2
+}{
+\Gamma \vdash \lambda\{\tau_1\}(x.e_2) \equiv \lambda\{\tau_1\}(x.e_2') : \tau_1 \rightarrow \tau_2
+}
+\tag{8.7c}
+\]
+
+按值调用的定义等价需要更多的机制。主要思想是限制规则 (8.7a) 要求参数是一个值。此外，值必须扩展以包括变量，因为在按值调用中，函数的参数变量代表其参数的值。按值调用的定义等价判断形式为：
+
+\[
+\Gamma \vdash e_1 \equiv e_2 : \tau
+\]
+
+其中 \(\Gamma\) 包含成对的假设 \(x : \tau, x \ \text{val}\)，表示每个作用域内的变量 \(x\) 的类型和它是一个值。我们写作 \(\Gamma \vdash e \ \text{val}\) 表示在这些假设下 \(e\) 是一个值，因此 \(x : \tau, x \ \text{val} \vdash x \ \text{val}\)。
+
+#### 动态作用域 Dynamic Scope
+
+规则 (8.5) 定义的函数应用动态仅适用于没有自由变量的表达式。当应用一个函数时，参数被替换为参数变量，确保结果仍然是封闭的。此外，由于封闭表达式的替换不会引起捕获，变量的作用域不会被动态打乱，确保了第 1 章中描述的绑定和作用域原则。这种变量处理方式称为静态作用域或静态绑定，以区别于我们现在描述的另一种方法。
+
+另一种方法称为动态作用域或动态绑定，有时被提倡作为静态绑定的替代方案。关键区别在于动态作用域否认了绑定变量重命名的 abt 的同一性原则。因此，避免捕获的替换不可用。相反，估值是为开放项定义的，自由变量的绑定由一个将变量名映射到（可能是开放的）值的环境提供。变量的绑定尽可能晚地确定，在变量被求值时，而不是在它被绑定时。如果环境没有为变量提供绑定，估值会因运行时错误而中止。
+
+对于一阶函数，动态和静态作用域是一致的，但在高阶情况下，两种方法会有所不同。例如，对于表达式 \((\lambda (x : \text{num}) \ x + 7)(42)\) 的求值，静态和动态作用域没有区别。无论是在求值前将 42 替换为函数体中的 \(x\)，还是在 \(x\) 绑定到 42 的情况下求值函数体，结果都是相同的。
+
+在高阶情况下，静态和动态作用域的等价性被打破。例如，考虑表达式：
+
+\[
+e \ (\lambda (x : \text{num}) \ \lambda (y : \text{num}) \ x + y)(42)
+\]
+
+在静态作用域下，\(e\) 求值为封闭值 \(v = \lambda (y : \text{num}) \ 42 + y\)，如果应用它，会将 42 加到其参数上。无论如何选择绑定变量 \(x\)，结果总是相同的。在动态作用域下，\(e\) 求值为开放值 \(v' = \lambda (y : \text{num}) \ x + y\)，其中变量 \(x\) 是自由的。当这个表达式被求值时，变量 \(x\) 被绑定到 42，但这无关紧要，因为在求值 \(\lambda\)-抽象时不需要这个绑定。\(x\) 的绑定直到 \(v'\) 被应用到一个参数时才被检索，而不是在 \(e\) 被求值时的绑定。
+
+这就是区别所在。例如，考虑表达式：
+
+\[
+e' = (\lambda (f : \text{num} \rightarrow \text{num}) \ (\lambda (x : \text{num}) \ f(0))(7))(e)
+\]
+
+在动态作用域下，\(e'\) 的值是 7，而在静态作用域下，它的值是 42。差异可以追溯到在 \(e\) 的值（即 \(v'\)）被应用到 0 之前，将 \(x\) 重新绑定到 7，从而改变了结果。
+
+动态作用域违反了变量通过避免捕获的替换赋予意义的基本原则，如第 1 章所定义。违反这一原则至少有两个不良后果。一个是绑定变量的名称变得重要，这与遵循同一性原则的静态作用域相反。例如，如果 \(e'\) 的最内层 \(\lambda\)-抽象绑定变量 \(y\) 而不是 \(x\)，那么它的值将是 42 而不是 7。因此，程序的一个组件可能对另一个组件中选择的绑定变量名称敏感，这是对模块化分解的明显违反。
+
+另一个问题是动态作用域通常不是类型安全的。例如，考虑表达式：
+
+\[
+e' = (\lambda (f : \text{num} \rightarrow \text{num}) \ (\lambda (x : \text{str}) \ f("zero"))(7))(e)
+\]
+
+在动态作用域下，这个表达式在尝试求值 \(x + y\) 时卡住，因为 \(x\) 被绑定到字符串“zero”，无法进一步求值。因此，动态作用域只被提倡用于所谓的动态类型语言，这些语言通过动态一致性检查来替代静态一致性检查，以确保一种弱形式的前进性。编译时错误因此被转化为运行时错误。
+
+（有关动态类型的更多信息，请参见第 22 章，关于动态作用域的更多信息，请参见第 32 章。）
+
 ### 第九章：高阶递归的 $T$ 系统
+
+系统 T，广为人知的 Gödel 的 T，是函数类型与自然数类型的结合。与 E 不同，E 为自然数配备了一些任意选择的算术运算，而语言 T 提供了一种通用机制，称为**原始递归（primitive recursion）**，从中可以定义这些原语。原始递归捕捉了自然数的基本归纳特性，因此可以看作是语言中每个程序的内在终止证明。因此，我们只能在语言中定义**全函数（total function）**，即对于每个参数总是返回值的函数。本质上，T 中的每个程序都“自带”其终止的证明。尽管这似乎是防止无限循环的保护措施，但它也是一种武器，可以用来证明某些程序不能在 T 中编写。要做到这一点，需要为语言中的每个可能程序提供一个主终止证明，而我们将证明这是不存在的。
+
+> 全函数就是对于每个输入都有一个输出的函数。
+
+#### 静态语义 Static
+
+T 的语法由以下文法给出：
+
+\[
+\begin{aligned}
+\text{Typ} \ \tau &::= \text{nat} \quad \text{nat} \quad \text{自然数} \\
+&\quad \quad \text{arr}(\tau_1; \tau_2) \quad \tau_1 \rightarrow \tau_2 \quad \text{函数} \\
+\text{Exp} \ e &::= x \quad x \quad \text{变量} \\
+&\quad \quad z \quad z \quad \text{零} \\
+&\quad \quad s(e) \quad s(e) \quad \text{后继} \\
+&\quad \quad \text{rec}\{e_0; x.y.e_1\}(e) \quad \text{rec} \ e \ \{z \rightarrow e_0 \mid s(x) \ \text{with} \ y \rightarrow e_1\} \quad \text{递归} \\
+&\quad \quad \text{lam}\{\tau\}(x.e) \quad \lambda (x : \tau) \ e \quad \text{抽象} \\
+&\quad \quad \text{ap}(e_1; e_2) \quad e_1(e_2) \quad \text{应用}
+\end{aligned}
+\]
+
+我们用 \(n\) 表示表达式 \(s(... s(z))\)，其中后继被应用 \(n \geq 0\) 次到零。表达式 \(\text{rec}\{e_0; x.y.e_1\}(e)\) 被称为递归器。它表示从 \(e_0\) 开始的变换 \(x.y.e_1\) 的 \(e\) 次迭代。绑定变量 \(x\) 表示前驱，绑定变量 \(y\) 表示 \(x\) 次迭代的结果。递归器的具体语法中的“with”子句将变量 \(y\) 绑定到递归调用的结果，这一点稍后会变得清晰。
+
+有时，迭代器 \(\text{iter}\{e_0; y.e_1\}(e)\) 被认为是递归器的替代。它与递归器的含义基本相同，只是递归调用的结果绑定到 \(e_1\) 中的 \(y\)，而没有为前驱进行绑定。显然，迭代器是递归器的特例，因为我们总是可以忽略前驱绑定。反之，只要我们有乘积类型（第 10 章），递归器是可以从迭代器定义的。为了从迭代器定义递归器，我们在迭代指定计算时同时计算前驱。
+
+T 的静态语义由以下类型规则给出：
+
+\[
+\frac{\Gamma, x : \tau \vdash x : \tau}{\Gamma \vdash x : \tau} \tag{9.1a}
+\]
+
+\[
+\frac{}{\Gamma \vdash z : \text{nat}} \tag{9.1b}
+\]
+
+\[
+\frac{\Gamma \vdash e : \text{nat}}{\Gamma \vdash s(e) : \text{nat}} \tag{9.1c}
+\]
+
+\[
+\frac{\Gamma \vdash e : \text{nat} \quad \Gamma \vdash e_0 : \tau \quad \Gamma, x : \text{nat}, y : \tau \vdash e_1 : \tau}{\Gamma \vdash \text{rec}\{e_0; x.y.e_1\}(e) : \tau} \tag{9.1d}
+\]
+
+\[
+\frac{\Gamma, x : \tau_1 \vdash e : \tau_2}{\Gamma \vdash \text{lam}\{\tau_1\}(x.e) : \text{arr}(\tau_1; \tau_2)} \tag{9.1e}
+\]
+
+\[
+\frac{\Gamma \vdash e_1 : \text{arr}(\tau_2; \tau) \quad \Gamma \vdash e_2 : \tau_2}{\Gamma \vdash \text{ap}(e1; e2) : \tau} \tag{9.1f}
+\]
+
+和往常一样，结构规则替换的可接受性至关重要。
+
+!!! theorem "引理 9.1"
+    如果 \(\Gamma \vdash e : \tau\) 且 \(\Gamma, x : \tau \vdash e' : \tau'\)，则 \(\Gamma \vdash [e/x]e' : \tau'\)。
+
+#### 动态语义 Dynamics
+
+T 的封闭值由以下规则定义：
+
+\[
+\frac{}{\text{z} \ \text{val}} \tag{9.2a}
+\]
+
+\[
+\frac{e \ \text{val}}{\text{s}(e) \ \text{val}} \tag{9.2b}
+\]
+
+\[
+\frac{}{\text{lam}\{\tau\}(x.e) \ \text{val}} \tag{9.2c}
+\]
+
+规则 (9.2b) 的前提包含在急切解释后继的情况下，排除在惰性解释的情况下。
+
+T 的动态转换规则如下：
+
+\[
+\frac{e \rightarrow e'}{\text{s}(e) \rightarrow \text{s}(e')} \tag{9.3a}
+\]
+
+\[
+\frac{e_1 \rightarrow e_1'}{\text{ap}(e_1; e_2) \rightarrow \text{ap}(e_1'; e_2)} \tag{9.3b}
+\]
+
+\[
+\frac{e_1 \ \text{val} \quad e_2 \rightarrow e_2'}{\text{ap}(e_1; e_2) \rightarrow \text{ap}(e_1; e_2')} \tag{9.3c}
+\]
+
+\[
+\frac{e_2 \ \text{val}}{\text{ap}(\text{lam}\{\tau\}(x.e); e_2) \rightarrow [e_2/x]e} \tag{9.3d}
+\]
+
+\[
+\frac{e \rightarrow e'}{\text{rec}\{e_0; x.y.e_1\}(e) \rightarrow \text{rec}\{e_0; x.y.e_1\}(e')} \tag{9.3e}
+\]
+
+\[
+\frac{}{\text{rec}\{e_0; x.y.e_1\}(\text{z}) \rightarrow e_0} \tag{9.3f}
+\]
+
+\[
+\frac{\text{s}(e) \ \text{val}}{\text{rec}\{e_0; x.y.e_1\}(\text{s}(e)) \rightarrow [e, \text{rec}\{e_0; x.y.e_1\}(e)/x,y]e_1} \tag{9.3g}
+\]
+
+括号中的规则和前提包含在急切后继和按值调用的情况下，排除在惰性后继和按名调用的情况下。规则 (9.3f) 和 (9.3g) 指定了递归器在 \(\text{z}\) 和 \(\text{s}(e)\) 上的行为。在前一种情况下，递归器简化为 \(e_0\)，在后一种情况下，变量 \(x\) 绑定到前驱 \(e\)，变量 \(y\) 绑定到 \(e\) 上的（未求值的）递归。如果在后续计算中不需要 \(y\) 的值，则不会对递归调用进行求值。
+
+!!! note "引理 9.2（规范形式）"
+    如果 \(e : \tau\) 且 \(e \ \text{val}\)，则：
+
+    1. 如果 \(\tau = \text{nat}\)，则 \(e = \text{s}(e')\) 对某个 \(e'\) 成立。
+    2. 如果 \(\tau = \tau_1 \rightarrow \tau_2\)，则 \(e = \lambda (x : \tau_1) e_2\) 对某个 \(e_2\) 成立。
+
+!!! note "定理 9.3（安全性）"
+    1. 如果 \(e : \tau\) 且 \(e \rightarrow e'\)，则 \(e' : \tau\)。
+    2. 如果 \(e : \tau\)，则 \(e\) 要么是值 \(e \ \text{val}\)，要么存在 \(e'\)，使得 \(e \rightarrow e'\)。
+
+#### 可定义性 Definability
+
+一个数学函数 \(f : \mathbb{N} \rightarrow \mathbb{N}\) 在 T 中是可定义的，当且仅当存在一个类型为 \(\text{nat} \rightarrow \text{nat}\) 的表达式 \(e_f\)，使得对于每个 \(n \in \mathbb{N}\)，
+
+\[
+e_f(n) \equiv f(n) : \text{nat} \tag{9.4}
+\]
+
+即，数值函数 \(f : \mathbb{N} \rightarrow \mathbb{N}\) 是可定义的，当且仅当存在一个类型为 \(\text{nat} \rightarrow \text{nat}\) 的表达式 \(e_f\)，使得当应用于表示参数 \(n \in \mathbb{N}\) 的数字时，该应用在定义上等于对应于 \(f(n) \in \mathbb{N}\) 的数字。
+
+T 的定义性等价，记作 \(\vdash e \equiv e' : \tau\)，是包含以下公理的最强同余关系：
+
+\[
+\frac{\vdash e_1 : \tau_1 \quad \vdash e_2 : \tau_2}{\vdash \text{ap}(\text{lam}\{\tau_1\}(x.e_2); e_1) \equiv [e_1/x]e_2 : \tau_2} \tag{9.5a}
+\]
+
+\[
+\frac{\vdash e_0 : \tau \quad \vdash e_1 : \tau}{\vdash \text{rec}\{e_0; x.y.e_1\}(\text{z}) \equiv e_0 : \tau} \tag{9.5b}
+\]
+
+\[
+\frac{\vdash e_0 : \tau \quad \vdash e_1 : \tau}{\vdash \text{rec}\{e_0; x.y.e_1\}(\text{s}(e)) \equiv [e, \text{rec}\{e_0; x.y.e_1\}(e)/x,y]e_1 : \tau} \tag{9.5c}
+\]
+
+例如，倍增函数 \(d(n) = 2 \times n\) 在 T 中由表达式 \(e_d : \text{nat} \rightarrow \text{nat}\) 定义为：
+
+\[
+\lambda (x : \text{nat}) \text{rec} \ x \ \{z \rightarrow z \mid s(u) \ \text{with} \ v \rightarrow s(s(v))\}
+\]
+
+为了检查这是否定义了倍增函数，我们对 \(n \in \mathbb{N}\) 进行归纳。对于基础情况，很容易检查到：
+
+\[
+e_d(0) \equiv 0 : \text{nat}
+\]
+
+对于归纳假设，假设：
+
+\[
+e_d(n) \equiv d(n) : \text{nat}
+\]
+
+然后使用定义性等价规则计算：
+
+\[
+e_d(n + 1) \equiv s(s(e_d(n))) \equiv s(s(2 \times n)) = 2 \times (n + 1) = d(n + 1)
+\]
+
+作为另一个例子，考虑以下函数，称为 Ackermann 函数，由以下方程定义：
+
+\[
+\begin{aligned}
+A(0, n) &= n + 1 \\
+A(m + 1, 0) &= A(m, 1) \\
+A(m + 1, n + 1) &= A(m, A(m + 1, n))
+\end{aligned}
+\]
+
+Ackermann 函数增长非常快。例如，\(A(4, 2) \approx 265,536\)，这通常被认为比宇宙中的原子数量还多！然而，我们可以通过对参数对 \((m, n)\) 进行字典序归纳来证明 Ackermann 函数是全函数。在每次递归调用中，要么 \(m\) 减少，要么 \(m\) 保持不变且 \(n\) 减少，因此递归调用是良定义的，因此 \(A(m, n)\) 也是良定义的。
+
+一阶原始递归函数是类型为 \(\text{nat} \rightarrow \text{nat}\) 的函数，它使用递归器定义，但不使用任何高阶函数。Ackermann 函数定义为非一阶原始递归函数，但它是高阶原始递归函数。证明它在 T 中是可定义的关键在于注意到 \(A(m + 1, n)\) 迭代 \(n\) 次函数 \(A(m, -)\)，从 \(A(m, 1)\) 开始。作为辅助函数，我们定义高阶函数：
+
+\[
+\text{it} : (\text{nat} \rightarrow \text{nat}) \rightarrow \text{nat} \rightarrow \text{nat} \rightarrow \text{nat}
+\]
+
+其 \(\lambda\)-抽象为：
+
+\[
+\lambda (f : \text{nat} \rightarrow \text{nat}) \lambda (n : \text{nat}) \text{rec} \ n \ \{z \rightarrow \text{id} \mid s( ) \ \text{with} \ g \rightarrow f \circ g\}
+\]
+
+其中 \(\text{id} = \lambda (x : \text{nat}) x\) 是恒等函数，\(f \circ g = \lambda (x : \text{nat}) f(g(x))\) 是 \(f\) 和 \(g\) 的复合。很容易检查到：
+
+\[
+\text{it}(f)(n)(m) \equiv f(n)(m) : \text{nat}
+\]
+
+其中后者表达式是从 \(m\) 开始的 \(f\) 的 \(n\) 次复合。然后我们可以定义 Ackermann 函数：
+
+\[
+e_a : \text{nat} \rightarrow \text{nat} \rightarrow \text{nat}
+\]
+
+其表达式为：
+
+\[
+\lambda (m : \text{nat}) \text{rec} \ m \ \{z \rightarrow s \mid s( ) \ \text{with} \ f \rightarrow \lambda (n : \text{nat}) \text{it}(f)(n)(f(1))\}
+\]
+
+检查以下等价关系是有益的：
+
+\[
+e_a(0)(n) \equiv s(n) \tag{9.6}
+\]
+
+\[
+e_a(m + 1)(0) \equiv e_a(m)(1) \tag{9.7}
+\]
+
+\[
+e_a(m + 1)(n + 1) \equiv e_a(m)(e_a(s(m))(n)) \tag{9.8}
+\]
+
+即，Ackermann 函数在 T 中是可定义的。
+
+#### 不可定义性 Undefinability
+
+不可能在 T 中定义一个无限循环。
+
+!!! theorem "定理 9.4"
+    如果 $e : \tau$，那么存在 $v \ \text{val}$ 使得 $e \equiv v : \tau$。
+
+    ---
+
+    **证明** 见推论 46.15。
+
+因此，T 中函数类型的值表现得像数学函数：如果 $e : \tau_1 \rightarrow \tau_2$ 且 $e_1 : \tau_1$，那么 $e(e_1)$ 计算为类型 $\tau_2$ 的值。此外，如果 $e : \text{nat}$，那么存在一个自然数 $n$ 使得 $e \equiv n : \text{nat}$。
+
+利用这一点，我们可以使用一种称为对角化的技术，证明存在一些自然数上的函数在 T 中是不可定义的。我们使用一种称为 G\"odel 编号的技术，为 T 的每个闭合表达式分配一个唯一的自然数。通过为每个表达式分配一个唯一的编号，我们可以将表达式作为 T 中的数据值进行操作，从而使 T 能够处理其自身的程序。
+
+G\"odel 编号的本质通过以下对抽象语法树的简单构造来体现。（推广到抽象绑定树稍微复杂一些，主要的复杂性在于确保所有 $\alpha$-等价的表达式被分配相同的 G\"odel 编号。）回忆一个通用的抽象语法树 $a$ 具有形式 $o(a_1, \ldots, a_k)$，其中 $o$ 是一个 $k$ 元算符。枚举这些算符，使得每个算符都有一个索引 $i \in \mathbb{N}$，并且令 $m$ 是 $o$ 在这个枚举中的索引。定义 $a$ 的 G\"odel 编号为：
+
+\[
+2^m 3^{n_1} 5^{n_2} \cdots p_k^{n_k}
+\]
+
+其中 $p_k$ 是第 $k$ 个素数（因此 $p_0 = 2, p_1 = 3$，依此类推），$n_1, \ldots, n_k$ 分别是 $a_1, \ldots, a_k$ 的 G\"odel 编号。这个过程为每个抽象语法树分配一个自然数。反过来，给定一个自然数 $n$，我们可以应用素数分解定理，将 $n$ 唯一地解析为一个抽象语法树。（如果分解形式不正确，这只能是因为算符的元数与因子的数量不匹配，那么 $n$ 不编码任何抽象语法树。）
+
+现在，使用这种表示，我们可以定义一个（数学）函数 $\text{funiv} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathbb{N}$，使得对于任何 $e : \text{nat} \rightarrow \text{nat}$，$\text{funiv}(e)(m) = n$ 当且仅当 $e(m) \equiv n : \text{nat}$。动态的确定性以及定理 9.4 确保了 $\text{funiv}$ 是一个定义良好的函数。它被称为 T 的通用函数，因为它指定了任何类型为 $\text{nat} \rightarrow \text{nat}$ 的表达式 $e$ 的行为。使用通用函数，我们定义一个辅助数学函数，称为对角函数 $\delta : \mathbb{N} \rightarrow \mathbb{N}$，通过以下方程：
+
+\[
+\delta(m) = \text{funiv}(m)(m)
+\]
+
+选择 $\delta$ 函数使得 $\delta(e) = n$ 当且仅当 $e(e) \equiv n : \text{nat}$。（其定义的动机稍后会变得清晰。）
+
+$\text{funiv}$ 在 T 中是不可定义的。假设它可以通过表达式 $e_{\text{univ}}$ 定义，那么对角函数 $\delta$ 将通过表达式
+
+\[
+e_{\delta} = \lambda (m : \text{nat}) \ e_{\text{univ}}(m)(m)
+\]
+
+定义。但在这种情况下，我们将有以下等式：
+
+\[
+e_{\delta}(e) \equiv e_{\text{univ}}(e)(e) \equiv e(e)
+\]
+
+现在令 $e$ 为函数表达式
+
+\[
+\lambda (x : \text{nat}) \ s(e_{\delta}(x))
+\]
+
+因此我们可以推导出
+
+\[
+e(e) \equiv s(e_{\delta}(e)) \equiv s(e(e))
+\]
+
+但终止定理表明存在 $n$ 使得 $e(e) \equiv n$，因此我们有 $n \equiv s(n)$，这是不可能的。
+
+我们说一个语言 $L$ 是通用的，如果可以在 $L$ 中编写 $L$ 的解释器。直观上，$\text{funiv}$ 是可计算的，因为我们可以在某种足够强大的编程语言中定义它。但前面的论证表明 T 无法完成这项任务；它不是一个通用的编程语言。检查上述证明揭示了一个不可避免的权衡：通过坚持所有表达式终止，我们必然失去了通用性——存在一些可计算的函数在该语言中是不可定义的。
+
+#### 高阶递归旁注 Notes
+
+G\"odel (1958) 在研究算术一致性时引入了系统 T (G\"odel, 1980)。G\"odel 展示了如何将算术中的证明“编译”成系统 T 的良类型项，并将算术的一致性问题简化为 T 中程序的终止问题。这可能是第一个在设计上直接受到其程序终止性验证影响的编程语言。
 
 ## 第四部分：有限数据类型
 
 ### 第十章：乘积类型
 
+二元乘积类型由两个类型的**有序对**组成，每个类型的值按指定顺序排列。相关的消解形式是**投影**，它选择对的第一个和第二个组件。**零元乘积（nullary product）**类型或**单位（unit）**类型仅由唯一的“空元组”组成，没有相关的消解形式。乘积类型可以采用**惰性（lazy）**和**急切（eager）**两种动态语义。根据惰性动态语义，一个对是一个值，而不考虑其组件是否是值；它们在被访问和用于其他计算之前（如果有的话）不会被求值。根据急切动态语义，一个对只有在其组件是值时才是值；它们在对创建时被求值。
+
+更一般地，我们可以考虑有限乘积 \(\langle \tau_i \rangle_{i \in I}\)，由有限索引集 \(I\) 索引。有限乘积类型的元素是 \(I\) 索引的元组，其中第 \(i\) 个组件是类型 \(\tau_i\) 的元素，对于每个 \(i \in I\)。组件通过 \(I\) 索引的投影操作访问，推广了二元情况。有限乘积的特例包括 \(n\) 元组，由形式为 \(I = \{0, \ldots, n-1\}\) 的集合索引，以及标记元组或记录，由有限符号集索引。类似于二元乘积，有限乘积也可以采用急切和惰性解释。
+
+#### 零元和二元乘积 Nullary and Binary Products
+
+乘积的抽象语法由以下语法定义：
+
+\[
+\begin{aligned}
+\text{Typ} \ \tau &::= \text{unit} \quad \text{unit} \quad \text{nullary product} \\
+&\quad \quad \text{prod}(\tau_1; \tau_2) \quad \quad \tau_1 \times \tau_2 \quad \text{binary product} \\
+\text{Exp} \ e &::= \quad \text{triv} \quad \langle \rangle \\
+    &\quad \quad \text{pair}(e_1; e_2) \quad \langle e_1, e_2 \rangle\\
+    &\quad \quad \text{pr}[l](e) \quad e \cdot l \\
+    &\quad \quad \text{pr}[r](e) \quad e \cdot r \quad \text{right projection}
+\end{aligned}
+\]
+
+单位类型没有消解形式，因为没有什么可以从空元组中提取。
+
+乘积类型的静态语义由以下规则定义：
+
+\[
+\frac{}{\Gamma \vdash \langle \rangle : \text{unit}} \tag{10.1a}
+\]
+
+\[
+\frac{\Gamma \vdash e_1 : \tau_1 \quad \Gamma \vdash e_2 : \tau_2}{\Gamma \vdash \langle e_1, e_2 \rangle : \tau_1 \times \tau_2} \tag{10.1b}
+\]
+
+\[
+\frac{\Gamma \vdash e : \tau_1 \times \tau_2}{\Gamma \vdash e \cdot l : \tau_1} \tag{10.1c}
+\]
+
+\[
+\frac{\Gamma \vdash e : \tau_1 \times \tau_2}{\Gamma \vdash e \cdot r : \tau_2} \tag{10.1d}
+\]
+
+乘积类型的动态语义由以下规则定义：
+
+\[
+\frac{}{\langle \rangle \ \text{val}} \tag{10.2a}
+\]
+
+\[
+\frac{e_1 \ \text{val} \quad e_2 \ \text{val}}{\langle e_1, e_2 \rangle \ \text{val}} \tag{10.2b}
+\]
+
+\[
+\frac{e_1 \rightarrow e_1'}{\langle e_1, e_2 \rangle \rightarrow \langle e_1', e_2 \rangle} \tag{10.2c}
+\]
+
+\[
+\frac{e_1 \ \text{val} \quad e_2 \rightarrow e_2'}{\langle e_1, e_2 \rangle \rightarrow \langle e_1, e_2' \rangle} \tag{10.2d}
+\]
+
+\[
+\frac{e \rightarrow e'}{e \cdot l \rightarrow e' \cdot l} \tag{10.2e}
+\]
+
+\[
+\frac{e \rightarrow e'}{e \cdot r \rightarrow e' \cdot r} \tag{10.2f}
+\]
+
+\[
+\frac{e_1 \ \text{val} \quad e_2 \ \text{val}}{\langle e_1, e_2 \rangle \cdot l \rightarrow e_1} \tag{10.2g}
+\]
+
+\[
+\frac{e_1 \ \text{val} \quad e_2 \ \text{val}}{\langle e_1, e_2 \rangle \cdot r \rightarrow e_2} \tag{10.2h}
+\]
+
+括号中的规则和前提在惰性动态语义中省略，在急切动态语义中包含。
+
+安全性定理适用于急切和惰性动态语义，证明过程在每种情况下类似。
+
+!!! theorem "定理 10.1（安全性）"
+    1. 如果 \(e : \tau\) 且 \(e \rightarrow e'\)，则 \(e' : \tau\)。
+    2. 如果 \(e : \tau\)，则 \(e\) 要么是值 \(e \ \text{val}\)，要么存在 \(e'\)，使得 \(e \rightarrow e'\)。
+
+    ---
+
+    **证明** 保型性通过对规则 (10.2) 定义的转换进行归纳证明。前进性通过对规则 (10.1) 定义的类型进行归纳证明。
+
+#### 有限乘积 Finite Products
+
+有限乘积类型的语法由以下语法定义：
+
+\[
+\begin{aligned}
+\text{Typ} \ \tau &::= \text{prod}(\{i \rightarrow \tau_i\}_{i \in I}) \quad \langle \tau_i \rangle_{i \in I} \quad \text{乘积} \\
+\text{Exp} \ e &::= \text{tpl}(\{i \rightarrow e_i\}_{i \in I}) \quad \langle e_i \rangle_{i \in I} \quad \text{元组} \\
+&\quad \quad \text{pr}[i](e) \quad e \cdot i \quad \text{投影}
+\end{aligned}
+\]
+
+变量 \(I\) 表示一个有限的索引集，用于形成乘积类型。类型 \(\text{prod}(\{i \rightarrow \tau_i\}_{i \in I})\)，或简写为 \(\langle \tau_i \rangle_{i \in I}\)，表示 \(I\) 元组的类型，其中每个 \(i \in I\) 的表达式 \(e_i\) 的类型为 \(\tau_i\)。一个 \(I\) 元组的形式为 \(\text{tpl}(\{i \rightarrow e_i\}_{i \in I})\)，或简写为 \(\langle e_i \rangle_{i \in I}\)，对于每个 \(i \in I\)，从 \(I\) 元组 \(e\) 中的第 \(i\) 个投影写作 \(\text{pr}[i](e)\)，或简写为 \(e \cdot i\)。
+
+当 \(I = \{i_1, \ldots, i_n\}\) 时，\(I\) 元组类型可以写成如下形式：
+
+\[
+\langle i_1 \rightarrow \tau_1, \ldots, i_n \rightarrow \tau_n \rangle
+\]
+
+我们明确地将每个索引 \(i \in I\) 关联到一个类型。同样地，我们可以写作：
+
+\[
+\langle i_1 \rightarrow e_1, \ldots, i_n \rightarrow e_n \rangle
+\]
+
+表示第 \(i\) 个组件为 \(e_i\) 的 \(I\) 元组。
+
+通过选择 \(I\) 为空集或二元集合 \(\{l, r\}\)，有限乘积类型推广了空乘积和二元乘积。在实践中，\(I\) 通常选择为一个有限的符号集，这些符号作为元组组件的标签以增强可读性。
+
+有限乘积类型的静态语义由以下规则定义：
+
+\[
+\frac{\vdash e_1 : \tau_1 \quad \ldots \quad \vdash e_n : \tau_n}{\vdash \langle i_1 \rightarrow e_1, \ldots, i_n \rightarrow e_n \rangle : \langle i_1 \rightarrow \tau_1, \ldots, i_n \rightarrow \tau_n \rangle} \tag{10.3a}
+\]
+
+\[
+\frac{\vdash e : \langle i_1 \rightarrow \tau_1, \ldots, i_n \rightarrow \tau_n \rangle}{\vdash e \cdot i_k : \tau_k} \quad (1 \leq k \leq n) \tag{10.3b}
+\]
+
+在规则 (10.3b) 中，索引 \(i_k \in I\) 是索引集 \(I\) 的一个特定元素，而在规则 (10.3a) 中，索引 \(i_1, \ldots, i_n\) 遍历整个索引集 \(I\)。
+
+有限乘积类型的动态语义由以下规则定义：
+
+\[
+\frac{e_1 \ \text{val} \quad \ldots \quad e_n \ \text{val}}{\langle i_1 \rightarrow e_1, \ldots, i_n \rightarrow e_n \rangle \ \text{val}} \tag{10.4a}
+\]
+
+\[
+\frac{e_1 \ \text{val} \quad \ldots \quad e_{j-1} \ \text{val} \quad e_j \rightarrow e_j' \quad e_{j+1} = e_{j+1} \quad \ldots \quad e_n = e_n}{\langle i_1 \rightarrow e_1, \ldots, i_n \rightarrow e_n \rangle \rightarrow \langle i_1 \rightarrow e_1, \ldots, i_j \rightarrow e_j', \ldots, i_n \rightarrow e_n \rangle} \tag{10.4b}
+\]
+
+\[
+\frac{e \rightarrow e'}{e \cdot i \rightarrow e' \cdot i} \tag{10.4c}
+\]
+
+\[
+\frac{\langle i_1 \rightarrow e_1, \ldots, i_n \rightarrow e_n \rangle \ \text{val}}{\langle i_1 \rightarrow e_1, \ldots, i_n \rightarrow e_n \rangle \cdot i_k \rightarrow e_k} \tag{10.4d}
+\]
+
+如所述，规则 (10.4b) 指定元组的组件按某种顺序求值，但未指定组件的具体求值顺序。通过对索引集施加全序并按此顺序求值组件，可以强制求值顺序，但这在技术上有些复杂。
+
+!!! theorem "定理 10.2（安全性）"
+    如果 \(e : \tau\)，则 \(e\) 要么是值 \(e \ \text{val}\)，要么存在 \(e'\)，使得 \(e \rightarrow e'\) 并且 \(e' : \tau\)。
+
+    **证明**
+    安全性定理分解为前进性和保型性引理，证明方法如第 10.1 节所述。
+
+#### 原始互递归 Primitive Mutual Recursion
+
+使用乘积类型，我们可以简化 T 的原始递归构造，使得只有前驱上的递归结果，而不是前驱本身，被传递给后继分支。将其写为 \(\text{iter}\{e_0; x.e_1\}(e)\)，我们可以定义 \(\text{rec}\{e_0; x.y.e_1\}(e)\) 为 \(e' \cdot r\)，其中 \(e'\) 是表达式 \(\text{iter}\{\langle z, e_0 \rangle; x'.\langle s(x' \cdot l), [x' \cdot r/x]e_1 \rangle\}(e)\)。
+
+其思想是递归地计算数字 \(n\) 和对 \(n\) 的递归调用的结果，从中我们可以计算 \(n + 1\) 和使用 \(e_1\) 的另一次递归的结果。基本情况直接计算为零和 \(e_0\) 的对。很容易检查递归器的静态和动态性质通过此定义得以保留。
+
+我们还可以使用乘积类型实现互递原始递归，其中我们通过原始递归同时定义两个函数。例如，考虑以下递归方程定义的两个自然数上的数学函数：
+
+\[
+\begin{aligned}
+e(0) &= 1 \\
+o(0) &= 0 \\
+e(n + 1) &= o(n) \\
+o(n + 1) &= e(n)
+\end{aligned}
+\]
+
+直观上，当且仅当 \(n\) 是偶数时，\(e(n)\) 非零；当且仅当 \(n\) 是奇数时，\(o(n)\) 非零。
+
+为了在扩展了乘积类型的 T 中定义这些函数，我们首先定义一个辅助函数 \(\text{nat} \rightarrow (\text{nat} \times \text{nat})\)，它通过在递归调用中来回交换来同时计算两个结果：
+
+\[
+\lambda (n : \text{nat} \times \text{nat}) \ \text{iter} \ n \{z \rightarrow \langle 1, 0 \rangle \mid s(b) \rightarrow \langle b \cdot r, b \cdot l \rangle\}
+\]
+
+然后我们可以如下定义 \(e\) 和 \(o\)：
+
+\[
+\begin{aligned}
+e &= \lambda (n : \text{nat}) \ \text{eeo}(n) \cdot l \\
+o &= \lambda (n : \text{nat}) \ \text{eeo}(n) \cdot r
+\end{aligned}
+\]
+
+#### 乘积类型旁注 Notes
+
+乘积类型是最基本的结构化数据形式。所有语言都有某种形式的乘积类型，但通常与其他可分离的概念结合在一起。常见的乘积表现形式包括：(1) 具有“多个参数”或“多个结果”的函数；(2) 表示为相互递归函数的元组的“对象”；(3) 具有可变组件的元组“结构”。关于有限乘积类型有许多论文，其中记录类型是一个特例。Pierce (2002) 提供了关于记录类型及其子类型属性的详细说明（见第 24 章）。Allen 等人 (2006) 在依赖类型理论框架中分析了许多关键思想。
+
 ### 第十一章：和类型
+
+大多数数据结构涉及替代项，例如树中叶子和内部节点之间的区别，或抽象语法的最外层形式中的选择。重要的是，这种选择决定了值的结构。例如，节点有子节点，而叶子没有，等等。这些概念通过和类型（sum types）来表达，特别是二元和（binary sum），它提供了两者之间的选择，以及零元和（nullary sum），它提供了没有选择的情况。有限和（finite sums）将零元和和二元和推广到允许由有限索引集索引的任意数量的情况。与乘积类型一样，和类型也有急切和惰性两种变体，它们在和类型值的定义方式上有所不同。
+
+#### 空和二元和 Nullary and Binary Sums
+
+和类型的抽象语法由以下语法定义：
+
+\[
+\begin{aligned}
+\text{Typ} \ \tau &::= \text{void} \quad \text{nullary sum} \\
+&\quad \quad \text{sum}(\tau_1; \tau_2) \quad \tau_1 + \tau_2 \quad \text{binary sum} \\
+\text{Exp} \ e &::= \text{abort}\{\tau\}(e) \quad \text{abort}(e) \quad \text{abort} \\
+&\quad \quad \text{in}[l]\{\tau_1; \tau_2\}(e) \quad l \cdot e \quad \text{left injection} \\
+&\quad \quad \text{in}[r]\{\tau_1; \tau_2\}(e) \quad r \cdot e \quad \text{right injection} \\
+&\quad \quad \text{case}(e; x_1.e_1; x_2.e_2) \quad \text{case} \ e \ \{l \cdot x_1 \rightarrow e_1 \mid r \cdot x_2 \rightarrow e_2\} \quad \text{case analysis}
+\end{aligned}
+\]
+
+零元和表示零个选择，因此不允许引入形式。消解形式 \(\text{abort}(e)\) 在 \(e\) 计算为一个值时中止计算，但这不可能发生。二元和类型的元素被标记为左或右的加数，分别为 \(l \cdot e\) 或 \(r \cdot e\)。和类型的值通过 case 分析来消解。
+
+和类型的静态语义由以下规则定义：
+
+\[
+\frac{\vdash e : \text{void}}{\vdash \text{abort}(e) : \tau} \tag{11.1a}
+\]
+
+\[
+\frac{\vdash e : \tau_1}{\vdash l \cdot e : \tau_1 + \tau_2} \tag{11.1b}
+\]
+
+\[
+\frac{\vdash e : \tau_2}{\vdash r \cdot e : \tau_1 + \tau_2} \tag{11.1c}
+\]
+
+\[
+\frac{\vdash e : \tau_1 + \tau_2 \quad x_1 : \tau_1 \vdash e_1 : \tau \quad x_2 : \tau_2 \vdash e_2 : \tau}{\vdash \text{case} \ e \ \{l \cdot x_1 \rightarrow e_1 \mid r \cdot x_2 \rightarrow e_2\} : \tau} \tag{11.1d}
+\]
+
+为了便于阅读，在规则 (11.1b) 和 (11.1c) 中，我们将 \(l \cdot e\) 和 \(r \cdot e\) 写作 \(\text{in}[l]\{\tau_1; \tau_2\}(e)\) 和 \(\text{in}[r]\{\tau_1; \tau_2\}(e)\)，其中显式包含类型 \(\tau_1\) 和 \(\tau_2\)。在规则 (11.1d) 中，case 分析的两个分支必须具有相同的类型。因为类型表达了对表达式值形式的静态“预测”，而和类型的表达式在运行时可能计算为任一形式，我们必须坚持两个分支产生相同的类型。
+
+和类型的动态语义由以下规则定义：
+
+\[
+\frac{e \rightarrow e'}{\text{abort}(e) \rightarrow \text{abort}(e')} \tag{11.2a}
+\]
+
+\[
+\frac{e \ \text{val}}{l \cdot e \ \text{val}} \tag{11.2b}
+\]
+
+\[
+\frac{e \ \text{val}}{r \cdot e \ \text{val}} \tag{11.2c}
+\]
+
+\[
+\frac{e \rightarrow e'}{l \cdot e \rightarrow l \cdot e'} \tag{11.2d}
+\]
+
+\[
+\frac{e \rightarrow e'}{r \cdot e \rightarrow r \cdot e'} \tag{11.2e}
+\]
+
+\[
+\frac{e \rightarrow e'}{\text{case} \ e \ \{l \cdot x_1 \rightarrow e_1 \mid r \cdot x_2 \rightarrow e_2\} \rightarrow \text{case} \ e' \ \{l \cdot x_1 \rightarrow e_1 \mid r \cdot x_2 \rightarrow e_2\}} \tag{11.2f}
+\]
+
+\[
+\frac{e \ \text{val}}{\text{case} \ l \cdot e \ \{l \cdot x_1 \rightarrow e_1 \mid r \cdot x_2 \rightarrow e_2\} \rightarrow [e/x_1]e_1} \tag{11.2g}
+\]
+
+\[
+\frac{e \ \text{val}}{\text{case} \ r \cdot e \ \{l \cdot x_1 \rightarrow e_1 \mid r \cdot x_2 \rightarrow e_2\} \rightarrow [e/x_2]e_2} \tag{11.2h}
+\]
+
+括号中的前提和规则包含在急切动态语义中，排除在惰性动态语义中。
+
+静态和动态的一致性如常规方式陈述和证明。
+
+!!! theorem "定理 11.1（安全性）"
+    1. 如果 \(e : \tau\) 且 \(e \rightarrow e'\)，则 \(e' : \tau\)。
+    2. 如果 \(e : \tau\)，则 \(e\) 要么是值 \(e \ \text{val}\)，要么存在 \(e'\)，使得 \(e \rightarrow e'\)。
+
+    **证明**
+    保型性的证明通过对规则 (11.2) 进行归纳，前进性的证明通过对规则 (11.1) 进行归纳。
+
+#### 有限和 Finite Sums
+
+正如我们可以将零元和二元乘积推广到有限乘积一样，我们也可以将零元和二元和推广到有限和。有限和的语法由以下文法定义：
+
+\[
+\begin{aligned}
+\text{Typ} \ \tau &::= \text{sum}(\{i \rightarrow \tau_i\}_{i \in I}) \quad [\tau_i]_{i \in I} \quad \text{sum} \\
+\text{Exp} \ e &::= \text{in}[i]\{\vec{\tau}\}(e) \quad i \cdot e \quad \text{injection} \\
+&\quad \quad \text{case}(e; \{i \rightarrow x_i.e_i\}_{i \in I}) \quad \text{case} \ e \ \{i \cdot x_i \rightarrow e_i\}_{i \in I} \quad \text{case analysis}
+\end{aligned}
+\]
+
+变量 \(I\) 表示一个有限的索引集，用于形成和类型。记号 \(\vec{\tau}\) 表示一个有限函数 \(\{i \rightarrow \tau_i\}_{i \in I}\) 对于某个索引集 \(I\)。类型 \(\text{sum}(\{i \rightarrow \tau_i\}_{i \in I})\)，或简写为 \(\sum_{i \in I} \tau_i\)，表示 \(I\) 分类值的类型，形式为 \(\text{in}[i]\{I\}(e_i)\)，或简写为 \(i \cdot e_i\)，其中 \(i \in I\) 且 \(e_i\) 是类型 \(\tau_i\) 的表达式。一个 \(I\) 分类值通过形式为 \(\text{case}(e; \{i \rightarrow x_i.e_i\}_{i \in I})\) 的 \(I\) 路 case 分析来解析。
+
+当 \(I = \{i_1, \ldots, i_n\}\) 时，\(I\) 分类值的类型可以写成：
+
+\[
+[i_1 \rightarrow \tau_1, \ldots, i_n \rightarrow \tau_n]
+\]
+
+指定与每个类 \(i \in I\) 关联的类型。相应地，\(I\) 路 case 分析的形式为：
+
+\[
+\text{case} \ e \ \{i_1 \cdot x_1 \rightarrow e_1 \mid \ldots \mid i_n \cdot x_n \rightarrow e_n\}
+\]
+
+通过选择 \(I\) 为空集或二元集合 \(\{l, r\}\)，有限和推广了空和和二元和。在实践中，\(I\) 通常选择为一个有限的符号集，这些符号作为类的名称以增强可读性。
+
+有限和的静态语义由以下规则定义：
+
+\[
+\frac{\vdash e : \tau_k \quad (1 \leq k \leq n)}{\vdash i_k \cdot e : [i_1 \rightarrow \tau_1, \ldots, i_n \rightarrow \tau_n]} \tag{11.3a}
+\]
+
+\[
+\frac{\vdash e : [i_1 \rightarrow \tau_1, \ldots, i_n \rightarrow \tau_n] \quad x_1 : \tau_1 \vdash e_1 : \tau \quad \ldots \quad x_n : \tau_n \vdash e_n : \tau}{\vdash \text{case} \ e \ \{i_1 \cdot x_1 \rightarrow e_1 \mid \ldots \mid i_n \cdot x_n \rightarrow e_n\} : \tau} \tag{11.3b}
+\]
+
+这些规则推广了第 11.1 节中给出的零元和二元和的静态语义。
+
+有限和的动态语义由以下规则定义：
+
+\[
+\frac{e \ \text{val}}{i \cdot e \ \text{val}} \tag{11.4a}
+\]
+
+\[
+\frac{e \rightarrow e'}{i \cdot e \rightarrow i \cdot e'} \tag{11.4b}
+\]
+
+\[
+\frac{e \rightarrow e'}{\text{case} \ e \ \{i \cdot x_i \rightarrow e_i\}_{i \in I} \rightarrow \text{case} \ e' \ \{i \cdot x_i \rightarrow e_i\}_{i \in I}} \tag{11.4c}
+\]
+
+\[
+\frac{i \cdot e \ \text{val}}{\text{case} \ i \cdot e \ \{i \cdot x_i \rightarrow e_i\}_{i \in I} \rightarrow [e/x_i]e_i} \tag{11.4d}
+\]
+
+这些规则再次推广了第 11.1 节中给出的二元和的动态语义。
+
+!!! theorem "定理 11.2（安全性）"
+    如果 \(e : \tau\)，则 \(e\) 要么是值 \(e \ \text{val}\)，要么存在 \(e'\)，使得 \(e \rightarrow e'\) 并且 \(e' : \tau\)。
+
+    **证明**
+    证明类似于二元和的情况，如第 11.1 节所述。
+
+#### 和类型的应用
+
+和类型有很多用途，这里我们概述了其中的几种。一旦我们引入了归纳和递归类型（在第六部分和第八部分中介绍），会出现更有趣的例子。
+
+##### 空类型和单位类型
+
+比较单位类型和空类型是很有启发性的，这两者经常被混淆。单位类型有且仅有一个元素 \(\langle \rangle\)，而空类型根本没有元素。因此，如果 \(e : \text{unit}\)，那么如果 \(e\) 计算为一个值，该值就是 \(\langle \rangle\)——换句话说，\(e\) 没有有趣的值。另一方面，如果 \(e : \text{void}\)，那么 \(e\) 必须不能产生一个值；如果它有一个值，它必须是空类型的值，而空类型没有任何值。因此，许多语言中所谓的空类型实际上是单位类型，因为它表示一个表达式没有有趣的值，而不是没有值！
+
+##### 布尔类型
+
+也许最简单的和类型例子是熟悉的布尔类型，其语法由以下文法给出：
+
+\[
+\begin{aligned}
+\text{Typ} \ \tau &::= \text{bool} \quad \text{布尔类型} \\
+\text{Exp} \ e &::= \text{true} \quad \text{真} \\
+&\quad \quad \text{false} \quad \text{假} \\
+&\quad \quad \text{if}(e; e_1; e_2) \quad \text{if} \ e \ \text{then} \ e_1 \ \text{else} \ e_2 \quad \text{条件表达式}
+\end{aligned}
+\]
+
+表达式 \(\text{if}(e; e_1; e_2)\) 根据 \(e : \text{bool}\) 的值进行分支。
+
+布尔类型的静态语义由以下类型规则给出：
+
+\[
+\frac{}{\vdash \text{true} : \text{bool}} \tag{11.5a}
+\]
+
+\[
+\frac{}{\vdash \text{false} : \text{bool}} \tag{11.5b}
+\]
+
+\[
+\frac{\vdash e : \text{bool} \quad \vdash e_1 : \tau \quad \vdash e_2 : \tau}{\vdash \text{if} \ e \ \text{then} \ e_1 \ \text{else} \ e_2 : \tau} \tag{11.5c}
+\]
+
+布尔类型的动态语义由以下值和转换规则给出：
+
+\[
+\frac{}{\text{true} \ \text{val}} \tag{11.6a}
+\]
+
+\[
+\frac{}{\text{false} \ \text{val}} \tag{11.6b}
+\]
+
+\[
+\frac{}{\text{if} \ \text{true} \ \text{then} \ e_1 \ \text{else} \ e_2 \rightarrow e_1} \tag{11.6c}
+\]
+
+\[
+\frac{}{\text{if} \ \text{false} \ \text{then} \ e_1 \ \text{else} \ e_2 \rightarrow e_2} \tag{11.6d}
+\]
+
+\[
+\frac{e \rightarrow e'}{\text{if} \ e \ \text{then} \ e_1 \ \text{else} \ e_2 \rightarrow \text{if} \ e' \ \text{then} \ e_1 \ \text{else} \ e_2} \tag{11.6e}
+\]
+
+布尔类型可以用二元和和零元乘积来定义：
+
+\[
+\text{bool} = \text{unit} + \text{unit}
+\tag{11.7a}
+\]
+
+\[
+\text{true} = l \cdot \langle \rangle
+\tag{11.7b}
+\]
+
+\[
+\text{false} = r \cdot \langle \rangle
+\tag{11.7c}
+\]
+
+\[
+\text{if} \ e \ \text{then} \ e_1 \ \text{else} \ e_2 = \text{case} \ e \ \{l \cdot x_1 \rightarrow e_1 \mid r \cdot x_2 \rightarrow e_2\}
+\tag{11.7d}
+\]
+
+在等式 (11.7d) 中，变量 \(x_1\) 和 \(x_2\) 是任意选择的，使得 \(x_1 \notin e_1\) 且 \(x_2 \notin e_2\)。很容易检查到这些定义产生了布尔类型的静态和动态语义。
+
+##### 枚举
+
+更一般地，和类型可以用来定义有限枚举类型，即那些值是一个明确给定的有限集合中的一个，并且其消解形式是对该集合元素的 case 分析。例如，类型 suit，其元素是 ♣、♦、♥ 和 ♠，其消解形式为 case 分析：
+
+\[
+\text{case} \ e \ \{\clubsuit \rightarrow e_0 \mid \diamondsuit \rightarrow e_1 \mid \heartsuit \rightarrow e_2 \mid \spadesuit \rightarrow e_3\}
+\]
+
+这区分了四种花色。这样的有限枚举可以很容易地表示为和类型。例如，我们可以定义
+
+\[
+\text{suit} = [\text{unit}]_{\in I}
+\]
+
+其中 \(I = \{\clubsuit, \diamondsuit, \heartsuit, \spadesuit\}\)，并且类型族在这个集合上是常量。标记和的 case 分析形式几乎就是给定枚举的所需 case 分析，唯一的区别是与每个加数相关的不重要值的绑定，我们可以忽略它。其他枚举类型的例子比比皆是。例如，大多数语言都有一个字符类型 char，它是一个包含所有可能的 Unicode（或其他标准分类）字符的大型枚举类型。每个字符都被分配了一个代码（如 UTF-8），用于程序之间的交换。类型 char 配备了诸如 \(\text{chcode}(n)\) 这样的操作，它返回与代码 \(n\) 相关的字符，以及 \(\text{codech}(c)\) 返回字符 \(c\) 的代码。使用代码上的线性排序，我们可以定义字符的总排序，称为由该代码确定的排序序列。
+
+##### 可选类型
+
+和类型的另一个用途是定义可选类型，其语法如下：
+
+\[
+\begin{aligned}
+\text{Typ} \ \tau &::= \text{opt}(\tau) \\
+\text{Exp} \ e &::= \text{null} \ \tau \ \text{opt} \quad \text{null} \quad \text{nothing} \\
+&\quad \quad \text{just}(e) \quad \text{just}(e) \quad \text{something} \\
+&\quad \quad \text{ifnull}\{\tau\}\{e_1; x.e_2\}(e) \quad \text{which} \ e \ \{\text{null} \rightarrow e_1 \mid \text{just}(x) \rightarrow e_2\} \quad \text{null test}
+\end{aligned}
+\]
+
+类型 \(\text{opt}(\tau)\) 表示类型 \(\tau\) 的“可选”值的类型。引入形式是 \(\text{null}\)，对应于“无值”，以及 \(\text{just}(e)\)，对应于指定的类型 \(\tau\) 的值。消解形式区分这两种可能性。可选类型可以根据以下等式从和类型和零元乘积定义：
+
+\[
+\tau \ \text{opt} = \text{unit} + \tau
+\tag{11.8a}
+\]
+
+\[
+\text{null} = l \cdot \langle \rangle
+\tag{11.8b}
+\]
+
+\[
+\text{just}(e) = r \cdot e
+\tag{11.8c}
+\]
+
+\[
+\text{which} \ e \ \{\text{null} \rightarrow e_1 \mid \text{just}(x_2) \rightarrow e_2\} = \text{case} \ e \ \{l \cdot \rightarrow e_1 \mid r \cdot x_2 \rightarrow e_2\}
+\tag{11.8d}
+\]
+
+我们留给读者检查这些定义所隐含的静态和动态性质。可选类型是理解一个常见误解，即空指针谬误的关键。这个谬误源于两个相关的错误。第一个错误是将某些类型的值视为神秘的实体，称为指针。这种术语源于对这些值在运行时如何表示的假设，而不是它们在语言中的语义角色。第二个错误加剧了第一个错误。一个特定的指针类型值被区分为空指针，它与该类型的其他元素不同，不代表该类型的值，而是拒绝所有使用它的尝试。
+
+为了帮助避免这种失败，这样的语言通常包括一个函数，例如 \(\text{null} : \tau \rightarrow \text{bool}\)，如果其参数为空，则返回 true，否则返回 false。这样的测试允许程序员采取措施避免将 null 用作其声称所属类型的值。因此，程序充满了如下形式的条件语句：
+
+\[
+\text{if} \ \text{null}(e) \ \text{then} \ \ldots \ \text{error} \ \ldots \ \text{else} \ \ldots \ \text{proceed} \ \ldots \tag{11.9}
+\]
+
+尽管如此，运行时的“空指针”异常仍然猖獗，部分原因是很容易忽略这种测试的需要，部分原因是检测到空指针后除了中止程序外几乎没有其他办法。根本问题在于未能区分类型 \(\tau\) 和类型 \(\tau \ \text{opt}\)。与其将类型 \(\tau\) 的元素视为指针，并因此不得不担心空指针，不如区分类型 \(\tau\) 的真正值和类型 \(\tau\) 的可选值。类型 \(\tau\) 的可选值可能存在也可能不存在，但如果存在，则基础值确实是类型 \(\tau\) 的值（且不能为 null）。可选类型的消解形式，
+
+\[
+\text{which} \ e \ \{\text{null} \rightarrow e_{\text{error}} \mid \text{just}(x) \rightarrow e_{\text{ok}}\} \tag{11.10}
+\]
+
+通过将类型 \(\tau\) 的真正值绑定到变量 \(x\)，将 \(e\) 存在的信息传播到非 null 分支中。case 分析实现了从“类型 \(\tau\) 的可选值”到“类型 \(\tau\) 的真正值”的类型转换，因此在非 null 分支中不再需要进一步的 null 检查，无论是显式的还是隐式的。注意，这种类型转换不是通过表达式 (11.9) 所示的简单布尔值测试实现的；可选类型的优势正是它们能够实现这种转换。
+
+#### 注释
+
+异构数据结构无处不在。和类型编码了异构性，但很少有语言以这里给出的形式支持它们。在商业语言中，最好的近似是面向对象编程中的类的概念。类是和类型中的一个注入，调度是对数据对象类的 case 分析。（有关这种对应关系的更多信息，请参见第 26 章。）和类型的缺失是 C.A.R. Hoare 自称的“十亿美元错误”——空指针的起源（Hoare, 2009）。糟糕的语言设计将管理“null”值的负担完全放在运行时，而不是在编译时使“null”的可能性或不可能性显而易见。
 
 ## 第五部分：类型和提议
 
