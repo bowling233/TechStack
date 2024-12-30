@@ -1,0 +1,3253 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bowling 的笔记本">
+      
+      
+        <meta name="author" content="Bowling">
+      
+      
+        <link rel="canonical" href="https://note.bowling233.top/%E8%8D%89%E7%A8%BF/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E4%B8%8E%E5%A0%86/">
+      
+      
+        <link rel="prev" href="../lec6/">
+      
+      
+        <link rel="next" href="../%E6%A0%91%E4%B8%8E%E5%A0%86%E4%B9%A0%E9%A2%98/">
+      
+      
+      <link rel="icon" href="https://cdn.bowling233.top/note/avatar/bowling.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>树与堆 Tree and Heap - Bowling's TechStack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/flink.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/neoteroi-mkdocs.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.0.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tree-and-heap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Bowling&#39;s TechStack" class="md-header__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bowling's TechStack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              树与堆 Tree and Heap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../links/" class="md-tabs__link">
+        
+  
+    
+  
+  友链
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-tabs__link">
+          
+  
+    
+  
+  人工智能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  实用技能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/" class="md-tabs__link">
+          
+  
+    
+  
+  硬件和体系结构
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A7%91%E7%A0%94/dpdk/" class="md-tabs__link">
+          
+  
+    
+  
+  科研
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-tabs__link">
+          
+  
+    
+  
+  算法和数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%BD%91%E7%BB%9C/" class="md-tabs__link">
+          
+  
+    
+  
+  网络
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../CSAPP/" class="md-tabs__link">
+          
+  
+    
+  
+  草稿
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机图形学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  读书笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-tabs__link">
+          
+  
+    
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%BD%AF%E4%BB%B6/%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9F/" class="md-tabs__link">
+          
+  
+    
+  
+  软件
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/MPI/usage/" class="md-tabs__link">
+          
+  
+    
+  
+  高性能计算
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Bowling&#39;s TechStack" class="md-nav__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    Bowling's TechStack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    友链
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    人工智能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    实用技能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    硬件和体系结构
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A7%91%E7%A0%94/dpdk/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    科研
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    算法和数学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    网络
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    草稿
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            草稿
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CSAPP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSAPP 笔记（待整理）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RISC-V%20CPU/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RISC-V CPU 设计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmark/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HPC BenchMark
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../go/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Go
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lec14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    并行算法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux_kernel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux 内核
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../matlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Matlab
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../openwrt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenWRT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%B4%E6%97%B6%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    临时笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8A%9F%E8%80%97%E6%8E%A7%E5%88%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    功耗控制
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数字电路
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    硬件和接口
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    硬件描述语言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BB%98%E5%9B%BE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    绘图
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93/database-code/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    量子信息基础
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_19" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    高级数据结构
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9_19" id="__nav_9_19_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_19_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_19">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lec1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    摊还分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lec11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    近似算法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lec12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Local Search 局部搜索
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lec13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    随机化算法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lec15/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    外部排序 External Sorting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lec3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    倒排索引
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lec6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    回溯
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    树与堆 Tree and Heap
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    树与堆 Tree and Heap
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#binary-search-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      二叉搜索树 Binary Search Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#avl-avl-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      AVL 树 AVL Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splay-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      伸展树 Splay Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#red-black-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      红黑树 Red-Black Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      完美平衡的 2-3 查找树
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      B 族树
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="B 族树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      《算法导论》中的 B 树
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      《算法》中的 B 树
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      B+ 树
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binary-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      二叉堆 Binary Heap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leftist-treeheap" class="md-nav__link">
+    <span class="md-ellipsis">
+      左式树/堆 Leftist Tree/Heap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skew-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      斜堆 Skew Heap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binomial-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      二项队列 Binomial Queue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fibonacci-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      斐波那契堆 Fibonacci Heap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      树的遍历
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="树的遍历">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      层序遍历
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      左孩子右兄弟表示法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A0%91%E4%B8%8E%E5%A0%86%E4%B9%A0%E9%A2%98/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    树与堆习题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机图形学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    读书笔记
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%BD%AF%E4%BB%B6/%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    软件
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/MPI/usage/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    高性能计算
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#binary-search-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      二叉搜索树 Binary Search Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#avl-avl-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      AVL 树 AVL Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splay-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      伸展树 Splay Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#red-black-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      红黑树 Red-Black Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      完美平衡的 2-3 查找树
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      B 族树
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="B 族树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      《算法导论》中的 B 树
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      《算法》中的 B 树
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      B+ 树
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binary-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      二叉堆 Binary Heap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leftist-treeheap" class="md-nav__link">
+    <span class="md-ellipsis">
+      左式树/堆 Leftist Tree/Heap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skew-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      斜堆 Skew Heap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binomial-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      二项队列 Binomial Queue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fibonacci-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      斐波那契堆 Fibonacci Heap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      树的遍历
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="树的遍历">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      层序遍历
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      左孩子右兄弟表示法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="tree-and-heap">树与堆 Tree and Heap<a class="headerlink" href="#tree-and-heap" title="Permanent link">&para;</a></h1>
+<p>该部分的内容可以看作围绕二叉搜索树及其优化展开。</p>
+<p>对于每种具体的树，关注它的：成员、操作、结构。</p>
+<ul>
+<li>成员：为了保持平衡条件，节点可能需要额外保存信息，比如深度、颜色等。</li>
+<li>操作：树形结构的操作是相似的，最重要的三个是查找、插入、删除。为了实现这些操作，具体的结构会有一些辅助操作。很多操作是递归的，想清楚终止情况和递归条件。</li>
+<li>结构：加上平衡条件后，这些树展现出不同的结构，也对它们的操作复杂度产生影响。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">复杂度总结</p>
+<p>堆：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>二叉堆</th>
+<th>左式堆</th>
+<th>斜堆</th>
+<th>二项队列</th>
+<th>斐波那契堆</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Insert</code></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+</tr>
+<tr>
+<td><code>Merge</code></td>
+<td><span class="arithmatex">\(O(N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+</tr>
+<tr>
+<td><code>DeleteMin</code></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+</tr>
+<tr>
+<td><code>Delete</code></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+</tr>
+<tr>
+<td><code>DecreaseKey</code></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td></td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>树：</p>
+</div>
+<h2 id="binary-search-tree">二叉搜索树 Binary Search Tree<a class="headerlink" href="#binary-search-tree" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">成员</label><label for="__tabbed_1_2">操作</label><label for="__tabbed_1_3">结构</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Key</li>
+<li>Left</li>
+<li>Right</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Find</li>
+<li>FindMin</li>
+<li>FindMax</li>
+<li>Insert</li>
+<li>Delete<ul>
+<li>Leaf</li>
+<li>One</li>
+<li>Two</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">难点：删除操作（具有两个子节点的情况）</p>
+<p>可以直接编写代码完成删除操作。《算法导论》设置了一个 <code>transplant</code> 操作，用一个子树替换掉另一个子树。我们看看怎么用这个操作完成两个子节点情况的删除。</p>
+<ul>
+<li>找到接替节点（右侧最小或左侧最大）</li>
+<li>如果接替节点不是被删除节点的直接孩子：<ul>
+<li>提出该节点：调用 <code>transplant</code> 让它的孩子取代它</li>
+</ul>
+</li>
+<li>调用 <code>transplant</code> 替换掉被删除的整个子树</li>
+<li>修改指针，把被删除节点的孩子接回接替节点上</li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>平均深度为 <span class="arithmatex">\(O(\log N)\)</span>。这里的平均指的是对所有可能的插入序列而言。</li>
+<li>删除算法偏好某一侧节点，容易使另一侧树相比之下更深。</li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="avl-avl-tree">AVL 树 AVL Tree<a class="headerlink" href="#avl-avl-tree" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">成员</label><label for="__tabbed_2_2">操作</label><label for="__tabbed_2_3">结构</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Key, Left, Right</li>
+<li><strong>Height</strong></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">高度信息的存储</p>
+<p>Height 成员能够容纳的最大数决定了树的最大高度。因为树是平衡的，即使 8 位 255 的绝对高度，也足以应付普遍的情况。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Find, FindMin，FindMax</li>
+<li>Insert</li>
+<li>Delete <ul>
+<li>一般采用懒惰删除，课内未介绍删除方法。</li>
+</ul>
+</li>
+</ul>
+<p>辅助操作：</p>
+<ul>
+<li>SingleRotateWithLeft，SingleRotateWithRight</li>
+<li>DoubleRotateWithLeft，DoubleRotateWithRight</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">难点：旋转操作</p>
+<p>按课本上的函数命名，<code>with</code> 哪一侧就是把哪一侧的节点旋转到该节点位置。旋转操作本质上负责过继孩子，并将新的根节点返回，供上层设置为新的孩子。</p>
+<p>单旋转无法解决内侧树过深的问题。可以想象，对该节点执行旋转后，内侧树的高度并没有减少。双旋转操作先进入内侧树，将深度旋转到外侧，再回到上层进行单旋转，从而解决内侧树过深的问题。</p>
+<p>不要忘记在旋转操作中维护节点高度信息。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">难点：插入操作</p>
+<p>AVL 树的插入于二叉搜索树的插入一样，都是递归的。只是在插入后，需要检测子树的高度差，维护平衡条件。维护在递归返回时第一个检测到不满足平衡条件的节点进行，使插入后不平衡的子树高度减少 1，路径上所有节点的平衡也恢复了。</p>
+<p>除了高度差，还需要确定新节点插入的位置是“外侧”还是“内侧”（与子树的根节点比较），以决定执行单或双旋转。</p>
+<p>旋转操作更改了节点的位置，需要维护节点的高度。插入操作也参与高度的维护，将高度的变化递归向上传递。</p>
+<p>下面是一个分支情况的代码：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="o">-&gt;</span><span class="n">Key</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">T</span><span class="o">-&gt;</span><span class="n">Left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Insert</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">-&gt;</span><span class="n">Left</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">Height</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Height</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">Right</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="o">-&gt;</span><span class="n">Left</span><span class="o">-&gt;</span><span class="n">Key</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">            </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SingleRotateWithLeft</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DoubleRotateWithLeft</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">T</span><span class="o">-&gt;</span><span class="n">Height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Max</span><span class="p">(</span><span class="n">Height</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">Left</span><span class="p">),</span><span class="w"> </span><span class="n">Height</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">Right</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span></code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>定义：空树高度为 -1</li>
+<li>平衡条件：左、右子树高度最多差 1</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">节点数与高度的关系</p>
+<p>设高度为 <span class="arithmatex">\(h\)</span> 的 AVL 树节点最少为 <span class="arithmatex">\(S(h)\)</span> 个，有 <span class="arithmatex">\(S(h) = S(h-1) + S(h-2) + 1\)</span>。AVL 树与斐波那契数相关。</p>
+<p>对上面高度与节点数的关系求解，容易得到 AVL 树的最大高度为 <span class="arithmatex">\(1.44\log(N+2) - 1.328\)</span>，一般情况下只比 <span class="arithmatex">\(\log N\)</span> 高一些。</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="splay-tree">伸展树 Splay Tree<a class="headerlink" href="#splay-tree" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">成员</label><label for="__tabbed_3_2">操作</label><label for="__tabbed_3_3">结构</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Key，Left，Right</li>
+<li>Parent</li>
+</ul>
+<p>伸展树需要保存父节点信息以进行伸展操作。</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Find, Insert，Delete</li>
+</ul>
+<p>对节点的访问（上面的三个操作）会将元素移动到根节点。</p>
+<p>辅助方法：</p>
+<ul>
+<li><strong>Splay</strong>：通过旋转将节点移动到根</li>
+<li>SingleRotateWithLeft，SingleRotateWithRight</li>
+<li>DoubleRotateWithLeft，DoubleRotateWithRight</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">难点：伸展</p>
+<p>伸展有三种情况，记该节点、父节点和祖父节点为 <span class="arithmatex">\(X\)</span>、<span class="arithmatex">\(P\)</span>、<span class="arithmatex">\(G\)</span>：</p>
+<ul>
+<li>没有<strong>祖父</strong>节点：旋转 <span class="arithmatex">\(P\)</span> 使 <span class="arithmatex">\(X\)</span> 为根</li>
+<li>三角情况（Zig-Zag）：双旋转，也就是先后旋转 <span class="arithmatex">\(P\)</span>、<span class="arithmatex">\(G\)</span> 使 <span class="arithmatex">\(X\)</span> 为根</li>
+<li>线形情况（Zig-Zig）：先后旋转 <span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(P\)</span> 使 <span class="arithmatex">\(X\)</span> 为根</li>
+</ul>
+<p>注意线形情况旋转的顺序。对于线形的情况，如果逐层向上旋转，路径上的节点又按原来的顺序连接起来，相对位置不变，没有改善这些节点的高度情况。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>最近搜索、插入、删除的元素都会被 Splay 到根节点</li>
+</ul>
+<p>伸展树各个操作的摊还复杂度是 <span class="arithmatex">\(O(\log N)\)</span>。</p>
+<div class="admonition note">
+<p class="admonition-title">难点：伸展树的摊还分析</p>
+<p>使用势函数法。==todo==</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="red-black-tree">红黑树 Red-Black Tree<a class="headerlink" href="#red-black-tree" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">成员</label><label for="__tabbed_4_2">结构</label><label for="__tabbed_4_3">操作</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Key, Left, Right</li>
+<li><strong>Parent</strong></li>
+<li><strong>Color</strong></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">颜色</p>
+<p>有的书籍将线染色，这是等价的，只需要把线的颜色存储在下方的节点。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>性质：</p>
+<ol>
+<li>节点颜色红或黑</li>
+<li>根节点黑</li>
+<li>空节点是黑的</li>
+<li>红节点的两个子节点都是黑的</li>
+<li>节点到所有后代空节点（不计自身）的路径上，包含相同数目黑色节点</li>
+</ol>
+<p>最后两条性质决定红黑树的高度。</p>
+<div class="admonition note">
+<p class="admonition-title">难点：证明红黑树的高度</p>
+<ol>
+<li>以 <span class="arithmatex">\(x\)</span> 为根的子树中至少含有 <span class="arithmatex">\(2^{bh(x)}-1\)</span> 个节点<ul>
+<li>数学归纳法：子节点黑高为 <span class="arithmatex">\(bh(x)\)</span> 或 <span class="arithmatex">\(bh(x)-1\)</span>，最少情况 <span class="arithmatex">\(2*(2^{bh(x)-1}) + 1 = 2^{bh(x)} - 1\)</span></li>
+<li>直观理解：把红色节点去掉，剩余节点个数一定大于等于高度为 <span class="arithmatex">\(bh(x)\)</span> 的完全平衡二叉树节点个数，因为可能会变成孩子更多的树。因此至少有 <span class="arithmatex">\(2^{bh(x)}-1\)</span> 个节点</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(bh(root) \geq h/2\)</span>：因为路径上至少有一半节点为黑色</li>
+</ol>
+<p>上面两条性质结合得到：含有 <span class="arithmatex">\(n\)</span> 个节点的红黑树高度最多为 <span class="arithmatex">\(2\log(n+1)\)</span>。</p>
+</div>
+<ul>
+<li>搜索操作复杂度为 <span class="arithmatex">\(O(\log n)\)</span></li>
+<li>插入操作复杂度为 <span class="arithmatex">\(O(\log n)\)</span><ul>
+<li><span class="arithmatex">\(O(\log n)\)</span> 搜索，最多两次旋转，<span class="arithmatex">\(O(\log n)\)</span> 次染色</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Find, Insert, Delete</li>
+</ul>
+<p>辅助方法：</p>
+<ul>
+<li>InsertFix</li>
+<li>Transplant</li>
+<li>DeleteFix</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">难点：插入修复</p>
+<p>找到插入的位置，插入<strong>红色的</strong>新节点（记为 <span class="arithmatex">\(Z\)</span>），然后调用 <code>InsertFix</code>。</p>
+<p>插入节点后可能被破坏的性质是：</p>
+<ul>
+<li>根节点变红：这是是因为 <span class="arithmatex">\(Z\)</span> 移动到了根</li>
+<li>红节点的孩子还是红节点：这是因为 <span class="arithmatex">\(P\)</span> 也是红节点</li>
+</ul>
+<p><code>InsertFix</code> 循环条件是 <span class="arithmatex">\(P\)</span> 为红色。每次循环保持：最多只有一条红黑树性质被破坏。可以推出，循环结束时，被破坏的性质只可能是根节点变红，对此进行修复即可。</p>
+<p>循环内部可能会调整节点的位置以修复 <span class="arithmatex">\(P\)</span> 是红节点的问题，<strong>此时需要维护黑高性质</strong>。关注下面的操作中黑色是怎么在节点之间“分解”、“转移”的。</p>
+<p>因为 <span class="arithmatex">\(P\)</span> 红，<span class="arithmatex">\(G\)</span> 必定黑。根据 <span class="arithmatex">\(Z\)</span> 的<strong>叔节点</strong>（记为 <span class="arithmatex">\(U\)</span>）的颜色，与 <span class="arithmatex">\(P\)</span>、<span class="arithmatex">\(G\)</span> 相对位置分三种情况（对称后有六种）：</p>
+<ul>
+<li>没有叔节点：<span class="arithmatex">\(U\)</span> 是黑色的</li>
+<li>红色：<ul>
+<li>目标：将 <span class="arithmatex">\(G\)</span> 的黑高转移到 <span class="arithmatex">\(U\)</span> 和 <span class="arithmatex">\(P\)</span> 上</li>
+<li>操作：<span class="arithmatex">\(G\)</span> 染成红色，<span class="arithmatex">\(U\)</span> 和 <span class="arithmatex">\(P\)</span> 染成黑色；<strong>让 <span class="arithmatex">\(Z\)</span> 指向 <span class="arithmatex">\(G\)</span></strong>，进入下一轮循环。因为此时 <span class="arithmatex">\(Z\)</span> 可能破坏红黑树性质。</li>
+</ul>
+</li>
+<li>黑色：<ul>
+<li>线形：把 <span class="arithmatex">\(G\)</span> 的黑色转移给 <span class="arithmatex">\(P\)</span>，然后让 <span class="arithmatex">\(P\)</span> 旋转到 <span class="arithmatex">\(G\)</span> 的位置。这解决的是红色父子的问题。</li>
+<li>三角形：对 <span class="arithmatex">\(P\)</span> 旋转把 <span class="arithmatex">\(Z\)</span> 整到外面，然后按线形的方法操作，即把 <span class="arithmatex">\(G\)</span> 的黑色转移给 <span class="arithmatex">\(Z\)</span>，然后让 <span class="arithmatex">\(Z\)</span> 旋转到 <span class="arithmatex">\(G\)</span> 的位置</li>
+</ul>
+</li>
+</ul>
+<details class="tip">
+<summary>双旋转的进一步认识</summary>
+<p>如果不把 <span class="arithmatex">\(Z\)</span> 整到外面，直接转移颜色对 <span class="arithmatex">\(G\)</span> 旋转，则红色问题又转移到 <span class="arithmatex">\(G\)</span> 上，没有解决。这和 AVL 树单旋转时遇到的问题一样，在 AVL 树中单旋转无法解决内侧树过深的问题。这些情况加深了我们对旋转操作的认识：单旋转改变外侧树高度，双旋转采用两次单旋转改变内侧树高度。</p>
+</details>
+</div>
+<div class="admonition note">
+<p class="admonition-title">难点：删除修复</p>
+<p>删除操作基于二叉树删除操作，回顾这三种情况的处理方式。红黑树中删除时，接替节点的值替换被删除节点，颜色不变。被删除或移动到树中的节点为 <span class="arithmatex">\(y\)</span>，记录它的原始颜色。如果原始颜色为黑色，则接替 <span class="arithmatex">\(y\)</span> 的节点 <span class="arithmatex">\(x\)</span> 可能引起红黑树性质的破坏：</p>
+<ul>
+<li>现在，给 <span class="arithmatex">\(x\)</span> 赋予一层额外的黑色</li>
+<li>循环条件 <span class="arithmatex">\(x\)</span> 是黑色且不是根节点（因为直到 <span class="arithmatex">\(x\)</span> 为红色节点，才能把额外的黑色化解）<ul>
+<li>如果 <span class="arithmatex">\(x\)</span> 的兄弟是红色，此时父亲一定是黑色<ul>
+<li>该情况下无法将整层的黑色向上传递，只好旋转变化为下面的情况</li>
+<li>旋转，让兄弟变黑，父亲变红，进入下面的情况</li>
+</ul>
+</li>
+<li>如果 <span class="arithmatex">\(x\)</span> 的兄弟是黑色<ul>
+<li>兄弟的两个孩子都是黑色（如果有红孩子，就不能执行该步的操作，会违反红节点性质）<ul>
+<li>让兄弟变红，<span class="arithmatex">\(x\)</span> 设为父亲（相当于把该层黑色向上传递）</li>
+</ul>
+</li>
+<li>兄弟的近孩子是红色，远孩子是黑色<ul>
+<li>旋转，将红色的孩子弄出去，进入下面的情况</li>
+</ul>
+</li>
+<li>兄弟的远孩子是红色<ul>
+<li>旋转父亲，让兄弟接替父亲，变成父亲的颜色。父亲下来变黑（自己的双黑传递上去），兄弟的远孩子变黑（兄弟的黑色导致的），达到平衡</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>离开循环，将 <span class="arithmatex">\(x\)</span> 染黑</li>
+</ul>
+</div>
+<ul>
+<li>删除操作复杂度为 <span class="arithmatex">\(O(\log n)\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="2-3">完美平衡的 2-3 查找树<a class="headerlink" href="#2-3" title="Permanent link">&para;</a></h2>
+<p>该部分来源于《算法》。完美平衡的 2-3 查找树与红黑树一一对应，理解这一对应关系有助于理解红黑树的结构：红黑树为什么能够通过黑高实现所谓的“平衡”？当你看到将红链接画平的红黑树时，相信你会有新的理解。这也将帮助我们过渡到 B 树。</p>
+<p>==todo==</p>
+<h2 id="b">B 族树<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
+<p>B 族树有很多种具体的实现方式，不同书里的讲解方式也可能会有一些差异（主要是在 Order 等参数的定义上，本质不会变）。</p>
+<p>B 树一般用于 DBMS 等大量数据的存储，性能指标一般是对磁盘的访问量，即访问节点的数量。</p>
+<p>值得注意的是，B 族树都是从根节点向上增长的，因此 <code>Insert()</code> 操作常常是对根节点特殊处理的包装，对内部节点的插入使用 <code>InsertNotFull()</code> 等函数。</p>
+<h3 id="b_1">《算法导论》中的 B 树<a class="headerlink" href="#b_1" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">成员</label><label for="__tabbed_5_2">操作</label><label for="__tabbed_5_3">结构</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>n：节点关键字数量</li>
+<li>leaf</li>
+<li>key[n]</li>
+<li>child[n+1]</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<div class="admonition note">
+<p class="admonition-title">所有操作都是单程下行的，无需返回。</p>
+</div>
+<ul>
+<li>Search(root, key)：返回节点指针和下标</li>
+<li>SplitChild(root, i)：<span class="arithmatex">\(2t-1=2(t-1)+1\)</span><ul>
+<li>root 是非满的节点</li>
+<li>i 标记非满的子节点</li>
+</ul>
+</li>
+<li>Insert(root, key)<ul>
+<li>包装 InsertNotFull()，处理根节点满情况（向上增长）</li>
+</ul>
+</li>
+<li>InsertNotFull(root, key)<ul>
+<li>叶节点直接插入</li>
+<li>非叶节点，递归向下前先考虑 SplitChild</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>关键字数量的限制：定义最小度数 <span class="arithmatex">\(t\geq2\)</span><ul>
+<li>根节点以外的节点，关键字可以有 <span class="arithmatex">\(t-1\sim2t-1\)</span> 个</li>
+<li>根节点至少 <span class="arithmatex">\(1\)</span> 个关键字。</li>
+</ul>
+</li>
+<li>高度的限制：所有叶节点高度相同。根节点深度为 <span class="arithmatex">\(0\)</span>。</li>
+</ul>
+<p>高度：<span class="arithmatex">\(h\leq \log_t \frac{n+1}2\)</span>。画图容易知道，深度 <span class="arithmatex">\(h\)</span> 至少有 <span class="arithmatex">\(2t^{h-1}\)</span> 个节点，求和得到结论。</p>
+</div>
+</div>
+</div>
+<h3 id="b_2">《算法》中的 B 树<a class="headerlink" href="#b_2" title="Permanent link">&para;</a></h3>
+<p>事实上《算法》中的 B 树很像课内介绍的 B+ 树。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">成员</label><label for="__tabbed_6_2">操作</label><label for="__tabbed_6_3">结构</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>Page</code>:</p>
+<ul>
+<li>external：布尔值，是否为外部页</li>
+<li>pair<key, link>：键和链接</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>《算法》中的 B 树 API 是基于符号表封装的，每个节点中包含一个 <code>Page</code> 对象。这样封装有一定优点：操作 <code>Page</code> 时只需要管符号表操作不需要考虑树的链接，操作 <code>BTreeSET</code> 时只需要考虑抽象的节点操作不需要考虑符号表的变动。</p>
+<p><code>Page</code> 负责实际的数据操作（当然也需要对内、外部页作分别处理，但这很简单）：</p>
+<ul>
+<li>split：分裂</li>
+<li>next：可能含有键的子树</li>
+<li>contains：查找</li>
+<li>add：添加键</li>
+</ul>
+<p>而 <code>BTreeSET</code> 更像是 <code>Page</code> 的管理器，封装后对外只剩下两个操作：</p>
+<ul>
+<li>add</li>
+<li>contains</li>
+</ul>
+<p>有了 <code>Page</code> 的抽象，这些操作的实现非常简答。比如非根节点的 <code>add</code> 只有几行：</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">if</span><span class="p">(</span><span class="n">h</span><span class="p">.</span><span class="na">isExternal</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">h</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="p">;}</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Page</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">.</span><span class="na">next</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">add</span><span class="p">(</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="na">isFull</span><span class="p">())</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">h</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="na">split</span><span class="p">);</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>参数 <span class="arithmatex">\(M\)</span> 阶：</p>
+<ul>
+<li>其他节点：<span class="arithmatex">\(M/2\sim M-1\)</span> 对键和链接</li>
+<li>根节点：<span class="arithmatex">\(2\sim M-1\)</span> 对键和链接</li>
+</ul>
+<p>B 树的性能分析很容易，因为<strong>内部节点一定是由含有 <span class="arithmatex">\(M\)</span> 个键的饱和节点分裂而来</strong>，可知总链接数为 <span class="arithmatex">\(M/2\sim M-1\)</span>，形成度为 <span class="arithmatex">\(M/2 \sim M-1\)</span> 的完全树，故查找或插入成本均为 <span class="arithmatex">\(\log_M N\sim \log_{M/2} N\)</span> 次磁盘操作。</p>
+</div>
+</div>
+</div>
+<h3 id="b_3">B+ 树<a class="headerlink" href="#b_3" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:3"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">成员</label><label for="__tabbed_7_2">结构</label><label for="__tabbed_7_3">操作</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>n</li>
+<li>leaf</li>
+<li>key[n]</li>
+<li>child[n+1]</li>
+<li>next：需要遍历的实现会出现，指向下一个叶子节点</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">使用哨兵和重复的键值</p>
+<p>如果允许自由实现，可以使用哨兵，并允许键值在内部节点重复出现。这样可以将 <code>key</code> 和 <code>child</code> 合并为 <code>map&lt;key, child&gt;</code>，简化操作。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>B+ 树中，所有数据都在叶子节点上，非叶子节点只存储索引。这样的设计使得 B+ 树既方便索引又方便遍历。</p>
+<p>定义 <span class="arithmatex">\(M\)</span> 为 B+ 树的 order。</p>
+<ul>
+<li>根节点：<span class="arithmatex">\(2\sim M\)</span> 个孩子，即 <span class="arithmatex">\(1\sim M-1\)</span> 个 Key</li>
+<li>非叶子节点：<span class="arithmatex">\(\lceil M/2 \rceil \sim M\)</span> 个孩子，即 <span class="arithmatex">\(\lceil M/2 \rceil - 1 \sim M-1\)</span> 个 Key</li>
+<li>（非根）叶子节点：<span class="arithmatex">\(\lceil M/2 \rceil \sim M\)</span> 个孩子，也是 Key</li>
+</ul>
+<p>设一个内部节点有 <span class="arithmatex">\(N\)</span> 个孩子，那么它有 <span class="arithmatex">\(N-1\)</span> 个 Key，是除第一个子树外的其他子树的最小值。注意这里是子树而不是孩子。</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Find</li>
+<li>Insert</li>
+<li>SplitLeaf</li>
+<li>SplitInternal</li>
+</ul>
+<p>删除不做要求。</p>
+<div class="admonition note">
+<p class="admonition-title">难点：分裂操作</p>
+<p>B+ 树叶子是数据，内部节点是索引。对于课内教授的 B+ 树，键值不允许在内部节点多次出现，因此内外节点需要分别处理：</p>
+<ul>
+<li>分裂叶子节点时，作为索引的值<strong>复制</strong>到父节点中</li>
+<li>分裂内部节点时，作为索引的值<strong>上移</strong>到父节点中</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<h2 id="binary-heap">二叉堆 Binary Heap<a class="headerlink" href="#binary-heap" title="Permanent link">&para;</a></h2>
+<p>二叉堆是完全二叉树。它有两个性质：</p>
+<ul>
+<li>结构性质：完全二叉树</li>
+<li>堆序性质：任意节点的关键字不大于（或不小于）其孩子节点的关键字</li>
+</ul>
+<p>==todo==</p>
+<h2 id="leftist-treeheap">左式树/堆 Leftist Tree/Heap<a class="headerlink" href="#leftist-treeheap" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title"><a href="https://www.youtube.com/watch?v=dgMuWmm-aVA">Youtube 讲解视频</a></p>
+</div>
+<details class="note">
+<summary>回顾：二叉堆合并</summary>
+<p>合并二叉堆：</p>
+<ul>
+<li>拷贝所有元素</li>
+<li>构建堆：插入或线性时间建堆（Heapify）</li>
+</ul>
+<p>复杂度为 <span class="arithmatex">\(O(N\log N)\)</span> 或 <span class="arithmatex">\(O(N)\)</span>。</p>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">成员</label><label for="__tabbed_8_2">操作</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Key, Left, Right</li>
+<li><strong>NPL</strong>：Null Path Length，零路径长</li>
+</ul>
+<details class="note">
+<summary>概念：S 值/零路径长（Null Path Length）</summary>
+<p>和红黑树中一样，我们把空指针视为外部节点。</p>
+<p>S 值：从一个节点到外部节点的最短路径长度。</p>
+<ul>
+<li><span class="arithmatex">\(S(null) = 0\)</span></li>
+<li><span class="arithmatex">\(S(x) = 1 + \min(S(x.left), S(x.right))\)</span></li>
+</ul>
+</details>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Merge</li>
+<li>Insert, Delete：这两个操作都基于合并。插入就是和单节点合并，删除只发生在根部，删除根节点就是合并左右孩子。</li>
+</ul>
+</div>
+</div>
+</div>
+<details class="note">
+<summary>左式堆：合并</summary>
+<ol>
+<li>前向步骤：比较两个根节点，取出较小根节点的右孩子和另一个堆合并，直到有一个待合并的堆为空。</li>
+<li>反向步骤：用合并结果替换掉较小根节点的右孩子。如果会违背左式树的性质，交换左右孩子。</li>
+</ol>
+<p>复杂度分析：每次合并操作都是 <span class="arithmatex">\(O(1)\)</span>，持续向右进行。向右最长路径为 S 值，因此合并操作的复杂度为 <span class="arithmatex">\(O(\log N)\)</span>。</p>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">结构</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<details class="note">
+<summary>左式树/堆的性质</summary>
+<p><span class="arithmatex">\(S(x.left) \geq S(x.right)\)</span></p>
+<p>结合 <span class="arithmatex">\(S(x) = 1 + \min(S(x.left), S(x.right))\)</span> 可以马上知道，S 值是通向最右侧外部节点的路径长度。</p>
+<p>从该性质，利用数学归纳法，可以得到：</p>
+<ul>
+<li>以 <span class="arithmatex">\(x\)</span> 为根的子树至少有 <span class="arithmatex">\(2^{S(x)}-1\)</span> 个节点</li>
+<li>以 <span class="arithmatex">\(x\)</span> 为根的子树 <span class="arithmatex">\(S(x) \leq \log(N+1)\)</span></li>
+</ul>
+<p>满足堆序性质的左式树就是左式堆。显然：左式堆不需要是完全二叉树。</p>
+</details>
+</div>
+</div>
+</div>
+<h2 id="skew-heap">斜堆 Skew Heap<a class="headerlink" href="#skew-heap" title="Permanent link">&para;</a></h2>
+<p>Skew Heap 是左式堆的一种变种，它不维护左式堆的性质，总是在合并操作中交换左右孩子。因此它不考虑零路径长。</p>
+<p>不交换的情况是：右路径上最大的节点的孩子没有交换过。</p>
+<p>Always swap the left and right children except that the largest of all the nodes on the right paths does not have its children swapped. </p>
+<h2 id="binomial-queue">二项队列 Binomial Queue<a class="headerlink" href="#binomial-queue" title="Permanent link">&para;</a></h2>
+<p>二项队列是二项树组成的森林，每个树是堆有序的。</p>
+<p>与上面的堆相比，二项堆能够实现摊还常数时间的<strong>插入建堆</strong>操作。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:3"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><input id="__tabbed_10_3" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">成员</label><label for="__tabbed_10_2">结构</label><label for="__tabbed_10_3">操作</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>BinNode<ul>
+<li>Key</li>
+<li>Left</li>
+<li>Right</li>
+</ul>
+</li>
+<li>BinQueue<ul>
+<li>Size：节点总数</li>
+<li>Trees：指向树根的指针数组</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>高度：</p>
+<ul>
+<li>单节点树 <span class="arithmatex">\(B_0\)</span> 高度为 <span class="arithmatex">\(0\)</span>。</li>
+<li>高度 <span class="arithmatex">\(k\)</span> 的树 <span class="arithmatex">\(B_k\)</span> 由两个高度 <span class="arithmatex">\(k-1\)</span> 的树 <span class="arithmatex">\(B_{k-1}\)</span> 合并而来，合并的方式是把一个树连到另一个树的根部。<ul>
+<li>每次高度增加都会往根部连一个相同的树的根，因此高度为 <span class="arithmatex">\(k\)</span> 的树根 <span class="arithmatex">\(B_k\)</span> 有 <span class="arithmatex">\(k\)</span> 个孩子，这些孩子分别是 <span class="arithmatex">\(B_0, B_1, \cdots, B_{k-1}\)</span>。</li>
+<li>递归很容易得到高度为 <span class="arithmatex">\(k\)</span> 的树 <span class="arithmatex">\(B_k\)</span> 有 <span class="arithmatex">\(2^k\)</span> 个节点。</li>
+<li>第 <span class="arithmatex">\(d\)</span> 层的节点数为 <span class="arithmatex">\(\binom{k}{d}\)</span>，这同样可以根据归纳法和组合数的性质 <span class="arithmatex">\(C_k^i + C_k^{i-1} = C_{k+1}^i\)</span> 得到。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>辅助：<ul>
+<li>CombineTrees：合并两棵树</li>
+</ul>
+</li>
+<li>FindMin：<ul>
+<li>最小的节点一定在根部。</li>
+<li>森林中最多有 <span class="arithmatex">\(\lceil \log N \rceil\)</span> 棵树。</li>
+<li>复杂度为 <span class="arithmatex">\(O(\log N)\)</span>。</li>
+</ul>
+</li>
+<li>Merge：<ul>
+<li>类似数字逻辑电路中的进位加法器。</li>
+<li>合并高度相同的两棵树时，必须保证堆序性质，即将较大树的根作为较小树的孩子。</li>
+<li>根据所合并两个队列当前高度上的树和进位的树，分 <span class="arithmatex">\(2^3=8\)</span> 种情况讨论。</li>
+</ul>
+</li>
+</ul>
+<details class="note">
+<summary>合并操作伪代码</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>BinQueue  Merge( BinQueue H1, BinQueue H2 )
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>{
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    BinTree T1, T2, Carry = NULL;  
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    int i, j;
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    if ( H1-&gt;CurrentSize + H2-&gt; CurrentSize &gt; Capacity )  ErrorMessage();
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    H1-&gt;CurrentSize += H2-&gt; CurrentSize;
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    for ( i=0, j=1; j&lt;= H1-&gt;CurrentSize; i++, j*=2 ) {
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        T1 = H1-&gt;TheTrees[i]; T2 = H2-&gt;TheTrees[i]; /*current trees */
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        switch( 4*!!Carry + 2*!!T2 + !!T1 ) { 
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        case 0: /* 000 */
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        case 1: /* 001 */  break; 
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        case 2: /* 010 */  H1-&gt;TheTrees[i] = T2; H2-&gt;TheTrees[i] = NULL; break;
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        case 4: /* 100 */  H1-&gt;TheTrees[i] = Carry; Carry = NULL; break;
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        case 3: /* 011 */  Carry = CombineTrees( T1, T2 );
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>                        H1-&gt;TheTrees[i] = H2-&gt;TheTrees[i] = NULL; break;
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        case 5: /* 101 */  Carry = CombineTrees( T1, Carry );
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>                        H1-&gt;TheTrees[i] = NULL; break;
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        case 6: /* 110 */  Carry = CombineTrees( T2, Carry );
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>                        H2-&gt;TheTrees[i] = NULL; break;
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        case 7: /* 111 */  H1-&gt;TheTrees[i] = Carry; 
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>                        Carry = CombineTrees( T1, T2 ); 
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>                        H2-&gt;TheTrees[i] = NULL; break;
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        } /* end switch */
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    } /* end for-loop */
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    return H1;
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>}
+</span></code></pre></div>
+</details>
+<ul>
+<li>Insert：<ul>
+<li>合并一个只有一个节点的树和原队列。</li>
+</ul>
+</li>
+<li>DeleteMin：<ul>
+<li>找到最小根所在的树，移出森林。</li>
+<li>删除它，它的孩子们组成一个新的森林。</li>
+<li>合并这个森林和原森林。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">将任意大小的优先队列表示为二项队列</p>
+<p>把队列大小表示为二进制，为 <span class="arithmatex">\(1\)</span> 的位对应一个二项树。这样的表示方法是唯一的。</p>
+</div>
+<h2 id="fibonacci-heap">斐波那契堆 Fibonacci Heap<a class="headerlink" href="#fibonacci-heap" title="Permanent link">&para;</a></h2>
+<h2 id="_1">树的遍历<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">层序遍历<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>不论是一般表示的树，还是左孩子右兄弟表示的树，甚至是森林，层序遍历都可以使用队列解决。以一般表示的树为例：</p>
+<ul>
+<li>从根开始，将根节点入队</li>
+<li>进入循环，循环条件为队列非空</li>
+<li>队首元素出队，打印，并将孩子入队</li>
+</ul>
+<p>下面是一段二叉树层序遍历的示例代码：</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;queue&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">BinaryTree</span><span class="p">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">BinaryTree</span><span class="w"> </span><span class="o">*</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">right</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="n">BinaryTree</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tree</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">};</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="n">BinaryTree</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tree</span><span class="p">){</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="n">BinaryTree</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tree</span><span class="p">);</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="n">BinaryTree</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">key</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">            </span><span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">            </span><span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">扩展：换行层序遍历</p>
+<p>如果要求按行输出树的每一层，需要怎么做呢？</p>
+</div>
+<h2 id="_3">左孩子右兄弟表示法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">其他<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ART 树：这是我在《高级数据结构与算法》课程作业中实践的数据结构，来自高效全文本搜索引擎 TypeSense。具体内容请查阅论文。<ul>
+<li>与各类二叉搜索树相比，它能极大地节省空间</li>
+<li>它针对体系结构做了优化，精巧设计节点，在主存上表现很好</li>
+<li>访问速度趋近哈希表，同时还支持模糊搜索和范围查找</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 30, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://bowling233.com" target="_blank" rel="noopener" title="bowling233.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.07 4.93C17.22 3 14.66 1.96 12 2c-2.66-.04-5.21 1-7.06 2.93C3 6.78 1.96 9.34 2 12c-.04 2.66 1 5.21 2.93 7.06C6.78 21 9.34 22.04 12 22c2.66.04 5.21-1 7.06-2.93C21 17.22 22.04 14.66 22 12c.04-2.66-1-5.22-2.93-7.07M17 12v6h-3.5v-5h-3v5H7v-6H5l7-7 7.5 7z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.tracking", "navigation.tabs", "navigation.prune", "navigation.indexes", "header.autohide", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.alicdn.com/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

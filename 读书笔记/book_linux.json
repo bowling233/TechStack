@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Linux Kernel Development, 3rd Edition",
+        "content": "[PDF](https://www.doc-developpement-durable.org/file/Projets-informatiques/cours-&-manuels-informatiques/Linux/Linux%20Kernel%20Development,%203rd%20Edition.pdf)<br/>主要章节已读（2024/09/24）",
+        "image": "linux/lkd.assets/lkd_cover.jpg"
+    },
+    {
+        "title": "The Linux Programming Interface",
+        "content": "[书籍网站](http://man7.org/tlpi/)<br/>进行中",
+        "image": "linux/tlpi.assets/tlpi_cover.png"
+    },
+    {
+        "title": "Linux Device Drivers, 3rd Edition",
+        "content": "[PDF](https://lwn.net/Kernel/LDD3/)<br/>暂缓",
+        "image": "linux/ldd.assets/ldd_cover.gif"
+    },
+    {
+        "title": "The Debian Administrator's Handbook",
+        "content": "[书籍网站](https://debian-handbook.info/browse/stable/)<br/>进行中",
+        "image": "linux/tdah.assets/tdah_cover.jpg"
+    }
+
+]

@@ -1,0 +1,2547 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bowling 的笔记本">
+      
+      
+        <meta name="author" content="Bowling">
+      
+      
+        <link rel="canonical" href="https://note.bowling233.top/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/theory/jsll/">
+      
+      
+        <link rel="prev" href="../../system/riscvalp/">
+      
+      
+        <link rel="next" href="../pfpl/">
+      
+      
+      <link rel="icon" href="https://cdn.bowling233.top/note/avatar/bowling.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>计算理论 - Bowling's TechStack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/flink.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/neoteroi-mkdocs.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.0.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Bowling&#39;s TechStack" class="md-header__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bowling's TechStack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              计算理论
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../links/" class="md-tabs__link">
+        
+  
+    
+  
+  友链
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-tabs__link">
+          
+  
+    
+  
+  人工智能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  实用技能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/" class="md-tabs__link">
+          
+  
+    
+  
+  硬件和体系结构
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A7%91%E7%A0%94/dpdk/" class="md-tabs__link">
+          
+  
+    
+  
+  科研
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-tabs__link">
+          
+  
+    
+  
+  算法和数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%BD%91%E7%BB%9C/" class="md-tabs__link">
+          
+  
+    
+  
+  网络
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%8D%89%E7%A8%BF/CSAPP/" class="md-tabs__link">
+          
+  
+    
+  
+  草稿
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机图形学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  读书笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-tabs__link">
+          
+  
+    
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%BD%AF%E4%BB%B6/%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9F/" class="md-tabs__link">
+          
+  
+    
+  
+  软件
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/MPI/usage/" class="md-tabs__link">
+          
+  
+    
+  
+  高性能计算
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Bowling&#39;s TechStack" class="md-nav__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    Bowling's TechStack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    友链
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    人工智能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%9E%E7%94%A8%E6%8A%80%E8%83%BD/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    实用技能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A1%AC%E4%BB%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/FPGA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    硬件和体系结构
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A7%91%E7%A0%94/dpdk/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    科研
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    算法和数学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    网络
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%8D%89%E7%A8%BF/CSAPP/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    草稿
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机图形学
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    读书笔记
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            读书笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../RFCs/nfsv4_wg/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    RFCs
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../ai/d2l/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Ai
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../blog/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../linux/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../network/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Network
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../system/caaqa/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    System
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11_8" id="__nav_11_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Theory
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11_8">
+            <span class="md-nav__icon md-icon"></span>
+            Theory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    计算理论
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    计算理论
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      集合、关系和语言
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="集合、关系和语言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      二元关系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      有限和无限集
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      三个基本证明技术
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      闭包与算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      字母表与语言
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      语言的有穷表示
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      有穷自动机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="有穷自动机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deterministic-finite-automata-dfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      确定型有穷自动机（Deterministic Finite Automata, DFA）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nondeterministic-finite-automata-nfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      非确定型有穷自动机（Nondeterministic Finite Automata, NFA）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文无关语言
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="上下文无关语言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文无关文法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      语法分析树
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pfpl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practical Foundations for Programming Languages, Second Edition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%BD%AF%E4%BB%B6/%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    软件
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/MPI/usage/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    高性能计算
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      集合、关系和语言
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="集合、关系和语言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      二元关系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      有限和无限集
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      三个基本证明技术
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      闭包与算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      字母表与语言
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      语言的有穷表示
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      有穷自动机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="有穷自动机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deterministic-finite-automata-dfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      确定型有穷自动机（Deterministic Finite Automata, DFA）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nondeterministic-finite-automata-nfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      非确定型有穷自动机（Nondeterministic Finite Automata, NFA）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文无关语言
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="上下文无关语言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文无关文法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      语法分析树
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">计算理论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">集合、关系和语言<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">二元关系<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>自反：<span class="arithmatex">\((a, a)\in R\)</span></li>
+<li>对称：<span class="arithmatex">\((a, b)\in R \land a \neq b \Rightarrow (b, a)\in R\)</span></li>
+<li>反对称：<span class="arithmatex">\((a, b)\in R \land a \neq b \Rightarrow (b, a)\notin R\)</span></li>
+<li>
+<p>传递性：<span class="arithmatex">\((a, b)\in R \land (b, c)\in R \Rightarrow (a, c)\in R\)</span></p>
+</li>
+<li>
+<p>等价关系：自反、对称、传递</p>
+<ul>
+<li>表现为无向图的连通分量</li>
+</ul>
+</li>
+<li>
+<p>偏序关系：自反、反对称、传递</p>
+<ul>
+<li>偏序集中的极小元、极大元</li>
+</ul>
+</li>
+<li>全序关系：偏序关系且任意两个元素有序关系</li>
+</ul>
+<h3 id="_4">有限和无限集<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>基数（Cardinality）：集合中元素的个数 <span class="arithmatex">\(|A|\)</span>、<span class="arithmatex">\(\mathrm{card}(A)\)</span>、<span class="arithmatex">\(\#A\)</span><ul>
+<li>等势（Equinumerous）：<span class="arithmatex">\(|A|=|B|\)</span>，存在双射 <span class="arithmatex">\(f:A\rightarrow B\)</span></li>
+</ul>
+</li>
+<li>有限集：与某个 <span class="arithmatex">\({1, 2, \ldots, n}\)</span> 等势。</li>
+<li>无限集：不是有限集的集合。<ul>
+<li>可数无穷集：与自然数集 <span class="arithmatex">\(\mathbb{N}\)</span> 等势，基数为 <span class="arithmatex">\(\aleph_0\)</span>。</li>
+<li>不是所有的无限集都等势。</li>
+</ul>
+</li>
+<li>可数集：有限集或可数无穷集。</li>
+<li>不可数集：不是可数集的集合。</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">证明：可数无穷个可数无穷集的并集是可数无穷集</p>
+<ul>
+<li>设 <span class="arithmatex">\(A_1, A_2, \ldots\)</span> 是可数无穷个可数无穷集。</li>
+<li>构造一个二维表格，<span class="arithmatex">\(A_1\)</span> 的元素为第一行，<span class="arithmatex">\(A_2\)</span> 的元素为第二行，以此类推。</li>
+<li>沿着对角线遍历，得到一个可数无穷集。</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">证明：<span class="arithmatex">\(|\mathbb{R}| = |(0, 1)|\)</span></p>
+<div class="arithmatex">\[
+f(x) = \frac{1}{\pi}\arctan(x) + \frac{1}{2}
+\]</div>
+</div>
+<ul>
+<li><span class="arithmatex">\(|\mathbb{R}| = \aleph_1\)</span></li>
+<li>连续统假设：<ul>
+<li>不存在介于 <span class="arithmatex">\(\aleph_0\)</span> 和 <span class="arithmatex">\(\aleph_1\)</span> 之间的基数。</li>
+<li><span class="arithmatex">\(\aleph_0 &lt; \aleph_1\)</span>。</li>
+</ul>
+</li>
+<li>康托尔定理：<span class="arithmatex">\(|A| &lt; |\mathcal{P}(A)|\)</span></li>
+</ul>
+<h3 id="_5">三个基本证明技术<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>数学归纳法</li>
+<li>鸽巢原理</li>
+<li>对角化原理：<span class="arithmatex">\(R\)</span> 是集合 <span class="arithmatex">\(A\)</span> 上的二元关系，对角线集合 <span class="arithmatex">\(D=\{x\in A|(x, x)\notin R\}\)</span>。对于任意 <span class="arithmatex">\(a \in A\)</span>，令 <span class="arithmatex">\(R_a = \{x\in A|(a, x)\in R\}\)</span>，则 <span class="arithmatex">\(D\neq R_a\)</span>。<ul>
+<li>为什么对角线集合与方阵的每一行都不同？因为它的构造：与第一行在第一个位置不同，与第二行在第二个位置不同，以此类推。</li>
+</ul>
+</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">证明：<span class="arithmatex">\(|\mathbb{R}| &gt; |\mathbb{N}|\)</span>，即不可数</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">证明：<span class="arithmatex">\(2^\mathbb{N}\)</span> 不可数</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title"><a href="https://www.cnblogs.com/zhangzefei/p/9729529.html">康托尔、哥德尔、图灵——永恒的金色对角线 - MwingFly - 博客园</a></p>
+</div>
+<h3 id="_6">闭包与算法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(R^*\)</span>：自反传递闭包。</li>
+<li><span class="arithmatex">\(R^+\)</span>：传递闭包。</li>
+</ul>
+<h3 id="_7">字母表与语言<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>中文</th>
+<th>英文</th>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字母表</td>
+<td>alphabet</td>
+<td><span class="arithmatex">\(\Sigma\)</span></td>
+<td>有穷符号集合</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td>string</td>
+<td><span class="arithmatex">\(w\)</span></td>
+<td>字母表中符号的有穷序列</td>
+</tr>
+<tr>
+<td>空串</td>
+<td>empty string</td>
+<td><span class="arithmatex">\(e\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td>长度</td>
+<td>length</td>
+<td><span class="arithmatex">\(\|w\|\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><span class="arithmatex">\(\Sigma^*\)</span></td>
+<td>字母表上所有字符串集合</td>
+</tr>
+<tr>
+<td>子串</td>
+<td>substring</td>
+<td></td>
+<td><span class="arithmatex">\(v\)</span> 是 <span class="arithmatex">\(w\)</span> 的子串，当且仅当 <span class="arithmatex">\(\exists x, y\)</span> 使 <span class="arithmatex">\(w=xvy\)</span></td>
+</tr>
+<tr>
+<td></td>
+<td>exponentiation</td>
+<td><span class="arithmatex">\(w^i\)</span></td>
+<td><span class="arithmatex">\(w\)</span> 的 <span class="arithmatex">\(i\)</span> 次幂</td>
+</tr>
+<tr>
+<td>反转</td>
+<td>reversal</td>
+<td><span class="arithmatex">\(w^R\)</span></td>
+<td>对字符串 <span class="arithmatex">\(w\)</span> 的长度进行递归定义</td>
+</tr>
+<tr>
+<td>字符串连接</td>
+<td>concatenation</td>
+<td><span class="arithmatex">\(x \circ y\)</span><br /><span class="arithmatex">\(xy\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td>语言</td>
+<td>language</td>
+<td><span class="arithmatex">\(L\)</span></td>
+<td>字符串的集合</td>
+</tr>
+<tr>
+<td>Kleene 星号</td>
+<td>Kleene star</td>
+<td><span class="arithmatex">\(L^*\)</span></td>
+<td>连接 <span class="arithmatex">\(L\)</span> 中 0 或多个字符串得到的所有字符串的集合<br/><span class="arithmatex">\(L^*=\{w_1w_2\ldots w_n\|n\geq 0, w_i\in L\}\)</span></td>
+</tr>
+<tr>
+<td>语言连接</td>
+<td>concatenation</td>
+<td><span class="arithmatex">\(L_1 \circ L_2\)</span><br /><span class="arithmatex">\(L_1L_2\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><span class="arithmatex">\(L^+\)</span></td>
+<td><span class="arithmatex">\(LL^*\)</span>，可以视为<strong>连接</strong>运算的闭包</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition question">
+<p class="admonition-title">证明：对任意两个字符串 <span class="arithmatex">\(w\)</span> 和 <span class="arithmatex">\(x\)</span>，<span class="arithmatex">\((wx)^R=x^Rw^R\)</span></p>
+<p>对 <span class="arithmatex">\(x\)</span> 的长度进行归纳。</p>
+</div>
+<ul>
+<li>字符串的数量<ul>
+<li>如果 <span class="arithmatex">\(\Sigma\)</span> 是有穷的，则 <span class="arithmatex">\(\Sigma^*\)</span> 是可数无穷集。</li>
+</ul>
+</li>
+<li>语言的数量<ul>
+<li>任何字母表上的任何语言都是可数的。</li>
+<li>字母表上的语言的数量是 <span class="arithmatex">\(|\mathbb{R}|=\aleph_1\)</span>。因为所有语言的集合是 <span class="arithmatex">\(\mathcal{P}(\Sigma^*)\)</span>，而可数无穷集的幂集的基数是 <span class="arithmatex">\(\aleph_1\)</span>。</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">课后习题</p>
+<ol>
+<li>字符串连接<ol>
+<li>证明连接可结合 <span class="arithmatex">\((xy)z = x(yz)\)</span>：证明长度相等、字符相同。</li>
+<li>字符串连接的递归定义：对 <span class="arithmatex">\(y\)</span> 的长度进行递归定义。</li>
+<li>利用连接的递归定义证明连接的结合律：对 <span class="arithmatex">\(yz\)</span> 的长度进行归纳。</li>
+</ol>
+</li>
+<li>字符串反转<ol>
+<li>利用递归定义证明 <span class="arithmatex">\((w^R)^R=w\)</span>：对 <span class="arithmatex">\(w\)</span> 的长度进行归纳。</li>
+<li>证明子串的反转是反转的子串：直接应用子串和反转的定义即可。</li>
+<li>证明反转和幂的交换律：对幂次进行归纳。</li>
+</ol>
+</li>
+<li>定义字典序（偏序关系）：分长度不同和长度相同两种情况定义。长度相同的情况，找第一个不同的字符比较。</li>
+<li>Kleene 星<ol>
+<li>证明 <span class="arithmatex">\(\{e\}^* = \{e\}\)</span>：应用 Kleene 星的定义和空串连接的性质即可。</li>
+<li>证明 <span class="arithmatex">\((L^*)^* = L^*\)</span>：<ul>
+<li>我的方法：证明两者互相包含。根据定义已经有一侧了，再证明一侧即可。</li>
+<li>书本：直接展开 <span class="arithmatex">\((L^*)^*\)</span>，通过下标变换得到 <span class="arithmatex">\(L^*\)</span>。</li>
+</ul>
+</li>
+<li>证明 <span class="arithmatex">\(\{a, b\}^* = \{a\}^*(\{b\}\{a\}^*)^*\)</span>：无答案。</li>
+<li>证明 <span class="arithmatex">\(L_1\Sigma^*L_2 = \Sigma^*\)</span>，其中 <span class="arithmatex">\(L_1, L_2\)</span> 含有空串：证明两侧相互包含。</li>
+<li>证明 <span class="arithmatex">\(\emptyset L = L\emptyset = \emptyset\)</span>：空集中取不出字符串，所以结果是空集。</li>
+</ol>
+</li>
+</ol>
+<p>5、6、7 todo。</p>
+</div>
+<h3 id="_8">语言的有穷表示<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>正则表达式的字母表：<span class="arithmatex">\(\Sigma\cup\{ (, ), \cup, *, \emptyset \}\)</span>。</li>
+<li>正则表达式是可数的（<span class="arithmatex">\(\Sigma^*\)</span>），语言是不可数的（<span class="arithmatex">\(2^{\Sigma^*}\)</span>），故存在不可用正则表达式表示的语言。</li>
+<li>正则语言类：所有可以写成 <span class="arithmatex">\(L=L(a)\)</span> 的语言，其中 <span class="arithmatex">\(a\)</span> 是 <span class="arithmatex">\(\Sigma\)</span> 上的正则表达式。</li>
+<li>正则表达式表示的语言的运算：<ul>
+<li><span class="arithmatex">\(L(\alpha \beta) = L(\alpha)L(\beta)\)</span></li>
+<li><span class="arithmatex">\(L(\alpha \cup \beta) = L(\alpha)\cup L(\beta)\)</span></li>
+<li><span class="arithmatex">\(L(\alpha^*) = L(\alpha)^*\)</span></li>
+</ul>
+</li>
+</ul>
+<p>根据上下文，有时候指正则表达式本身，有时候指正则表达式表示的语言，不作严格区分。</p>
+<div class="admonition note">
+<p class="admonition-title">课后习题</p>
+<ol>
+<li>理解正则表达式 <span class="arithmatex">\((((a^*a)b)\cup b)\)</span>。</li>
+<li>化简正则表达式<ol>
+<li><span class="arithmatex">\(\emptyset^* \cup a^* \cup b^* \cup (a \cup b)^*\)</span>：<span class="arithmatex">\(\Sigma^*\)</span></li>
+<li><span class="arithmatex">\(((a^*b^*)^*(b^*a^*)^*)^*\)</span>：<span class="arithmatex">\(\Sigma^*\)</span></li>
+<li><span class="arithmatex">\((a^*b)^*\cup (b^*a)^*\)</span>：<span class="arithmatex">\(\Sigma^*\)</span></li>
+<li><span class="arithmatex">\((a\cup b)^*a(a\cup b)^*\)</span>：<span class="arithmatex">\(\Sigma^*a\Sigma^*\)</span></li>
+</ol>
+</li>
+<li>写正则表达式：</li>
+</ol>
+</div>
+<h2 id="_9">有穷自动机<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>有穷自动机（Finite Automata, FA）</strong>：<span class="arithmatex">\(M\)</span><ul>
+<li>接受输入（一个字符串 <span class="arithmatex">\(w\)</span>），给出是否接受这个输入的信号。</li>
+<li>核心是<strong>有穷控制器</strong>（一个黑盒），在特定的时刻处于<strong>有穷个状态</strong>中的一个 <span class="arithmatex">\(q\)</span>。</li>
+<li>每隔一定时间读取一个符号，进入一个新的状态。</li>
+<li>如果结束在一个<strong>终结状态</strong>，认为输入被接受。</li>
+</ul>
+</li>
+<li>机器接受的语言是它接受的所有字符串的集合 <span class="arithmatex">\(L(M)\)</span>。</li>
+</ul>
+<h3 id="deterministic-finite-automata-dfa">确定型有穷自动机（Deterministic Finite Automata, DFA）<a class="headerlink" href="#deterministic-finite-automata-dfa" title="Permanent link">&para;</a></h3>
+<ul>
+<li>新的状态只与当前状态和刚读到的符号有关。</li>
+<li><strong>形式定义</strong>：<span class="arithmatex">\(M=(K, \Sigma, \delta, s, F)\)</span><ul>
+<li><span class="arithmatex">\(K\)</span>：有穷状态集合</li>
+<li><span class="arithmatex">\(\Sigma\)</span>：字母表</li>
+<li><span class="arithmatex">\(s\in K\)</span>：初始状态</li>
+<li><span class="arithmatex">\(F\subseteq K\)</span>：终结状态集合</li>
+<li><span class="arithmatex">\(\delta: K\times\Sigma\rightarrow K\)</span>：状态转移函数。如果 <span class="arithmatex">\(M\)</span> 处于状态 <span class="arithmatex">\(q\)</span>，读到符号 <span class="arithmatex">\(a\)</span>，则 <span class="arithmatex">\(\delta(q, a)\)</span> 是下一个状态。</li>
+</ul>
+</li>
+<li><strong>格局</strong>：当前状态和被处理的字符串尚未读过的部分，如 <span class="arithmatex">\((q_2, ababa)\)</span>。<ul>
+<li>用<strong>格局序列</strong>可以描述 FA 在一个字符串上的计算。</li>
+</ul>
+</li>
+<li><strong>格局间的关系</strong>：<ul>
+<li><strong>一步产生</strong> <span class="arithmatex">\((q, w)\vdash_M(q', w')\)</span><ul>
+<li>当且仅当 <span class="arithmatex">\(\delta(q, w)=q'\)</span> 且 <span class="arithmatex">\(\exists a\in\Sigma, w=aw'\)</span>。</li>
+<li>这是从 <span class="arithmatex">\(K\times\Sigma^+\)</span> 到 <span class="arithmatex">\(K\times\Sigma^*\)</span> 的一个关系，因为 <span class="arithmatex">\((q, e)\)</span> 不再有下一步。</li>
+</ul>
+</li>
+<li><strong>产生</strong>：一步产生的<strong>自反传递闭包</strong> <span class="arithmatex">\((q, w)\vdash_M^*(q', w')\)</span>。</li>
+</ul>
+</li>
+<li>字符串被<strong>接受</strong> <span class="arithmatex">\(w\in L(M)\)</span>：当且仅当 <span class="arithmatex">\(\exists q \in F, (s, w)\vdash_M^*(q, e)\)</span>。</li>
+<li>状态图：<ul>
+<li>顶点表示状态，双圈表示终结状态，<span class="arithmatex">\(&gt;\)</span> 表示初始状态。</li>
+<li>箭头表示 <span class="arithmatex">\(\delta(q, a)=q'\)</span>。</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">课后习题</p>
+<ol>
+<li>什么情况下 <span class="arithmatex">\(e\in L(M)\)</span>：当且仅当 <span class="arithmatex">\(s\in F\)</span>。</li>
+<li>根据状态图写出 DFA 接受的语言。</li>
+<li>根据语言构造状态机。</li>
+<li>确定型有穷状态转换器：将输入串转换成输出串。<ol>
+<li>绘制它的一些状态图。</li>
+<li>形式地定义它。</li>
+</ol>
+</li>
+<li>确定型双带有穷自动机。</li>
+</ol>
+</div>
+<h3 id="nondeterministic-finite-automata-nfa">非确定型有穷自动机（Nondeterministic Finite Automata, NFA）<a class="headerlink" href="#nondeterministic-finite-automata-nfa" title="Permanent link">&para;</a></h3>
+<p>允许几个可能的下一个状态，选择转移到这些状态中的一个。这一选择不被任何东西决定。</p>
+<ul>
+<li><strong>形式定义</strong>：<span class="arithmatex">\(M=(K, \Sigma, \Delta, s, F)\)</span>，与 DFA 一致，只是<strong>状态转移函数</strong>变成了<strong>转移关系</strong><ul>
+<li><span class="arithmatex">\(\Delta\subseteq K\times(\Sigma\cup\{e\})\times K\)</span>：转移关系，其中每一个三元组 <span class="arithmatex">\((q, u, p)\)</span> 表示从状态 <span class="arithmatex">\(q\)</span> 读取符号 <span class="arithmatex">\(u\)</span> 转移到状态 <span class="arithmatex">\(p\)</span>。</li>
+</ul>
+</li>
+<li><strong>格局</strong>：<span class="arithmatex">\((q, w)\)</span> 也是 <span class="arithmatex">\(K\times\Sigma^*\)</span> 的元素。<ul>
+<li><strong>一步产生</strong> <span class="arithmatex">\((q, w)\vdash_M(q', w')\)</span>，注意这里 <span class="arithmatex">\(\vdash_M\)</span> 不一定是函数，因为可能有若干个或零个下一步。</li>
+</ul>
+</li>
+<li><strong>接受</strong>：对于 NFA，只要有<strong>某种办法</strong>按照给定的字符串从初始状态到达一个终结状态，则接受这个字符串。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">NFA 可能猜错，但没关系</p>
+<p>这一点一定要注意，NFA 可能猜错，但只要有一种方法是正确的，就可以接受这个字符串。</p>
+</div>
+<ul>
+<li><strong>空转移</strong>：NFA 允许空转移，即不消耗任何符号从一个状态转移到另一个状态。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">用 NFS 设计一些奇怪的语言</p>
+<ul>
+<li><span class="arithmatex">\(L=\{\exists a_i, a_i \notin w\}\)</span>，有一个符号不在字符串中的语言。设计方式是：先猜不在的是哪个字符，转移到对应的终结状态，然后接收其余所有字符。</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">定理 2.2.1：每一台 NFA <span class="arithmatex">\(M\)</span> 等价于一台 DFA <span class="arithmatex">\(M'\)</span></p>
+<p><strong>想法</strong>：认为 NFA 在任意时刻不是处于一个状态，而是处于一个<strong>状态集合</strong>，即消耗掉输入后可能处于的所有状态。</p>
+<p>形式化地说：</p>
+<ul>
+<li><span class="arithmatex">\(M'\)</span> 的状态集合是 <span class="arithmatex">\(M\)</span> 的<strong>状态集合</strong>的幂集。</li>
+<li><span class="arithmatex">\(M'\)</span> 的终结状态集合由 <span class="arithmatex">\(K\)</span> 中至少包含 <span class="arithmatex">\(M\)</span> 的一个终结状态的所有子集组成。</li>
+<li><span class="arithmatex">\(M'\)</span> 的状态转移函数：模仿 <span class="arithmatex">\(M\)</span> 对输入符号 <span class="arithmatex">\(a\)</span> 的动作，并且后面可能跟着任意次数的空转移。专门定义一个 <span class="arithmatex">\(E(q)\)</span>，对任一状态 <span class="arithmatex">\(q\in K\)</span>，<span class="arithmatex">\(E(q)\)</span> 是 <span class="arithmatex">\(q\)</span> 可以通过空转移到达的所有状态的集合。</li>
+</ul>
+</div>
+<h2 id="_10">上下文无关语言<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>上一章的有穷自动机是<strong>语言识别器</strong>，本章将讨论一种<strong>语言生成器</strong>。这个语言生成器从某种<strong>开始信号</strong>开始构造字符串，操作<strong>从一开始就不确定</strong>，但受到一组规则限制，最终停止输出一个字符串。</li>
+</ul>
+<h3 id="_11">上下文无关文法<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>这是一种语言生成器，“上下文无关”的意思是替换规则不依赖于字符串的上下文。</p>
+<ul>
+<li><strong>形式定义</strong>：<span class="arithmatex">\(G=(V, \Sigma, R, S)\)</span><ul>
+<li><span class="arithmatex">\(V\)</span>：字母表。</li>
+<li><span class="arithmatex">\(\Sigma\)</span>：终结符集合。</li>
+<li><span class="arithmatex">\(R\)</span>：规则集合，<span class="arithmatex">\((V - \Sigma)\times V^*\)</span> 的<strong>有穷</strong>子集。</li>
+<li><span class="arithmatex">\(S\in V - \Sigma\)</span>：开始符号。</li>
+<li><span class="arithmatex">\(V - \Sigma\)</span> 是<strong>非终结符</strong>。</li>
+</ul>
+</li>
+<li><strong>关系</strong>：<ul>
+<li><strong>可以是</strong>：<span class="arithmatex">\(A\rightarrow u\)</span>。</li>
+<li><strong>一步产生</strong>：<span class="arithmatex">\(u\Rightarrow v\)</span>。</li>
+<li><strong>产生</strong>：<span class="arithmatex">\(u\Rightarrow^* v\)</span>。</li>
+</ul>
+</li>
+<li><strong><span class="arithmatex">\(G\)</span> 生成的语言</strong>：<span class="arithmatex">\(L(G)=\{w\in\Sigma^*|S\Rightarrow_G^* w\}\)</span>。上下文无关语言。</li>
+<li><strong>推导</strong>：<span class="arithmatex">\(w_0\Rightarrow_G w_1\Rightarrow_G \ldots \Rightarrow_G w_n\)</span>，有 <span class="arithmatex">\(n\)</span> 步。</li>
+</ul>
+<p>CFG 和正则表达式的关系：</p>
+<ul>
+<li>都是语言生成器</li>
+<li><span class="arithmatex">\(L\)</span> 是正则语言当且仅当存在一个正则表达式 <span class="arithmatex">\(r\)</span> 使得 <span class="arithmatex">\(L=L(r)\)</span></li>
+<li><span class="arithmatex">\(L\)</span> 是上下文无关语言当且仅当存在一个上下文无关文法 <span class="arithmatex">\(G\)</span> 使得 <span class="arithmatex">\(L=L(G)\)</span></li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">证明：所有正则语言是上下文无关的（直接构造法）</p>
+<p>考虑由 DFA <span class="arithmatex">\(M=(K, \Sigma, \delta, s, F)\)</span> 生成的正则语言 <span class="arithmatex">\(L(M)\)</span>。构造下面的 CFG <span class="arithmatex">\(G=(V, \Sigma, R, S)\)</span>：</p>
+<ul>
+<li><span class="arithmatex">\(V=K\cup \Sigma\)</span></li>
+<li><span class="arithmatex">\(S=s\)</span></li>
+<li><span class="arithmatex">\(R=\{q\rightarrow ap: \delta(q, a)=p\}\cup\{q\rightarrow e: q\in F\}\)</span></li>
+</ul>
+</div>
+<h3 id="_12">语法分析树<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 30, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://bowling233.com" target="_blank" rel="noopener" title="bowling233.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.07 4.93C17.22 3 14.66 1.96 12 2c-2.66-.04-5.21 1-7.06 2.93C3 6.78 1.96 9.34 2 12c-.04 2.66 1 5.21 2.93 7.06C6.78 21 9.34 22.04 12 22c2.66.04 5.21-1 7.06-2.93C21 17.22 22.04 14.66 22 12c.04-2.66-1-5.22-2.93-7.07M17 12v6h-3.5v-5h-3v5H7v-6H5l7-7 7.5 7z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.highlight", "navigation.tracking", "navigation.tabs", "navigation.prune", "navigation.indexes", "header.autohide", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.alicdn.com/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
