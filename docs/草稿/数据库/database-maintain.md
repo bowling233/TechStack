@@ -87,29 +87,43 @@ Create Table: CREATE TABLE `orders` (
 !!! quote
 
     - [PostgreSQL: Downloads](https://www.postgresql.org/download/)
+    - 推荐阅读：Practical SQL : a beginner's guide to storytelling with data / Anthony DeBarros.
 
-### Docker 安装和使用
+### 部署
 
-```yaml
-# Use postgres/example user/password credentials
-services:
+- 服务端：
 
-  db:
-    image: postgres
-    restart: always
-    # set shared memory limit when using docker-compose
-    shm_size: 128mb
-    environment:
-      POSTGRES_PASSWORD: example
+    ```yaml
+    services:
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-```
+    db:
+        image: postgres
+        restart: always
+        # set shared memory limit when using docker-compose
+        shm_size: 128mb
+        environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: example
+        volumes:
+        - ./pgdata:/var/lib/postgresql/data
+        ports:
+        - 5432:5432
 
-```bash
-```
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+        - 8080:8080
+    ```
+
+- 客户端：
+
+    ```bash
+    sudo apt install postgresql-client
+    psql -h localhost -U postgres
+    \l
+    \c
+    \dt
+    ```
 
 

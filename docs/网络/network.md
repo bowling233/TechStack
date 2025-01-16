@@ -4,49 +4,14 @@
 
 ## 链路层
 
-链路层提供“信道”，各段链路组成端到端的通信路径。有两种信道：
-
-- 广播信道：多个发送和接收节点连接到相同、单一、共享广播信道上。以太网 Ethernet 和无线局域网 WLAN。
-- 点对点通信链路：单个发送和接收方。点对点协议 PPP。
-
-### 概述
-
-基本概念：
-
-- 帧 Frame
-- MAC 媒体访问控制 Medium Access Control
-- 多路访问协议 multiple access protocol
-    - 信道划分协议 channel partitioning protocol
-        - 时分多路复用 Time Division Multiplexing
-        - 频分多路复用 Frequency Division Multiplexing
-        - CDMA 码分多址 Code Division Multiple Access：具有不同节点能够同时传输的特性
-    - 随机接入协议 random access protocol：全速发送，碰撞重传，随机等待
-        - CSMA 载波侦听多路访问 Carrier Sense Multiple Access
-        - CSMA/CD 具有碰撞检测的载波侦听多路访问 CSMA with Collision Detection
-    - 轮流协议 taking-turns protocol
-        - 轮询协议 polling protocol：主节点轮询决定
-            - 蓝牙
-        - 令牌传递协议 token-passing protocol
 - MAC 地址 MAC address
     - 6 字节
     - IEEE 管理 MAC 地址空间，分配前 24 比特
     - 广播地址 `FF-FF-FF-FF-FF-FF`
 
-实现：
-
-- NIC 的核心是链路层控制器。比如有线网卡实现以太网控制器、无线网卡实现 802.11 WiFi 协议。
-
-### Ethernet
-
-!!! quote
-
-    - [Ethernet - WireShark](https://wiki.wireshark.org/Ethernet)
-
-Ethernet 以太网
+### 以太网技术
 
 以太网向网络层提供无连接、不可靠服务。
-
-#### 以太网技术
 
 以太网不是单一协议标准，而是有多种技术：
 

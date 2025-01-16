@@ -31,6 +31,26 @@ glightbox: False
 </div>
 
 <div class="flink-list-item">
+    <a href="https://mem.ac/" title="memset0" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://avatars.githubusercontent.com/memset0" alt="memset0">
+        </div>
+        <div class="flink-item-name">memset0</div>
+        <div class="flink-item-desc">在海月的虚空中，纵身飞过秋凉的时鸟。</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
+    <a href="https://xecades.xyz/" title="Xecades" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://avatars.githubusercontent.com/Xecades" alt="Xecades">
+        </div>
+        <div class="flink-item-name">Xecades</div>
+        <div class="flink-item-desc">Human-ish.</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
     <a href="https://note.isshikih.top/" title="Isshiki 修" target="_blank">
         <div class="flink-item-icon">
             <img src="https://cdn.bowling233.top/note/avatar/isshiki.png" alt="Isshiki 修">

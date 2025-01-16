@@ -1532,7 +1532,7 @@ e_1 : \text{num} \quad e_2 : \text{num} \quad \text{则} \quad \text{plus}(e_1 ;
 
 ### 第八章：函数定义和值
 
-在语言 E 中，我们可以执行诸如给定表达式的加倍计算，但我们无法将加倍作为一个概念本身来表达。为了捕捉加倍一个数字的模式，我们使用变量来表示一个固定但未指定的数字，从而表达任意数字的加倍。然后，通过将一个数值表达式替换为该变量，可以获得加倍的特定实例。一般来说，一个表达式可能涉及许多不同的变量，因此我们需要指定在特定上下文中哪个变量在变化，从而产生该变量的**函数（function）**。
+在语言 E 中，我们可以执行诸如给定表达式的加倍计算，但我们无法将加倍作为一个概念本身来表达。为了捕捉加倍一个数字的模式，我们使用变量来表示一个固定但未指定的数字，从而表达任意数字的加倍。然后，通过用一个数值表达式替换该变量，可以获得加倍的特定实例。一般来说，一个表达式可能涉及许多不同的变量，因此我们需要指定在特定上下文中哪个变量在变化，从而产生该变量的**函数（function）**。
 
 在本章中，我们将考虑 E 的两个扩展，分别是函数。第一个也是最明显的扩展是将**函数定义**添加到语言中。函数通过将名称绑定到一个带有绑定变量的 abt（抽象绑定树）来定义，该变量作为该函数的参数。通过将特定表达式（具有适当类型）替换绑定变量来应用函数，从而获得一个表达式。
 
@@ -1573,7 +1573,9 @@ ED 的静态语义由以下规则定义：
 函数替换，记作 \([[ x.e/f ]] e'\)，通过对 \(e'\) 的结构进行归纳定义，类似于普通替换。然而，函数名 \(f\) 不代表一个表达式，只能出现在形式为 \(\text{apply}\{f \}(e)\) 的应用中。函数替换由以下规则定义：
 
 \[
-[[ x.e/f ]] \text{apply}\{f \}(e') = \text{let}([[ x.e/f ]] e'; x.e) \tag{8.2}
+\frac{}{
+[[ x.e/f ]] \text{apply}\{f \}(e') = \text{let}([[ x.e/f ]] e'; x.e)
+} \tag{8.2}
 \]
 
 在应用 \(f\) 的位置，带参数 \(e'\) 的函数替换产生一个 \(\text{let}\) 表达式，将 \(x\) 绑定到扩展 \(e'\) 中任何进一步应用 \(f\) 的结果。
@@ -2588,7 +2590,118 @@ o &= \lambda (n : \text{nat}) \ \text{eeo}(n) \cdot r
 
 ### 第十四章：泛型编程
 
+#### 14.1 简介 Introduction
+
+许多程序是在特定情况下模式的实例。有时类型通过一种称为**（类型）泛型（type generic）**编程的技术来确定模式。例如，在第 9 章中，递归自然数是以一种**特殊（ad hoc）**的方式引入的。正如我们将看到的，归纳类型上的递归模式被表示为一个泛型程序。
+
+为了了解这一概念，考虑一个类型为 $\rho \rightarrow \rho'$ 的函数 $f$，它将类型 $\rho$ 的值转换为类型 $\rho'$ 的值。例如，$f$ 可能是自然数的倍增函数。我们希望通过将 $f$ 应用于输入中的各种位置，将类型 $[\rho/t]\tau$ 转换为类型 $[\rho'/t]\tau$，其中类型 $\rho$ 的值出现以获得类型 $\rho'$ 的值，而数据结构的其余部分保持不变。例如，$\tau$ 可能是 $\text{bool} \times t$，在这种情况下，$f$ 可以扩展为类型 $\text{bool} \times \rho \rightarrow \text{bool} \times \rho'$ 的函数，将对 $\langle a, b\rangle$ 发送到对 $\langle a, f(b) \rangle$。
+
+上述示例略过了由于替换的多对一性质而产生的歧义。根据 $\tau$ 中 $t$ 的出现次数的不同，类型可以以多种不同的方式具有形式 $[\rho/t]\tau$。给定如上的 $f$，尚不清楚如何将其扩展为从 $[\rho/t]\tau$ 到 $[\rho'/t]\tau$ 的函数。为了解决这个歧义，我们必须给出一个模板，该模板标记了 $\tau$ 中应用 $f$ 的 $t$ 的出现位置。这样的模板称为**类型算子（type operator）** $t.\tau$，它是一个在类型 $\tau$ 中绑定类型变量 $t$ 的抽象器。给定这样的抽象器，我们可以明确地将 $f$ 扩展到通过在 $\tau$ 中替换 $t$ 给出的实例。
+
+泛型编程的强大功能取决于允许的类型算子。最简单的情况是多项式类型算子，它是由类型的和与积构造的，包括它们的零元形式。这些扩展到正类型算子，还允许某些形式的函数类型。
+
+#### 14.2 多项式类型算子 Polynomial Type Operators
+
+类型算子是一个类型，配备有一个指定的变量，其出现的位置标记了应用转换的位置。类型算子是一个抽象器 $t.\tau$，其中 $t\ \text{type} \vdash \tau\ \text{type}$。例如，一个类型算子是抽象器
+
+$$t.\text{unit} + (\text{bool} \times t)$$
+
+其中 $t$ 的出现标记了应用转换的位置。类型算子 $t.\tau$ 的一个实例是通过在类型 $\tau$ 中用类型 $\rho$ 替换变量 $t$ 获得的。
+
+多项式类型算子是那些由类型变量 $t$、类型 $\text{void}$ 和 $\text{unit}$ 以及乘积和和类型构造器 $\tau_1 \times \tau_2$ 和 $\tau_1 + \tau_2$ 构造的。更准确地说，判断 $t.\tau$ 是多项式类型算子是通过以下规则归纳定义的：
+
+$$
+\frac{}{t.t \ \text{poly}} \tag{14.1a}
+$$
+
+$$
+\frac{}{t.\text{unit} \ \text{poly}} \tag{14.1b}
+$$
+
+$$
+\frac{t.\tau_1 \ \text{poly} \quad t.\tau_2 \ \text{poly}}{t.\tau_1 \times \tau_2 \ \text{poly}} \tag{14.1c}
+$$
+
+$$
+\frac{}{t.\text{void} \ \text{poly}} \tag{14.1d}
+$$
+
+$$
+\frac{t.\tau_1 \ \text{poly} \quad t.\tau_2 \ \text{poly}}{t.\tau_1 + \tau_2 \ \text{poly}} \tag{14.1e}
+$$
+
+练习 14.1 要求证明多项式类型算子在替换下是封闭的。
+
+多项式类型算子是描述具有特定类型值槽的数据结构的模板。例如，类型算子 $t.t \times (\text{nat} + t)$ 指定了所有类型 $\rho \times (\text{nat} + \rho)$，对于任何类型 $\rho$ 的选择。因此，多项式类型算子指定了数据结构中具有共同类型的感兴趣点。正如我们将很快看到的，这使我们能够指定一个程序，该程序将给定函数应用于复合数据结构中感兴趣点的所有值，以获得一个新的数据结构，其中包含在这些点应用的结果。由于替换不是单射的，因此无法从其实例中恢复类型算子。例如，如果 $\rho$ 是 $\text{nat}$，则实例将是 $\text{nat} \times (\text{nat} + \text{nat})$；除非我们通过类型算子给出模式，否则不可能知道哪些 $\text{nat}$ 的出现是在指定的位置。
+
+多项式类型算子的泛型扩展是一种具有以下语法的表达式形式：
+
+$$
+\text{Exp} \quad e ::= \text{map}\{t.\tau\}(x.e')(e) \quad \text{map}\{t.\tau\}(x.e')(e) \quad \text{generic extension}
+$$
+
+其静态语义如下：
+
+$$
+\frac{t.\tau \ \text{poly} \quad \Gamma, x : \rho \vdash e' : \rho' \quad \Gamma \vdash e : [\rho/t]\tau}{\Gamma \vdash \text{map}\{t.\tau\}(x.e')(e) : [\rho'/t]\tau} \tag{14.2}
+$$
+
+抽象器 $x.e'$ 指定了一个将 $x : \rho$ 映射到 $e' : \rho'$ 的映射。沿着 $x.e'$ 的 $t.\tau$ 的泛型扩展指定了一个从 $[\rho/t]\tau$ 到 $[\rho'/t]\tau$ 的映射。后者的映射将类型 $\rho$ 的值 $v$ 替换为类型 $\rho'$ 的转换值 $[v/x]e'$，在 $\tau$ 中对应于 $t$ 出现的位置。
+
+以下动态语义精确定义了多项式类型算子的泛型扩展的概念：
+
+$$
+\text{map}\{t.t\}(x.e')(e) \rightarrow [e/x]e' \tag{14.3a}
+$$
+
+$$
+\text{map}\{t.\text{unit}\}(x.e')(e) \rightarrow e \tag{14.3b}
+$$
+
+$$
+\text{map}\{t.\tau_1 \times \tau_2\}(x.e')(e) \rightarrow \langle \text{map}\{t.\tau_1\}(x.e')(e \cdot l), \text{map}\{t.\tau_2\}(x.e')(e \cdot r) \rangle \tag{14.3c}
+$$
+
+$$
+\text{map}\{t.\text{void}\}(x.e')(e) \rightarrow \text{abort}(e) \tag{14.3d}
+$$
+
+$$
+\text{map}\{t.\tau_1 + \tau_2\}(x.e')(e) \rightarrow \text{case} \ e \ \{l \cdot x_1 \rightarrow l \cdot \text{map}\{t.\tau_1\}(x.e')(x_1) \mid r \cdot x_2 \rightarrow r \cdot \text{map}\{t.\tau_2\}(x.e')(x_2)\} \tag{14.3e}
+$$
+
+规则 (14.3a) 将转换 $x.e'$ 应用于 $e$ 本身，因为算子 $t.t$ 指定了直接执行转换。规则 (14.3b) 表示空元组转换为自身。规则 (14.3c) 表示根据算子 $t.\tau_1 \times \tau_2$ 转换 $e$，$e$ 的第一个组件根据 $t.\tau_1$ 转换，第二个组件根据 $t.\tau_2$ 转换。规则 (14.3d) 表示类型 $\text{void}$ 的值的转换中止，因为没有这样的值。规则 (14.3e) 表示根据 $t.\tau_1 + \tau_2$ 转换 $e$，对 $e$ 进行 case 分析，并在根据 $t.\tau_1$ 或 $t.\tau_2$ 转换注入值后重构它。
+
+考虑类型算子 $t.\tau$，其定义为 $t.\text{unit} + (\text{bool} \times t)$。令 $x.e$ 为抽象器 $x.s(x)$，它递增一个自然数。使用规则 (14.3)，我们可以推导出
+
+$$
+\text{map}\{t.\tau\}(x.e)(r \cdot \langle \text{true}, n \rangle) \rightarrow^* r \cdot \langle \text{true}, n + 1 \rangle
+$$
+
+对的第二个组件中的自然数被递增，因为类型变量 $t$ 出现在类型算子 $t.\tau$ 的那个位置。
+
+定理 14.1（保型性）。如果 $\text{map}\{t.\tau\}(x.e')(e) : \tau'$ 且 $\text{map}\{t.\tau\}(x.e')(e) \rightarrow e''$，则 $e'' : \tau'$。
+
+证明：通过规则 (14.2) 的反演，我们有：
+
+1. $t$ 是类型，$\tau$ 是类型；
+2. 对于某些 $\rho$ 和 $\rho'$，$x : \rho \vdash e' : \rho'$；
+3. $e : [\rho/t]\tau$；
+4. $\tau'$ 是 $[\rho'/t]\tau$。
+
+证明通过对规则 (14.3) 进行分类。考虑规则 (14.3c)。通过反演，我们得到 $\text{map}\{t.\tau_1\}(x.e')(e \cdot l) : [\rho'/t]\tau_1$，类似地，$\text{map}\{t.\tau_2\}(x.e')(e \cdot r) : [\rho'/t]\tau_2$。很容易检查到
+
+$$
+\langle \text{map}\{t.\tau_1\}(x.e')(e \cdot l), \text{map}\{t.\tau_2\}(x.e')(e \cdot r) \rangle
+$$
+
+具有类型 $[\rho'/t](\tau_1 \times \tau_2)$，如所需。
+
 ### 第十五章：归纳与协归纳类型
+
+归纳类型和协归纳类型是两种重要的递归类型形式。归纳类型对应于某些类型方程的最小（或初始）解，而协归纳类型对应于它们的最大（或最终）解。直观上，归纳类型的元素是通过其引入形式的有限组合给出的。因此，如果我们指定一个函数在归纳类型的每个引入形式上的行为，那么它在该类型的所有值上的行为就被定义了。这样的函数称为递归器，或称为消态映射（catamorphism）。相对地，协归纳类型的元素是那些在其消解形式的有限组合中表现正确的元素。因此，如果我们指定一个元素在每个消解形式上的行为，那么我们就完全指定了该类型的一个值。这样的元素称为生成器，或称为生态映射（anamorphism）。
+
+#### 15.1 激励性的例子 Motivating Examples
 
 ## 第七部分：变量类型
 
@@ -2611,10 +2724,6 @@ o &= \lambda (n : \text{nat}) \ \text{eeo}(n) \cdot r
 ### 第二十二章：动态类型
 
 ### 第二十三章：混合类型
-
-编程语言原理课内部分到此为止。
-
----
 
 ## 第十部分：子类型
 
