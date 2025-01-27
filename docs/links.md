@@ -15,7 +15,7 @@ glightbox: False
         <div class="flink-item-icon">
             <img src="https://cdn.bowling233.top/note/avatar/tonycrane.jpeg" alt="TonyCrane">
         </div>
-        <div class="flink-item-name">TonyCrane / 鹤翔万里</div>
+        <div class="flink-item-name">TonyCrane</div>
         <div class="flink-item-desc">xg 浇死我 🤤</div>
     </a>
 </div>
@@ -73,7 +73,7 @@ glightbox: False
 <div class="flink-list-item">
     <a href="https://45gfg9.net" title="45gfg9" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/45gfg9.png" alt="45gfg9">
+            <img src="https://avatars.githubusercontent.com/45gfg9" alt="45gfg9">
         </div>
         <div class="flink-item-name">45gfg9</div>
         <div class="flink-item-desc">gg 浇窝 😍</div>
