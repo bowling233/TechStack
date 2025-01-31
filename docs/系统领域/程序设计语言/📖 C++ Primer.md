@@ -1,45 +1,9 @@
 ---
 tags:
-    - 较完善
+  - 读书笔记
 ---
 
-# C++
-
-<style>
-code {
-  white-space: pre-wrap !important;
-}
-h1 {
-  counter-reset: h2;
-}
-h2 {
-  counter-reset: h3;
-}
-h3 {
-  counter-reset: h4;
-}
-h4 {
-  counter-reset: h5;
-}
-h5 {
-  counter-reset: h6;
-}
-h4:before {
-  counter-increment: h4;
-  content: counter(h4);
-  margin-right: 0.8rem;
-}
-h5:before {
-  counter-increment: h5;
-  content: counter(h5);
-  margin-right: 0.8rem;
-}
-h6:before {
-  counter-increment: h6;
-  content: counter(h6);
-  margin-right: 0.8rem;
-}
-</style>
+# 📖 C++ Primer
 
 !!! abstract
 
@@ -78,7 +42,7 @@ Somethings different from C:
     - built-in (primitive) type, class type
     - `::` scope operator
 
-??? note "随手记点单词"
+!!! note "some words"
 
     - curly brace, open curly, close curly
     - parentheses
@@ -96,8 +60,8 @@ Somethings different from C:
 
 #### Type Conversions
 
-- If we assign an out-of-range value to an object of **unsigned** type, the result is the remainder of the value modulo the number of values the target type can hold (wrap around).
-- If we assign an out-of-range value to an object of **signed** type, the result is undefined.
+- If we assign an out-of-range value to an object of **unsigned** type, the result is the remainder of the value modulo the number of values the target type can hold (**wrap around**).
+- If we assign an out-of-range value to an object of **signed** type, the result is **undefined**.
 
 !!! example "unsigned type"
 
@@ -105,7 +69,7 @@ Somethings different from C:
 
 !!! danger "Don't mix signed and unsigned types"
 
-??? note "Specifying the Type of a Literal"
+!!! note "Specifying the Type of a Literal"
 
     Character and character string literals **prefix**:
 
@@ -136,7 +100,7 @@ int units_sold{0};
 int units_sold(0);
 ```
 
-List initialization prevents narrowing conversions. In C++, a narrowing conversion is a potentially unsafe numeric conversion where the destination type may not be able to hold all the values of the source type.
+List initialization prevents narrowing conversions. In C++, a **narrowing conversion** is a potentially unsafe numeric conversion where the destination type may not be able to hold all the values of the source type.
 
 !!! note "Variables must be defined exactly once but can be declared many times."
 
@@ -152,7 +116,7 @@ More generally, a declaration is a base type followed by a list of **declarators
     int &refVal = ival; // refVal refers to (is another name for) ival
     ```
 
-    - There is no way to **rebind** a reference to refer to a different object. References must be initialized.
+    - There is **no way to rebind** a reference to refer to a different object. References must be initialized.
     - The type of a reference and the object to which the reference refers must match exactly.
     - A reference may be bound only to an object, **not to a literal or to the result of a more general expression**.
 
@@ -205,12 +169,13 @@ const int *p2 = &ci; // we can change p2; const is low-level
 
 !!! note "`constexpr` Variables"
 
-    There are several contexts in the language that require constant expressions.
+    There are several contexts in the language that require **constant expressions**.
 
-    We can ask the compiler to verify that a variable is a constant expression by declaring the variable in a constexpr declaration. Variables declared as constexpr are implicitly const andmust be initialized by constant expressions.
+    We can ask the compiler to verify that a variable is a constant expression by declaring the variable in a constexpr declaration. Variables declared as constexpr are implicitly const and must be initialized by constant expressions.
 
     ```cpp
-    constexpr int mf = 20; // 20 is a constant expression
+    constexpr int sq(int x) { return x * x; }
+    constexpr int mf = sq(20); // calculated at compile time
     ```
 
     !!! note "The address of an object defined outside of any function is a constant expression (stored in fixed address), and so may be used to initialize a constexpr pointer."
@@ -583,12 +548,12 @@ Values are returned in exactly the same way as variables and parameters are init
 
     ```cpp
     char &get_val(string &str, string::size_type ix) {
-        return str[ix]; // get_val assumes the given index is valid 
+        return str[ix]; // get_val assumes the given index is valid
     }
     int main() {
-        string s("a value"); 
-        cout << s << endl; // prints a value 
-        get_val(s, 0) = ’A’; // changes s[0] to A 
+        string s("a value");
+        cout << s << endl; // prints a value
+        get_val(s, 0) = ’A’; // changes s[0] to A
         cout << s << endl; // prints A value return 0;
     }
     ```
@@ -807,11 +772,11 @@ When we define a member function outside the class body, the member’s definiti
 !!! tip "Use the scope operator `::`."
 
     ```cpp
-    double Sales_data::avg_price() const { 
-        if (units_sold) 
+    double Sales_data::avg_price() const {
+        if (units_sold)
             return revenue/units_sold;
-        else 
-            return 0; 
+        else
+            return 0;
     }
     ```
 
@@ -903,7 +868,7 @@ Value initialization happens:
 !!! warning "It is a common mistake among programmers new to C++ to try to declare an object initialized with the default constructor as follows:"
 
     ```cpp
-    Sales_data obj(); // oops! declares a function, not an object 
+    Sales_data obj(); // oops! declares a function, not an object
     Sales_data obj2; // ok: obj2is an object, not a function
     ```
 
@@ -914,9 +879,9 @@ Every constructor that can be called with a **single** argument defines an impli
 !!! warning "Only One Class-Type Conversion Is Allowed"
 
     ```cpp
-    // error: requires two user-defined conversions: 
+    // error: requires two user-defined conversions:
     // (1) convert "9-999-99999-9"to string
-    // (2) convert that (temporary) stringto Sales_data 
+    // (2) convert that (temporary) stringto Sales_data
     item.combine("9-999-99999-9");
     ```
 
@@ -971,9 +936,9 @@ class Sales_data { // friend declarations for nonmember Sales_dataoperations add
 !!! tip "Overloading Based on `const`"
 
     ```cpp
-    Screen &display(std::ostream &os) 
+    Screen &display(std::ostream &os)
         { do_display(os); return *this; }
-    const Screen &display(std::ostream &os) const 
+    const Screen &display(std::ostream &os) const
         { do_display(os); return *this; }
     void do_display(std::ostream &os) const {os << contents;}
     ```
@@ -1068,7 +1033,7 @@ The library lets us **ignore the differences among these different kinds of stre
     - Recover: `.clear()`, `.clear(flags)`, `.setstate(flags)`, `.rdstate()`.
 
     ```cpp
-    // turns off failbit and badbit but all other bits unchanged 
+    // turns off failbit and badbit but all other bits unchanged
     cin.clear(cin.rdstate() & ~cin.failbit & ~cin.badbit);
     ```
 
@@ -1221,7 +1186,7 @@ for(const auto &entry : people) { // for each entry in people
     -   Obtain Iterators
         -   `c.begin()`, `c.end()`
         -   `c.cbegin()`, `c.cend()`
-    -   Additional Members of Reversible Containers 
+    -   Additional Members of Reversible Containers
         -   `reverse_iterator`
         -   `const_reverse_iterator`
         -   `c.rbegin(), c.rend()`
@@ -1244,9 +1209,9 @@ for(const auto &entry : people) { // for each entry in people
     -   We can increment `begin` some number of times until `begin == end`
 
     ```cpp
-    while (begin != end) { 
-        *begin = val; // ok: range isn’t empty so begindenotes an element 
-        ++begin; // advance the iterator to get the next element 
+    while (begin != end) {
+        *begin = val; // ok: range isn’t empty so begindenotes an element
+        ++begin; // advance the iterator to get the next element
     }
     ```
 
@@ -1516,7 +1481,7 @@ stack<string, vector<string>> str_stk;
         sort, merge, remove, reverse, unique
         splice
         ```
-    
+
     - Lambda expression and `Bind()` function:
 
         ```cpp
@@ -1652,12 +1617,13 @@ return pair<string, int>(v1, v2);
 
 ### Chapter 12 Dynamic Memory
 
-We've used automatic (saved in **stack** memory) and `static` (saved in **static** memory) objects. C++ lets
-us allocate objects dynamically
+Object types:
 
-Dynamically allocated objects have a lifetime that is **independent of where they are created**; they exist until they are **explicitly freed**. They are stored in **heap** memory.
+- automatic (saved in **stack** memory)
+- `static` (saved in **static** memory)
+- Dynamically allocated objects (stored in **heap** memory)
 
-Library provides two smart pointer types that manage dynamic objects. A smart pointer acts like a regular pointer with the important exception that it **automatically deletes** the object to which it points.
+Two smart pointer types that manage dynamic objects. A smart pointer acts like a regular pointer with the important exception that it **automatically deletes** the object to which it points.
 
 Common operations:
 
@@ -1666,20 +1632,17 @@ p.get(); // return a pointer
 swap(p, q);
 p.swap(q);
 shared_ptr<T> p(q, d);
-
 ```
 
 #### `shared_ptr`
 
 ```cpp
-shared_ptr<string> p1;
-auto p6 = make_shared<vector<string>>();
+shared_ptr<string> p;
+auto p = make_shared<vector<string>>();
 auto q(p);
 p.unique();
 p.use_count();
 ```
-
-It's a template.
 
 Allows multiple pointers to refer to the same object. Think of a `shared_ptr` as if it has an associated counter.
 
@@ -1692,11 +1655,11 @@ Allows multiple pointers to refer to the same object. Think of a `shared_ptr` as
     - assign new value to
     - destroyed.
 
-Once a **shared_ptr**’s counter goes to zero, the shared_ptr automatically frees the object that it manages.
+Once a `shared_ptr`’s counter goes to zero, the `shared_ptr` automatically frees the object that it manages.
 
-- Cannot convert ordinary Pointers to `shared_ptr`s implicitly. Use initializer: `shared_ptr<int> p2(new int(42));`.
+Cannot convert ordinary Pointers to `shared_ptr`s implicitly. Use initializer.
 
-!!! warning "initialize a smart pointer must point to dynamic memory because use delete to free the associated object"
+!!! warning "a smart pointer must point to dynamic memory because `delete` is used to free the associated object"
 
 Use `make_shared` function to allocate and use dynamic memory.
 
@@ -1707,9 +1670,9 @@ Use `make_shared` function to allocate and use dynamic memory.
 
 !!! note "Value Initialization"
 
-    Value Initialization is similar to default initialization. In the case of **built-in types** the difference is significant; a value-initialized object of built-in type has a well-defined value but a default-initialized object does not. 
+    Value Initialization is similar to default initialization. In the case of **built-in types** the difference is significant; a value-initialized object of built-in type has a well-defined value but a default-initialized object does not.
 
-    We can usually omit the value and supply only a size. In this case the library creates a **value-initialized element initializer for us**. This library-generated value is used to initialize each element in the container. The value of the element initializer depends on the type of the elements stored in the vector. 
+    We can usually omit the value and supply only a size. In this case the library creates a **value-initialized element initializer for us**. This library-generated value is used to initialize each element in the container. The value of the element initializer depends on the type of the elements stored in the vector.
 
     If the `vector` holds elements of a built-in type, such as int, then the element initializer has a value of 0. If the elements are of a class type, such as string, then the element initializer is itself default initialized.
 
@@ -1722,47 +1685,44 @@ Use `make_shared` function to allocate and use dynamic memory.
 !!! example "`StrBlob`"
 
     ```cpp
-    class StrBlob { 
+    class StrBlob {
     public:
-        typedef std::vector<std::string>::size_type size_type; 
+        typedef std::vector<std::string>::size_type size_type;
         StrBlob();
-        StrBlob(std::initializer_list<std::string> il); 
-        size_type size() const { return data->size(); } 
-        bool empty() const { return data->empty(); } 
-        void push_back(const std::string &t) {data->push_back(t);} 
-        void pop_back(); 
-        std::string& front(); 
+        StrBlob(std::initializer_list<std::string> il);
+        size_type size() const { return data->size(); }
+        bool empty() const { return data->empty(); }
+        void push_back(const std::string &t) {data->push_back(t);}
+        void pop_back();
+        std::string& front();
         std::string& back();
     private:
-        std::shared_ptr<std::vector<std::string>> data; 
+        std::shared_ptr<std::vector<std::string>> data;
         void check(size_type i, const std::string &msg) const;
     };
     ```
 
     Uses the **default versions** of the operations that copy, assign, and destroy objects of its type.
 
-#### Direct manage memory
+#### Managing Memory Directly
+
+Two **operators**: `new`, `delete`.
 
 ```cpp
-int *pi = new int;
+int *p1 = new int; // ifallocation fails, new throws std::bad_alloc
+int *p2 = new (nothrow) int; // if allocation fails, new returns a null pointer
 int *pi = new int(1024);
+auto p1 = new auto(obj);
 vector<int> *pv = new vector<int>{0,1,2,3,4,5,6,7,8,9};
 string *ps = new string(); // value initialized
 string *ps1 = new string; // default initialized
-auto p1 = new auto(obj);
 const string *pcs = new const string;
-int *p1 = new int; // ifallocation fails, new throws std::bad_alloc
-int *p2 = new (nothrow) int; // if allocation fails, new returns a null pointer
 ```
 
-Two operators: `new`, `delete`.
-
-- `new` returns a pointer to allocated memory.
-    - can use direct initialization, traditional construction (parentheses) or list initialization.
+Can use direct initialization, traditional construction (parentheses) or list initialization.
 
 !!! tip "Caller is responsible for deleting the memory."
 !!! tip "assign `nullptr` to the pointer after we use `delete`"
-!!! danger "Provides Only Limited Protection: There can be several pointers that point to the same memory."
 
 ## Part III: Tools for Class Authors
 
@@ -1784,7 +1744,7 @@ Foo(const Foo&);
 ```
 
 - Synthesized copy constructor: memberwise copy.
-- 
+-
 
 #### Copy initialization
 
@@ -1829,8 +1789,8 @@ When copy initialization happens and that copy initialization requires either th
 
 !!! note "Standard Exception Classes"
 
-    Default initialization: 
-    
+    Default initialization:
+
     - `exception`
     - `bad_alloc`
     - `bad_cast`

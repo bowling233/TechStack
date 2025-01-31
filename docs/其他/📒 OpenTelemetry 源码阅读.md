@@ -1,4 +1,10 @@
-## OTel Collector 源码阅读
+---
+tags:
+  - 个人笔记
+  - 进行中
+---
+
+# 📒 OpenTelemetry 源码阅读
 
 [:simple-github: open-telemetry/opentelemetry-collector-contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib)
 
@@ -8,7 +14,7 @@
 - `pkg` 一些 Go 模块，用于辅助处理外部格式的数据。比如 `stanza` 用于处理传统日志。
 - `extension` 额外功能，本身不是流水线的一部分。比如 Health Check、PProf。
 
-### pkg/stanza
+## pkg/stanza
 
 - `adapter/converter.go` 负责 `entry.Entry` 到 `plog.Logs`。
 - `adapter/frompdataconverter.go` 负责 `plog.Logs` 到 `entry.Entry`。
