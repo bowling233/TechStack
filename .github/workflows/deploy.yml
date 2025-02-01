@@ -18,6 +18,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: note.bowling233.top
-          CONFIG_FILE: folder/mkdocs.yml
+          CONFIG_FILE: mkdocs.yml
           EXTRA_PACKAGES: build-base
-          REQUIREMENTS: folder/requirements.txt
+          REQUIREMENTS: requirements.txt
