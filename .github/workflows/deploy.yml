@@ -1,8 +1,9 @@
+# https://github.com/marketplace/actions/deploy-mkdocs
 name: Publish docs via GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
