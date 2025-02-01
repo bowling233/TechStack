@@ -1,4 +1,3 @@
-# https://github.com/marketplace/actions/deploy-mkdocs
 name: Publish docs via GitHub Pages
 on:
   push:
