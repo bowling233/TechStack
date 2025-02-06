@@ -1,0 +1,3040 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bowling 的笔记本">
+      
+      
+        <meta name="author" content="Bowling">
+      
+      
+        <link rel="canonical" href="https://note.bowling233.top/%E5%85%B6%E4%BB%96/%F0%9F%8F%AB%20%E6%8E%A7%E5%88%B6%E8%AE%BA/">
+      
+      
+        <link rel="prev" href="../../links/">
+      
+      
+        <link rel="next" href="../%F0%9F%8F%AB%20%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%8E%9F%E7%90%86%EF%BC%88H%EF%BC%89/">
+      
+      
+      <link rel="icon" href="https://cdn.bowling233.top/note/avatar/bowling.svg">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>🏫 控制论 - Bowling's TechStack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/flink.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/neoteroi-mkdocs.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.0.0/style.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bowling&#39;s TechStack" class="md-header__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bowling's TechStack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🏫 控制论
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../links/" class="md-tabs__link">
+        
+  
+    
+  
+  友链
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  应用领域
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%94%9F%E6%B4%BB/%E4%B8%AA%E4%BA%BA%E5%8F%91%E5%B1%95/" class="md-tabs__link">
+          
+  
+    
+  
+  生活
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%A7%91%E7%A0%94/%F0%9F%93%92%20%E7%A7%91%E7%A0%94%E5%86%99%E4%BD%9C/" class="md-tabs__link">
+          
+  
+    
+  
+  科研
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/%F0%9F%93%92%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" class="md-tabs__link">
+          
+  
+    
+  
+  系统领域
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bowling&#39;s TechStack" class="md-nav__button md-logo" aria-label="Bowling's TechStack" data-md-component="logo">
+      
+  <img src="https://cdn.bowling233.top/note/avatar/bowling.svg" alt="logo">
+
+    </a>
+    Bowling's TechStack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bowling233/TechStack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TechStack
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    友链
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    其他
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            其他
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    🏫 控制论
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    🏫 控制论
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#22-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      22-23 春夏 期末回忆卷
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 1 讲 控制论的基本理论
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 2 讲 三论
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 3 讲 控制论的基本方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第 3 讲 控制论的基本方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      反馈控制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制系统建模方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 4 讲 反馈与控制系统
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 5 讲 稳定性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 6 讲 时域分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第 6 讲 时域分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      典型的输入信号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制系统的稳态误差和动态品质
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      线性控制系统的微分方程模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      求解线性控制系统的微分方程模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      劳斯判据
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 7 讲 频域分析
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 8 讲 离散时间控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 9 讲 PID 控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 10 讲 机器人及其控制技术
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 11 讲 自主车辆与交通控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 12 讲 智能制造中的控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 13 讲 先进控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 14 讲 经济控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 15 讲 生物控制论
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%8F%AB%20%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%8E%9F%E7%90%86%EF%BC%88H%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏫 马克思主义原理（H）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%93%92%20OpenTelemetry%20%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 OpenTelemetry 源码阅读
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%93%92%20%E4%B8%B4%E6%97%B6%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 临时笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%93%92%20%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 容器技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%93%92%20%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 快捷键
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%93%92%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C%E5%92%8C%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 操作系统使用经验和技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%93%92%20%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C%E5%92%8C%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 软件使用经验和技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%93%96%20Vim%20%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 Vim 实用技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%F0%9F%94%97%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B1%BB%E7%A7%91%E6%99%AE%E8%A7%86%E9%A2%91/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🔗 计算机类科普视频
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    应用领域
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            应用领域
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    人工智能
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            人工智能
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 人工智能
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%F0%9F%93%96%20Dive%20into%20Deep%20Learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 Dive into Deep Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%F0%9F%93%96%20PyTorch%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 PyTorch 深度学习实战
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%F0%9F%93%96%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 深度学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数据库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            数据库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F/%E6%95%B0%E6%8D%AE%E5%BA%93/%F0%9F%93%92%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 数据库编程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F/%E6%95%B0%E6%8D%AE%E5%BA%93/%F0%9F%93%92%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%90%E7%BB%B4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 数据库运维
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F/%E6%95%B0%E6%8D%AE%E5%BA%93/%F0%9F%93%96%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 数据库系统概念
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    生活
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            生活
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E4%B8%AA%E4%BA%BA%E5%8F%91%E5%B1%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    个人发展
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E6%81%8B%E7%88%B1%E3%80%81%E5%A9%9A%E5%A7%BB%E4%B8%8E%E5%AE%B6%E5%BA%AD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    恋爱、婚姻与家庭
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E6%9D%82%E4%BA%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    杂事
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E7%A4%BE%E4%BC%9A/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    社会
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%F0%9F%93%96%20%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB%EF%BC%88%E7%AC%AC%208%20%E7%89%88%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 亲密关系（第 8 版）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%F0%9F%93%96%20%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB%EF%BC%9A%E9%80%9A%E5%BE%80%E7%81%B5%E9%AD%82%E7%9A%84%E6%A1%A5%E6%A2%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 亲密关系：通往灵魂的桥梁
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%F0%9F%93%96%20%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 刻意练习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    科研
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            科研
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A7%91%E7%A0%94/%F0%9F%93%92%20%E7%A7%91%E7%A0%94%E5%86%99%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 科研写作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A7%91%E7%A0%94/%F0%9F%93%92%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E6%A0%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 高性能网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    系统领域
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            系统领域
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    程序设计语言
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            程序设计语言
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/%F0%9F%93%92%20%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 代码风格
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/%F0%9F%93%96%20C%2B%2B%20Primer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 C++ Primer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/%F0%9F%93%96%20%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 编译原理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    算法
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            算法
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E7%AE%97%E6%B3%95/%F0%9F%8F%AB%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏫 数据结构基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    计算机体系结构
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机体系结构
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/%F0%9F%93%96%20%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 深入理解计算机系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机网络
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%F0%9F%93%92%20%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒 网络笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%F0%9F%93%96%20Head%20First%20HTML/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 Head First HTML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%F0%9F%93%96%20%E5%9B%BE%E8%A7%A3%20HTTP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 图解 HTTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%B3%BB%E7%BB%9F%E9%A2%86%E5%9F%9F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%F0%9F%93%96%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📖 计算机网络：自顶向下方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#22-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      22-23 春夏 期末回忆卷
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 1 讲 控制论的基本理论
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 2 讲 三论
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 3 讲 控制论的基本方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第 3 讲 控制论的基本方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      反馈控制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制系统建模方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 4 讲 反馈与控制系统
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 5 讲 稳定性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 6 讲 时域分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第 6 讲 时域分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      典型的输入信号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制系统的稳态误差和动态品质
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      线性控制系统的微分方程模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      求解线性控制系统的微分方程模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      劳斯判据
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 7 讲 频域分析
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 8 讲 离散时间控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 9 讲 PID 控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 10 讲 机器人及其控制技术
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 11 讲 自主车辆与交通控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 12 讲 智能制造中的控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 13 讲 先进控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 14 讲 经济控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 15 讲 生物控制论
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <a href="../../#" class="md-tag">课程笔记</a>
+    
+  
+    
+    
+    
+      <a href="../../#" class="md-tag">需要整理</a>
+    
+  
+</nav>
+
+
+  
+    <a href="https://github.com/bowling233/TechStack/blob/master/docs/其他/🏫 控制论.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">🏫 控制论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">课程简介</p>
+<ul>
+<li>学期：2022-2023 学年 春夏学期</li>
+<li>课程评定标准：<ul>
+<li>平时分 50%<ul>
+<li>每个小组 5-6 人，抽签决定小组 pre 的顺序。</li>
+<li>每次理论课后，老师指定一些阅读文献、给出下次讨论课的主题，对应小组准备下次讨论课的内容。</li>
+<li>每位同学准备 PPT，讲解时间控制 10-15 分钟，讲解后提问。</li>
+<li>每位同学都有 2 次主讲机会。</li>
+</ul>
+</li>
+<li>期末考 50%<ul>
+<li>开卷，允许参考书、笔记、打印课件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">怎么准备控制论的期末考试？</p>
+<p>主要掌握两个内容：</p>
+<ul>
+<li>劳斯判据的计算</li>
+<li>方框图的计算</li>
+</ul>
+<p>其余都靠打印 PPT。</p>
+<p>考前一定要浏览一遍历年卷所有题目，PPT 上找不到答案的，就让 ChatGPT 答一遍，如果回答满意的话打印下来，方便直接抄。经济控制论的几道考题都是 PPT 上无法直接找到的，可以这么应对。</p>
+</div>
+<h2 id="22-23">22-23 春夏 期末回忆卷<a class="headerlink" href="#22-23" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>By cc98 blblblb</p>
+</blockquote>
+<ol>
+<li>
+<p>（10 分）罗伯特·维纳和钱学森是两位著名的控制论科学家，请简述它们对控制论产生和发展过程的代表性贡献。</p>
+</li>
+<li>
+<p>（15 分）离散时间控制系统需要对模拟信号进行采样、量化得到数字信号。模拟信号为什么需要离散化？若对采样得到的数字信号进行数字滤波，请列举两个数字滤波的方法。<a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212318011.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="https://cdn.bowling233.top/images/2023/06/202306212318011.jpg" alt="ae1ad000e5efbe83" style="zoom:25%;float:right" /></a></p>
+</li>
+<li>
+<p>（15 分）右图是行驶状态的两轮自平衡车，请分析自平衡车在静止、行驶过程中的稳定性，道路、环境和操控者自身可能有哪些因素造成行驶过程中稳定性的阻碍？你能够提出哪些可望增强稳定性的做法？</p>
+</li>
+<li>
+<p>（10 分）列举一个人工生态系统的实例，并分析说明该生态系统的反馈控制或自动调节机制。</p>
+</li>
+<li>
+<p>（10 分）一个控制系统可以看作是由若干个子系统或单元连接组合而成，请写出子系统或单元连接的几种基本形式。画出一个至少包含 3 种连接方式的控制系统框图。</p>
+</li>
+<li>
+<p>（15 分）某闭环控制系统框图如下，<span class="arithmatex">\(u=6\)</span>，求输出 <span class="arithmatex">\(y\)</span> 的表达式。</p>
+</li>
+</ol>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212322319.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212322319.png" /></a></p>
+<ol>
+<li>
+<p>（10 分）开环传递函数的极点分布有哪几类？判断开环控制系统稳定性的常用方法有哪些？</p>
+</li>
+<li>
+<p>（15 分）如闭环控制系统特征方程如：<span class="arithmatex">\(D(\lambda)=\lambda^4+5\lambda^3+4\lambda^2+7\lambda+6\)</span>，试根据劳思判别法判断该系统的稳定性。</p>
+</li>
+</ol>
+<h2 id="1">第 1 讲 控制论的基本理论<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目</p>
+<ul>
+<li>叙述控制论的产生、发展以及核心思想。</li>
+<li>列举四个以上对控制论形成和发展有重要推进作用的事件。</li>
+<li>列举 3 个以上控制论产生和发展历程中的代表任务及其重要贡献。</li>
+</ul>
+</blockquote>
+<h2 id="2">第 2 讲 三论<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目</p>
+<ul>
+<li>简述控制论、系统论、信息论的主要内容和代表任务，并简述这三者的关系。</li>
+</ul>
+</blockquote>
+<h2 id="3">第 3 讲 控制论的基本方法<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>本节主要是一些概念性的东西。</p>
+<h3 id="_2">反馈控制<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<details class="note">
+<summary>反馈控制的基本结构</summary>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212333322.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212333322.png" /></a></p>
+</details>
+<ul>
+<li>反馈控制的特点：<ul>
+<li>有反馈信息，信号传递形成闭合回路。</li>
+<li>抗扰性好，控制精度高。</li>
+</ul>
+</li>
+</ul>
+<h3 id="_3">控制系统建模方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>PPT 开头讲了一堆建模的必要性、模型的特点吧啦吧啦。<ul>
+<li>系统建模的必要性</li>
+<li>模型的定义和特征</li>
+<li>系统模型的分类</li>
+<li>系统模型的分类</li>
+<li>系统模型的要求和原则</li>
+</ul>
+</li>
+<li>重点是了解方块图的表示方法。</li>
+</ul>
+<details class="note">
+<summary>系统建模的表示方法</summary>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212333951.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212333951.png" width="150px" /></a></p>
+<p>其中：<span class="arithmatex">\(u(t)\)</span> 是可控制的输入量，<span class="arithmatex">\(y(t)\)</span> 是被控的输出量，<span class="arithmatex">\(d(s)\)</span> 是不可控制的扰动量。</p>
+<p>复杂的系统可以表示为动态模型（大概就是控制量和被控量都随时间这样的其他因素变化吧），从时域、频域、复域角度展开分析。它们的关系如下：</p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212333215.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212333215.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212334769.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212334769.png" /></a></p>
+</details>
+<details class="note">
+<summary>机理建模方法的计算例子</summary>
+<p>一般步骤：</p>
+<ol>
+<li>确定输入、输出变量</li>
+<li>根据物理定律等写出运动的微分方程</li>
+<li>消去变量，写出输入、输出变量的微分方程</li>
+<li><strong>与输入有关的放在右边，与输出有关的放在左边，按降次排列。</strong></li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">RLC 电路</label><label for="__tabbed_1_2">机械位移系统</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>RLC 电路如下图所示：</p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212334346.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212334346.png" /></a></p>
+<p>使用基尔霍夫定律定律得到：</p>
+<div class="arithmatex">\[
+\begin{cases}
+u(t) = Ri(t) + L\frac{di(t)}{dt} + \frac{1}{C}\int_{0}^{t}i(\tau)d\tau \\
+y(t) = i(t)
+\end{cases}
+\]</div>
+<p>代入得到：</p>
+<div class="arithmatex">\[
+LC\frac{d^2y(t)}{dt^2} + RC\frac{dy(t)}{dt} + y(t) = u(t)
+\]</div>
+<p>这就是这个系统的微分方程模型</p>
+</div>
+<div class="tabbed-block">
+<p>机械位移系统如图所示：</p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212335940.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212335940.png" width="150px" /></a></p>
+<p>使用牛顿第二定律得到：</p>
+<div class="arithmatex">\[
+\begin{cases}
+F_1=ky(t)\\
+F_2=f\frac{dy(t)}{dt}\\
+a=\frac{d^2y(t)}{dt^2}\\
+F(t)-F_1-F_2=ma
+\end{cases}
+\]</div>
+<p>整理得到：</p>
+<div class="arithmatex">\[
+m\frac{d^2y(t)}{dt^2}+f\frac{dy(t)}{dt}+ky(t)=F(t)
+\]</div>
+<p>这就是这个系统的微分方程模型</p>
+</div>
+</div>
+</div>
+<p>上面的两个例子具有相同的微分方程模型：</p>
+<div class="arithmatex">\[
+a\frac{d^2y(t)}{dt^2}+b\frac{dy(t)}{dt}+cy(t)=u(t)
+\]</div>
+</details>
+<ul>
+<li>系统越来越庞大，机理建模方法受阻、经验知识积累困难时，我们提出了<strong>数据驱动建模方法</strong>。PPT 以<strong>主元分析法</strong>为例进行讲解。</li>
+<li>主元分析法首先将多个变量通过<strong>数学方法</strong>简化为几个综合的统计指标（高维转低维），然后取<strong>能反映系统信息量最大的综合指标定义为第一主元</strong>。用线性代数进行表述，这是一种优化问题，可以转化为特征值求解问题，需要协方差矩阵的知识。</li>
+<li>数据驱动建模方法很有意思，在之后的大数据分析、机器学习、深度学习等课程中会有更多的学习机会。</li>
+</ul>
+<details class="note">
+<summary>数据驱动建模方法</summary>
+<ul>
+<li>统计分析：多元统计分析如主元分析、偏最小二乘等</li>
+<li>信号处理：傅里叶变换、谱分析、小波变换方法等</li>
+<li>数据挖掘：相关分析、趋势分析、关联规则挖掘、预测分析等</li>
+<li>机器学习：聚类方法、分类方法，回归方法，深度学习、强化学习等</li>
+<li>其它方法：计算智能方法、仿生计算等</li>
+</ul>
+<p>数据建模有这样一个框架：</p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212336369.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212336369.png" /></a></p>
+</details>
+<ul>
+<li>系统分析法没什么用</li>
+</ul>
+<h2 id="4">第 4 讲 反馈与控制系统<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">本讲重点</p>
+<p>掌握系统的方框图描述。</p>
+</div>
+<details class="note">
+<summary>方框图的基本元素</summary>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212336008.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212336008.png" /></a></p>
+</details>
+<details class="note">
+<summary>方框图的基本结构 - 串联和并联</summary>
+<ul>
+<li>串联：<span class="arithmatex">\(G(s) = G_1(s)G_2(s)\)</span></li>
+</ul>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212340580.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212340580.png" /></a></p>
+<ul>
+<li>并联：<span class="arithmatex">\(G(s) = G_1(s) + G_2(s)\)</span></li>
+</ul>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212340142.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212340142.png" /></a></p>
+</details>
+<details class="note">
+<summary>方框图的基本结构 - 反馈</summary>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212341538.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212341538.png" /></a></p>
+<ul>
+<li>负反馈系统：<span class="arithmatex">\(Y=(\frac{G}{1+GH})U\)</span></li>
+<li>正反馈系统：<span class="arithmatex">\(Y=(\frac{G}{1-GH})U\)</span>（就是求和点变号了而已）</li>
+</ul>
+</details>
+<details class="note">
+<summary>为什么反馈控制好？</summary>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212341999.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212341999.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212341915.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212341915.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212342034.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212342034.png" /></a></p>
+</details>
+<details class="note">
+<summary>方块图化简 - 点的移动</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">求和点移动</label><label for="__tabbed_2_2">引出点移动</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>向前移动：<span class="arithmatex">\(Hs\)</span>，向后移动：<span class="arithmatex">\(\frac{1}{H}s\)</span></p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212342703.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212342703.png" /></a></p>
+<p>相邻求和点可任意换位。</p>
+</div>
+<div class="tabbed-block">
+<p>向前移动：<span class="arithmatex">\(\frac{1}{H}s\)</span>，向后移动：<span class="arithmatex">\(Hs\)</span></p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212342720.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212342720.png" /></a></p>
+<p>相邻引出点也可任意换位。</p>
+</div>
+</div>
+</div>
+</details>
+<details class="example">
+<summary>例题：求解输出与输入的关系</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">题目</label><label for="__tabbed_3_2">Step 1：识别反馈结构</label><label for="__tabbed_3_3">Step 2：引出点移动</label><label for="__tabbed_3_4">Step 3: 反馈、并联、串联</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212343168.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212343168.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212343849.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212343849.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212345595.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212345595.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212345746.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212345746.png" /></a></p>
+</div>
+</div>
+</div>
+</details>
+<ul>
+<li><strong>信号流图</strong>大概就是把方框图的方框画成线就是了。</li>
+<li>如果出现信号流图，它所表示的系统很可能比较复杂，需要使用梅逊增益公式进行化简。</li>
+</ul>
+<details class="note">
+<summary>信号流图的结构</summary>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212332836.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212332836.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212346204.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212346204.png" /></a></p>
+</details>
+<p>历年题目中没有出现只能使用梅逊公式化简的题目，所以这里就不讲了。</p>
+<blockquote>
+<p>历年题目</p>
+<ul>
+<li>计算下面信息流的总增益：<a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212352407.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212352407.png" /></a></li>
+<li>从系统论的整体性、关联性、动态平衡性、时序性等基本特征出发，简要分析如图所示的单闭环反馈控制系统<a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212352111.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image-20230619163647121" src="https://cdn.bowling233.top/images/2023/06/202306212352111.png" /></a></li>
+<li>反馈系统如下图所示，若 <span class="arithmatex">\(u=3\)</span>，求 <span class="arithmatex">\(y\)</span>。<a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212353041.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212353041.png" /></a></li>
+<li>某系统框图如下，输入 <span class="arithmatex">\(u=4\)</span>，求输出 <span class="arithmatex">\(y\)</span> 的表达式<a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212354619.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212354619.png" /></a></li>
+<li>某系统框图如上图，输入 <span class="arithmatex">\(u=2\)</span>，试求输出 <span class="arithmatex">\(y\)</span> 的表达式。</li>
+<li>一个控制系统可以看作是由若干个子系统或单元连接组合而成，请写出子系统或单元连接的几种基本形式。</li>
+</ul>
+</blockquote>
+<h2 id="5">第 5 讲 稳定性<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">本讲摘要</p>
+<p>本讲的上下限差距也拉得很大，前面讲一堆废话，后面“硬核选学”部分又需要非常深厚的数学功底，涉及线性系统得稳定性分析等大量的代数学内容。反正我学完整门课都没搞懂拉式变换。</p>
+</div>
+<blockquote>
+<p>历年题目：</p>
+<ul>
+<li>钱学森为什么可以创立《工程控制论》？它与维纳的《控制论》区别与联系？</li>
+</ul>
+</blockquote>
+<h2 id="6">第 6 讲 时域分析<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">本讲摘要</p>
+<p>从本讲开始，我们接触到控制论在理工科的核心应用——控制系统的分析与设计。我们从基本的控制系统时域和频域分析开始，再到信号与通信，最后到 PID 控制——最为泛用的反馈控制器。</p>
+<p>本讲的重点是掌握控制系统的时域分析方法
+- 概念性内容：包括阶跃响应、脉冲响应、频率响应、稳态误差等。
+- 计算性内容：劳斯判据</p>
+</div>
+<h3 id="_4">典型的输入信号<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<details class="note">
+<summary>几种典型信号</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:5"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><input id="__tabbed_4_5" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">阶跃信号</label><label for="__tabbed_4_2">斜坡信号</label><label for="__tabbed_4_3">脉冲信号</label><label for="__tabbed_4_4">抛物线信号</label><label for="__tabbed_4_5">正弦信号</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212348108.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212348108.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212348693.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212348693.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212348259.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212348259.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212348075.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212348075.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212349444.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212349444.png" /></a></p>
+</div>
+</div>
+</div>
+</details>
+<h3 id="_5">控制系统的稳态误差和动态品质<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<details class="note">
+<summary>阶跃输入引发的输出调节过程的动态品质指标</summary>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212349241.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212349241.png" /></a></p>
+<p>在上图中，有几个重要的指标：
+- 稳态误差 <span class="arithmatex">\(\delta(\infty)\)</span>
+- 最大超调量 <span class="arithmatex">\(\sigma_p=\frac{y(t_p)-y(\infty)}{y(\infty)}\)</span>：响应曲线偏离稳态值得最大值，百分比表示。说明系统得相对稳定性
+- 延滞时间 <span class="arithmatex">\(t_d\)</span>：到达稳态值 50% 所需时间
+- 峰值时间 <span class="arithmatex">\(t_p\)</span>：到达第一个峰值（最大超调量）所需时间
+- 上升时间 <span class="arithmatex">\(t_r\)</span>：多种定义，以下都是相对于稳态值的百分比
+    - 从 10% 到 90% 的时间（适用于无振荡的系统）
+    - 从 5% 到 95% 的时间
+    - 从 0 到 100% 的时间（适用于有振荡的系统）
+- 调整时间 <span class="arithmatex">\(t_s\)</span>：从 0 到进入稳态值在 95%~105% 的时间</p>
+</details>
+<h3 id="_6">线性控制系统的微分方程模型<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<details class="example">
+<summary>加热电炉的数学模型及其推导</summary>
+<p>看 PPT 吧。</p>
+</details>
+<h3 id="_7">求解线性控制系统的微分方程模型<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<details class="note">
+<summary>线性常系数微分方程的解</summary>
+<p>线性常系数微分方程的解是由<strong>微分方程的一个特解</strong>加上<strong>齐次微分方程的通解</strong>得到的。</p>
+<p>通常取系统的稳态解作为特解，齐次微分方程的通解为暂态解。</p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212349897.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212349897.png" /></a></p>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212350168.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212350168.png" /></a></p>
+</details>
+<details class="note">
+<summary>从微分方程看系统的稳态</summary>
+<p>如果特征根是负数，或具有负实部，那么系统的稳态解是收敛的，换言之系统是稳定的；否则就是不稳定的。</p>
+</details>
+<h3 id="_8">劳斯判据<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>劳斯判据的本质是判断系统的极点是否在右半平面，如果在右半平面，那么系统就不稳定。</li>
+</ul>
+<details class="note">
+<summary>劳斯的代数稳定判据</summary>
+<ol>
+<li>按降次幂列出闭环控制系统的特征方程式</li>
+</ol>
+<div class="arithmatex">\[
+D(\lambda)=a_n\lambda^n+a_{n-1}\lambda^{n-1}+\cdots+a_1\lambda+a_0=0
+\]</div>
+<ol>
+<li>根据系数列出劳斯表</li>
+</ol>
+<div class="arithmatex">\[
+\begin{array}{c|c|c|c|c|c}
+\lambda^n &amp; a_n &amp; a_{n-2} &amp; a_{n-4} &amp; \cdots &amp; a_0 \\
+\lambda^{n-1} &amp; a_{n-1} &amp; a_{n-3} &amp; a_{n-5} &amp; \cdots &amp; 0 \\
+\lambda^{n-2} &amp; b_1 &amp; b_2 &amp; b_3 &amp; \cdots &amp; 0 \\
+\lambda^{n-3} &amp; c_1 &amp; c_2 &amp; c_3 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\lambda^1 &amp; e_1 &amp; e_2 &amp; e_3 &amp; \cdots &amp; 0 \\
+\lambda^0 &amp; f_1 &amp; f_2 &amp; f_3 &amp; \cdots &amp; 0 \\
+\end{array}
+\]</div>
+<ol>
+<li>从第三行起，各元素按下列公式计算，直到求出 <span class="arithmatex">\(n+1\)</span> 行。</li>
+</ol>
+<div class="arithmatex">\[
+\begin{aligned}
+b_1 &amp;=\frac{-\left|\begin{array}{cc}a_{n} &amp; a_{n-2} \\ a_{n-1} &amp; a_{n-3}\end{array}\right|}{a_{n-1}} \\
+b_2 &amp;=\frac{-\left|\begin{array}{cc}a_{n} &amp; a_{n-4} \\ a_{n-1} &amp; a_{n-5}\end{array}\right|}{a_{n-1}} \\
+c_1 &amp;=\frac{-\left|\begin{array}{cc}a_{n-1} &amp; a_{n-3} \\ b_{1} &amp; b_{2}\end{array}\right|}{b_1} \\
+c_2 &amp;=\frac{-\left|\begin{array}{cc}a_{n-1} &amp; a_{n-5} \\ b_{1} &amp; b_{3}\end{array}\right|}{b_1} \\
+\end{aligned}
+\]</div>
+<ol>
+<li>线性定常闭环控制系统稳定的充分必要条件：微分方程特征方程式系数均为正，劳斯表中第一列所有系数均为正。</li>
+</ol>
+</details>
+<details class="example">
+<summary>劳斯判据例题</summary>
+<p><a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212350326.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212350326.png" /></a></p>
+</details>
+<blockquote>
+<p>历年题目</p>
+<ul>
+<li>根据炉温控制系统判断被控变量，控制变量，如何对系统进行时域分析？<a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212350419.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212350419.png" /></a></li>
+<li>
+<p>闭环控制系统特征方程如下，用劳斯判据判断其稳定性</p>
+<div class="arithmatex">\[
+D(\lambda) = \lambda^4+6\lambda^3+9\lambda^2+8\lambda+6=0
+\]</div>
+</li>
+<li>
+<p>闭环控制系统特征方程如下，用劳斯判据判断其稳定性</p>
+<div class="arithmatex">\[
+D(\lambda) = 2\lambda^4+5\lambda^3+4\lambda^2+7\lambda+1=0
+\]</div>
+</li>
+</ul>
+</blockquote>
+<h2 id="7">第 7 讲 频域分析<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h2 id="8">第 8 讲 离散时间控制<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目：</p>
+<ul>
+<li>控制系统中的模拟型号、离散信号、数字信号之间有什么区别和联系？时间连续信号为什么要离散化？通过采样实现时间离散化后的数字系统是否能够还原为原先的连续系统？</li>
+</ul>
+</blockquote>
+<h2 id="9-pid">第 9 讲 PID 控制<a class="headerlink" href="#9-pid" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目：</p>
+<ul>
+<li>叙述 PID 控制中 P、I、D 的含义，一般表达式及实际应用</li>
+<li>简要解释 PID 控制器中参数 KP、KI、KD 的作用，谈谈针对复杂的应用环境 PID 控制器有什么改进或拓展。</li>
+<li>叙述 PID 控制中 P、I、D 的含义，一般表达式，举例说明 PID 控制器的作用。</li>
+</ul>
+</blockquote>
+<h2 id="10">第 10 讲 机器人及其控制技术<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目：</p>
+<ul>
+<li>【3 次】火箭在海上着陆平台进行垂直着陆，影响火箭着陆稳定性的因素有哪些？可以通过什么措施提高稳定性？</li>
+<li>简述机器人的基本构成与控制方式</li>
+</ul>
+</blockquote>
+<h2 id="11">第 11 讲 自主车辆与交通控制<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目：</p>
+<ul>
+<li>城市交通控制的目的有哪些？智慧城市交通系统中有哪些控制技术？</li>
+</ul>
+</blockquote>
+<h2 id="12">第 12 讲 智能制造中的控制<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目：</p>
+<ul>
+<li>请分析工业大数据与互联网大数据在数据来源、应用价值等方面的区别。</li>
+<li>工业 4.0 和人工智能的关键词都是“智能”，谈一谈工业智能和一般人工智能的连续与区别？</li>
+<li>简述工业大数据与互联网大数据的主要区别，并说明工业大数据和智能制造有什么关系？</li>
+</ul>
+</blockquote>
+<h2 id="13">第 13 讲 先进控制<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<h2 id="14">第 14 讲 经济控制<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目：</p>
+<ul>
+<li>根据下面框图分析闭环经济控制<a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212355831.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212355831.png" /></a></li>
+<li>分析下面国民经济反馈控制系统体现出的基本控制思想，并说明该系统中给定值、控制作用和扰动具体是什么？<a class="glightbox" href="https://cdn.bowling233.top/images/2023/06/202306212355800.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.bowling233.top/images/2023/06/202306212355800.png" /></a></li>
+<li>在上面的国民经济反馈控制系统中，列举三种以上的扰动作用，并分析如何克服扰动作用的不良影响。</li>
+</ul>
+</blockquote>
+<h2 id="15">第 15 讲 生物控制论<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>历年题目：</p>
+<ul>
+<li>试叙述人体站立稳定性的定义，分析为什么蒙住双眼和单腿站立时稳定性会下降？</li>
+</ul>
+</blockquote>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 11, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../links/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 友链">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                友链
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../%F0%9F%8F%AB%20%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%8E%9F%E7%90%86%EF%BC%88H%EF%BC%89/" class="md-footer__link md-footer__link--next" aria-label="Next: 🏫 马克思主义原理（H）">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                🏫 马克思主义原理（H）
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2022036274号-1</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://bowling233.com" target="_blank" rel="noopener" title="bowling233.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.07 4.93C17.22 3 14.66 1.96 12 2c-2.66-.04-5.21 1-7.06 2.93C3 6.78 1.96 9.34 2 12c-.04 2.66 1 5.21 2.93 7.06C6.78 21 9.34 22.04 12 22c2.66.04 5.21-1 7.06-2.93C21 17.22 22.04 14.66 22 12c.04-2.66-1-5.22-2.93-7.07M17 12v6h-3.5v-5h-3v5H7v-6H5l7-7 7.5 7H17Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.footer", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.tracking", "navigation.path", "navigation.top", "toc.follow", "content.action.edit", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.alicdn.com/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../javascripts/tablesort.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
