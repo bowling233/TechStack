@@ -1,22 +1,22 @@
-/*
+/**
+ * @file RDMA_RC_example.c
+ * @brief Example code for RDMA Reliable Connection (RC) operations.
+ *
+ * This file contains example code demonstrating the use of RDMA Reliable Connection (RC) operations.
+ * @brief RDMA Aware Networks Programming Example
+ *
+ * This code demonstrates how to perform the following operations using the VPI Verbs API:
+ * - Send
+ * - Receive
+ * - RDMA Read
+ * - RDMA Write
+ *
+ * @details
  * BUILD COMMAND:
- * gcc -Wall -I/usr/local/ofed/include -O2 -o RDMA_RC_example -L/usr/local/ofed/lib64 -L/usr/local/ofed/lib
- -libverbs RDMA_RC_example.c
- *
-*/
-/******************************************************************************
- *
- *
- * RDMA Aware Networks Programming Example
- *
- * This code demonstrates how to perform the following operations using the * VPI Verbs API:
- *
- * Send
- * Receive
- * RDMA Read
- * RDMA Write
- *
- *****************************************************************************/
+ * @code
+ * gcc -Wall -I/usr/local/ofed/include -O2 -o RDMA_RC_example -L/usr/local/ofed/lib64 -L/usr/local/ofed/lib -libverbs RDMA_RC_example.c
+ * @endcode
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -287,22 +287,13 @@ static int poll_completion(struct resources *res)
 	}
 	return rc;
 }
-/******************************************************************************
- * Function: post_send
- *
- * Input
- * res pointer to resources structure
- * opcode IBV_WR_SEND, IBV_WR_RDMA_READ or IBV_WR_RDMA_WRITE
- *
- * Output
- * none
- *
- * Returns
- * 0 on success, error code on failure
- *
- * Description
+/**
  * This function will create and post a send work request
- ******************************************************************************/
+ *
+ * @param[in] res pointer to resources structure
+ * @param[in] opcode IBV_WR_SEND, IBV_WR_RDMA_READ or IBV_WR_RDMA_WRITE
+ * @return 0 on success, error code on failure
+ */
 static int post_send(struct resources *res, int opcode)
 {
 	struct ibv_send_wr sr;
@@ -351,21 +342,12 @@ static int post_send(struct resources *res, int opcode)
 	}
 	return rc;
 }
-/******************************************************************************
- * Function: post_receive
+/**
+ * This function will create and post a receive work request
  *
- * Input
- * res pointer to resources structure
- *
- * Output
- * none
- *
- * Returns
- * 0 on success, error code on failure
- *
- * Description
- *
- ******************************************************************************/
+ * @param[in] res pointer to resources structure
+ * @return 0 on success, error code on failure
+ */
 static int post_receive(struct resources *res)
 {
 	struct ibv_recv_wr rr;
@@ -391,43 +373,22 @@ static int post_receive(struct resources *res)
 		fprintf(stdout, "Receive Request was posted\n");
 	return rc;
 }
-/******************************************************************************
- * Function: resources_init
+/**
+ * Initialize resources structure
  *
- * Input
- * res pointer to resources structure
- *
- * Output
- * res is initialized
- *
- * Returns
- * none
- *
- * Description
- * res is initialized to default values
- ******************************************************************************/
+ * @param[out] res pointer to resources structure
+ */
 static void resources_init(struct resources *res)
 {
 	memset(res, 0, sizeof *res);
 	res->sock = -1;
 }
-/******************************************************************************
- * Function: resources_create
+/**
+ * This function will create and allocate all necessary system resources. These are stored in res.
  *
- * Input
- * res pointer to resources structure to be filled in
- *
- * Output
- * res filled in with resources
- *
- * Returns
- * 0 on success, 1 on failure
- *
- * Description
- *
- * This function creates and allocates all necessary system resources. These
- * are stored in res.
- *****************************************************************************/
+ * @param[out] res pointer to resources structure to be filled in
+ * @return 0 on success, 1 on failure
+ */
 static int resources_create(struct resources *res)
 {
 	struct ibv_device **dev_list = NULL;
