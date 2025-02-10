@@ -10,3 +10,6 @@ target_link_libraries(RDMA_RC_example PRIVATE ibverbs)
 add_executable(mckey mckey.c)
 target_link_libraries(mckey PRIVATE ibverbs rdmacm)
 target_compile_definitions(mckey PRIVATE _GNU_SOURCE)
+
+add_executable(srq srq.c)
+target_link_libraries(srq PRIVATE ibverbs rdmacm)
