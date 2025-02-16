@@ -66,6 +66,8 @@ extra_javascript:
   # Table Sort
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
+  # mermaid
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
 extra_css:
   - stylesheets/extra.css
   - stylesheets/flink.css
