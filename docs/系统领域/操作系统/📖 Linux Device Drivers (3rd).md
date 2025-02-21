@@ -1,4 +1,20 @@
-# Linux Device Drivers, 3rd Edition
+---
+tags:
+  - 读书笔记
+---
+
+# 📖 Linux Device Drivers (3rd)
+
+!!! abstract
+
+    - **英文版：**[Linux Device Drivers, 3rd Edition](https://www.oreilly.com/library/view/linux-device-drivers/0596005903/)
+    - **中文版：**[Linux 设备驱动程序](https://book.douban.com/subject/1723151/)
+
+    截止到 2025 年，这本书依然是 Linux 驱动开发的最佳入门书籍。和众多经典 Linux 书籍一样，大家对它们的评价是：内核源码处于不断的更新之中，书籍都只能作为起点。学习的最佳方式是从书籍了解相关概念，然后读内核源码和相关文档。
+
+    > The LDD book is a reasonable starting point, but as you say it's quite dated in some areas. Kernel APIs tend to change fairly quickly by book standards, which makes it a bit of a tall order.
+    >
+    > Generally the best resources tend to be in-tree documentation (where it exists), which stands a higher chance of being up to date, and existing drivers that are doing something similar.
 
 这本书基于 Linux 2.6。
 
@@ -298,7 +314,7 @@ unsigned long copy_from_user(void *to, const void __user *from, unsigned long n)
 
 拷贝时进程可能被 sleep（等待页从磁盘加载到内存），因此需要考虑并发和 reentrant。
 
-![ldd_ch3_dev_read](ldd.assets/ldd_ch3_dev_read.png)
+![ldd_ch3_dev_read](ldd3.assets/ldd_ch3_dev_read.png)
 
 `read` 函数的返回值：
 
@@ -623,7 +639,254 @@ I/O 指令与处理器架构紧密相关，本节剩余部分概述了 Linux 支
 
 ## 第十三章：USB 驱动
 
-## 第十四章：Linux 驱动模型
+## 第十四章：Linux 设备模型
 
+2.5 版本内核的开发工作主要集中在创建统一的设备模型上。
+
+![ldd_ch14_1](ldd3.assets/ldd_ch14_1.png)
+
+统一的设备模型为下列功能提供基础：
+
+- 电源管理
+- 用户空间：`sysfs` 可以查看和修改设备状态
+- 热插拔
+- 设备类别（classes）
+- 对象生命周期
+
+### `Kobject` 和 `Kset`
+
+在了解具体实现前，先看看 `kobject` 是如何被使用的。一般情况下不会使用独立的 `kobject`，而是将其嵌入到其他结构体中。用面向对象的思想理解，可以认为 `kobject` 是一个基类，其他结构体是派生类。
+
+- 从其他结构体的 `.kobj` 成员可以访问 `kobject`，对 `kobject` 使用 `container_of()` 宏可以获取到其他结构体。
+- `kobject` 提供：引用计数、`sysfs` 表示、数据结构胶水和热插拔处理等功能。
+- 常见使用步骤：
+    - 将 `kobject` 作为嵌入结构体的一部分，使用 `memset()` 初始化为 0。
+    - `kobject_init()` 将引用计数置 1。
+    - `kobject_set_name()` 设置名字，用于 `sysfs`。
+    - 总的来说，创建者需要设置其 `ktype`、`parent` 和 `kset` 成员。
+- 引用计数：
+
+    ```c
+    struct kobject *kobject_get(struct kobject *kobj);
+    void kobject_put(struct kobject *kobj);
+    ```
+
+    在很多情况下，引用计数并不能完全解决问题，比如 `kobject` 作为内核模块的一部分，如果它在被使用，那么就不能卸载对应的模块。很多结构体包含 `struct module` 指针，在维护引用计数时检查：
+
+    ```c
+    struct kobject *cdev_get(struct cdev *p)
+    {
+        struct module *owner = p->owner;
+        struct kobject *kobj = &p->kobj;
+        if (owner && !try_module_get(owner))
+            return NULL;
+        kobj = kobject_get(&p->kobj);
+        if (!kobj)
+            module_put(owner);
+        return kobj;
+    }
+    ```
+
+```c title="linux/kobject.h"
+struct kobject {
+    const char *name;
+    struct kobject *parent;
+    struct kset *kset;
+    struct kobj_type *ktype;
+    struct sysfs_dirent *sd;
+    struct kref kref;
+    struct list_head entry;
+};
+```
 
 ## 第十五章：内存映射与 DMA
+
+> 当我们进入复杂和性能关键的领域时，虚拟内存系统是 Linux 内核中非常有趣的一部分。
+>
+> 本节覆盖三个部分：
+>
+> - `mmap()` 系统调用如何将设备的内存映射到进程用户空间
+> - `get_user_pages()` 如何直接访问用户空间页面
+> - DMA
+
+### Linux 内存管理
+
+在 Linux 内核中，在什么情况下应该使用什么类型的地址并不总是显而易见。
+
+- 用户虚拟地址
+- 物理地址
+- 总线地址
+
+    有些体系结构提供了 IOMMU（Input/Output Memory Management Unit）来处理总线地址到物理地址的映射。IOMMU 提供许多便利，比如通过地址重映射，设备看到的地址空间是连续的，但操作系统可能无法找到一块足够大的连续物理内存空间来满足需求，IOMMU 将这些连续的设备地址动态映射到实际物理内存中分散的缓冲区。
+
+    IOMMU 简化了设备驱动程序的设计。
+
+- 内核逻辑地址
+
+    某些物理地址映射为内核逻辑地址，具有**固定的偏移量**。`kmalloc()` 返回这类地，通常存储为 `unsigned long` 或 `void *`。
+
+- 内核虚拟地址
+
+    与内核逻辑地址不同，不一定是线性、一对一的映射。`vmalloc()` 和 `kmap()` 返回这类地址。
+
+`<asm/page.h>` 一些宏：
+
+- `__pa()`：返回物理地址
+- `__va()`：返回虚拟地址，仅对低地址有效
+- `PAGE_SIZE`
+- `PAGE_SHIFT`
+
+!!! info "高/低内存"
+
+    见 [高内存处理 — The Linux Kernel documentation](https://www.kernel.org/doc/html/v5.18/translations/zh_CN/vm/highmem.html)。
+    
+    当物理内存的大小接近或超过虚拟内存的最大大小时，内核不可能在任何时候都保持所有可用的物理内存的映射。传统分配方式中，较低的一段地址空间被永久映射，而较高的一段地址空间则被动态映射。这就是高、低内存的由来。
+    
+    比如，32 位体系结构的虚拟内存空间为 4GB，如果物理内存有 8GB，那么内核就无法将所有物理内存映射到虚拟内存中。
+
+    在 64 位体系结构上，高内存不再是问题，可用的地址空间达到了 16EB。
+
+下列内容在 Linux Kernel Development 中已学习过，这里不再赘述：
+
+- 物理内存页面映射和 `struct page`
+- 页表
+- VMA 和 `struct vm_area_struct`
+- 进程内存映射 `struct mm_struct`，`current->mm`
+
+### `mmap()` 设备操作
+
+- `/proc/*/maps`
+- `/proc/iomem`
+
+使用 `mmap()` 的实例：
+
+- X Server 映射显卡的显存，比 `lseek()`/`write()` 更加高效
+- PCI 设备将控制寄存器映射到内存地址，比 `ioctl()` 更加高效
+
+系统调用 `mmap()` (2)
+
+```c
+mmap (caddr_t addr, size_t len, int prot, int flags, int fd, off_t offset)
+```
+
+会调用作为 `file_operations` 结构的一部分的 `mmap()`
+
+```c
+int (*mmap) (struct file *filp, struct vm_area_struct *vma);
+```
+
+作为驱动程序的实现者，我们收到 `vma`，为相应地址范围构建页表，并视情况提供 `vma->vm_ops` 即可。
+
+构建页表有两种方法：
+
+- `remap_pfn_range()`、`io_remap_page_range()`：它们接收 `vma`、`virt_addr` 和 `pfn` 等参数，建立对应的映射关系。前者用于处理真实内存的映射，后者用于处理物理地址为 I/O 内存的映射。
+
+    ```c
+    static int simple_remap_mmap(struct file *filp, struct vm_area_struct *vma)
+    {
+        if (remap_pfn_range(vma, vma->vm_start, vm->vm_pgoff,
+        vma->vm_end - vma->vm_start,
+        vma->vm_page_prot))
+        return -EAGAIN;
+        vma->vm_ops = &simple_remap_vm_ops;
+        simple_vma_open(vma);
+        return 0;
+    }
+    ```
+
+- `nopage()` 逐页映射，更加灵活，常用于系统调用 `mremap()`。当用户进程访问 VMA 中不存在于内存中的页面时，将调用 `nopage()`。
+
+    ```c
+    static int simple_nopage_mmap(struct file *filp, struct vm_area_struct *vma)
+    {
+        unsigned long offset = vma->vm_pgoff << PAGE_SHIFT;
+        if (offset >= __pa(high_memory) || (filp->f_flags & O_SYNC))
+        vma->vm_flags |= VM_IO;
+        vma->vm_flags |= VM_RESERVED;
+        vma->vm_ops = &simple_nopage_vm_ops;
+        simple_vma_open(vma);
+        return 0;
+    }
+    ```
+
+    相应 `vm_operations_struct` 中的 `nopage()` 直接操作内存页面计数：
+
+    ```c
+    struct page *simple_vma_nopage(struct vm_area_struct *vma,
+    unsigned long address, int *type)
+    {
+        struct page *pageptr;
+        unsigned long offset = vma->vm_pgoff << PAGE_SHIFT;
+        unsigned long physaddr = address - vma->vm_start + offset;
+        unsigned long pageframe = physaddr >> PAGE_SHIFT;
+
+        if (!pfn_valid(pageframe))
+            return NOPAGE_SIGBUS;
+        pageptr = pfn_to_page(pageframe);
+        get_page(pageptr);
+        if (type)
+            *type = VM_FAULT_MINOR;
+        return pageptr;
+    }
+    ```
+
+一般来说，设备内存不应该被 cache，见 `pgprot_noncached`。
+
+!!! todo "重映射章节"
+
+### 执行直接 I/O
+
+大多数 I/O 操作都被内核缓存。
+
+实现直接 I/O 的关键在于 `get_user_pages()`：
+
+```c
+int get_user_pages(struct task_struct *tsk,
+    struct mm_struct *mm,
+    // 用户空间缓冲区起始地址和长度（按页对齐）
+    unsigned long start,
+    int len,
+    // 权限
+    int write,
+    int force,
+    // 返回 pin 在内存中的页面
+    struct page **pages,
+    struct vm_area_struct **vmas);
+```
+
+2.6 引入了异步 I/O，用户空间可以发起 I/O 而无需等待。驱动程序可以选择是否支持异步 I/O。其中，块设备和网络设备的 I/O 总是异步的，由内核中更高层次的代码提供支持（设置缓冲区等），驱动程序不需要管。见 `linux/aio.h`。
+
+### DMA
+
+外围设备可以通过 DMA 向内存传输数据，处理器无需参与。
+
+两种输入方式：
+
+- 程序请求：
+
+    1. `read()` 调用，驱动程序分配 DMA 缓冲，令硬件向缓冲区写入，进程休眠。
+    2. 硬件向缓冲区写入，完成时发起中断。
+    3. 中断处理程序获得数据，唤醒进程。
+
+- 硬件异步推送（异步使用 DMA）：
+
+    1. 硬件发起中断，告知新数据到达。
+    2. 中断处理程序分配缓冲区，告知硬件传输数据。
+    3. 硬件向缓冲区写入，完成时发起中断。
+    4. 中断处理程序获得数据，唤醒进程，管理簿记。
+
+以网卡为例：网卡使用 DMA ring buffer，收到的包放在下一个可用的 buffer 中，并发起中断，由驱动程序将包传递给内核其他部分，并放置新的 DMA buffer。
+
+#### 分配 DMA 缓冲区
+
+需要考虑设备能处理的地址范围，使用 `GFP_DMA` 从 `kmalloc()` 或 `get_free_pages()` 调用中获得 DMA 区域的页面。
+
+要求为连续物理页，因为设备在总线上使用物理地址传输。然而随着系统运行，内存逐渐碎片化。有几种方法：
+
+- 启动时使用 `mem=` 内核参数限制内核使用的内存范围，剩余的高内存即可被驱动程序作为缓冲区。
+- 使用 `GFP_NOFAIL` 选项分配内存，但会给系统带来压力，可能导致系统锁死。
+- 如果设备支持**散射/聚集（scatter/gather）I/O**，则可以将缓冲区分为多个部分。
+
+#### 通用 DMA 层
+
+严格来说，设备使用的是总线地址而非物理地址，在某些平台上这两个地址间有映射关系。要编写一个通用的驱动程序是一件复杂的事情，因此 Linux 提供了通用 DMA 层，与总线和架构无关。
