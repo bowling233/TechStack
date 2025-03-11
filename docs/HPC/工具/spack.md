@@ -1,12 +1,9 @@
 ---
 tags:
   - 个人笔记
-  - 需要整理
 ---
 
-# 📒 工具
-
-## Spack
+# Spack
 
 !!! note "概念：[spec](https://spack.readthedocs.io/en/latest/basic_usage.html#specs-dependencies)"
 
@@ -73,7 +70,7 @@ tags:
     + intel-oneapi-compilers zen3
     ```
 
-### 使用软件包
+## 使用软件包
 
 Spack 中的软件包有三种使用方式：
 
@@ -96,7 +93,7 @@ Spack 中的软件包有三种使用方式：
     spack env activate -p myenv
     ```
 
-### 添加系统已有的包
+## 添加已有的软件包
 
 - 配置编译器 `spack compiler`
     - `list` `add=find` `info`
@@ -127,7 +124,7 @@ packages:
 
     对于 OpenSSL 这种基础包，每个系统应当固定版本，不要让 Spack 自行编译，很可能发生版本不一致问题。
 
-### 串联 Spack 实例
+## 串联 Spack 实例
 
 !!! tip "修改不同级别的配置"
 
@@ -176,13 +173,13 @@ packages:
 
     也就是说， `atlas` 会自动取代 `blas/lapack` 等的位置，提供它们的服务。
 
-### 其它常用命令
+## 其它常用命令
 
 - 比较 spec 差异：`spack diff`
 - 查找安装位置：`spack location --install-dir <spec>`
 - 移动到安装位置：`spack cd -i <spec>`
 
-### 处理头文件和依赖
+## 处理头文件和依赖
 
 !!! quote
 
@@ -256,7 +253,7 @@ LD_LIBRARY_PATH
     find_package(OpenMP)
     ```
 
-### 自行添加编译、链接选项
+## 自行添加编译、链接选项
 
 这些问题常常是由于编写安装脚本的人没有考虑完善导致的，没有指定链接某些库，导致编译过程中断。如果对 `ld` 等链接工具熟悉，就能够自行添加相应的选项完成编译。下面记录几个例子：
 
@@ -286,136 +283,8 @@ spack install hwloc@2.9.1%oneapi ldflags="-lmpi" ^intel-oneapi-mpi%oneapi
         /usr/bin/ld: cannot find -lzlib
         ```
 
-## 闭源工具
-
-### Intel
-
-!!! tip "弃用的工具"
-
-    Intel Trace Analyzer and Collector 和 Amplifier 是已经弃用的工具。
-
-#### VTune Profiler
-
-```bash
-vtune -collect hotspots -r result -- ./a.out
-vtune -report summary -r result
-```
-
-### AMD
-
-#### AOCC AOCL
+## 打包与维护
 
 !!! quote
 
-    - [AMD optimized Spack recipe for HPC workloads](https://www.amd.com/en/developer/zen-software-studio/applications/spack.html)
-
-与 Intel 相同，AMD 也提供了一组优化的编译器和工具链（AOCC）以及一些优化的库（AOCL）。按照官方文档使用即可。
-
-AOCC 基于 Clang，没有别名：
-
-```bash
-clang
-clang++
-flang
-```
-
-AOCL 可以用于替代 BLAS、LAPACK 等库。AOCL 包含了所有子库，各子库也可以单独安装。
-
-```bash
-spack install amd-aocl %aocc
-```
-
-#### [uProf](https://www.amd.com/en/developer/uprof.html)
-
-```bash
-# Hotspots with callstack collection
-AMDuProfCLI collect --config hotspots -g -o <output-dir> -- <application>
-```
-
-除了最泛用的 hotspots，还支持并行分析（MPI、OpenMP 等）、微架构分析（如 IPC、Cache 等）。
-
-远程调试：
-
-- 在本地启动 `AMDuProf` GUI 获取 client ID。
-- 在远端启动服务：
-
-    ```bash
-    AMDProfilerService --add <client_id>
-    AMDProfilerService
-    ```
-
-- 通过 GUI 连接。
-
-### NVIDIA
-
-??? tip "弃用的工具"
-
-    nvprof 和 NVIDIA Visual Profiler 是已经弃用的工具。
-
-#### nvhpc
-
-```bash
-nvcc
-nvc++
-nvfortran
-```
-
-#### [Nsight Systems](https://docs.nvidia.com/nsight-systems/UserGuide/index.html)
-
-!!! quote
-
-    - [NsightSystemsVIHPS](https://www.vi-hps.org/cms/upload/material/tw41/Nsight_Systems.pdf)
-
-```bash
-# Nsight System
-nsys profile ./a.out
-```
-
-对 CPU 应用的分析并不详细，只有占用情况、栈帧和系统运行时库的调用信息，不能识别热点。对 GPU 的分析又不如 Nsight Compute。
-
-#### Nsight Compute
-
-```bash
-# Nsight Compute
-ncu -o profile ./a.out
-```
-
-### 华为
-
-## 开源工具
-
-### [POP](https://pop-coe.eu/)
-
-!!! quote "参考资料"
-
-    - [:simple-youtube: POP Training](https://www.youtube.com/playlist?list=PLDPdSvR_5-GgOV7MDtvP2pzL29RRrMUqn)
-
-Performance Optimisation and Productivity（POP）是欧洲的一个 HPC 项目，开发了一系列性能监测和优化工具。该项目通过组合多个工具，提供了一个完整的性能分析工作流。
-
-#### Extrae + Paraver
-
-- Extrae：编译、注入
-- Paraver：分析、可视化
-
-#### Score-P + Scalasca + Cube
-
-- Score-P：编译、注入
-- [Scalasca]：运行、跟踪
-- Cube：分析、可视化
-
-```bash
-export CC="scorep mpicc" CXX="scorep nvc++" MPIF77="scorep mpifort" ...
-scalasca -analyze mpiexec ...
-scalasca -examine -s <dir>
-```
-
-在 CMake 中使用时，应当使用 `scorep-wrapper` 创建编译器别名：
-
-```bash
-scorep-wrapper --create icx
-scorep-icx
-```
-
-??? info "使用记录"
-
-    - NVIDIA 套件（`nvcc` 等）参数匹配问题严重，不建议使用。
+    - [Packaging Guide](https://spack.readthedocs.io/en/latest/packaging_guide.html)
