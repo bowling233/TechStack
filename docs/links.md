@@ -13,7 +13,7 @@ glightbox: False
 <div class="flink-list-item">
     <a href="https://note.tonycrane.cc/" title="TonyCrane" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/tonycrane.jpeg" alt="TonyCrane">
+            <img src="https://avatars.githubusercontent.com/TonyCrane" alt="TonyCrane">
         </div>
         <div class="flink-item-name">TonyCrane</div>
         <div class="flink-item-desc">xg 浇死我 🤤</div>
@@ -23,20 +23,10 @@ glightbox: False
 <div class="flink-list-item">
     <a href="https://xuan-insr.github.io/" title="咸鱼暄" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/xyx.png" alt="咸鱼暄">
+            <img src="https://avatars.githubusercontent.com/xuan-insr" alt="咸鱼暄">
         </div>
         <div class="flink-item-name">咸鱼暄</div>
         <div class="flink-item-desc">好怪的学长 🫨</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
-    <a href="https://mem.ac/" title="memset0" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://avatars.githubusercontent.com/memset0" alt="memset0">
-        </div>
-        <div class="flink-item-name">memset0</div>
-        <div class="flink-item-desc">在海月的虚空中，纵身飞过秋凉的时鸟。</div>
     </a>
 </div>
 
@@ -51,9 +41,19 @@ glightbox: False
 </div>
 
 <div class="flink-list-item">
+    <a href="https://mem.ac/" title="memset0" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://avatars.githubusercontent.com/memset0" alt="memset0">
+        </div>
+        <div class="flink-item-name">memset0</div>
+        <div class="flink-item-desc">在海月的虚空中，纵身飞过秋凉的时鸟。</div>
+    </a>
+</div>
+
+<div class="flink-list-item">
     <a href="https://note.isshikih.top/" title="Isshiki 修" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/isshiki.png" alt="Isshiki 修">
+            <img src="https://avatars.githubusercontent.com/IsshikiHugh" alt="Isshiki 修">
         </div>
         <div class="flink-item-name">Isshiki 修</div>
         <div class="flink-item-desc">修佬 tql 😍</div>
@@ -63,7 +63,7 @@ glightbox: False
 <div class="flink-list-item">
     <a href="https://note.hobbitqia.cc/" title="HobbitQia" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/hobbitqia.ico" alt="HobbitQia">
+            <img src="https://avatars.githubusercontent.com/HobbitQia" alt="HobbitQia">
         </div>
         <div class="flink-item-name">HobbitQia</div>
         <div class="flink-item-desc">捏捏小 Q 😋</div>
@@ -83,7 +83,7 @@ glightbox: False
 <div class="flink-list-item">
     <a href="https://shadowash0215.github.io" title="shad0wash" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://shadowash0215.github.io/img/yukinoshita.jpg" alt="shad0wash">
+            <img src="https://avatars.githubusercontent.com/shadowash0215" alt="shad0wash">
         </div>
         <div class="flink-item-name">shad0wash</div>
         <div class="flink-item-desc">这是我的老板 🫡</div>
@@ -91,62 +91,12 @@ glightbox: False
 </div>
 
 <div class="flink-list-item">
-    <a href="https://www.cnblogs.com/yuanhongyi/" title="yuanhongyi" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/yuanhongyi.png" alt="yuanhongyi">
-        </div>
-        <div class="flink-item-name">源虹翼</div>
-        <div class="flink-item-desc">翼哥袋袋窝 🥺</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
-    <a href="https://www.luogu.com.cn/blog/sanaQWQ/" title="sanaQWQ" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/sanaQWQ.png" alt="sanaQWQ">
-        </div>
-        <div class="flink-item-name">sana</div>
-        <div class="flink-item-desc">sana 酱 🤤</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
     <a href="https://note.minjoker.top/" title="MinJoker" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://avatars.githubusercontent.com/u/136879664?v=4" alt="MinJoker">
+            <img src="https://avatars.githubusercontent.com/MinJoker" alt="MinJoker">
         </div>
         <div class="flink-item-name">MinJoker</div>
         <div class="flink-item-desc">小明哥哥🥰</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
-    <a href="https://www.luogu.com.cn/blog/chen031029/" title="thnk" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/thnk.webp" alt="thnk">
-        </div>
-        <div class="flink-item-name">TH 讠 NK</div>
-        <div class="flink-item-desc">%%% 😚</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
-    <a href="https://www.yuque.com/jinyuma-igdk2" title="金鱼马" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/jym.jpg" alt="金鱼马">
-        </div>
-        <div class="flink-item-name">金鱼马</div>
-        <div class="flink-item-desc">hls yyds！🥰</div>
-    </a>
-</div>
-
-<div class="flink-list-item">
-    <a href="https://yhwu-is.github.io/Notes/" title="yhwu-is" target="_blank">
-        <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/yhwu_is.jpg" alt="yhwu-is">
-        </div>
-        <div class="flink-item-name">yhwu-is</div>
-        <div class="flink-item-desc">wyyyyyyyyyds!😘</div>
     </a>
 </div>
 
@@ -169,7 +119,7 @@ glightbox: False
 <div class="flink-list-item">
     <a href="https://www.doubeecat.xyz/" title="Doubeecat" target="_blank">
         <div class="flink-item-icon">
-            <img src="https://cdn.bowling233.top/note/avatar/doubeecat.png" alt="Doubeecat">
+            <img src="https://avatars.githubusercontent.com/doubeecat" alt="Doubeecat">
         </div>
         <div class="flink-item-name">Doubeecat</div>
         <div class="flink-item-desc">zlgg 太强惹</div>

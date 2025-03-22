@@ -64,10 +64,10 @@ extra_javascript:
   - https://polyfill.alicdn.com/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   # Table Sort
-  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - https://unpkg.com/tablesort/dist/tablesort.min.js
   - javascripts/tablesort.js
   # mermaid
-  - https://unpkg.com/mermaid/dist/mermaid.min.js
+  - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
 extra_css:
   - stylesheets/extra.css
   - stylesheets/flink.css
