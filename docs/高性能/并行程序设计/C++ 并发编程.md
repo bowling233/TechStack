@@ -1,12 +1,8 @@
----
-tags:
-  - 读书笔记
-  - 进行中
----
-
-# 📖 C++ 并发编程实战（第 2 版）
+# C++ 并发编程
 
 !!! abstract
+
+    本篇笔记关注 C++ 标准提供的并发编程功能。以《C++ 并发编程实战（第 2 版）》为主线。
 
     - **中文版：**[C++ 并发编程实战（第 2 版）](https://book.douban.com/subject/35653912/)
     - **英文版：**[C++ Concurrency in Action, Second Edition](https://www.oreilly.com/library/view/c-concurrency-in/9781617294693/)
@@ -329,7 +325,7 @@ std::lock_guard<std::mutex> lock1(m1, std::adopt_lock);
 !!! note "`call_once()` 和 `once_flag`"
 
     所有线程共同调用 `call_once(once_flag, f)`，保证 `f` 只被安全且唯一地调用。
-    
+
     `once_flag` 用于标记是否已经调用过 `f`。
 
     `f` 的参数可以附加在 `call_once()` 后面。
@@ -707,7 +703,7 @@ public:
     bool try_pop(T& value)
     {
         std::unique_ptr<node> const old_head=try_pop_head(value);
-        return old_head!=nullptr; 
+        return old_head!=nullptr;
     }
     bool empty()
     {

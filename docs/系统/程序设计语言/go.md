@@ -1,8 +1,10 @@
 # Go
 
-## The Little Go Book
+!!! abstract
 
-### 第一章：基础
+    本篇笔记以 [:simple-github: go101](https://github.com/go101/go101) 和 [Let's Go!](https://lets-go.alexedwards.net/) 为基础。
+
+## 语言
 
 Go 语言的特点：
 
@@ -13,39 +15,224 @@ Go 语言的特点：
 - 垃圾回收（GC）
     - 具有 GC 的语言还有：Ruby、Python、Java、C#、JavaScript
 
-GO 的入点是 package `main` 中的 main 函数。
+### 工具链与项目管理
+
+!!! tip "使用代理"
+
+    国内最好用的 Go 代理是 [七牛云 - Goproxy.cn](https://goproxy.cn/)，先按教程配置好代理。
+
+Go 语言本身更新比较频繁，需要像 Python 那样做版本管理。非常方便的事情是：Go 可以管理自身的版本。因此系统的 Go 版本陈旧并不是问题（比如 Debian 官方源的 Go 更新十分缓慢）。
+
+```shell
+go install golang.org/dl/go1.23.3@latest
+go1.23.3 download
+```
+
+使用 Go 工具链时需要注意几个环境变量：
+
+- `GOPATH`：默认是 `$HOME/go`。
+    - `pkg` 目录缓存 modules。
+    - `bin` 存放 `go install` 的可执行文件。
+- `GOROOT`：Go 的安装目录，由 `go` 命令自动识别。
+
+常用命令：
+
+```shell
+go run
+go build
+go install
+go vet # 语法检查
+go fmt # format
+go test
+go doc
+```
+
+!!! quote
+
+    - [Understanding Go Modules for Beginners](https://www.pingcap.com/article/understanding-go-modules-for-beginners/)
+    - [How to Write Go Code - The Go Programming Language](https://go.dev/doc/code#Organization)
+
+Go Module 在我初学时给我带来了极大的困惑，特别是配置环境时。
+
+- **包（Package）** 是代码封装的基本单位。包可以暴露公有接口给其他包使用，其他包必须导入（import）才能使用。
+    - 一个目录（不包括子目录）下的源文件**必须属于同一个包**，因此一个文件夹就是一个包。
+    - 文件夹名称为 `internal` 的包只能在其父目录下使用。
+    - 名称为 `main` 的包称为程序包（program package），其他包称为库包（library package）。
+- **模块（Module）** 是包的集合，根目录的 `go.mod` 描述用到了该模块的路径、版本和依赖项。
+
+```shell
+# automatically
+go mod tidy
+# add/upgrade/downgrade/remove
+go get github.com/some/package@version
+# list upgradeable modules
+go list -u -m all
+```
+
+- **仓库（Repository）**：模块的集合。然而一般情况下一个仓库包含一个 module。
+
+!!! example
+
+    Google 发布的 module `go-cmp` 有一个包 `cmp`，那么它的 `import` 路径是
+
+    ```text
+    github.com/google/go-cmp/cmp
+    ```
+
+### 基础知识
+
+`main` 函数必须定义在 `main` 包中，作为程序入口（entrypoint）：
 
 ```go
 package main
 func main() {}
 ```
 
-变量的声明和赋值：
+!!! tip "换行"
+
+    Go 不允许某些 `{` 被放置在下一行，比如 `if`、`for` 等语句：
+
+    ```go
+    if a > b {
+        // ...
+    }
+    ```
+
+标识符：
+
+- 以**大写字符**开头的标识符是可导出的（exported），可以被其他包访问。可以理解为 C++ 的 `public`。
+- 支持 Unicode。
+- `_` 是空白标识符（blank identifier）。
+
+类型与字面量：
 
 ```go
+bool
+int8 uint8 int16 uint16 int32 uint32 int64 uint64 int uint uintptr
+float32 float64 complex64 complex128
+string
+// 内置类型别名
+type byte = uint8
+type rune = int32 // Unicode 码点
+// 类型声明
+type MyInt int // 两个类型不同
+// 字面量
+0o17 0b1111 0_33_77_22
+// rune
+'众' '\u4f17'
+```
+
+- `string` 存储为 UTF-8。
+- 所有类型具有**零值（zero value）**，即默认值。
+- 没有**布尔字面量**，`true` 和 `false` 是预定义的常量（named constant）。
+- **数值字面量**支持 `_` 提供更好可读性。
+- **数值字面量（常量）的转换**：目标类型必须能够表示源类型的值，**不允许溢出**。
+
+    ```go
+    TODO
+    ```
+
+- `"` 引起**可转义字符串（interpreted string）**，`\`` 引起**原始字符串（raw string）**，能够跨行。
+
+常量与变量：
+
+```go
+// 类型转换
+T(v) (T)(v)
+// 有名常量
+const (
+    pi = 3.14
+    e = 2.718
+)
+const pi = 3.14, e = 2.718
+// 有名有类型常量
+const (
+    pi float64 = 3.14
+    e float32 = 2.718
+)
+// 常量声明组的自动补全、常量生成器 iota
+const (
+    Failed = iota - 1 // == -1
+    Unknown           // == 0
+    Succeeded         // == 1
+)
+// 变量声明（标准形式）
 var power int = 900
-power := 900
-power := getPower()
+var (
+    lang, dynamic = "Go", false
+)
+// 变量声明（简短形式，仅本地变量）
 name, power := "Goku", 9001
 ```
 
-- 默认给变量赋初值。整数为 0，字符串为空字符串，布尔值为 false。
+- **类型后置**
+- **常量**分为**有名/无名**、**有类型/无类型**。
+
+!!! tip "可以将常量理解为 C 中 `#define` 的增强版"
+
+    常量在编译时被替换为字面量，常量表达式在编译时计算出值。
+
+- 结合常量数值的转换规则，理解下面的常量声明：
+
+    ```go
+    // error: -1 overflows uint
+    const MaxUint_a = uint(^0)
+    // error: -1 overflows uint
+    const MaxUint_b uint = ^0
+    // correct
+    const MaxUint = ^uint(0)
+    ```
+
+- **变量**都是有类型的。
+- 不支持**链式赋值**。
 - `:=` 结合了声明和赋值的功能。
-- 不允许未使用的变量。
+- 不允许未使用的**本地变量**。
+- **全局变量**的依赖关系决定初始化顺序，不允许循环依赖 `var a, b = b, a`。
+- 所有变量**可寻址（addressable）**，常量不可寻址。
+- 数值**变量**的**显式转换**允许溢出（overflow）和截断（round）。
+
+    ```go
+    const a = -1.23
+    // The type of b is deduced as float64.
+    var b = a
+    // error: constant 1.23 truncated to integer.
+    var x = int32(a)
+    // error: cannot assign float64 to int32.
+    var y int32 = b
+    ```
+
+运算符：
+
+- `&^` 是按位清除（bit clear）运算符。
+- `>>` 是算术右移。
+- 一元运算符 `^` 计算按位取反（bitwise complement），相当于 C 中的 `~`。
 
 函数声明：
 
 ```go
-func power (name string) (int, bool) {}
+func power (name string) (a int, b bool) {
+    return
+}
+func power (a, b bool) string {
+}
+// 匿名函数及其调用
+x, y := func(a, b int) (int, int) {
+}(c, d)
 ```
 
-- 函数可以返回多个值
-- `_` 是空白标识符（blank identifier），对它赋值表示忽略某个值。
+- **返回类型后置，允许返回多个值**。返回值的名称可以省略。
+- 如果返回值列表未省略名称，则 `return` 语句可以省略返回值名称。
+- 不支持默认参数值。默认返回值初始值为零值。
 - 参数拷贝传递。
 
-本章出现的包：
+包：
 
 ```go
+import (
+    importname "path/to/package"
+    . "path/to/package" // 直接使用包导出的标识符
+    _ "net/http/pprof" // 仅导入包，执行初始化，但无法使用包导出的标识符
+)
 // 内置
 println()
 len()
@@ -58,6 +245,8 @@ os.Exit()
 ```
 
 - 不允许未使用的包。
+- 标准库 [pkg.go.dev/std](https://pkg.go.dev/std)。
+- 在一个包甚至一个源文件中，可以重复定义 `init()` 函数。它们将被在 `main()` 之前顺序调用。`init()` 不接受参数，不返回值。
 
 ### 第二章：结构
 
@@ -339,40 +528,39 @@ string := string(byts)
 
 ### 第六章：并发
 
-## 个人笔记
+## 模块
 
-### Go 配置与维护
+### `net/http`
 
-国内最好用的 Go 代理是 [七牛云 - Goproxy.cn](https://goproxy.cn/)，先配置好代理。
+```go
+import (
+    "net/http"
+)
 
-Go 语言本身更新比较频繁，需要像 Python 那样做版本管理。非常方便的事情是：Go 可以管理自身的版本。因此系统的 Go 版本陈旧并不是问题（比如 Debian 官方源的 Go 更新十分缓慢）。
+func handler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodGet {
+        w.Header().Set("Allow", http.MethodGet)
+        // Add, Get, Set, Del
+        http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+        return
+    }
+    // Query
+    id, err := strconv.Atoi(r.URL.Query().Get("id"))
+    if err != nil || id < 1> {
+        http.NotFound(w, r)
+        return
+    }
+    w.Write([]byte("Hello, world!"))
+    fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
+}
 
-```shell
-go install golang.org/dl/go1.23.3@latest
-go1.23.3 download
+func main() {
+    mux := http.NewServeMux()
+    // fixed path 不以 `/` 结尾，使用最长前缀匹配
+    // subtree path 以 `/` 结尾，使用任意前缀匹配
+    // 路由可以使用主机名，如 `foo.example.com/`
+    mux.HandleFunc("/", handler) // 匹配所有
+    err := http.ListenAndServe(":8080", mux)
+    log.Fatal(err)
+}
 ```
-
-- `go install` 命令将软件包安装到 `$GOPATH/bin` 或 `$HOME/go/bin`。然后就可以通过把版本号加到命令行来使用这个版本的 Go。
-- `go download` 将该版本的 Go 下载到 `$HOME/sdk/go<version>`。
-
-### Go 代码组织和编译运行
-
-!!! quote
-
-    - [How to Write Go Code - The Go Programming Language](https://go.dev/doc/code#Organization)
-    - [Managing Go installations - The Go Programming Language](https://go.dev/doc/manage-install#installing-multiple)
-
-- Package：Go 中的包的概念很简单，与 Java、Python 中类似。
-- Module：
-    - Packages 的集合，目的是管理依赖。项目中的 `go.mod` 文件会描述：用到了哪些 package，它们由哪些 module 提供。
-    - 在 [Tutorial: Get started with Go - The Go Programming Language](https://go.dev/doc/tutorial/getting-started) 的一开始，我们就使用了 `go mod init` 这条命令。
-- Repository：Modules 的集合。然而一般情况下一个仓库包含一个 module。
-
-!!! example
-
-    Google 发布的 module `go-cmp` 有一个包 `cmp`，那么它的 `import` 路径是
-
-    ```text
-    github.com/google/go-cmp/cmp
-    ```
-
