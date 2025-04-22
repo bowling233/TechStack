@@ -51,14 +51,33 @@ tags:
 
 首先需要拉取内核源码树并构建，下面记录我的操作过程：
 
-??? info "构建内核过程"
+!!! info "构建内核过程"
 
     ```shell
-    $ git clone https://
-    $ cd linux
-    $ yes "" | make oldconfig
-    $ make -j
+    git clone https://
+    cd linux
+    yes "" | make oldconfig
+    make -j
     ```
+
+    在 Debian 发行版上，依照 [Chapter 4. Common kernel-related tasks](https://www.debian.org/doc/manuals/debian-kernel-handbook/ch-common-tasks.html) 操作更加可靠：
+
+    ```shell
+    apt-get install linux-source build-essential fakeroot devscripts rsync git linux-headers-amd64
+    apt-get build-dep linux
+    tar xaf /usr/src/linux-source-*.tar.xz
+    cd linux-source-*
+    ```
+
+    如果只需要特定的内核模块，参考 [Building External Modules¶](https://docs.kernel.org/kbuild/modules.html)
+
+    ```shell
+    cd drivers/net/bonding
+    make -C /lib/modules/`uname -r`/build M=$PWD
+    make -C /lib/modules/`uname -r`/build M=$PWD modules_install
+    ```
+
+    此时模块会被安装到 `/lib/modules/$(uname -r)/update/*.ko`。直接用其覆盖目标模块即可。
 
 ### 样例模块
 
@@ -890,3 +909,86 @@ int get_user_pages(struct task_struct *tsk,
 #### 通用 DMA 层
 
 严格来说，设备使用的是总线地址而非物理地址，在某些平台上这两个地址间有映射关系。要编写一个通用的驱动程序是一件复杂的事情，因此 Linux 提供了通用 DMA 层，与总线和架构无关。
+
+!!! todo "未完成"
+
+## 第十七章：网络驱动
+
+与上一节的块设备相比，网络设备有几个不同：
+
+- 在 `/dev` 下没有对应的文件。对于网络设备来说，文件操作没有意义。
+
+    尽管 Socket 仍然使用 `read/write` 操作，但 Socket 是软件层面的对象。
+
+    因此，网络设备存在自己的命名空间，提供另一套操作。
+
+- 块设备**被动地**接受内核的请求，而网络设备**主动地**向内核发送数据。
+
+Linux 网络子系统被设计为与协议无关。
+
+### `snull` 的设计
+
+略
+
+### 连接到内核
+
+作者建议阅读内核源码的顺序：
+
+```text
+loopback.c
+plip.c
+e100.c
+```
+
+#### 设备注册
+
+与块设备和字符设备不同，网络设备**不需要设备号，而是向全局网络设备列表中插入新的接口**。每个接口用 `struct net_device` 结构表示，与其他内核对象一样使用引用计数来管理。该结构通过 `netdev_alloc()` 分配。
+
+```c title="linux/netdevice.h"
+struct net_device *alloc_netdev(int sizeof_priv, const char *name,
+    void (*setup)(struct net_device *));
+```
+
+其中 `sizeof_priv` 是私有数据的大小。
+
+完成设备创建和初始化后，将其传递给 `register_netdev()` 即可。
+
+#### 设备初始化
+
+`ether_setup()` 初始化以太网设备的默认值，一般先用它初始化：
+
+```c
+ether_setup(dev);
+dev->open = snull_open;
+dev->flags |= IFF_NOARP;
+```
+
+访问私有数据使用 `netdev_priv()`：
+
+```c
+struct snull_priv *priv = netdev_priv(dev);
+```
+
+#### 模块卸载
+
+取消注册，释放设备结构：
+
+```c
+unregister_netdev(dev);
+snull_teardown_pool(dev);
+free_netdev(dev);
+```
+
+`free_netdev()` 后可能仍然存在（引用计数），但驱动不关心。
+
+### `net_device` 结构详解
+
+
+
+#### 补充内容：RTNL
+
+!!! quote
+
+    - [RTNL mutex, the network stack big kernel lock - RedHat](https://netdevconf.info/2.2/papers/westphal-rtnlmutex-talk.pdf)
+
+rtnetlink 是 netlink 子系统之一，自 Linux 2.2 加入内核，用于处理网络相关的配置。
