@@ -333,7 +333,7 @@ unsigned long copy_from_user(void *to, const void __user *from, unsigned long n)
 
 拷贝时进程可能被 sleep（等待页从磁盘加载到内存），因此需要考虑并发和 reentrant。
 
-![ldd_ch3_dev_read](ldd3.assets/ldd_ch3_dev_read.png)
+![ldd_ch3_dev_read](ldd3.assets/ldd_ch3_dev_read.webp)
 
 `read` 函数的返回值：
 
@@ -662,7 +662,7 @@ I/O 指令与处理器架构紧密相关，本节剩余部分概述了 Linux 支
 
 2.5 版本内核的开发工作主要集中在创建统一的设备模型上。
 
-![ldd_ch14_1](ldd3.assets/ldd_ch14_1.png)
+![ldd_ch14_1](ldd3.assets/ldd_ch14_1.webp)
 
 统一的设备模型为下列功能提供基础：
 

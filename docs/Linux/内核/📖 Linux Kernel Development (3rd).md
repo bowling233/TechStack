@@ -354,7 +354,7 @@ void free_irq(unsigned int irq, void *dev);
     
     本书所描述的旧代码见 [linux/kernel/irq/handle.c](https://github.com/spotify/linux/blob/master/kernel/irq/handle.c)。
 
-![ch7_interrupt](lkd3.assets/ch7_interrupt.png)
+![ch7_interrupt](lkd3.assets/ch7_interrupt.webp)
 
 - 处理器停止正在做的事情，关闭中断系统，跳到与定义的内存位置执行代码。该位置由内核设置，称为中断处理程序的入口（entry point）。
 - 对于每个中断行，跳转到一个唯一的位置，这样内核就能知道 IRQ Line。
@@ -540,7 +540,7 @@ From kernel 2.6, there is `USER_HZ` exported to user space.
 - 有趣的是，`kmalloc()` 也是通过 Slab 层实现的，它使用 general purpose cache。
 - `kmem_cache`、`kmem_list3`、`struct slab`
 
-    ![slab](lkd3.assets/ch12_slab.png)
+    ![slab](lkd3.assets/ch12_slab.webp)
 
 - Slab 有三种状态：
     - full：没有空闲对象。
@@ -846,7 +846,7 @@ Linux 中的页表有三级结构，形成一个稀疏填充的地址空间。�
 - Page Middle Directory（PMD）：`pmd_t` 的数组，每个表项指向 PTE 中的表项。
 - Page Table Entry（PTE）：`pte_t` 的数组，每个表项指向物理页。
 
-![ch15_vp](lkd3.assets/ch15_vp.png)
+![ch15_vp](lkd3.assets/ch15_vp.webp)
 
 在页表上遍历和操作需要获取内存描述符中的 `page_table_lock`。
 
