@@ -1,5 +1,38 @@
 #!/usr/bin/env bash
 
+# Function to check if cwebp is installed and install it if not
+check_and_install_cwebp() {
+    if ! command -v cwebp &>/dev/null; then
+        echo "cwebp is not installed. Installing..."
+
+        # Determine Linux distribution
+        if [ -f /etc/os-release ]; then
+            source /etc/os-release
+            case $ID in
+            ubuntu | debian)
+                sudo apt-get update && sudo apt-get install -y webp
+                ;;
+            tencentos | centos | fedora | rhel)
+                sudo yum install -y libwebp-tools
+                ;;
+            arch)
+                sudo pacman -S --noconfirm libwebp
+                ;;
+            *)
+                echo "Unsupported Linux distribution. Please install cwebp manually."
+                exit 1
+                ;;
+            esac
+        else
+            echo "Cannot determine Linux distribution. Please install cwebp manually."
+            exit 1
+        fi
+    fi
+}
+
+# Call the function to check and install cwebp
+check_and_install_cwebp
+
 # 指定要处理的图像类型
 IMAGE_EXTENSIONS=("jpg" "jpeg" "png" "gif" "bmp" "tiff")
 
