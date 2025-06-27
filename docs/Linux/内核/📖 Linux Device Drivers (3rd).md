@@ -60,12 +60,21 @@ tags:
     make -j
     ```
 
-    在 Debian 发行版上，依照 [Chapter 4. Common kernel-related tasks](https://www.debian.org/doc/manuals/debian-kernel-handbook/ch-common-tasks.html) 操作更加可靠：
+    在 Debian 系发行版上，依照 [Chapter 4. Common kernel-related tasks](https://www.debian.org/doc/manuals/debian-kernel-handbook/ch-common-tasks.html) 操作更加可靠：
 
     ```shell
     apt-get install linux-source build-essential fakeroot devscripts rsync git linux-headers-amd64
     apt-get build-dep linux
     tar xaf /usr/src/linux-source-*.tar.xz
+    cd linux-source-*
+    ```
+
+    在 RedHat 系发行版上，参考 [Building a Custom Kernel :: Fedora Docs](https://docs.fedoraproject.org/en-US/quick-docs/kernel-build-custom/)：
+
+    ```shell
+    dnf builddep kernel
+    dnf download --source kernel
+    rpm2cpio kernel*.rpm | cpio -idmv
     cd linux-source-*
     ```
 
@@ -620,6 +629,10 @@ I/O 操作有副作用，而内存没有：
 
         值得注意的是，与同步有关的原语（如 spinlock 和 `atomic_t` 操作）也会起到 memory barrier 的作用。
 
+!!! bug "Avoid normal pointers!"
+
+    Use wrapper functions instead.
+
 ### 使用 I/O 端口
 
 ```c title="linux/ioport.h"
@@ -647,11 +660,105 @@ I/O 指令与处理器架构紧密相关，本节剩余部分概述了 Linux 支
 
 ### 一个 I/O 端口例子
 
-暂略。
+大多数 I/O 引脚有两处控制：
+
+- 选择那些引脚用于输入/输出
+- 读取或写入逻辑电平
+
+A simple **parallel port** driver.
+
+- **I/O Ports**：Two interface, begin at `0x378` and `0x278`
+
+    Each interface consists of three ports:
+
+        - Port 1: Bidirectional data register
+        - Port 2: Read-only status register
+        - Port 3: Output-only control register
+
+- **Electrical Properties**：
+
+    - Transistor-Transistor Logic (TTL), 0V and 5V.
+    - 25 Pins. Some of the pins are inverted.
+
+The driver performs output operation as follows:
+
+```c
+while(count--){
+    outb(*(ptr++), port);
+    wmb();
+}
+```
 
 ### Using I/O Memory
 
 I/O memory includes: memory-mapped **registers** and device memory.
+
+Access through **page tables**? Depending on the arch and bus used:
+
+- Through page table: call `ioremap` before doing I/O. Kernel arrange for physical address to be visible from driver.
+- Not through page table: like I/O ports.
+
+Steps before access I/O memory:
+
+- Allocation:
+
+    ```c title="linux/ioport.h"
+    struct resource *request_mem_region(unsigned long start, unsigned long len,
+                                char *name);
+    void release_mem_region(unsigned long start, unsigned long len);
+    ```
+
+- Set up mapping: functions used to assign **virtual addresses to I/O memory regions**
+
+    ```c title="asm/io.h"
+     void *ioremap(unsigned long phys_addr, unsigned long size);
+    void *ioremap_nocache(unsigned long phys_addr, unsigned long size);
+    void iounmap(void * addr);
+    ```
+
+- Accessor: in `asm/io.h`
+
+    ```c
+    unsigned int ioread8(void *addr);
+    unsigned int ioread16(void *addr);
+    unsigned int ioread32(void *addr);
+    ...
+    void iowrite8(u8 value, void *addr);
+    ...
+    // repeat
+    void ioread8_rep(void *addr, void *buf, unsigned long count);
+    void iowrite8_rep(void *addr, const void *buf, unsigned long count);
+    ...
+    // block
+    void memset_io(void *addr, u8 value, unsigned int count);
+    void memcpy_fromio(void *dest, void *source, unsigned int count);
+    void memcpy_toio(void *dest, void *source, unsigned int count);
+    ```
+
+    !!! example
+
+        ```c
+        while(count--){
+            iowrite8(*prt++, address);
+            wmb();
+        }
+        ```
+
+Ports as I/O memroy: makes I/O ports appear to be I/O memory
+
+```c
+void *ioport_map(unsigned long port, unsigned int count);
+void ioport_unmap(void *addr);
+```
+
+!!! note "Industry Standard Architecture (ISA)"
+
+    The term "ISA" used in this chapter does not refer to Instruction Set Architecture, but is a **bus architecture**.
+
+    See:
+        
+    - [Industry Standard Architecture ISA | The Linux Tutorial](http://www.linux-tutorial.info/?page_id=267).
+    - [Industry Standard Architecture - Wikipedia](https://en.wikipedia.org/wiki/Industry_Standard_Architecture)
 
 ## 第十章：中断处理
 
