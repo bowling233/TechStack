@@ -11,19 +11,6 @@ tags:
     - **书名**：Vim 实用技巧/Practical Vim: Edit Text at the Speed of Thought
     - **出版社**：人民邮电出版社
 
-## VSCode 中的 Vim
-
-有一些方便的快捷键：
-
-* `gd` - jump to definition.
-    * 可以跨文件跳转。
-* `gq` - on a visual selection reflow and wordwrap blocks of text, preserving commenting style. Great for formatting documentation comments.
-    * 没搞懂。
-* `af` - visual mode command which selects increasingly large blocks of text. For example, if you had "blah (foo [bar 'ba|z'])" then it would select 'baz' first. If you pressed `af` again, it'd then select [bar 'baz'], and if you did it a third time it would select "(foo [bar 'baz'])".
-    * 选择代码块时非常之好用。
-* `gh` - equivalent to hovering your mouse over wherever the cursor is. Handy for seeing types and error messages without reaching for the mouse!
-    * 不错，可以得到函数提示。
-
 ## Basic
 
 !!! quote
